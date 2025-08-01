@@ -1,7 +1,7 @@
 use super::{RenderState, Shape, SurfaceId};
 use crate::shapes::VerticalAlign;
 use crate::utils::get_font_collection;
-use skia_safe::{textlayout::ParagraphBuilder, FontMetrics, Paint, Path};
+use skia_safe::{surface, textlayout::ParagraphBuilder, FontMetrics, Paint, Path};
 
 pub fn render(
     render_state: &mut RenderState,
@@ -24,6 +24,11 @@ pub fn render(
         _ => 0.0,
     };
 
+    if surface_id.is_some() && surface_id.unwrap() == SurfaceId::Strokes {
+        let layer_rec = skia_safe::canvas::SaveLayerRec::default();
+        canvas.save_layer(&layer_rec);
+    }
+
     for group in paragraphs {
         let mut group_offset_y = global_offset_y;
         let group_len = group.len();
@@ -39,7 +44,7 @@ pub fn render(
                 let current_paint = text_style.foreground().clone();
                 let blend_mode = current_paint.as_blend_mode();
                 let mut new_paint = paint.unwrap().clone();
-                if blend_mode != Some(skia_safe::BlendMode::SrcIn) {
+                if blend_mode != Some(skia_safe::BlendMode::SrcOut) {
                     new_paint.set_stroke_width(current_paint.stroke_width());
                     new_paint.set_style(skia_safe::PaintStyle::StrokeAndFill);
                 }
@@ -137,6 +142,10 @@ pub fn render(
             // For regular paragraphs, global_offset_y was already incremented inside the loop
             global_offset_y = group_offset_y;
         }
+    }
+
+    if surface_id.is_some() && surface_id.unwrap() == SurfaceId::Strokes {
+        canvas.restore();
     }
 }
 

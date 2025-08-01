@@ -118,24 +118,35 @@ impl TextContent {
         bounds: &Rect,
     ) -> Vec<Vec<ParagraphBuilder>> {
         let fallback_fonts = get_fallback_fonts();
-        let stroke_paints = get_text_stroke_paints(stroke, bounds);
         let fonts = get_font_collection();
         let mut paragraph_group = Vec::new();
 
         for paragraph in &self.paragraphs {
-            let mut stroke_paragraphs = Vec::new();
-            for stroke_paint in &stroke_paints {
-                let paragraph_style = paragraph.paragraph_to_style();
-                let mut builder = ParagraphBuilder::new(&paragraph_style, fonts);
-                for leaf in &paragraph.children {
+            let mut stroke_paragraphs_map: std::collections::HashMap<usize, ParagraphBuilder> =
+                std::collections::HashMap::new();
+
+            for leaf in paragraph.children.iter() {
+                let text_paint = merge_fills(&leaf.fills, *bounds);
+                let stroke_paints = get_text_stroke_paints(stroke, bounds, &text_paint);
+                let text: String = leaf.apply_text_transform();
+
+                for (paint_idx, stroke_paint) in stroke_paints.iter().enumerate() {
+                    let builder = stroke_paragraphs_map.entry(paint_idx).or_insert_with(|| {
+                        let paragraph_style = paragraph.paragraph_to_style();
+                        ParagraphBuilder::new(&paragraph_style, fonts)
+                    });
+
                     let stroke_style =
                         leaf.to_stroke_style(paragraph, stroke_paint, fallback_fonts);
-                    let text: String = leaf.apply_text_transform();
                     builder.push_style(&stroke_style);
                     builder.add_text(&text);
                 }
-                stroke_paragraphs.push(builder);
             }
+
+            let stroke_paragraphs: Vec<ParagraphBuilder> = (0..stroke_paragraphs_map.len())
+                .map(|i| stroke_paragraphs_map.remove(&i).unwrap())
+                .collect();
+
             paragraph_group.push(stroke_paragraphs);
         }
 
@@ -693,19 +704,29 @@ pub fn auto_height(paragraphs: &mut [Vec<ParagraphBuilder>], width: f32) -> f32 
     })
 }
 
-fn get_text_stroke_paints(stroke: &Stroke, bounds: &Rect) -> Vec<Paint> {
+fn get_text_stroke_paints(stroke: &Stroke, bounds: &Rect, _text_paint: &Paint) -> Vec<Paint> {
     let mut paints = Vec::new();
 
     match stroke.kind {
         StrokeKind::Inner => {
             let mut paint = skia::Paint::default();
             paint.set_style(skia::PaintStyle::Stroke);
-            paint.set_blend_mode(skia::BlendMode::SrcIn);
+            paint.set_blend_mode(skia::BlendMode::DstOver);
             paint.set_anti_alias(true);
             paint.set_stroke_width(stroke.width * 2.0);
+            paints.push(paint);
 
+            let mut paint = skia::Paint::default();
+            paint.set_blend_mode(skia::BlendMode::DstOut);
+            paint.set_anti_alias(true);
+            paints.push(paint);
+
+            let mut paint = skia::Paint::default();
+            paint.set_style(skia::PaintStyle::Stroke);
+            paint.set_stroke_width(stroke.width * 2.0);
+            paint.set_blend_mode(skia::BlendMode::SrcOut);
+            paint.set_anti_alias(true);
             set_paint_fill(&mut paint, &stroke.fill, bounds);
-
             paints.push(paint);
         }
         StrokeKind::Center => {
