@@ -376,18 +376,25 @@
      [:div {:class (stl/css :sign-info)}
       [:button {:on-click on-reset} (tr "labels.retry")]]]))
 
+;; ============================================================================
+;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Added empty string checks for file-id and team-id parameters
+;; Date: 2025-09-30
+;; ============================================================================
 (defn- load-info
   "Load exception page info"
   [path-params]
   (let [default {:loaded true}
         stream  (cond
-                  (:file-id path-params)
+                  (and (:file-id path-params) (not (str/empty? (:file-id path-params))))
                   (->> (rp/cmd! :get-file-info {:id (:file-id path-params)})
                        (rx/map (fn [info]
                                  {:loaded true
                                   :file-id (:id info)})))
 
-                  (:team-id path-params)
+                  (and (:team-id path-params) (not (str/empty? (:team-id path-params))))
                   (->> (rp/cmd! :get-team-info {:id (:team-id path-params)})
                        (rx/map (fn [info]
                                  {:loaded true

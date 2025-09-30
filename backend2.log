@@ -1,0 +1,1056 @@
+Added `penpot-s3` successfully.
+Added user `penpot-devenv` successfully.
+Bucket created successfully `penpot-s3/penpot`.
++ clojure -A:jmx-remote -A:dev -M -m app.main
+Downloading: com/bhauman/rebel-readline/maven-metadata.xml from clojars
+Downloading: com/clojure-goes-fast/clj-async-profiler/maven-metadata.xml from clojars
+Downloading: org/clojure/data.csv/maven-metadata.xml from central
+Downloading: mockery/mockery/maven-metadata.xml from clojars
+Downloading: org/clojure/clojure/1.12.1/clojure-1.12.1.pom from central
+Downloading: org/clojure/data.csv/1.1.0/data.csv-1.1.0.pom from central
+Downloading: org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.pom from central
+Downloading: org/slf4j/slf4j-parent/1.7.36/slf4j-parent-1.7.36.pom from central
+Downloading: com/clojure-goes-fast/clj-async-profiler/1.6.2/clj-async-profiler-1.6.2.pom from clojars
+Downloading: com/bhauman/rebel-readline/0.1.5/rebel-readline-0.1.5.pom from clojars
+Downloading: clojure-humanize/clojure-humanize/0.2.2/clojure-humanize-0.2.2.pom from clojars
+Downloading: mockery/mockery/0.1.4/mockery-0.1.4.pom from clojars
+Downloading: org/jline/jline-reader/3.5.1/jline-reader-3.5.1.pom from central
+Downloading: org/jline/jline-terminal-jansi/3.5.1/jline-terminal-jansi-3.5.1.pom from central
+Downloading: org/jline/jline-parent/3.5.1/jline-parent-3.5.1.pom from central
+Downloading: org/jline/jline-terminal/3.5.1/jline-terminal-3.5.1.pom from central
+Downloading: org/clojure/data.json/0.2.6/data.json-0.2.6.pom from central
+Downloading: org/clojure/pom.contrib/0.1.2/pom.contrib-0.1.2.pom from central
+Downloading: org/clojure/math.numeric-tower/0.0.4/math.numeric-tower-0.0.4.pom from central
+Downloading: org/fusesource/jansi/jansi/1.16/jansi-1.16.pom from central
+Downloading: org/fusesource/jansi/jansi-project/1.16/jansi-project-1.16.pom from central
+Downloading: org/fusesource/fusesource-pom/1.11/fusesource-pom-1.11.pom from central
+Downloading: clj-time/clj-time/0.12.0/clj-time-0.12.0.pom from clojars
+Downloading: fipp/fipp/0.6.8/fipp-0.6.8.pom from clojars
+Downloading: com/andrewmcveigh/cljs-time/0.4.0/cljs-time-0.4.0.pom from clojars
+Downloading: dev/weavejester/cljfmt/0.13.0/cljfmt-0.13.0.pom from clojars
+Downloading: compliment/compliment/0.6.0/compliment-0.6.0.pom from clojars
+Downloading: com/googlecode/java-diff-utils/diffutils/1.3.0/diffutils-1.3.0.pom from central
+Downloading: org/clojure/tools.reader/1.5.0/tools.reader-1.5.0.pom from central
+Downloading: joda-time/joda-time/2.9.3/joda-time-2.9.3.pom from central
+Downloading: rewrite-clj/rewrite-clj/1.1.48/rewrite-clj-1.1.48.pom from clojars
+Downloading: joda-time/joda-time/2.9.3/joda-time-2.9.3.jar from central
+Downloading: org/jline/jline-terminal-jansi/3.5.1/jline-terminal-jansi-3.5.1.jar from central
+Downloading: org/clojure/clojure/1.12.1/clojure-1.12.1.jar from central
+Downloading: org/fusesource/jansi/jansi/1.16/jansi-1.16.jar from central
+Downloading: com/googlecode/java-diff-utils/diffutils/1.3.0/diffutils-1.3.0.jar from central
+Downloading: org/clojure/math.numeric-tower/0.0.4/math.numeric-tower-0.0.4.jar from central
+Downloading: org/clojure/data.csv/1.1.0/data.csv-1.1.0.jar from central
+Downloading: org/jline/jline-terminal/3.5.1/jline-terminal-3.5.1.jar from central
+Downloading: org/jline/jline-reader/3.5.1/jline-reader-3.5.1.jar from central
+Downloading: rewrite-clj/rewrite-clj/1.1.48/rewrite-clj-1.1.48.jar from clojars
+Downloading: com/clojure-goes-fast/clj-async-profiler/1.6.2/clj-async-profiler-1.6.2.jar from clojars
+Downloading: clojure-humanize/clojure-humanize/0.2.2/clojure-humanize-0.2.2.jar from clojars
+Downloading: dev/weavejester/cljfmt/0.13.0/cljfmt-0.13.0.jar from clojars
+Downloading: com/bhauman/rebel-readline/0.1.5/rebel-readline-0.1.5.jar from clojars
+Downloading: clj-time/clj-time/0.12.0/clj-time-0.12.0.jar from clojars
+Downloading: compliment/compliment/0.6.0/compliment-0.6.0.jar from clojars
+Downloading: mockery/mockery/0.1.4/mockery-0.1.4.jar from clojars
+Downloading: com/andrewmcveigh/cljs-time/0.4.0/cljs-time-0.4.0.jar from clojars
+WARNING: abs already refers to: #'clojure.core/abs in namespace: clojure.math.numeric-tower, being replaced by: #'clojure.math.numeric-tower/abs
+WARNING: abs already refers to: #'clojure.core/abs in namespace: clojure.contrib.humanize, being replaced by: #'clojure.math.numeric-tower/abs
+[2025-09-22 15:39:54.287] I app.main - hint="start nrepl server", port=6064
+[2025-09-22 15:39:55.540] I app.auth.ldap - hint="provider initialized", provider="ldap", host="ldap", port=10389, tls?=false, ssl?=false, bind-dn="cn=admin,dc=planetexpress,dc=com", base-dn="ou=people,dc=planetexpress,dc=com", query="(|(uid=:username)(mail=:username))"
+[2025-09-22 15:39:55.620] I app.metrics - action="initialize metrics"
+[2025-09-22 15:39:55.634] I app.db - hint="initialize connection pool", name="main", uri="postgresql://postgres/penpot", read-only=false, credentials=true, min-size=0, max-size=60
+[2025-09-22 15:39:55.662] I app.migrations - hint="running migrations", module=:app.migrations/migrations
+[2025-09-22 15:39:55.869] I app.worker.executor - hint="executor started"
+[2025-09-22 15:39:56.372] D app.storage - hint="initialize", default="s3", available="s3,fs,assets-s3,assets-fs"
+[2025-09-22 15:39:56.373] D app.http.session - hint="initializing session gc task", max-age=#penpot/duration "168h"
+[2025-09-22 15:39:56.374] I app.redis - hint="initialize redis resources", uri="redis://redis/0", io-threads=3, worker-threads=3
+[2025-09-22 15:39:56.617] I app.msgbus - hint="initialize msgbus", buffer-size=128
+[2025-09-22 15:39:57.007] I app.rpc.climit - hint="initializing concurrency limit", config="resources/climit.edn"
+[2025-09-22 15:39:57.010] D app.setup.templates - hint="template file", id="tokens-starter-kit", state="absent"
+[2025-09-22 15:39:57.011] D app.setup.templates - hint="template file", id="wireframing-kit", state="absent"
+[2025-09-22 15:39:57.011] D app.setup.templates - hint="template file", id="prototype-examples", state="absent"
+[2025-09-22 15:39:57.012] D app.setup.templates - hint="template file", id="plants-app", state="absent"
+[2025-09-22 15:39:57.012] D app.setup.templates - hint="template file", id="penpot-design-system", state="absent"
+[2025-09-22 15:39:57.012] D app.setup.templates - hint="template file", id="tutorial-for-beginners", state="absent"
+[2025-09-22 15:39:57.013] D app.setup.templates - hint="template file", id="lucide-icons", state="absent"
+[2025-09-22 15:39:57.013] D app.setup.templates - hint="template file", id="font-awesome", state="absent"
+[2025-09-22 15:39:57.013] D app.setup.templates - hint="template file", id="black-white-mobile-templates", state="absent"
+[2025-09-22 15:39:57.014] D app.setup.templates - hint="template file", id="avataaars", state="absent"
+[2025-09-22 15:39:57.014] D app.setup.templates - hint="template file", id="ux-notes", state="absent"
+[2025-09-22 15:39:57.015] D app.setup.templates - hint="template file", id="whiteboarding-kit", state="absent"
+[2025-09-22 15:39:57.015] D app.setup.templates - hint="template file", id="open-color-scheme", state="absent"
+[2025-09-22 15:39:57.015] D app.setup.templates - hint="template file", id="flex-layout-playground", state="absent"
+[2025-09-22 15:39:57.016] D app.setup.templates - hint="template file", id="welcome", state="absent"
+[2025-09-22 15:39:57.329] I app.http - hint="starting http server", port=6060, host="0.0.0.0"
+[2025-09-22 15:39:57.360] I io.undertow - starting server: Undertow - 2.3.18.Final
+[2025-09-22 15:39:57.370] I org.xnio - XNIO version 3.8.16.Final
+[2025-09-22 15:39:57.380] I org.xnio.nio - XNIO NIO Implementation Version 3.8.16.Final
+[2025-09-22 15:39:57.419] I org.jboss.threads - JBoss Threads version 3.5.0.Final
+[2025-09-22 15:39:57.502] I app.loggers.database - hint="initializing database error persistence"
+[2025-09-22 15:39:57.504] I app.storage.tmp - hint="started tmp cleaner", default-min-age="1h"
+[2025-09-22 15:39:57.507] I app.worker - hint="registry initialized", tasks=15
+[2025-09-22 15:39:57.511] I app.worker.cron - hint="started", tasks=7
+[2025-09-22 15:39:57.514] D app.worker.cron - hint="register task", id="session-gc", cron="0 0 0 * * ?", status="exists"
+[2025-09-22 15:39:57.514] D app.worker.cron - hint="register task", id="objects-gc", cron="0 0 0 * * ?", status="exists"
+[2025-09-22 15:39:57.514] D app.worker.cron - hint="register task", id="storage-gc-deleted", cron="0 0 0 * * ?", status="exists"
+[2025-09-22 15:39:57.515] D app.worker.cron - hint="register task", id="storage-gc-touched", cron="0 0 0 * * ?", status="exists"
+[2025-09-22 15:39:57.515] D app.worker.cron - hint="register task", id="tasks-gc", cron="0 0 0 * * ?", status="exists"
+[2025-09-22 15:39:57.515] D app.worker.cron - hint="register task", id="file-gc-scheduler", cron="0 0 2 * * ?", status="exists"
+[2025-09-22 15:39:57.516] D app.worker.cron - hint="register task", id="telemetry", cron="0 30 */3,23 * * ?", status="exists"
+[2025-09-22 15:39:57.519] D app.worker.cron - hint="schedule", id="session-gc", ts="8h20m2.483811784s", at="2025-09-23T00:00:00.002375375Z"
+[2025-09-22 15:39:57.519] D app.worker.cron - hint="schedule", id="objects-gc", ts="8h20m2.481421367s", at="2025-09-23T00:00:00.001038250Z"
+[2025-09-22 15:39:57.520] D app.worker.cron - hint="schedule", id="storage-gc-deleted", ts="8h20m2.481268867s", at="2025-09-23T00:00:00.001225917Z"
+[2025-09-22 15:39:57.520] D app.worker.cron - hint="schedule", id="storage-gc-touched", ts="8h20m2.481169367s", at="2025-09-23T00:00:00.001548167Z"
+[2025-09-22 15:39:57.520] D app.worker.cron - hint="schedule", id="tasks-gc", ts="8h20m2.481066867s", at="2025-09-23T00:00:00.001781333Z"
+[2025-09-22 15:39:57.521] D app.worker.cron - hint="schedule", id="file-gc-scheduler", ts="10h20m2.480966492s", at="2025-09-23T02:00:00.002046542Z"
+[2025-09-22 15:39:57.521] D app.worker.cron - hint="schedule", id="telemetry", ts="2h50m2.4808677s", at="2025-09-22T18:30:00.002477500Z"
+[2025-09-22 15:39:57.522] I app.worker.dispatcher - hint="started"
+[2025-09-22 15:39:57.523] I app.worker.executor - hint="monitor started", name="default"
+[2025-09-22 15:39:57.525] I app.worker.runner - hint="started", id=0, queue="default"
+[2025-09-22 15:39:57.526] I app.srepl - hint="initializing repl server", name="prepl", port=6063, host="localhost"
+[2025-09-22 15:39:57.526] I app.worker.runner - hint="started", id=0, queue="webhooks"
+[2025-09-22 15:39:57.528] I app.srepl - hint="initializing repl server", name="urepl", port=6062, host="localhost"
+[2025-09-22 15:39:57.530] I app.main - hint="welcome to penpot", flags="backend-openapi-doc,dashboard-templates-section,login-with-password,google-fonts-provider,exporter-svgo,audit-log,backend-api-doc,demo-users,file-schema-validation,backend-svgo,urepl-server,export-file-v3,feature-fdata-objects-map,webhooks,onboarding,subscriptions,quotes,backend-worker,rpc-climit,backend-asserts,access-tokens,nrepl-server,render-wasm-dpr,smtp,component-thumbnails,email-verification,registration,file-validation,file-snapshot,prepl-server,login-with-ldap,frontend-svgo,transit-readable-response", worker?=true, version="develop"
+[2025-09-22 16:56:46.218] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id nil,
+          :app.rpc/request-at #penpot/inst "2025-09-22T16:56:46.079845460Z",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-22 18:30:00.033] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-22 18:30:00.071] D app.worker.cron - hint="end", id="telemetry", elapsed="0.060039542s"
+[2025-09-22 18:30:00.071] D app.worker.cron - hint="schedule", id="telemetry", ts="2h59m59.929173284s", at="2025-09-22T21:30:00.000776583Z"
+[2025-09-22 21:30:00.054] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-22 21:30:00.099] D app.worker.cron - hint="end", id="telemetry", elapsed="0.066620125s"
+[2025-09-22 21:30:00.100] D app.worker.cron - hint="schedule", id="telemetry", ts="1h59m59.900113536s", at="2025-09-22T23:30:00.000441792Z"
+[2025-09-22 23:29:59.907] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-22 23:29:59.940] D app.worker.cron - hint="end", id="telemetry", elapsed="0.055824s"
+[2025-09-22 23:29:59.941] D app.worker.cron - hint="schedule", id="telemetry", ts="0.059610328s", at="2025-09-22T23:30:00.000568416Z"
+[2025-09-22 23:30:00.005] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-22 23:30:00.005] D app.worker.cron - hint="end", id="telemetry", elapsed="0.001973625s"
+[2025-09-22 23:30:00.005] D app.worker.cron - hint="schedule", id="telemetry", ts="59m59.994444203s", at="2025-09-23T00:30:00.000190083Z"
+[2025-09-22 23:59:59.949] D app.worker.cron - hint="start", id="storage-gc-touched"
+[2025-09-22 23:59:59.991] D app.worker.cron - hint="start", id="tasks-gc"
+[2025-09-23 00:00:00.043] D app.worker.cron - hint="start", id="session-gc"
+[2025-09-23 00:00:00.077] D app.worker.cron - hint="start", id="storage-gc-deleted"
+[2025-09-23 00:00:00.119] D app.worker.cron - hint="start", id="objects-gc"
+[2025-09-23 00:00:00.157] I app.storage.gc-touched - hint="task finished", to-freeze=0, to-delete=0
+[2025-09-23 00:00:00.158] D app.worker.cron - hint="end", id="storage-gc-touched", elapsed="0.2290505s"
+[2025-09-23 00:00:00.158] D app.worker.cron - hint="schedule", id="storage-gc-touched", ts="23h59m59.842309495s", at="2025-09-24T00:00:00.000489500Z"
+[2025-09-23 00:00:00.160] D app.tasks.tasks-gc - hint="task finished", total=0
+[2025-09-23 00:00:00.160] D app.worker.cron - hint="end", id="tasks-gc", elapsed="0.231186708s"
+[2025-09-23 00:00:00.160] D app.worker.cron - hint="schedule", id="tasks-gc", ts="23h59m59.839637245s", at="2025-09-24T00:00:00.000449917Z"
+[2025-09-23 00:00:00.161] D app.http.session - task="gc", hint="clean http sessions", deleted=161
+[2025-09-23 00:00:00.161] D app.worker.cron - hint="end", id="session-gc", elapsed="0.230969917s"
+[2025-09-23 00:00:00.162] D app.worker.cron - hint="schedule", id="session-gc", ts="23h59m59.839087453s", at="2025-09-24T00:00:00.001181458Z"
+[2025-09-23 00:00:00.162] I app.storage.gc-deleted - hint="task finished", min-age="2h", total=0
+[2025-09-23 00:00:00.162] D app.worker.cron - hint="end", id="storage-gc-deleted", elapsed="0.232217917s"
+[2025-09-23 00:00:00.163] D app.worker.cron - hint="schedule", id="storage-gc-deleted", ts="23h59m59.837598537s", at="2025-09-24T00:00:00.000537792Z"
+[2025-09-23 00:00:00.178] I app.tasks.objects-gc - hint="task finished", deleted=0
+[2025-09-23 00:00:00.178] D app.worker.cron - hint="end", id="objects-gc", elapsed="0.250773084s"
+[2025-09-23 00:00:00.179] D app.worker.cron - hint="schedule", id="objects-gc", ts="23h59m59.82151587s", at="2025-09-24T00:00:00.000428208Z"
+[2025-09-23 00:30:00.030] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-23 00:30:00.077] D app.worker.cron - hint="end", id="telemetry", elapsed="0.064422458s"
+[2025-09-23 00:30:00.078] D app.worker.cron - hint="schedule", id="telemetry", ts="2h59m59.922848537s", at="2025-09-23T03:30:00.000641542Z"
+[2025-09-23 01:59:59.926] D app.worker.cron - hint="start", id="file-gc-scheduler"
+[2025-09-23 01:59:59.968] D app.worker.cron - hint="end", id="file-gc-scheduler", elapsed="0.064767083s"
+[2025-09-23 01:59:59.969] D app.worker.cron - hint="schedule", id="file-gc-scheduler", ts="0.031252955s", at="2025-09-23T02:00:00.000431500Z"
+[2025-09-23 02:00:00.004] D app.worker.cron - hint="start", id="file-gc-scheduler"
+[2025-09-23 02:00:00.006] D app.worker.cron - hint="end", id="file-gc-scheduler", elapsed="0.002865s"
+[2025-09-23 02:00:00.006] D app.worker.cron - hint="schedule", id="file-gc-scheduler", ts="23h59m59.994077163s", at="2025-09-24T02:00:00.000397250Z"
+[2025-09-23 03:30:00.143] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-23 03:30:00.187] D app.worker.cron - hint="end", id="telemetry", elapsed="0.0642405s"
+[2025-09-23 03:30:00.188] D app.worker.cron - hint="schedule", id="telemetry", ts="2h59m59.813201539s", at="2025-09-23T06:30:00.001115208Z"
+[2025-09-23 06:29:59.884] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-23 06:29:59.924] D app.worker.cron - hint="end", id="telemetry", elapsed="0.065295417s"
+[2025-09-23 06:29:59.926] D app.worker.cron - hint="schedule", id="telemetry", ts="0.075138041s", at="2025-09-23T06:30:00.000735875Z"
+[2025-09-23 06:30:00.005] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-23 06:30:00.005] D app.worker.cron - hint="end", id="telemetry", elapsed="0.002663041s"
+[2025-09-23 06:30:00.006] D app.worker.cron - hint="schedule", id="telemetry", ts="2h59m59.993783291s", at="2025-09-23T09:30:00.000335542Z"
+[2025-09-23 09:30:00.045] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-23 09:30:00.090] D app.worker.cron - hint="end", id="telemetry", elapsed="0.063454625s"
+[2025-09-23 09:30:00.090] D app.worker.cron - hint="schedule", id="telemetry", ts="2h59m59.909934445s", at="2025-09-23T12:30:00.000464917Z"
+[2025-09-23 13:10:13.275] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-23 13:10:13.313] D app.worker.cron - hint="end", id="telemetry", elapsed="0.048331083s"
+[2025-09-23 13:10:13.314] D app.worker.cron - hint="schedule", id="telemetry", ts="2h19m46.686639321s", at="2025-09-23T15:30:00.000890708Z"
+[2025-09-23 15:30:00.016] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-23 15:30:00.055] D app.worker.cron - hint="end", id="telemetry", elapsed="0.046920625s"
+[2025-09-23 15:30:00.056] D app.worker.cron - hint="schedule", id="telemetry", ts="2h59m59.94437587s", at="2025-09-23T18:30:00.000364583Z"
+[2025-09-23 18:30:00.039] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-23 18:30:00.082] D app.worker.cron - hint="end", id="telemetry", elapsed="0.064044417s"
+[2025-09-23 18:30:00.083] D app.worker.cron - hint="schedule", id="telemetry", ts="2h59m59.918147205s", at="2025-09-23T21:30:00.001001125Z"
+[2025-09-23 20:21:29.988] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.z1nHzK4LAVOcHBslHkzIi0ocCboJII8OKJ4G2y5BiaO5fet-sqtlFA.dWJQR8iyODqvmaJW.NeIW11wtzynOKarvg4mktJYAUajn0kFZEFccI2_Y1_-5L9YcSH1rI9MgxLzMd8XwuF-6fY1OrDcT0BFS1ZQUTI0kIIloqzfh6m8olYG3ucnSYoD4M5VCBT5mAw6CL1zEk_5aosXfDb6abA.YT7ZkREBjqCoAhgDBkRONg",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-23 20:23:38.537] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.z1nHzK4LAVOcHBslHkzIi0ocCboJII8OKJ4G2y5BiaO5fet-sqtlFA.dWJQR8iyODqvmaJW.NeIW11wtzynOKarvg4mktJYAUajn0kFZEFccI2_Y1_-5L9YcSH1rI9MgxLzMd8XwuF-6fY1OrDcT0BFS1ZQUTI0kIIloqzfh6m8olYG3ucnSYoD4M5VCBT5mAw6CL1zEk_5aosXfDb6abA.YT7ZkREBjqCoAhgDBkRONg",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-23 20:25:11.822] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.XRldQcrr012M4-FBgXMgV4q4Wn4hK0tQV4yL-21KO5pE8G2SU9Qd4g.AKz8qGZKqRVtMNKB.pjxjJVxEQDilKwvWi84MuqxHqZiDVqO_BsmzEMz70-slTHjFGJd_YuZaPq8FQ8NxwyV8GF37l76DpLWtwv0i4xjzcGgK72b8zCjsVOOJZzkrzcvS4572nIxKCMzCP7LYWT-qoHblEzZrUA.4hD-TDcY2SfoHgjMPfJRvw",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-23 20:28:06.276] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.ok1Ng84UsWc1X6QoLMcSIsOFZOwrJVTAv_0DCoRNY4-lSoCJTYeXcg.UFSartbSbgBi8q18.Tjlqe8duhpiDVL-37EiKAroyuScfOxpTOBDuczfgTCsyupP2DyYvIflglNeK029G0LAV1_8OY7hcAYFxFzOYUKDSSrY2R_qI_OpndoUMd243JHw2Au7Cp1xwRek5jKBALZAGJFicvdp-3g.xLq2PgKroi_qk5K51mm8yw",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-23 20:32:18.392] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.ok1Ng84UsWc1X6QoLMcSIsOFZOwrJVTAv_0DCoRNY4-lSoCJTYeXcg.UFSartbSbgBi8q18.Tjlqe8duhpiDVL-37EiKAroyuScfOxpTOBDuczfgTCsyupP2DyYvIflglNeK029G0LAV1_8OY7hcAYFxFzOYUKDSSrY2R_qI_OpndoUMd243JHw2Au7Cp1xwRek5jKBALZAGJFicvdp-3g.xLq2PgKroi_qk5K51mm8yw",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-23 20:42:37.362] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.LVKvHj3ci0_5_ECftIS2SZFCKCaMzgo7nN32MZsbAAENXcGbk8yO-g.BRJ6CQSAcRWQ3p5W.LKHkmqSdrMYDrHz8IZDNY9UK7uAstXYRU4AzK53TeMIHhQcq52BEFdtSKQqEyXSSel-T4MLE6pZiUAC5W7oaM-OLZmyt207-OIzx6JMQEqaxPnFjaySAC1N6bIKTclKuAyJyWe7atwvWAQ.XBnIswmvEofWh-ONgUfpGQ",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-23 20:45:25.746] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.Ly-iC_KPzg8eDC0bUBZaoNgcmyvUqWmOhAmFoaAmKjjnhIras6kpdA.bVwepdYkSgEzgTUX.dU9JHkRZPiO03diZjxH1z_erbmXoron5NbGY3O3DgAv7qmoH86EOfgnU8QZYC432GpMoJEB_wQNHS1_iVoJ7pFHlDJbffdrC9aDfTrWDaBJ9OU_MrPk5BSvuYCVUVghRpxXZ6M9LkUTcGg.kBe5Or4ID7neGj9bm43LAQ",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-23 21:12:24.474] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.MgTU9vPrXwg9yBqnYOdTwWXvo_SoZAyMmgwwZ-MDczXDinopKdiImg.atkcn7IE-3DfgE_2.xOWk_tz6TCelwErm_9LQZPn5QWVjNKMb1jBAduaqrIEWmTgtjOCLiqWmR37nVRRp0SLogsrYvsyXzEFgwJq0GovDQZKmh8FYmS0Ii4lQp5FU_uL_ws28V1WxWgA4LEtAhciMHhdDfvs5sQ.vIhX45CnJMLjbPxiqLZxHA",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-23 21:15:56.781] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.MgTU9vPrXwg9yBqnYOdTwWXvo_SoZAyMmgwwZ-MDczXDinopKdiImg.atkcn7IE-3DfgE_2.xOWk_tz6TCelwErm_9LQZPn5QWVjNKMb1jBAduaqrIEWmTgtjOCLiqWmR37nVRRp0SLogsrYvsyXzEFgwJq0GovDQZKmh8FYmS0Ii4lQp5FU_uL_ws28V1WxWgA4LEtAhciMHhdDfvs5sQ.vIhX45CnJMLjbPxiqLZxHA",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-23 21:30:00.046] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-23 21:30:00.062] D app.worker.cron - hint="end", id="telemetry", elapsed="0.022116708s"
+[2025-09-23 21:30:00.063] D app.worker.cron - hint="schedule", id="telemetry", ts="1h59m59.936949915s", at="2025-09-23T23:30:00.000388458Z"
+[2025-09-24 07:19:35.675] D app.worker.cron - hint="start", id="telemetry"
+[2025-09-24 07:19:35.722] D app.worker.cron - hint="end", id="telemetry", elapsed="0.073847959s"
+[2025-09-24 07:19:35.722] D app.worker.cron - hint="schedule", id="telemetry", ts="2h10m24.277827458s", at="2025-09-24T09:30:00.000406167Z"
+[2025-09-24 08:41:47.561] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.7OZlwDIFsA2IPETZDA6IguL8WYbntMLCV4trNCYIfSgFJ_nOWJ9RtA.7fhok68sZjrTyo2r.ID4ZWMQLjvEYVqIVHrg5GpUkxlMM3KOjvGwpcy3gHGoGEGVVABz34DNayOwQCNV43FoAdqfvUt0jym9-a8ihTlGwvk-ZbVnc7uGVIAGEZe2RrF7ue3177Nl9fEU8gZ-9i79V_pFF0zxGMA.5apgkKPT3y1_ysxMpfGUZQ",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-24 08:47:56.492] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.7qiM4FeS9t50TdL1-olsReLU94oiyJwThQNrmZRdm7d1cCS-zbRvdQ.zcs4IRv1juD1-p-v.bjBn0UsBnEy_MsyjEOHqBW91M54jXhBgV-Pzxq4i4JNYApxQBC1fYmZxTz6sxpgmQIMfx_yJdPTtQ7RwmsAuw4kvdEnD9Jnaq0vL_Ksr5NusVLA08EDdN8y0HPcymak4om5ZCs2ZkLwiFw.giS3uMY40IHn7wdKF9f2wg",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-24 08:54:31.975] E app.loggers.audit - hint="unexpected error processing event"
+SUMMARY:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+DETAIL:
+ →  clojure.lang.ExceptionInfo: check error (schema.cljc:306)
+    at: app.common.schema$check_fn$fn__11117.invoke(schema.cljc:306)
+        app.loggers.audit$submit_BANG_.invokeStatic(audit.clj:258)
+        app.loggers.audit$submit_BANG_.invoke(audit.clj:253)
+        app.rpc$wrap_audit$fn__54604.invoke(rpc.clj:167)
+        app.rpc$wrap_params_validation$fn__54614.invoke(rpc.clj:193)
+        app.rpc$wrap_authentication$fn__54597.invoke(rpc.clj:150)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.rpc$rpc_handler.invokeStatic(rpc.clj:125)
+        app.rpc$rpc_handler.invoke(rpc.clj:90)
+        clojure.core$partial$fn__5929.invoke(core.clj:2641)
+        app.http.access_token$wrap_authz$fn__54176.invoke(access_token.clj:66)
+        app.http.session$wrap_authz$fn__32029.invoke(session.clj:237)
+        app.http.middleware$wrap_errors$fn__57855.invoke(middleware.clj:200)
+        app.http.middleware$wrap_parse_request$fn__57778.invoke(middleware.clj:90)
+        app.http.access_token$wrap_soft_auth$fn__54171.invoke(access_token.clj:59)
+        app.http.session$wrap_soft_auth$fn__32024.invoke(session.clj:226)
+        app.http.middleware$wrap_format_response$fn__57852.invoke(middleware.clj:189)
+        yetti.middleware$wrap_params$fn__57754.invoke(middleware.clj:38)
+        yetti.middleware$wrap_server_timing$fn__57763.invoke(middleware.clj:50)
+        clojure.core$partial$fn__5929.invoke(core.clj:2640)
+        app.http$router_handler$fn__59396.invoke(http.clj:125)
+        yetti.adapter$dispatch_fn$fn__45871$fn__45872.invoke(adapter.clj:95)
+        yetti.adapter$dispatch_fn$fn__45871.invoke(adapter.clj:94)
+        yetti.adapter$create_handler$reify__45878$fn__45879.invoke(adapter.clj:112)
+        clojure.lang.AFn.run(AFn.java:22)
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+        java.lang.Thread.run(Thread.java:1447)
+    dt: {:type :assertion, :code :data-validation, :hint "check error"}
+    xp: Errors:
+        [{:path [:app.loggers.audit/props 0],
+          :in [:app.loggers.audit/props "default-team-id"],
+          :schema :keyword,
+          :value "default-team-id"}]
+        
+        Value:
+        {:app.rpc/params
+         {:email "demo@penpot.local",
+          :password "demo123",
+          :app.rpc/external-event-origin nil,
+          :app.rpc/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+          :app.rpc.cond/key nil,
+          :app.rpc/external-session-id nil,
+          :app.rpc/handler-name "login-with-password",
+          :app.http.session/id
+          "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.G3YHMiHlWbZWYnkPYdfn_uW166x1OLivJ52FclvdppslNhlFznXaQA.UPI6S4Kz2pnEu6fv.9UG8bv9viMg7m_OX6ppraUDXSwuQaOFmVkahGnFz8T5jMeQFxOZIBZXKVKj-SmQ6qitCWEQ8OKUErQ2k4QhBtpCMojdG_WivQNTuTwdl_HL0eBatva182lwUoE3V8knOOiV8rspSix_TIA.ugIODHOnTLvT1ax0ZzjZ8A",
+          ...},
+         :app.loggers.audit/ip-addr "192.168.65.1",
+         :app.loggers.audit/name "login-with-password",
+         :app.loggers.audit/type "command",
+         :app.loggers.webhooks/event? false,
+         :app.loggers.audit/context {},
+         :app.loggers.audit/profile-id #uuid "00000000-0000-0000-0000-000000000001",
+         :app.loggers.audit/props
+         {:email "demo@penpot.local",
+          "default-team-id" "00000000-0000-0000-0000-000000000002",
+          :fullname "Demo User",
+          :is-active true,
+          :id #uuid "00000000-0000-0000-0000-000000000001",
+          :is-muted false}}
+
+[2025-09-24 09:04:53.456] D app.worker.cron - hint="start", id="storage-gc-deleted"
+[2025-09-24 09:04:53.502] D app.worker.cron - hint="start", id="storage-gc-touched"
+[2025-09-24 09:04:53.543] D app.worker.cron - hint="start", id="session-gc"
+[2025-09-24 09:04:53.584] D app.worker.cron - hint="start", id="objects-gc"
+[2025-09-24 09:04:53.625] D app.worker.cron - hint="start", id="tasks-gc"
+[2025-09-24 09:04:53.669] I app.storage.gc-deleted - hint="task finished", min-age="2h", total=0
+[2025-09-24 09:04:53.669] D app.worker.cron - hint="end", id="storage-gc-deleted", elapsed="0.231758s"
+[2025-09-24 09:04:53.670] I app.storage.gc-touched - hint="task finished", to-freeze=0, to-delete=0
+[2025-09-24 09:04:53.670] D app.worker.cron - hint="end", id="storage-gc-touched", elapsed="0.231557708s"
+[2025-09-24 09:04:53.671] D app.worker.cron - hint="schedule", id="storage-gc-deleted", ts="14h55m6.33060841s", at="2025-09-25T00:00:00.001468666Z"
+[2025-09-24 09:04:53.671] D app.worker.cron - hint="schedule", id="storage-gc-touched", ts="14h55m6.33028591s", at="2025-09-25T00:00:00.001605958Z"
+[2025-09-24 09:04:53.671] D app.http.session - task="gc", hint="clean http sessions", deleted=10
+[2025-09-24 09:04:53.672] D app.worker.cron - hint="end", id="session-gc", elapsed="0.232285709s"
+[2025-09-24 09:04:53.672] D app.worker.cron - hint="schedule", id="session-gc", ts="14h55m6.329355702s", at="2025-09-25T00:00:00.001903667Z"
+[2025-09-24 09:04:53.673] D app.tasks.tasks-gc - hint="task finished", total=0
+[2025-09-24 09:04:53.673] D app.worker.cron - hint="end", id="tasks-gc", elapsed="0.235584875s"
+[2025-09-24 09:04:53.673] D app.worker.cron - hint="schedule", id="tasks-gc", ts="14h55m6.32753641s", at="2025-09-25T00:00:00.001105708Z"
+[2025-09-24 09:04:53.680] I app.tasks.objects-gc - hint="task finished", deleted=0
+[2025-09-24 09:04:53.680] D app.worker.cron - hint="end", id="objects-gc", elapsed="0.241639584s"
+[2025-09-24 09:04:53.681] D app.worker.cron - hint="schedule", id="objects-gc", ts="14h55m6.31987916s", at="2025-09-25T00:00:00.000822083Z"

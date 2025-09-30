@@ -37,9 +37,16 @@
 (declare fetch-projects)
 (declare process-message)
 
+;; ============================================================================
+;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Changed assertion to allow nil team-id for single-user mode
+;; Date: 2025-09-30
+;; ============================================================================
 (defn initialize
   [team-id]
-  (assert (uuid? team-id) "expected uuid instance for `team-id`")
+  (assert (or (nil? team-id) (uuid? team-id)) "expected uuid instance or nil for `team-id`")
 
   (ptk/reify ::initialize
     ptk/WatchEvent
@@ -80,13 +87,23 @@
               state
               projects))))
 
+;; ============================================================================
+;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Added conditional logic to handle nil team-id (single-user mode)
+;; Date: 2025-09-30
+;; ============================================================================
 (defn fetch-projects
   [team-id]
   (ptk/reify ::fetch-projects
     ptk/WatchEvent
     (watch [_ _ _]
-      (->> (rp/cmd! :get-projects {:team-id team-id})
-           (rx/map projects-fetched)))))
+      (let [cmd-params (if team-id
+                         [:get-projects {:team-id team-id}]
+                         [:get-all-projects {}])]
+        (->> (apply rp/cmd! cmd-params)
+             (rx/map projects-fetched))))))
 
 ;; --- EVENT: search
 

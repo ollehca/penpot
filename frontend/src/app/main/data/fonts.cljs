@@ -72,13 +72,24 @@
                          (mapv prepare-font))]
           (fonts/register! :custom fonts))))))
 
+;; ============================================================================
+;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Added conditional to handle nil team-id for single-user mode
+;; Date: 2025-09-30
+;; ============================================================================
 (defn fetch-fonts
   [team-id]
   (ptk/reify ::fetch-fonts
     ptk/WatchEvent
     (watch [_ _ _]
-      (->> (rp/cmd! :get-font-variants {:team-id team-id})
-           (rx/map fonts-fetched)))))
+      (if team-id
+        (->> (rp/cmd! :get-font-variants {:team-id team-id})
+             (rx/map fonts-fetched))
+        ;; For single-user mode (no team), return empty fonts list
+        (->> (rx/of [])
+             (rx/map fonts-fetched))))))
 
 (defn process-upload
   "Given a seq of blobs and the team id, creates a ready-to-use fonts

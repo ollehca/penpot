@@ -59,7 +59,18 @@
                         team-id (if (and team-id (contains? teams team-id))
                                   team-id
                                   (:default-team-id profile))]
-                    (rx/of (dcm/go-to-dashboard-recent {:team-id team-id})))))))]
+                    ;; ============================================================================
+                    ;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+                    ;; Original file from PenPot (https://github.com/penpot/penpot)
+                    ;; Licensed under Mozilla Public License Version 2.0
+                    ;; Modifications: Added single-user mode support - redirect to dashboard
+                    ;;                without team-id if no team exists (desktop app support)
+                    ;; Date: 2025-09-30
+                    ;; ============================================================================
+                    ;; For single-user mode, redirect to dashboard without team-id if no team
+                    (if team-id
+                      (rx/of (dcm/go-to-dashboard-recent {:team-id team-id}))
+                      (rx/of (rt/nav :dashboard-recent))))))))]
 
     (ptk/reify ::logged-in
       ev/Event

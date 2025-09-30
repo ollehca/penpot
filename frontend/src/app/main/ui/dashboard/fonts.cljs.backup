@@ -174,14 +174,7 @@
          (fn [_]
            (run! #(swap! fonts* dissoc (:id %)) (vals fonts))))]
 
-    ;; ============================================================================
-    ;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
-    ;; Original file from PenPot (https://github.com/penpot/penpot)
-    ;; Licensed under Mozilla Public License Version 2.0
-    ;; Modifications: Changed CSS class from :dashboard-fonts-upload to :dashboard-content
-    ;; Date: 2025-09-30
-    ;; ============================================================================
-    [:div {:class (stl/css :dashboard-content)}
+    [:div {:class (stl/css :dashboard-fonts-upload)}
      [:div {:class (stl/css :dashboard-fonts-hero)}
       [:div {:class (stl/css :desc)}
        [:h2 (tr "labels.upload-custom-fonts")]
@@ -475,14 +468,7 @@
         can-edit    (:can-edit permissions)]
     [:*
      [:> header* {:team team :section :fonts}]
-     ;; ============================================================================
-     ;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
-     ;; Original file from PenPot (https://github.com/penpot/penpot)
-     ;; Licensed under Mozilla Public License Version 2.0
-     ;; Modifications: Changed CSS classes to :no-bg and :dashboard-shared for consistent styling
-     ;; Date: 2025-09-30
-     ;; ============================================================================
-     [:section {:class (stl/css :dashboard-container :no-bg :dashboard-shared)}
+     [:section {:class (stl/css :dashboard-container :no-bg :dashboard-fonts)}
       (when ^boolean can-edit
         [:> uploaded-fonts* {:team team :installed-fonts fonts}])
       [:> installed-fonts*

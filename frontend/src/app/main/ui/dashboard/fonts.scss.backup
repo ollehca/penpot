@@ -4,66 +4,26 @@
 //
 // Copyright (c) KALEIDOS INC
 
-/* ============================================================================
- * MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
- * Original file from PenPot (https://github.com/penpot/penpot)
- * Licensed under Mozilla Public License Version 2.0
- * Modifications: Complete styling overhaul for fonts page layout and components
- * - Added .dashboard-content with full-width flexible layout
- * - Redesigned .dashboard-fonts-hero with improved spacing and button sizing
- * - Updated font item and variant styling for better consistency
- * - Removed max-width constraints for better responsiveness
- * Date: 2025-09-30
- * ============================================================================
- */
-
 @use "common/refactor/common-refactor.scss" as *;
 @use "common/refactor/common-dashboard";
 
-.dashboard-content {
-  width: 100%;
+.dashboard-fonts {
+  border-top: $s-1 solid var(--color-background-quaternary);
   display: flex;
   flex-direction: column;
-  padding: 0 $s-16;  // Match Libraries page grid padding
-  height: 100%;
+  padding-left: $s-120;
   overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.dashboard-fonts-hero {
-  font-size: $fs-14;
-  padding: $s-32 0;
-  margin-top: 0;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--color-background-quaternary);  // Match other pages
-
-  .desc {
-    display: flex;
-    flex-direction: column;
-    gap: $s-24;
-    color: var(--color-background-secondary);
-    width: 100%;
-
-    h2 {
-      color: var(--color-foreground-primary);
-      font-weight: 400;
-    }
-    p {
-      color: var(--color-foreground-secondary);
-      font-size: $fs-16;
-    }
-  }
+  padding-bottom: $s-120;
 
   .btn-primary {
-    height: $s-40;
-    width: auto;
-    max-width: $s-200;  // Reasonable max width instead of full width
-    min-width: $s-160;  // Ensure minimum button size
+    font-size: $fs-11;
+    height: $s-32;
+    min-width: $s-100;
   }
 }
 
 .dashboard-installed-fonts {
+  max-width: $s-1000;
   width: 100%;
   display: flex;
   margin-top: $s-24;
@@ -134,7 +94,7 @@
   font-size: $fs-14;
   justify-content: space-between;
   margin-top: $s-4;
-  
+  max-width: $s-1000;
   padding: $s-12 $s-24;
   width: 100%;
 
@@ -251,15 +211,10 @@
       }
     }
   }
-
-  .btn-primary {
-    font-size: $fs-11;
-    height: $s-32;
-    min-width: $s-100;
-  }
 }
 
 .dashboard-fonts-upload {
+  max-width: $s-1000;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -273,6 +228,40 @@
   }
 }
 
+.dashboard-fonts-hero {
+  font-size: $fs-14;
+  padding: $s-32 0;
+  margin-top: $s-80;
+  display: flex;
+  justify-content: space-between;
+
+  .btn-primary {
+    height: $s-40;
+    width: 100%;
+  }
+
+  .desc {
+    display: flex;
+    flex-direction: column;
+    gap: $s-24;
+    color: var(--color-background-secondary);
+    width: $s-500;
+
+    h2 {
+      color: var(--color-foreground-primary);
+      font-weight: 400;
+    }
+    p {
+      color: var(--color-foreground-secondary);
+      font-size: $fs-16;
+    }
+  }
+
+  .btn-primary {
+    flex-shrink: 0;
+  }
+}
+
 .fonts-placeholder {
   align-items: center;
   border-radius: $br-8;
@@ -282,7 +271,7 @@
   height: $s-160;
   justify-content: center;
   margin-top: $s-16;
-  
+  max-width: $s-1000;
   width: 100%;
 
   .icon svg {

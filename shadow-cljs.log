@@ -1,0 +1,118 @@
+npm warn exec The following package was not found and will be installed: shadow-cljs@3.2.0
+------------------------------------------------------------------------------
+
+   WARNING: shadow-cljs not installed in project.
+   See https://shadow-cljs.github.io/docs/UsersGuide.html#project-install
+
+------------------------------------------------------------------------------
+shadow-cljs - config: /home/penpot/penpot/frontend/shadow-cljs.edn
+shadow-cljs - socket connect failed, server process dead?
+shadow-cljs - starting via "clojure"
+Downloading: criterium/criterium/maven-metadata.xml from clojars
+Downloading: org/clojure/tools.namespace/maven-metadata.xml from central
+Downloading: cider/cider-nrepl/0.56.0/cider-nrepl-0.56.0.pom from clojars
+Downloading: thheller/shadow-cljs/3.1.7/shadow-cljs-3.1.7.pom from clojars
+Downloading: org/clojure/core.async/1.8.741/core.async-1.8.741.pom from central
+Downloading: io/methvin/directory-watcher/0.19.0/directory-watcher-0.19.0.pom from central
+Downloading: thheller/shadow-util/0.7.0/shadow-util-0.7.0.pom from clojars
+Downloading: thheller/shadow-client/1.4.0/shadow-client-1.4.0.pom from clojars
+Downloading: com/google/javascript/closure-compiler/v20250407/closure-compiler-v20250407.pom from central
+Downloading: com/google/javascript/closure-compiler-main/v20250407/closure-compiler-main-v20250407.pom from central
+Downloading: com/google/javascript/closure-compiler-parent/v20250407/closure-compiler-parent-v20250407.pom from central
+Downloading: thheller/shadow-undertow/0.3.4/shadow-undertow-0.3.4.pom from clojars
+Downloading: hiccup/hiccup/1.0.5/hiccup-1.0.5.pom from clojars
+Downloading: com/bhauman/cljs-test-display/0.1.1/cljs-test-display-0.1.1.pom from clojars
+Downloading: mx/cider/logjam/0.3.0/logjam-0.3.0.pom from clojars
+Downloading: thheller/shadow-cljsjs/0.0.22/shadow-cljsjs-0.0.22.pom from clojars
+Downloading: cider/piggieback/0.6.0/piggieback-0.6.0.pom from clojars
+Downloading: ring/ring-core/1.14.1/ring-core-1.14.1.pom from clojars
+Downloading: cider/orchard/0.35.0/orchard-0.35.0.pom from clojars
+Downloading: commons-io/commons-io/2.18.0/commons-io-2.18.0.pom from central
+Downloading: io/undertow/undertow-core/2.3.10.Final/undertow-core-2.3.10.Final.pom from central
+Downloading: org/apache/commons/commons-fileupload2-core/2.0.0-M2/commons-fileupload2-core-2.0.0-M2.pom from central
+Downloading: org/clojure/tools.analyzer.jvm/1.3.2/tools.analyzer.jvm-1.3.2.pom from central
+Downloading: org/apache/commons/commons-parent/78/commons-parent-78.pom from central
+Downloading: org/apache/commons/commons-fileupload2/2.0.0-M2/commons-fileupload2-2.0.0-M2.pom from central
+Downloading: net/java/dev/jna/jna/5.16.0/jna-5.16.0.pom from central
+Downloading: io/undertow/undertow-parent/2.3.10.Final/undertow-parent-2.3.10.Final.pom from central
+Downloading: org/apache/commons/commons-parent/65/commons-parent-65.pom from central
+Downloading: org/clojure/core.memoize/1.1.266/core.memoize-1.1.266.pom from central
+Downloading: org/clojure/tools.analyzer/1.2.0/tools.analyzer-1.2.0.pom from central
+Downloading: org/ow2/asm/asm/9.2/asm-9.2.pom from central
+Downloading: org/junit/junit-bom/5.11.2/junit-bom-5.11.2.pom from central
+Downloading: org/jboss/xnio/xnio-api/3.8.8.Final/xnio-api-3.8.8.Final.pom from central
+Downloading: org/jboss/xnio/xnio-nio/3.8.8.Final/xnio-nio-3.8.8.Final.pom from central
+Downloading: org/junit/junit-bom/5.10.1/junit-bom-5.10.1.pom from central
+Downloading: org/ow2/ow2/1.5/ow2-1.5.pom from central
+Downloading: org/jboss/xnio/xnio-all/3.8.8.Final/xnio-all-3.8.8.Final.pom from central
+Downloading: crypto-equality/crypto-equality/1.0.1/crypto-equality-1.0.1.pom from clojars
+Downloading: org/ring-clojure/ring-core-protocols/1.14.1/ring-core-protocols-1.14.1.pom from clojars
+Downloading: crypto-random/crypto-random/1.2.1/crypto-random-1.2.1.pom from clojars
+Downloading: ring/ring-codec/1.3.0/ring-codec-1.3.0.pom from clojars
+Downloading: org/ring-clojure/ring-websocket-protocols/1.14.1/ring-websocket-protocols-1.14.1.pom from clojars
+Downloading: io/netty/netty-codec-http/4.1.94.Final/netty-codec-http-4.1.94.Final.pom from central
+Downloading: commons-codec/commons-codec/1.15/commons-codec-1.15.pom from central
+Downloading: org/apache/commons/commons-parent/52/commons-parent-52.pom from central
+Downloading: io/netty/netty-parent/4.1.94.Final/netty-parent-4.1.94.Final.pom from central
+Downloading: org/clojure/core.cache/1.1.234/core.cache-1.1.234.pom from central
+Downloading: org/apache/apache/23/apache-23.pom from central
+Downloading: io/netty/netty-codec/4.1.94.Final/netty-codec-4.1.94.Final.pom from central
+Downloading: io/netty/netty-transport/4.1.94.Final/netty-transport-4.1.94.Final.pom from central
+Downloading: io/netty/netty-common/4.1.94.Final/netty-common-4.1.94.Final.pom from central
+Downloading: org/clojure/data.priority-map/1.2.0/data.priority-map-1.2.0.pom from central
+Downloading: io/netty/netty-handler/4.1.94.Final/netty-handler-4.1.94.Final.pom from central
+Downloading: io/netty/netty-buffer/4.1.94.Final/netty-buffer-4.1.94.Final.pom from central
+Downloading: io/netty/netty-resolver/4.1.94.Final/netty-resolver-4.1.94.Final.pom from central
+Downloading: io/netty/netty-transport-native-unix-common/4.1.94.Final/netty-transport-native-unix-common-4.1.94.Final.pom from central
+Downloading: io/undertow/undertow-core/2.3.10.Final/undertow-core-2.3.10.Final.jar from central
+Downloading: org/clojure/tools.analyzer/1.2.0/tools.analyzer-1.2.0.jar from central
+Downloading: io/netty/netty-common/4.1.94.Final/netty-common-4.1.94.Final.jar from central
+Downloading: io/netty/netty-codec/4.1.94.Final/netty-codec-4.1.94.Final.jar from central
+Downloading: org/clojure/tools.analyzer.jvm/1.3.2/tools.analyzer.jvm-1.3.2.jar from central
+Downloading: commons-codec/commons-codec/1.15/commons-codec-1.15.jar from central
+Downloading: io/netty/netty-buffer/4.1.94.Final/netty-buffer-4.1.94.Final.jar from central
+Downloading: io/netty/netty-handler/4.1.94.Final/netty-handler-4.1.94.Final.jar from central
+Downloading: com/bhauman/cljs-test-display/0.1.1/cljs-test-display-0.1.1.jar from clojars
+Downloading: thheller/shadow-cljsjs/0.0.22/shadow-cljsjs-0.0.22.jar from clojars
+Downloading: org/apache/commons/commons-fileupload2-core/2.0.0-M2/commons-fileupload2-core-2.0.0-M2.jar from central
+Downloading: commons-io/commons-io/2.18.0/commons-io-2.18.0.jar from central
+Downloading: org/ow2/asm/asm/9.2/asm-9.2.jar from central
+Downloading: mx/cider/logjam/0.3.0/logjam-0.3.0.jar from clojars
+Downloading: io/methvin/directory-watcher/0.19.0/directory-watcher-0.19.0.jar from central
+Downloading: org/jboss/xnio/xnio-nio/3.8.8.Final/xnio-nio-3.8.8.Final.jar from central
+Downloading: io/netty/netty-transport/4.1.94.Final/netty-transport-4.1.94.Final.jar from central
+Downloading: io/netty/netty-transport-native-unix-common/4.1.94.Final/netty-transport-native-unix-common-4.1.94.Final.jar from central
+Downloading: io/netty/netty-codec-http/4.1.94.Final/netty-codec-http-4.1.94.Final.jar from central
+Downloading: hiccup/hiccup/1.0.5/hiccup-1.0.5.jar from clojars
+Downloading: crypto-random/crypto-random/1.2.1/crypto-random-1.2.1.jar from clojars
+Downloading: net/java/dev/jna/jna/5.16.0/jna-5.16.0.jar from central
+Downloading: crypto-equality/crypto-equality/1.0.1/crypto-equality-1.0.1.jar from clojars
+Downloading: thheller/shadow-client/1.4.0/shadow-client-1.4.0.jar from clojars
+Downloading: org/jboss/xnio/xnio-api/3.8.8.Final/xnio-api-3.8.8.Final.jar from central
+Downloading: io/netty/netty-resolver/4.1.94.Final/netty-resolver-4.1.94.Final.jar from central
+Downloading: org/clojure/core.memoize/1.1.266/core.memoize-1.1.266.jar from central
+Downloading: cider/orchard/0.35.0/orchard-0.35.0.jar from clojars
+Downloading: org/clojure/data.priority-map/1.2.0/data.priority-map-1.2.0.jar from central
+Downloading: thheller/shadow-undertow/0.3.4/shadow-undertow-0.3.4.jar from clojars
+Downloading: thheller/shadow-util/0.7.0/shadow-util-0.7.0.jar from clojars
+Downloading: cider/cider-nrepl/0.56.0/cider-nrepl-0.56.0.jar from clojars
+Downloading: ring/ring-core/1.14.1/ring-core-1.14.1.jar from clojars
+Downloading: org/clojure/core.cache/1.1.234/core.cache-1.1.234.jar from central
+Downloading: ring/ring-codec/1.3.0/ring-codec-1.3.0.jar from clojars
+Downloading: org/ring-clojure/ring-websocket-protocols/1.14.1/ring-websocket-protocols-1.14.1.jar from clojars
+Downloading: org/clojure/core.async/1.8.741/core.async-1.8.741.jar from central
+Downloading: com/google/javascript/closure-compiler/v20250407/closure-compiler-v20250407.jar from central
+Downloading: org/ring-clojure/ring-core-protocols/1.14.1/ring-core-protocols-1.14.1.jar from clojars
+Downloading: cider/piggieback/0.6.0/piggieback-0.6.0.jar from clojars
+Downloading: thheller/shadow-cljs/3.1.7/shadow-cljs-3.1.7.jar from clojars
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.jboss.threads.JBossExecutors (file:/root/.m2/repository/org/jboss/threads/jboss-threads/3.5.0.Final/jboss-threads-3.5.0.Final.jar)
+WARNING: Please consider reporting this to the maintainers of class org.jboss.threads.JBossExecutors
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+shadow-cljs - HTTP server available at http://localhost:8888
+shadow-cljs - server version: 3.1.7 running at http://localhost:3448
+shadow-cljs - nREPL server started on port 3447
+shadow-cljs - watching build :main
+[:main] Configuring build.
+[:main] Compiling ...
+[:main] Build completed. (1120 files, 847 compiled, 0 warnings, 104.34s)

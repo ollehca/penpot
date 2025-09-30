@@ -4,13 +4,6 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
-;; ============================================================================
-;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
-;; Original file from PenPot (https://github.com/penpot/penpot)
-;; Licensed under Mozilla Public License Version 2.0
-;; Modifications: Removed onboarding modal imports (newsletter, questions, team-choice)
-;; Date: 2025-09-30
-;; ============================================================================
 (ns app.main.ui
   (:require
    [app.common.data :as d]
@@ -30,6 +23,9 @@
    [app.main.ui.exports.files]
    [app.main.ui.frame-preview :as frame-preview]
    [app.main.ui.notifications :as notifications]
+   [app.main.ui.onboarding.newsletter :refer [onboarding-newsletter]]
+   [app.main.ui.onboarding.questions :refer [questions-modal]]
+   [app.main.ui.onboarding.team-choice :refer [onboarding-team-modal]]
    [app.main.ui.releases :refer [release-notes-modal]]
    [app.main.ui.static :as static]
    [app.util.dom :as dom]
@@ -156,17 +152,30 @@
         section (get data :name)
         team    (mf/deref refs/team)
 
-        ;; ============================================================================
-        ;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
-        ;; Original file from PenPot (https://github.com/penpot/penpot)
-        ;; Licensed under Mozilla Public License Version 2.0
-        ;; Modifications: Disabled all onboarding modal flows (newsletter, questions, team-choice)
-        ;; Date: 2025-09-30
-        ;; ============================================================================
-        show-question-modal? false
-        show-newsletter-modal? false
-        show-team-modal? false
-        show-release-modal? false]
+
+        show-question-modal?
+        (and (contains? cf/flags :onboarding)
+             (not (:onboarding-viewed props))
+             (not (contains? props :onboarding-questions)))
+
+        show-newsletter-modal?
+        (and (contains? cf/flags :onboarding)
+             (not (:onboarding-viewed props))
+             (not (contains? props :newsletter-updates))
+             (contains? props :onboarding-questions))
+
+        show-team-modal?
+        (and (contains? cf/flags :onboarding)
+             (not (:onboarding-viewed props))
+             (not (contains? props :onboarding-team-id))
+             (:is-default team))
+
+        show-release-modal?
+        (and (contains? cf/flags :onboarding)
+             (not (contains? cf/flags :hide-release-modal))
+             (:onboarding-viewed props)
+             (not= (:release-notes-viewed props) (:main cf/version))
+             (not= "0.0" (:main cf/version)))]
 
     [:& (mf/provider ctx/current-route) {:value route}
      (case section
@@ -214,7 +223,20 @@
           #_[:& app.main.ui.releases/release-notes-modal {:version "2.5"}]
           #_[:& app.main.ui.onboarding/onboarding-templates-modal]
           #_[:& app.main.ui.onboarding/onboarding-modal]
+          #_[:& app.main.ui.onboarding.team-choice/onboarding-team-modal]
 
+          (cond
+            show-question-modal?
+            [:& questions-modal]
+
+            show-newsletter-modal?
+            [:& onboarding-newsletter]
+
+            show-team-modal?
+            [:& onboarding-team-modal {:go-to-team true}]
+
+            show-release-modal?
+            [:& release-notes-modal {:version (:main cf/version)}])
 
           [:> team-container* {:team-id team-id}
            [:> dashboard-page {:profile profile
@@ -232,6 +254,16 @@
              page-id    (some-> params :page-id uuid/parse*)
              layout     (some-> params :layout keyword)]
          [:? {}
+          (when (cf/external-feature-flag "onboarding-03" "test")
+            (cond
+              show-question-modal?
+              [:& questions-modal]
+
+              show-team-modal?
+              [:& onboarding-team-modal {:go-to-team false}]
+
+              show-release-modal?
+              [:& release-notes-modal {:version (:main cf/version)}]))
 
           [:> team-container* {:team-id team-id}
            [:> workspace-page {:team-id team-id
