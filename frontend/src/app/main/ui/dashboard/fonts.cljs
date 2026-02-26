@@ -175,7 +175,7 @@
            (run! #(swap! fonts* dissoc (:id %)) (vals fonts))))]
 
     ;; ============================================================================
-    ;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+    ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
     ;; Original file from PenPot (https://github.com/penpot/penpot)
     ;; Licensed under Mozilla Public License Version 2.0
     ;; Modifications: Changed CSS class from :dashboard-fonts-upload to :dashboard-content
@@ -476,7 +476,7 @@
     [:*
      [:> header* {:team team :section :fonts}]
      ;; ============================================================================
-     ;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+     ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
      ;; Original file from PenPot (https://github.com/penpot/penpot)
      ;; Licensed under Mozilla Public License Version 2.0
      ;; Modifications: Changed CSS classes to :no-bg and :dashboard-shared for consistent styling

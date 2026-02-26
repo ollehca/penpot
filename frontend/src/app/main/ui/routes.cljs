@@ -116,39 +116,48 @@
                              (rx/map (fn [teams]
                                        (assoc profile ::teams (into #{} (map :id) teams)))))))
            (rx/subs! (fn [{:keys [id ::teams] :as profile}]
-                       (cond
-                         (= id uuid/zero)
-                         (do
-                           (store-session-params query-params)
-                           (st/emit! (rt/nav :auth-login)))
+                       ;; ============================================================================
+                       ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+                       ;; Original file from PenPot (https://github.com/penpot/penpot)
+                       ;; Licensed under Mozilla Public License Version 2.0
+                       ;; Modifications: Check localStorage for Kizu auth before redirecting to login
+                       ;; Date: 2025-10-29
+                       ;; ============================================================================
+                       (let [kizu-auth? (some? (.getItem js/localStorage "auth-token"))]
+                         (cond
+                           ;; If Kizu auth exists, skip login redirect (profile will load from localStorage)
+                           (and (= id uuid/zero) (not kizu-auth?))
+                           (do
+                             (store-session-params query-params)
+                             (st/emit! (rt/nav :auth-login)))
 
-                         empty-path?
-                         ;; ============================================================================
-                         ;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
-                         ;; Original file from PenPot (https://github.com/penpot/penpot)
-                         ;; Licensed under Mozilla Public License Version 2.0
-                         ;; Modifications: Enhanced routing logic to support single-user mode (no teams)
-                         ;; Date: 2025-09-30
-                         ;; ============================================================================
-                         (let [team-id (dtm/get-last-team-id)
-                               default-team-id (:default-team-id profile)]
-                           (cond
-                             ;; If user has valid team-id from last session, use team-specific routes
-                             (and team-id (contains? teams team-id))
-                             (st/emit! (rt/nav :dashboard-recent
-                                               (assoc query-params :team-id team-id)))
+                           empty-path?
+                           ;; ============================================================================
+                           ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+                           ;; Original file from PenPot (https://github.com/penpot/penpot)
+                           ;; Licensed under Mozilla Public License Version 2.0
+                           ;; Modifications: Enhanced routing logic to support single-user mode (no teams)
+                           ;; Date: 2025-09-30
+                           ;; ============================================================================
+                           (let [team-id (dtm/get-last-team-id)
+                                 default-team-id (:default-team-id profile)]
+                             (cond
+                               ;; If user has valid team-id from last session, use team-specific routes
+                               (and team-id (contains? teams team-id))
+                               (st/emit! (rt/nav :dashboard-recent
+                                                 (assoc query-params :team-id team-id)))
 
-                             ;; If user has default team, use team-specific routes
-                             (and default-team-id (contains? teams default-team-id))
-                             (st/emit! (rt/nav :dashboard-recent
-                                               (assoc query-params :team-id default-team-id)))
+                               ;; If user has default team, use team-specific routes
+                               (and default-team-id (contains? teams default-team-id))
+                               (st/emit! (rt/nav :dashboard-recent
+                                                 (assoc query-params :team-id default-team-id)))
 
-                             ;; For single-user mode (no valid teams), use team-less routes
-                             :else
-                             (st/emit! (rt/nav :dashboard-recent query-params))))
+                               ;; For single-user mode (no valid teams), use team-less routes
+                               :else
+                               (st/emit! (rt/nav :dashboard-recent query-params))))
 
-                         :else
-                         (st/emit! (rt/assign-exception {:type :not-found}))))
+                           :else
+                           (st/emit! (rt/assign-exception {:type :not-found})))))
 
                      (fn [cause]
                        (errors/on-error cause)))))))

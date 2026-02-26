@@ -46,6 +46,30 @@
 
 (log/set-level! :debug)
 
+;; --- Kizu: Route .fig files to Electron handler instead of PenPot import
+
+(defn- has-fig-files?
+  "Check if dropped files include .fig files"
+  [files]
+  (some #(str/ends-with? (str/lower (.-name %)) ".fig")
+        (array-seq files)))
+
+(defn- handle-kizu-file-drop
+  "Route .fig files to Electron's handleFileOpen via electronAPI"
+  [files]
+  (let [api (unchecked-get js/window "electronAPI")]
+    (when api
+      (doseq [file (array-seq files)]
+        (when (str/ends-with? (str/lower (.-name file)) ".fig")
+          (let [path (.getFilePathForDrop ^js api file)]
+            (when path
+              (log/info :hint "kizu-fig-drop" :path path)
+              (-> (.handleFileOpen ^js api path)
+                  (.then (fn [res]
+                           (log/info :hint "kizu-fig-import-done" :result (clj->js res))))
+                  (.catch (fn [err]
+                            (log/error :hint "kizu-fig-drop-error" :error err)))))))))))
+
 ;; --- Grid Item Thumbnail
 
 (defn- persist-thumbnail
@@ -498,7 +522,10 @@
                             (dnd/has-type? e "application/x-moz-file")))
                (dom/prevent-default e)
                (reset! dragging? false)
-               (import-files (.-files (.-dataTransfer e))))
+               (let [files (.-files (.-dataTransfer e))]
+                 (if (has-fig-files? files)
+                   (handle-kizu-file-drop files)
+                   (import-files files))))
              (dom/prevent-default e))))]
 
     [:div {:class (stl/css :dashboard-grid)
@@ -632,10 +659,12 @@
 
                (or (dnd/has-type? e "Files")
                    (dnd/has-type? e "application/x-moz-file"))
-               (do
+               (let [files (.-files (.-dataTransfer e))]
                  (dom/prevent-default e)
                  (reset! dragging? false)
-                 (import-files (.-files (.-dataTransfer e)))))
+                 (if (has-fig-files? files)
+                   (handle-kizu-file-drop files)
+                   (import-files files))))
              (dom/prevent-default e))))]
 
     [:div {:class (stl/css :dashboard-grid)

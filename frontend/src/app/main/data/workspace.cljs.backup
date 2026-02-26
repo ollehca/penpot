@@ -275,36 +275,42 @@
                dwz/zoom-to-selected-shape)))))
 
 (defn- load-kizu-file-from-window
-  "Load .kizu file data from window.__KIZU_FILE_DATA__ (Transit-encoded string injected by Electron)"
+  "Load .kizu file data from window.__KIZU_FILE_DATA__ or sessionStorage (injected by Electron)"
   [file-id]
   (try
-    (let [file-data-map (unchecked-get ug/global "__KIZU_FILE_DATA__")
-          transit-str (when file-data-map
-                        (unchecked-get file-data-map (dm/str file-id)))]
+    ;; Try window first, then sessionStorage (persists across navigation)
+    (let [file-data-from-window (unchecked-get ug/global "__KIZU_FILE_DATA__")
+          file-data-from-storage (when-not file-data-from-window
+                                    (try
+                                      (when-let [stored (.getItem (.-sessionStorage ug/global) "__KIZU_FILE_DATA__")]
+                                        (js/JSON.parse stored))
+                                      (catch :default _
+                                        nil)))
+          file-data (or file-data-from-window file-data-from-storage)]
 
       (log/info :hint "load-kizu-file-from-window"
                 :file-id (dm/str file-id)
-                :has-data (some? transit-str)
-                :data-type (type transit-str))
+                :has-data (some? file-data)
+                :source (cond
+                          file-data-from-window "window"
+                          file-data-from-storage "sessionStorage"
+                          :else "none"))
 
-      (if (string? transit-str)
-        ;; Decode Transit string — preserves UUID keys, keyword values, tagged records
-        (let [file-obj (t/decode-str transit-str {:type :json-verbose})
+      (if file-data
+        (let [parsed-data (js->clj file-data :keywordize-keys true)
+              ;; Convert ClojureScript-friendly format
               file {:id file-id
-                    :name (:name file-obj)
+                    :name (:name parsed-data)
                     :project-id "kizu-local"
-                    :revn (:revn file-obj 0)
-                    :features (into #{} (:features file-obj))
-                    :data (:data file-obj)}]
+                    :data parsed-data}]
           (log/info :hint "kizu-file-loaded"
                     :file-id (dm/str file-id)
-                    :name (:name file)
-                    :has-pages-index (some? (get-in file [:data :pages-index])))
+                    :name (:name file))
           (rx/of file))
         (do
           (log/error :hint "kizu-file-not-found"
                      :file-id (dm/str file-id))
-          (rx/throw (ex-info "Kizu file data not found in window.__KIZU_FILE_DATA__" {})))))
+          (rx/throw (ex-info "Kizu file data not found in window.__KIZU_FILE_DATA__ or sessionStorage" {})))))
     (catch :default e
       (log/error :hint "kizu-file-load-error"
                  :error e)

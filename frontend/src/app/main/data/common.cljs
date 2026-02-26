@@ -358,12 +358,16 @@
         (rx/of (rt/nav :dashboard-settings {:team-id team-id}))))))
 
 (defn go-to-workspace
-  [& {:keys [team-id file-id page-id layout] :as options}]
+  [& {:keys [team-id file-id page-id project-id layout] :as options}]
   (ptk/reify ::go-to-workspace
     ptk/WatchEvent
     (watch [_ state _]
       (let [team-id (or team-id (:current-team-id state))
             file-id (or file-id (:current-file-id state))
+            ;; KIZU FIX: Preserve project-id from router params or state
+            project-id (or project-id
+                           (:current-project-id state)
+                           (-> (rt/get-params state) :project-id))
             page-id (or page-id (:current-page-id state)
                         (-> (dsh/lookup-file-data state file-id)
                             (get :pages)
@@ -373,6 +377,7 @@
                         (assoc :team-id team-id)
                         (assoc :file-id file-id)
                         (assoc :page-id page-id)
+                        (assoc :project-id project-id)
                         (update :layout  #(or layout %))
                         (d/without-nils))]
         (rx/of (rt/nav :workspace params options))))))

@@ -73,7 +73,7 @@
           (fonts/register! :custom fonts))))))
 
 ;; ============================================================================
-;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
 ;; Original file from PenPot (https://github.com/penpot/penpot)
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Added conditional to handle nil team-id for single-user mode

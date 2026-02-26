@@ -60,7 +60,7 @@
                                   team-id
                                   (:default-team-id profile))]
                     ;; ============================================================================
-                    ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+                    ;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
                     ;; Original file from PenPot (https://github.com/penpot/penpot)
                     ;; Licensed under Mozilla Public License Version 2.0
                     ;; Modifications: Added single-user mode support - redirect to dashboard
@@ -211,12 +211,6 @@
 
 ;; --- EVENT: logout
 
-;; MODIFIED BY KIZUKU - Check single-user mode and skip login redirect
-(defn- kizu-single-user-mode? []
-  (try
-    (= "true" (.getItem js/localStorage "kizu-single-user-mode"))
-    (catch :default _ false)))
-
 (defn logged-out
   []
   (ptk/reify ::logged-out
@@ -229,10 +223,7 @@
       (rx/merge
        ;; NOTE: We need the `effect` of the current event to be
        ;; executed before the redirect.
-       ;; KIZU: In single-user mode, go to dashboard instead of login
-       (->> (rx/of (if (kizu-single-user-mode?)
-                     (rt/nav :dashboard-recent)
-                     (rt/nav :auth-login)))
+       (->> (rx/of (rt/nav :auth-login))
             (rx/observe-on :async))
        (rx/of (ws/finalize))))
 

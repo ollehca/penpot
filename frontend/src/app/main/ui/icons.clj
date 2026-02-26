@@ -10,7 +10,7 @@
    [cuerdas.core :as str]
    [rumext.v2]))
 
-(def exceptions #{:penpot-logo-icon})
+(def exceptions #{:kizu-logo-icon})
 
 (defmacro icon-xref
   [id & [class]]

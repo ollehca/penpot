@@ -5,7 +5,7 @@
 ;; Copyright (c) KALEIDOS INC
 
 ;; ============================================================================
-;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
 ;; Original file from PenPot (https://github.com/penpot/penpot)
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Removed onboarding modal imports (newsletter, questions, team-choice)
@@ -138,11 +138,36 @@
     (fn []
       (st/emit! (dtm/finalize-team team-id))))
 
-  (let [{:keys [permissions] :as team} (mf/deref refs/team)]
-    (when (= team-id (:id team))
+  (let [{:keys [permissions] :as team} (mf/deref refs/team)
+        ;; ============================================================================
+        ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+        ;; Original file from PenPot (https://github.com/penpot/penpot)
+        ;; Licensed under Mozilla Public License Version 2.0
+        ;; Modifications: Check localStorage for Kizu auth to bypass team-id validation
+        ;; Date: 2025-10-29
+        ;; ============================================================================
+        kizu-auth? (some? (.getItem js/localStorage "auth-token"))
+        team-matches? (= team-id (:id team))
+        ;; For Kizu auth, provide default permissions if team not loaded
+        effective-permissions (if (and kizu-auth? (not team-matches?))
+                               (hash-map :can-edit true
+                                         :can-read true
+                                         :is-owner true
+                                         :is-admin true)
+                               permissions)
+        should-render? (or kizu-auth? team-matches?)
+        _debug (do
+                 (.log js/console "[KIZU-UI] team-container* render check:")
+                 (.log js/console "  team-id:" (str team-id))
+                 (.log js/console "  team:" (js/JSON.stringify (clj->js team)))
+                 (.log js/console "  kizu-auth?:" kizu-auth?)
+                 (.log js/console "  team-matches?:" team-matches?)
+                 (.log js/console "  should-render?:" should-render?)
+                 (.log js/console "  effective-permissions:" (js/JSON.stringify (clj->js effective-permissions))))]
+    (when should-render?
       [:> (mf/provider ctx/current-team-id) {:value team-id}
-       [:> (mf/provider ctx/permissions) {:value permissions}
-        [:> (mf/provider ctx/can-edit?) {:value (:can-edit permissions)}
+       [:> (mf/provider ctx/permissions) {:value effective-permissions}
+        [:> (mf/provider ctx/can-edit?) {:value (get effective-permissions :can-edit true)}
          ;; The `:key` is mandatory here because we want to reinitialize
          ;; all dom tree instead of simple rerender.
          [:* {:key (str team-id)} children]]]])))
@@ -157,7 +182,7 @@
         team    (mf/deref refs/team)
 
         ;; ============================================================================
-        ;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+        ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
         ;; Original file from PenPot (https://github.com/penpot/penpot)
         ;; Licensed under Mozilla Public License Version 2.0
         ;; Modifications: Disabled all onboarding modal flows (newsletter, questions, team-choice)
@@ -230,11 +255,20 @@
              team-id    (some-> params :team-id uuid/parse*)
              file-id    (some-> params :file-id uuid/parse*)
              page-id    (some-> params :page-id uuid/parse*)
-             layout     (some-> params :layout keyword)]
+             layout     (some-> params :layout keyword)
+             ;; ============================================================================
+             ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+             ;; Original file from PenPot (https://github.com/penpot/penpot)
+             ;; Licensed under Mozilla Public License Version 2.0
+             ;; Modifications: Use team-id as project-id for single-user mode
+             ;; Date: 2025-10-30
+             ;; ============================================================================
+             project-id team-id] ; In single-user mode, project-id = team-id
          [:? {}
 
           [:> team-container* {:team-id team-id}
            [:> workspace-page {:team-id team-id
+                               :project-id project-id
                                :file-id file-id
                                :page-id page-id
                                :layout-name layout

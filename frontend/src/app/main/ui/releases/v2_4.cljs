@@ -41,7 +41,7 @@
            "With the release of the long-awaited Plugins System still fresh, this 2.4 brings improvements in a wide range of areas that will serve a variety of use cases."]
 
           [:p  {:class (stl/css :feature-content)}
-           "This release combines some of the most requested features—such as versioning and the viewer-only role—with performance improvements and a new .penpot format that will streamline the export of files and assets."]
+           "This release combines some of the most requested features—such as versioning and the viewer-only role—with performance improvements and a new .kizu format that will streamline the export of files and assets."]
 
           [:p  {:class (stl/css :feature-content)}
            "Let’s dive in!"]]
@@ -125,7 +125,7 @@
            "New export format: fast and open"]]
          [:div {:class (stl/css :feature)}
           [:p {:class (stl/css :feature-content)}
-           "The new .penpot format will streamline the import and export of files and assets by being more efficient and interoperable."]
+           "The new .kizu format will streamline the import and export of files and assets by being more efficient and interoperable."]
           [:p {:class (stl/css :feature-content)}
            "This format replaces the previous two—so no more choosing between them or accidentally picking the wrong one! It's better for both scenarios: if you just need to import or export files quickly, it’ll be a bit faster. And if you want to extract data (like a list of color assets), this new format is much easier to read."]]
 

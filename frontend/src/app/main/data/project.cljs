@@ -25,14 +25,24 @@
   "Fetch or refresh a single project"
   ([] (fetch-project))
   ([project-id]
-   (assert (uuid? project-id) "expected a valid uuid for `project-id`")
+   ;; ============================================================================
+   ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+   ;; Original file from PenPot (https://github.com/penpot/penpot)
+   ;; Licensed under Mozilla Public License Version 2.0
+   ;; Modifications: Allow nil project-id for single-user mode (no projects needed)
+   ;; Date: 2025-10-29
+   ;; ============================================================================
+   (when project-id
+     (assert (uuid? project-id) "expected a valid uuid for `project-id`"))
 
    (ptk/reify ::fetch-project
      ptk/WatchEvent
      (watch [_ state _]
        (let [project-id (or project-id (:current-project-id state))]
-         (->> (rp/cmd! :get-project {:id project-id})
-              (rx/map project-fetched)))))))
+         (if project-id
+           (->> (rp/cmd! :get-project {:id project-id})
+                (rx/map project-fetched))
+           (rx/empty)))))))
 
 (defn initialize-project
   [project-id]

@@ -87,7 +87,7 @@
 
      [:a
       {:class (stl/css :feedback-button-link)
-       :href "https://community.penpot.app"
+       :href "https://community.kizu.app"
        :target "_blank"}
       (tr "feedback.discourse-go-to")]
      [:hr]

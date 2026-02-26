@@ -4,7 +4,7 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
-;; MODIFIED BY KIZU - Return nil when Kizu auth exists
+;; MODIFIED BY KIZUKU - Return nil when Kizuku auth exists
 (ns app.main.ui.auth
   (:require-macros [app.main.style :as stl])
   (:require

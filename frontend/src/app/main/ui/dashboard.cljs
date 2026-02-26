@@ -217,9 +217,9 @@
                  (some? project-id)
                  (some? team-id))
         (if can-edit?
-          (let [valid-url?    (str/ends-with? template ".penpot")
+          (let [valid-url?    (str/ends-with? template ".kizu")
 
-                ;; Backwards compatibility, ideally the template should be only the .penpot file name, not the full url
+                ;; Backwards compatibility, ideally the template should be only the .kizu file name, not the full url
                 template-name (if (str/starts-with? template "http")
                                 (subs template (count cf/templates-uri))
                                 template)

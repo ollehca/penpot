@@ -38,7 +38,7 @@
 (declare process-message)
 
 ;; ============================================================================
-;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
 ;; Original file from PenPot (https://github.com/penpot/penpot)
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Changed assertion to allow nil team-id for single-user mode
@@ -88,7 +88,7 @@
               projects))))
 
 ;; ============================================================================
-;; MODIFIED BY KIZU (https://github.com/ollehca/PenPotDesktop)
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
 ;; Original file from PenPot (https://github.com/penpot/penpot)
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Added conditional logic to handle nil team-id (single-user mode)

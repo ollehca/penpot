@@ -27,8 +27,26 @@
 (def router
   (l/derived (l/key :router) st/state))
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Check localStorage for Kizu profile when store profile is nil
+;; Date: 2025-10-29
+;; ============================================================================
 (def profile
-  (l/derived (l/key :profile) st/state))
+  (l/derived
+   (fn [state]
+     (or (:profile state)
+         ;; Fallback to localStorage for Kizu auth
+         (when (some? (.getItem js/localStorage "auth-token"))
+           (when-let [profile-str (.getItem js/localStorage "auth-profile")]
+             (try
+               (js->clj (js/JSON.parse profile-str) :keywordize-keys true)
+               (catch :default e
+                 (js/console.error "Failed to parse Kizu profile from localStorage:" e)
+                 nil))))))
+   st/state))
 
 (def team
   (l/derived (fn [state]

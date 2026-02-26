@@ -4,7 +4,7 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
-;; MODIFIED BY KIZUKU - Add feature flag to disable team auth for single-user mode
+;; MODIFIED BY KIZU - Add feature flag to disable team auth for single-user mode
 (ns app.main.data.team
   (:require
    [app.common.data :as d]
@@ -96,7 +96,7 @@
         (->> (rp/cmd! :get-team-invitations {:team-id team-id})
              (rx/map (partial invitations-fetched team-id)))))))
 
-;; MODIFIED BY KIZUKU - Skip team auth check in single-user mode
+;; MODIFIED BY KIZU - Skip team auth check in single-user mode
 (defn- team-initialized
   [team-id]
   (ptk/reify ::team-initialized
@@ -106,24 +106,15 @@
             team  (get teams team-id)
             kizu-mode? (kizu-single-user-mode?)]
         
-        ;; KIZU: If single-user mode + no team + valid team-id, create synthetic team
-        (if (and kizu-mode? (not team) (some? team-id))
+        ;; KIZU: If single-user mode + no team, use default permissions
+        (if (and kizu-mode? (not team))
           (do
-            (.log js/console "[KIZU] Single-user mode: creating synthetic team for ID:" (str team-id))
+            (.log js/console "[KIZU] Single-user mode: skipping team auth, using default permissions")
             (let [default-permissions {:can-edit true
                                       :can-read true
                                       :is-owner true
-                                      :is-admin true}
-                  synthetic-team {:id team-id
-                                 :name "Kizuku Workspace"
-                                 :is-default true
-                                 :permissions default-permissions
-                                 :is-owner true}]
-              (rx/of
-               #(do (.log js/console "[KIZU] Adding synthetic team to state.teams")
-                    (assoc-in % [:teams team-id] synthetic-team))
-               #(do (.log js/console "[KIZU] Setting permissions")
-                    (assoc % :permissions default-permissions)))))
+                                      :is-admin true}]
+              (rx/of #(assoc % :permissions default-permissions))))
           
           ;; Original PenPot logic
           (if (not team)

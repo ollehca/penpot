@@ -47,6 +47,13 @@
       (when (seq tgroups)
         [:div {:class (stl/css :unread)}])]]))
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Handle nil team-id for single-user mode
+;; Date: 2025-10-29
+;; ============================================================================
 (mf/defc comments-section
   [{:keys [profile team show? on-hide-comments]}]
   (let [threads-map    (mf/deref refs/comment-threads)
@@ -69,12 +76,14 @@
         (mf/use-callback
          (mf/deps team-id)
          (fn []
-           (st/emit! (dcm/mark-all-threads-as-read team-id))))]
+           (when team-id
+             (st/emit! (dcm/mark-all-threads-as-read team-id)))))]
 
     (mf/use-effect
      (mf/deps team-id)
      (fn []
-       (st/emit! (dcm/retrieve-unread-comment-threads team-id))))
+       (when team-id
+         (st/emit! (dcm/retrieve-unread-comment-threads team-id)))))
 
     (mf/use-effect
      (mf/deps show?)
