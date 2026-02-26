@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Alejandro Alonso <alejandro.alonso@kaleidos.net>\n"
-"Language-Team: Hausa <https://hosted.weblate.org/projects/penpot/frontend/ha/"
+"Language-Team: Hausa <https://hosted.weblate.org/projects/kizu/frontend/ha/"
 ">\n"
 "Language: ha\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgstr "qirqiri sabon kundi"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "samun hanyar magance matsalar zane-zane."
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:246, src/app/main/ui/dashboard/sidebar.cljs:1083, src/app/main/ui/workspace/main_menu.cljs:155
 msgid "auth.terms-of-service"
@@ -375,7 +375,7 @@ msgstr "kwafi %s kundaye"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "sauke %s kundayen manhajar fenfot(.penpot)"
+msgstr "sauke %s kundayen manhajar fenfot(.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -783,7 +783,7 @@ msgstr "an gina Webhook."
 msgid "dashboard.webhooks.description"
 msgstr ""
 "Webhooks hanyar sanar da manhajoji da addireshi intanet idan wani ya faru a "
-"Penpot. za a tura maka da saqon talla  URLs ka samar da."
+"Kizuku. za a tura maka da saqon talla  URLs ka samar da."
 
 #: src/app/main/ui/dashboard/team.cljs:1100
 msgid "dashboard.webhooks.empty.add-one"
@@ -810,7 +810,7 @@ msgid "dashboard.your-name"
 msgstr "sunanka"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
+msgid "dashboard.your-kizu"
 msgstr "fenfot na ka"
 
 #: src/app/main/ui/alert.cljs:35
@@ -1028,17 +1028,15 @@ msgstr "bayani"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "je ka taskar fenfot"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
 msgstr ""
-"mun yi farin ciki da samunka a nan. idan ka na da buqatar taimako sai ka "
-"tuntuvi na gaba da kai matsayi."
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "dangin fenfot"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -1056,15 +1054,15 @@ msgstr "imel"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "je ka tiwita"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "tambayoyin da ke buqatar amsa."
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "wurin karvar qorafin tiwita"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1398,7 +1396,7 @@ msgid "labels.continue-with"
 msgstr "ci gaba da"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
+msgid "labels.continue-with-kizu"
 msgstr "za ka iya ci gaba a idanka na fenfot"
 
 #: src/app/main/ui/dashboard/team.cljs:700
@@ -1529,7 +1527,7 @@ msgstr "koma baya"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "sashen taimako"
+msgstr ""
 
 #: src/app/main/ui/viewer/comments.cljs:104, src/app/main/ui/workspace/comments.cljs:73
 msgid "labels.hide-resolved-comments"
@@ -2157,7 +2155,7 @@ msgstr "ka tabbata ka na son fita daga  %s tawaga?"
 msgid "modals.leave-and-reassign.forbidden"
 msgstr ""
 "Webhooks hanyar sanar da manhajoji da addireshi intanet idan wani ya faru a "
-"Penpot. za a tura maka da saqon talla  URLs ka samar da."
+"Kizuku. za a tura maka da saqon talla  URLs ka samar da."
 
 #: src/app/main/ui/dashboard/change_owner.cljs:50
 msgid "modals.leave-and-reassign.hint1"
@@ -2314,8 +2312,6 @@ msgstr "an aika da imel din tantancewa %s. bincika imel xinka!"
 #, unused
 msgid "onboarding-v2.before-start.desc1"
 msgstr ""
-"ya kamata kasan akwai kayayyaki da yawa da za su iya taimaka maka ka sami "
-"damar fara aiki da fenfot, kamar jagoran mai amfani tasharmu ta youtub."
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
@@ -2329,7 +2325,7 @@ msgstr "xanjagora"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
-msgstr "za ka iya kallon koyarwarmu da mutanenmu ke yi."
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -2347,7 +2343,7 @@ msgstr ""
 
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
-msgstr "aiko man da bayanin fenfot (rubutun blog, bidiyon koyarwa, kallo...)."
+msgstr ""
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -2366,28 +2362,22 @@ msgstr "aiko man da sabbin abubuwan da aka yi (sabbib fasali, fitowa, gyara...).
 #, unused
 msgid "onboarding-v2.welcome.desc1"
 msgstr ""
-"fenfot ne ke yin kelaidos kamar yadda mutane ke yi, mutane na taimakon "
-"junansu. kowa za ya iya hada hannu da:"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
 msgstr ""
-"wurin da kowa zai iya koyo, fahimtar ta juna a kan fenfot, kasancewarta "
-"manyan tawagar fenfot da sauran mutane."
 
 #, unused
 msgid "onboarding-v2.welcome.desc2.title"
-msgstr "hulxa da kai cikin mutane"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
 msgstr ""
-"wurin da za ka san yadda za ka hada-hannu da fassara, neman fasali, manyan "
-"gudunmawa, magance matsalaâ€¦"
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "gudunmawar jagora"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"

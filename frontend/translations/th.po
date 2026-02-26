@@ -3,7 +3,7 @@ msgstr ""
 "PO-Revision-Date: 2025-02-04 21:02+0000\n"
 "Last-Translator: Late Night Defender <pongpeera054@protonmail.com>\n"
 "Language-Team: Thai "
-"<https://hosted.weblate.org/projects/penpot/frontend/th/>\n"
+"<https://hosted.weblate.org/projects/kizu/frontend/th/>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -22,7 +22,7 @@ msgstr "ตรวจสอบอีเมลของคุณ"
 #: src/app/main/ui/auth/register.cljs:277
 #, unused
 msgid "auth.check-your-email"
-msgstr "ตรวจสอบอีเมลของคุณและคลิกลิงก์เพื่อยืนยันและเริ่มใช้งาน Penpot"
+msgstr "ตรวจสอบอีเมลของคุณและคลิกลิงก์เพื่อยืนยันและเริ่มใช้งาน Kizuku"
 
 #: src/app/main/ui/auth/recovery.cljs:67
 msgid "auth.confirm-password"
@@ -60,7 +60,7 @@ msgstr "ลงชื่อเข้าใช้"
 
 #: src/app/main/ui/auth/login.cljs:285
 msgid "auth.login-tagline"
-msgstr "Penpot เป็นเครื่องมือออกแบบที่ฟรีและโอเพนซอร์สสำหรับการดีไซน์และโค้ดร่วมกัน"
+msgstr ""
 
 #: src/app/main/ui/auth/login.cljs:222
 msgid "auth.login-with-github-submit"
@@ -146,7 +146,7 @@ msgstr "สร้างบัญชี"
 #, unused
 msgid "auth.register-tagline"
 msgstr ""
-"ด้วยบัญชี Penpot ฟรี "
+"ด้วยบัญชี Kizuku ฟรี "
 "คุณสามารถสร้างทีมได้อย่างไม่จำกัดและทำงานร่วมกับดีไซเนอร์และนักพัฒนาคนอื่น "
 "ๆ กี่โปรเจกต์ก็ได้ "
 
@@ -157,7 +157,7 @@ msgstr "สร้างบัญชี"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "โซลูชันโอเพนซอร์สสำหรับการออกแบบและโปรโตไทป์"
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:50
 #, markdown
@@ -182,7 +182,7 @@ msgstr "อีเมลทำงาน"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "ผู้ใช้ Penpot ทั้งหมด"
+msgstr "ผู้ใช้ Kizuku ทั้งหมด"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -252,7 +252,7 @@ msgstr "การจัดการทีม"
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
 msgstr ""
-"Penpot เป็นเครื่องมือสำหรับการทำงานเป็นทีม "
+"Kizuku เป็นเครื่องมือสำหรับการทำงานเป็นทีม "
 "เชิญชวนสมาชิกมาทำงานด้วยกันผ่านโปรเจกต์และไฟล์ต่าง ๆ เลย"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
@@ -262,7 +262,7 @@ msgstr "รวบรวมทีมเลย!"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.tutorial-hero.info"
-msgstr "เรียนรู้การใช้งาน Penpot เบื้องต้นด้วยการลงมือทำจริง"
+msgstr "เรียนรู้การใช้งาน Kizuku เบื้องต้นด้วยการลงมือทำจริง"
 
 #: src/app/main/ui/settings/access_tokens.cljs:104
 msgid "dashboard.access-tokens.copied-success"
@@ -324,7 +324,7 @@ msgstr "โทเคนการเข้าถึงส่วนบุคคล
 msgid "dashboard.access-tokens.personal.description"
 msgstr ""
 "โทเคนการเข้าถึงส่วนบุคคลจะทำงานใกล้เคียงกับการยืนยันตัวตนด้วยชื่อผู้ใช้/"
-"รหัสผ่าน และสามารถใช้ในการอนุญาตให้แอปพลิเคชันเข้าถึง API ภายในของ Penpot "
+"รหัสผ่าน และสามารถใช้ในการอนุญาตให้แอปพลิเคชันเข้าถึง API ภายในของ Kizuku "
 "ได้"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
@@ -349,7 +349,7 @@ msgstr "สร้างทีมใหม่"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Penpot ของคุณ"
+msgstr "Kizuku ของคุณ"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -357,7 +357,7 @@ msgstr "ลบทีม"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "ดาวน์โหลดไฟล์ Penpot (.penpot)"
+msgstr "ดาวน์โหลดไฟล์ Kizuku (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -384,7 +384,7 @@ msgstr "ยังไม่มีไฟล์"
 msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "ไลบรารีที่เพิ่มให้กับโปรเจกต์จะปรากฏที่นี่ "
-"ลองแชร์ไฟล์ของคุณหรือเพิ่มจาก[ไลบรารีและเทมเพลต](https://penpot.app/"
+"ลองแชร์ไฟล์ของคุณหรือเพิ่มจาก[ไลบรารีและเทมเพลต](https://kizu.app/"
 "libraries-templates)ของเรา"
 
 #: src/app/main/ui/dashboard/placeholder.cljs
@@ -392,7 +392,7 @@ msgstr ""
 msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "ไลบรารีที่เพิ่มให้กับโปรเจกต์จะปรากฏที่นี่ "
-"ลองแชร์ไฟล์ของคุณหรือเพิ่มจาก[ไลบรารีและเทมเพลต](https://penpot.app/"
+"ลองแชร์ไฟล์ของคุณหรือเพิ่มจาก[ไลบรารีและเทมเพลต](https://kizu.app/"
 "libraries-templates)ของเรา"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
@@ -405,7 +405,7 @@ msgstr "ยังไม่มีไลบรารี"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "ดาวน์โหลด %s ไฟล์ Penpot (.penpot)"
+msgstr "ดาวน์โหลด %s ไฟล์ Kizuku (.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -417,7 +417,7 @@ msgstr "ส่งออกเป็น PDF"
 
 #, unused
 msgid "dashboard.export-multi"
-msgstr "ส่งออก %s ไฟล์ Penpot"
+msgstr "ส่งออก %s ไฟล์ Kizuku"
 
 #: src/app/main/ui/workspace/main_menu.cljs:644
 msgid "dashboard.export-shapes"
@@ -460,8 +460,8 @@ msgstr[0] "เพิ่มแล้ว %s ฟอนต์"
 #, markdown
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
-"คุณควรอัปโหลดเฉพาะฟอนต์ที่คุณเป็นเจ้าของหรือมีสิทธิ์ในการใช้งานใน Penpot "
-"ดูรายละอียดเพิ่มเติมในส่วนเนื้อหาของ[ข้อกำหนดการให้บริการของ Penpot](%s) "
+"คุณควรอัปโหลดเฉพาะฟอนต์ที่คุณเป็นเจ้าของหรือมีสิทธิ์ในการใช้งานใน Kizuku "
+"ดูรายละอียดเพิ่มเติมในส่วนเนื้อหาของ[ข้อกำหนดการให้บริการของ Kizuku](%s) "
 "นอกจากนี้คุณอาจต้องการอ่านเพิ่มเติมเกี่ยวกับ[ลิขสิทธิ์ฟอนต์](https://www."
 "typography.com/faq)"
 
@@ -471,7 +471,7 @@ msgstr "อัปโหลดทั้งหมด"
 
 #: src/app/main/ui/dashboard/import.cljs:461, src/app/main/ui/dashboard/project_menu.cljs:109
 msgid "dashboard.import"
-msgstr "นำเข้าไฟล์ Penpot"
+msgstr "นำเข้าไฟล์ Kizuku"
 
 #: src/app/main/ui/dashboard/import.cljs:290, src/app/worker/import.cljs:121, src/app/worker/import.cljs:124
 msgid "dashboard.import.analyze-error"
@@ -672,8 +672,8 @@ msgid "dashboard.your-name"
 msgstr "ชื่อของคุณ"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
-msgstr "Penpot ของคุณ"
+msgid "dashboard.your-kizu"
+msgstr "Kizuku ของคุณ"
 
 #: src/app/main/ui/workspace/plugins.cljs:331, src/app/main/ui/workspace/plugins.cljs:385
 msgid "ds.confirm-allow"
@@ -724,7 +724,7 @@ msgstr "รหัสผ่านเดิมไม่ถูกต้อง"
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "ชุมชน Penpot"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:65
 msgid "feedback.title"
@@ -783,7 +783,7 @@ msgstr "คัดลอกลิงก์"
 
 #: src/app/main/ui/static.cljs:62
 msgid "labels.copyright"
-msgstr "Kaleidos @2024"
+msgstr "Kizuku @2025"
 
 #: src/app/main/ui/dashboard/team_form.cljs:100, src/app/main/ui/dashboard/team_form.cljs:120
 msgid "labels.create-team"

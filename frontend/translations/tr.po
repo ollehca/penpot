@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Merih Güz <iletisim@merihguz.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/penpot/frontend/"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/kizu/frontend/"
 "tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "E-postanıza bakın"
 #, unused
 msgid "auth.check-your-email"
 msgstr ""
-"Penpot hesabını onaylamak ve kullanmaya başlamak için e-postanı kontrol et "
+"Kizuku hesabını onaylamak ve kullanmaya başlamak için e-postanı kontrol et "
 "ve gönderilen bağlantıya tıkla."
 
 #: src/app/main/ui/auth/recovery.cljs:67
@@ -68,8 +68,6 @@ msgstr "Oturum aç"
 #: src/app/main/ui/auth/login.cljs:285
 msgid "auth.login-tagline"
 msgstr ""
-"Penpot, tasarım ve kod işbirliği için özgür ve açık kaynaklı tasarım "
-"aracıdır"
 
 #: src/app/main/ui/auth/login.cljs:222
 msgid "auth.login-with-github-submit"
@@ -159,7 +157,7 @@ msgstr "Bir hesap oluştur"
 #, unused
 msgid "auth.register-tagline"
 msgstr ""
-"Ücretsiz bir Penpot hesabı ile sınırsız sayıda takım oluşturabilir ve diğer "
+"Ücretsiz bir Kizuku hesabı ile sınırsız sayıda takım oluşturabilir ve diğer "
 "tasarımcı ve geliştiricilerle istediğiniz kadar projede işbirliği "
 "yapabilirsiniz. "
 
@@ -170,7 +168,7 @@ msgstr "Bir hesap oluştur"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "Tasarım ve prototipleme için açık-kaynak çözüm."
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:50
 #, markdown
@@ -206,7 +204,7 @@ msgstr "Yayınla"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "Tüm Penpot kullanıcıları"
+msgstr "Tüm Kizuku kullanıcıları"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -283,7 +281,7 @@ msgstr "Takım yönetimi"
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
 msgstr ""
-"Penpot takımlar içindir. Üyeleri projeler ve dosyalar üzerinde birlikte "
+"Kizuku takımlar içindir. Üyeleri projeler ve dosyalar üzerinde birlikte "
 "çalışmaya davet edin"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
@@ -294,7 +292,7 @@ msgstr "Takım olun!"
 #, unused
 msgid "dasboard.tutorial-hero.info"
 msgstr ""
-"Bu uygulamalı öğretici ile biraz eğlenirken Penpot'taki temel bilgileri "
+"Bu uygulamalı öğretici ile biraz eğlenirken Kizuku'taki temel bilgileri "
 "öğrenin."
 
 #: src/app/main/ui/dashboard/projects.cljs
@@ -310,7 +308,7 @@ msgstr "Uygulamalı Öğretici"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "Penpot'ta bir gezintiye çıkın ve temel özelliklerini öğrenin."
+msgstr "Kizuku'ta bir gezintiye çıkın ve temel özelliklerini öğrenin."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -382,7 +380,7 @@ msgstr "Kişisel erişim belirteçleri"
 msgid "dashboard.access-tokens.personal.description"
 msgstr ""
 "Kişisel erişim belirteçleri, oturum açma/parola kimlik doğrulama "
-"sistemimize alternatif olarak işlev görür ve bir uygulamanın dahili Penpot "
+"sistemimize alternatif olarak işlev görür ve bir uygulamanın dahili Kizuku "
 "API'sine erişmesine izin vermek için kullanılabilir"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
@@ -411,7 +409,7 @@ msgstr "Yeni takım oluştur"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Penpot'un"
+msgstr "Kizuku'un"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -419,7 +417,7 @@ msgstr "Takımı sil"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Penpot dosyasını indir (.penpot)"
+msgstr "Kizuku dosyasını indir (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -435,7 +433,7 @@ msgstr "%s dosyanın kopyasını oluştur"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "%s Penpot dosyasını indir (.penpot)"
+msgstr "%s Kizuku dosyasını indir (.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -447,7 +445,7 @@ msgstr "PDF olarak dışa aktar"
 
 #, unused
 msgid "dashboard.export-multi"
-msgstr "Penpot %s dosyalarını dışa aktar"
+msgstr "Kizuku %s dosyalarını dışa aktar"
 
 #: src/app/main/ui/exports/assets.cljs:106
 msgid "dashboard.export-multiple.selected"
@@ -465,7 +463,7 @@ msgstr ""
 
 #: src/app/main/ui/exports/assets.cljs:181
 msgid "dashboard.export-shapes.how-to-link"
-msgstr "Penpot'ta dışa aktarmaların nasıl ayarlandırılacağı hakkında bilgi."
+msgstr "Kizuku'ta dışa aktarmaların nasıl ayarlandırılacağı hakkında bilgi."
 
 #: src/app/main/ui/exports/assets.cljs:176
 msgid "dashboard.export-shapes.no-elements"
@@ -555,8 +553,8 @@ msgstr ""
 #, markdown
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
-"Sadece kendinize ait veya Penpot'ta kullanılabilecek bir lisansa sahip olan "
-"yazi tiplerini yükleyebilirsiniz. [Penpot'un Kullanım Şartları](%s) "
+"Sadece kendinize ait veya Kizuku'ta kullanılabilecek bir lisansa sahip olan "
+"yazi tiplerini yükleyebilirsiniz. [Kizuku'un Kullanım Şartları](%s) "
 "içindeki İçerik hakları bölümünden ayrıntılı bilgi alabilirsiniz. Ayrıca "
 "[yazı tipi lisanslama](https://www.typography.com/faq) hakkında daha fazla "
 "bilgi almak isteyebilirsiniz."
@@ -578,7 +576,7 @@ msgstr ""
 
 #: src/app/main/ui/dashboard/import.cljs:461, src/app/main/ui/dashboard/project_menu.cljs:109
 msgid "dashboard.import"
-msgstr "Penpot dosyalarını içe aktar"
+msgstr "Kizuku dosyalarını içe aktar"
 
 #: src/app/main/ui/dashboard/import.cljs:290, src/app/worker/import.cljs:121, src/app/worker/import.cljs:124
 msgid "dashboard.import.analyze-error"
@@ -857,7 +855,7 @@ msgstr "Web kancası başarıyla oluşturuldu."
 #: src/app/main/ui/dashboard/team.cljs:971
 msgid "dashboard.webhooks.description"
 msgstr ""
-"Web kancaları, Penpot'ta belirli olaylar gerçekleştiğinde diğer web "
+"Web kancaları, Kizuku'ta belirli olaylar gerçekleştiğinde diğer web "
 "sitelerinin ve uygulamaların bilgilendirilmesine izin vermenin basit bir "
 "yoludur. Belirttiğiniz URL'lerin her birine bir POST isteği göndereceğiz."
 
@@ -886,8 +884,8 @@ msgid "dashboard.your-name"
 msgstr "Adın"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
-msgstr "Penpot'un"
+msgid "dashboard.your-kizu"
+msgstr "Kizuku'un"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"
@@ -973,7 +971,7 @@ msgstr "«%s» e-postasının spam veya kalıcı olarak geri döndüğü bildiri
 msgid "errors.feature-mismatch"
 msgstr ""
 "Görünüşe göre '%s' özelliğinin etkin olduğu bir dosyayı açıyorsunuz, ancak "
-"şu anki penpot sürümü bunu desteklemiyor veya devre dışı bırakıldı."
+"şu anki kizu sürümü bunu desteklemiyor veya devre dışı bırakıldı."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -1157,17 +1155,15 @@ msgstr "Açıklama"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "Penpot forumuna git"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
 msgstr ""
-"Burada olmanızdan mutluluk duyuyoruz. Yardıma ihtiyacınız varsa, lütfen "
-"göndermeden önce arama yapın."
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "Penpot topluluğu"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -1185,15 +1181,15 @@ msgstr "E-posta"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "X'a git"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "Teknik sorularınıza yardımcı olmak için buradayız."
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "X destek hesabı"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1382,7 +1378,7 @@ msgstr "Büyük Harf"
 #: src/app/main/ui/inspect/right_sidebar.cljs:163
 msgid "inspect.empty.help"
 msgstr ""
-"Tasarım incelemesi hakkında daha fazla bilgi edinmek istiyorsanız Penpot "
+"Tasarım incelemesi hakkında daha fazla bilgi edinmek istiyorsanız Kizuku "
 "yardım merkezini ziyaret edin"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:166
@@ -1535,8 +1531,8 @@ msgid "labels.continue-with"
 msgstr "İle devam et"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
-msgstr "Penpot hesabıyla devam edebilirsiniz"
+msgid "labels.continue-with-kizu"
+msgstr "Kizuku hesabıyla devam edebilirsiniz"
 
 #: src/app/main/ui/dashboard/team.cljs:700
 msgid "labels.copy-invitation-link"
@@ -1544,7 +1540,7 @@ msgstr "Bağlantıyı kopyala"
 
 #: src/app/main/ui/static.cljs:62
 msgid "labels.copyright"
-msgstr "Kaleidos @2024"
+msgstr "Kizuku @2025"
 
 #: src/app/main/ui/workspace/sidebar/assets/groups.cljs:151, src/app/main/ui/workspace/sidebar/options/menus/component.cljs:201
 msgid "labels.create"
@@ -1684,7 +1680,7 @@ msgstr "Grafik tasarımı"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "Yardım Merkezi"
+msgstr ""
 
 #: src/app/main/ui/viewer/comments.cljs:104, src/app/main/ui/workspace/comments.cljs:73
 msgid "labels.hide-resolved-comments"
@@ -2031,7 +2027,7 @@ msgstr "Hesabınız"
 #: src/app/main/ui/onboarding/questions.cljs:403
 #, unused
 msgid "labels.youtube"
-msgstr "YouTube"
+msgstr ""
 
 #: src/app/main/ui/workspace/colorpicker.cljs:479, src/app/main/ui/workspace/colorpicker.cljs:480, src/app/main/ui/workspace/colorpicker.cljs:482
 msgid "media.choose-image"
@@ -2558,8 +2554,6 @@ msgstr "404 hatası"
 #: src/app/main/ui/static.cljs:135
 msgid "not-found.login.free"
 msgstr ""
-"Penpot, Tasarım ve Kod arasında işbirliği için özgür ve açık kaynaklı bir "
-"tasarım aracıdır"
 
 #: src/app/main/ui/auth/recovery_request.cljs:114
 msgid "not-found.login.sent-recovery"
@@ -2577,11 +2571,11 @@ msgstr "Ücretsiz kaydolun"
 
 #: src/app/main/ui/static.cljs:150
 msgid "not-found.login.start-using"
-msgstr "Ve saniyeler içinde Penpot kullanmaya başlayın!"
+msgstr "Ve saniyeler içinde Kizuku kullanmaya başlayın!"
 
 #: src/app/main/ui/static.cljs:64
 msgid "not-found.made-with-love"
-msgstr "Aşkla ve Açık Kaynakla Yapıldı"
+msgstr ""
 
 #: src/app/main/ui/static.cljs:290
 msgid "not-found.no-permission.already-requested.file"
@@ -2621,15 +2615,15 @@ msgstr "Bu dosyaya erişiminiz yok."
 
 #: src/app/main/ui/static.cljs:51, src/app/main/ui/static.cljs:286, src/app/main/ui/static.cljs:292, src/app/main/ui/static.cljs:298, src/app/main/ui/static.cljs:304, src/app/main/ui/static.cljs:313, src/app/main/ui/static.cljs:322
 msgid "not-found.no-permission.go-dashboard"
-msgstr "Penpot'unuza gidin"
+msgstr "Kizuku'unuza gidin"
 
 #: src/app/main/ui/static.cljs:310, src/app/main/ui/static.cljs:319
 msgid "not-found.no-permission.if-approves"
 msgstr "Sahibi izin verirse takıma davet edileceksiniz."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.penpot-file"
-msgstr "Penpot dosyası"
+msgid "not-found.no-permission.kizu-file"
+msgstr "Kizuku dosyası"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
 msgid "not-found.no-permission.project"
@@ -2678,13 +2672,11 @@ msgstr "%s adresine doğrulama e-postası gönderildi. E-posta kutunuza bakın!"
 #, unused
 msgid "onboarding-v2.before-start.desc1"
 msgstr ""
-"Kullanıcı Kılavuzu ve Youtube kanalımız gibi Penpot'u kullanmaya "
-"başlamanıza yardımcı olacak birçok kaynak olduğunu bilmelisiniz."
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
 msgstr ""
-"Penpot'un nasıl kullanılacağı hakkında ayrıntılı bilgi. Prototiplemeden "
+"Kizuku'un nasıl kullanılacağı hakkında ayrıntılı bilgi. Prototiplemeden "
 "tasarımları düzenlemeye veya paylaşmaya kadar."
 
 #, unused
@@ -2693,7 +2685,7 @@ msgstr "Kullanıcı kılavuzu"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
-msgstr "Bizim ve topluluğumuz tarafından hazırlanan öğreticileri izleyebilirsiniz."
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -2706,14 +2698,12 @@ msgstr "Başlamadan önce"
 #: src/app/main/ui/onboarding/newsletter.cljs:68
 msgid "onboarding-v2.newsletter.desc"
 msgstr ""
-"Ürün geliştirme sürecinden ve haberlerden haberdar olmak için Penpot "
+"Ürün geliştirme sürecinden ve haberlerden haberdar olmak için Kizuku "
 "bültenine abone olun."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
 msgstr ""
-"Bana Penpot hakkında haberler gönder (blog gönderileri, video öğreticiler, "
-"yayınlar...)."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -2733,33 +2723,26 @@ msgstr "Bana ürün güncellemeleri gönder (yeni özellikler, sürümler, düze
 #, unused
 msgid "onboarding-v2.welcome.desc1"
 msgstr ""
-"Penpot açık kaynaklıdır ve Kaleidos'un yanı sıra birçok insanın birbirine "
-"yardım ettiği topluluk tarafından yapılmıştır. Herkes işbirliğine "
-"katılabilir:"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
 msgstr ""
-"Tüm topluluk ve Penpot çekirdek takımı ile Penpot, bugünü ve geleceği "
-"hakkında bilgi edinmek, paylaşmak ve tartışmak için herkese açık bir alan."
 
 #, unused
 msgid "onboarding-v2.welcome.desc2.title"
-msgstr "Topluluğa Katılım"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
 msgstr ""
-"Çeviriler, özellik istekleri, temel katkılar, hata avı ile nasıl işbirliği "
-"yapacağınızı bulacağınız yer…"
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "Katkıda bulunma kılavuzu"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
-msgstr "Penpot'a hoş geldiniz!"
+msgstr "Kizuku'a hoş geldiniz!"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:254
 #, unused
@@ -2834,7 +2817,7 @@ msgstr "Gizlilik Politikası."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:65
 msgid "onboarding.newsletter.title"
-msgstr "Penpot haberlerini almak ister misiniz?"
+msgstr "Kizuku haberlerini almak ister misiniz?"
 
 #: src/app/main/ui/onboarding/questions.cljs:108
 msgid "onboarding.questions.lets-get-started"
@@ -2850,7 +2833,7 @@ msgstr "Yalnızca keşfediyorum"
 
 #: src/app/main/ui/onboarding/questions.cljs:246
 msgid "onboarding.questions.reasons.fit"
-msgstr "Penpot'un takımım için uygun olup olmadığına bakıyorum"
+msgstr "Kizuku'un takımım için uygun olup olmadığına bakıyorum"
 
 #: src/app/main/ui/onboarding/questions.cljs:252
 msgid "onboarding.questions.reasons.testing"
@@ -2893,16 +2876,16 @@ msgstr "Çerçeve oluşturma"
 
 #: src/app/main/ui/onboarding/questions.cljs:116
 msgid "onboarding.questions.step1.question1"
-msgstr "Penpot'u ne için kullanacaksınız?"
+msgstr "Kizuku'u ne için kullanacaksınız?"
 
 #: src/app/main/ui/onboarding/questions.cljs:273
 msgid "onboarding.questions.step1.question2"
-msgstr "Bugün sizi Penpot'a getiren nedir?"
+msgstr "Bugün sizi Kizuku'a getiren nedir?"
 
 #: src/app/main/ui/onboarding/questions.cljs:112
 msgid "onboarding.questions.step1.subtitle"
 msgstr ""
-"Penpot'un sizin için çalışmasını sağlamamıza yardımcı olmak için hakkınızda "
+"Kizuku'un sizin için çalışmasını sağlamamıza yardımcı olmak için hakkınızda "
 "biraz bilgi verin. Yanıtlarınız, yeni özelliklere öncelik vermemize ve "
 "başlamak için sizi doğru yöne yönlendirmemize yardımcı olacaktır."
 
@@ -2938,7 +2921,7 @@ msgstr "Nereden başlamak istersiniz?"
 #: src/app/main/ui/onboarding/questions.cljs:428
 #, unused
 msgid "onboarding.questions.step5.title"
-msgstr "Penpot'tan nasıl haberiniz oldu?"
+msgstr "Kizuku'tan nasıl haberiniz oldu?"
 
 #: src/app/main/ui/onboarding/questions.cljs:233
 msgid "onboarding.questions.team-size.11-30"
@@ -2983,7 +2966,7 @@ msgstr "Bir takım oluştur"
 #: src/app/main/ui/onboarding/team_choice.cljs:31
 msgid "onboarding.team-modal.create-team-desc"
 msgstr ""
-"Takım, aynı dosya ve projelerde çalışan diğer Penpot kullanıcılarıyla "
+"Takım, aynı dosya ve projelerde çalışan diğer Kizuku kullanıcılarıyla "
 "işbirliği yapmanıza olanak tanır."
 
 #: src/app/main/ui/onboarding/team_choice.cljs:36
@@ -3020,7 +3003,7 @@ msgstr "Tasarlamaya başla"
 
 #, unused
 msgid "onboarding.welcome.alt"
-msgstr "Penpot"
+msgstr "Kizuku"
 
 #: src/app/main/ui/auth/recovery.cljs:88
 msgid "profile.recovery.go-to-login"
@@ -3698,31 +3681,31 @@ msgstr "Seçilene yakınlaştır"
 
 #: src/app/main/ui/dashboard/files.cljs:179
 msgid "title.dashboard.files"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:46
 msgid "title.dashboard.font-providers"
-msgstr "Yazı Tipi Sağlayıcıları - %s - Penpot"
+msgstr "Yazı Tipi Sağlayıcıları - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:45
 msgid "title.dashboard.fonts"
-msgstr "Yazı Tipleri - %s - Penpot"
+msgstr "Yazı Tipleri - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/projects.cljs:350
 msgid "title.dashboard.projects"
-msgstr "Projeler - %s - Penpot"
+msgstr "Projeler - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/search.cljs:50
 msgid "title.dashboard.search"
-msgstr "Ara - %s - Penpot"
+msgstr "Ara - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/libraries.cljs:57
 msgid "title.dashboard.shared-libraries"
-msgstr "Paylaşılmış Kütüphaneler - %s - Penpot"
+msgstr "Paylaşılmış Kütüphaneler - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "Penpot - Takımlar için Özgür Tasarım"
+msgstr "Kizuku - Takımlar için Özgür Tasarım"
 
 #: src/app/main/ui/settings/access_tokens.cljs:280
 msgid "title.settings.access-tokens"
@@ -3730,43 +3713,43 @@ msgstr "Profil - Erişim belirteçleri"
 
 #: src/app/main/ui/settings/feedback.cljs:107
 msgid "title.settings.feedback"
-msgstr "Geri bildirimde bulun - Penpot"
+msgstr "Geri bildirimde bulun - Kizuku"
 
 #: src/app/main/ui/settings/options.cljs:83
 msgid "title.settings.options"
-msgstr "Ayarlar - Penpot"
+msgstr "Ayarlar - Kizuku"
 
 #: src/app/main/ui/settings/password.cljs:103
 msgid "title.settings.password"
-msgstr "Parola - Penpot"
+msgstr "Parola - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
-msgstr "Profil - Penpot"
+msgstr "Profil - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
-msgstr "Davetler - %s - Penpot"
+msgstr "Davetler - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
-msgstr "Üyeler - %s - Penpot"
+msgstr "Üyeler - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1131
 msgid "title.team-settings"
-msgstr "Ayarlar - %s - Penpot"
+msgstr "Ayarlar - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1084
 msgid "title.team-webhooks"
-msgstr "Web kancaları - %s - Penpot"
+msgstr "Web kancaları - %s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:423
 msgid "title.viewer"
-msgstr "%s - Görünüm modu - Penpot"
+msgstr "%s - Görünüm modu - Kizuku"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui.cljs:138
 #, unused
@@ -6128,7 +6111,7 @@ msgstr "Yolu kapatmak için tıklayın"
 #~ msgstr "Takım oluştur"
 
 #~ msgid "onboarding.welcome.title"
-#~ msgstr "Penpot'a Hoş Geldiniz"
+#~ msgstr "Kizuku'a Hoş Geldiniz"
 
 #~ msgid "viewer.header.share.placeholder"
 #~ msgstr "Paylaşım adresi burada görünecek"

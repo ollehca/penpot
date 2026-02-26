@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: VKing9 <vaibhavrathod2282@gmail.com>\n"
-"Language-Team: Hindi <https://hosted.weblate.org/projects/penpot/frontend/hi/"
+"Language-Team: Hindi <https://hosted.weblate.org/projects/kizu/frontend/hi/"
 ">\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "अपना ईमेल देखें"
 #, unused
 msgid "auth.check-your-email"
 msgstr ""
-"अपने ईमेल की जाँच करें और सत्यापन के लिए लिंक पर क्लिक करके Penpot का उपयोग शुरू करें।"
+"अपने ईमेल की जाँच करें और सत्यापन के लिए लिंक पर क्लिक करके Kizuku का उपयोग शुरू करें।"
 
 #: src/app/main/ui/auth/recovery.cljs:67
 msgid "auth.confirm-password"
@@ -110,7 +110,6 @@ msgstr "पासवर्ड रिकवरी लिंक आपके इ�
 #: src/app/main/ui/auth/login.cljs:285
 msgid "auth.login-tagline"
 msgstr ""
-"पेनपॉट एक मुफ़्त ओपन-सोर्स डिज़ाइन टूल है जो डिज़ाइन और कोड सहयोग के लिए है"
 
 #: src/app/main/ui/auth/recovery_request.cljs:50
 msgid "auth.notifications.profile-not-verified"
@@ -157,7 +156,7 @@ msgstr "खाता बनाएं"
 #, unused
 msgid "auth.register-tagline"
 msgstr ""
-"मुफ्त Penpot खाते के साथ, आप unlimited टीम्स बना सकते हैं और जितने चाहें उतने प्रोजेक्ट्स पर "
+"मुफ्त Kizuku खाते के साथ, आप unlimited टीम्स बना सकते हैं और जितने चाहें उतने प्रोजेक्ट्स पर "
 "अन्य डिज़ाइनरों और डेवलपर्स के साथ मिलकर काम कर सकते हैं। "
 
 #: src/app/main/ui/auth/register.cljs:199
@@ -167,7 +166,7 @@ msgstr "खाता बनाएं"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "डिजाइन और प्रोटोटाइपिंग के लिए ओपन-सोर्स समाधान।"
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:50
 #, markdown
@@ -283,7 +282,7 @@ msgstr "टीम प्रबंधन"
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
 msgstr ""
-"Penpot टीमों के लिए है। परियोजनाओं और फ़ाइलों पर साथ काम करने के लिए सदस्यों को आमंत्रित "
+"Kizuku टीमों के लिए है। परियोजनाओं और फ़ाइलों पर साथ काम करने के लिए सदस्यों को आमंत्रित "
 "करें"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
@@ -294,7 +293,7 @@ msgstr "टीम बनाओ!"
 #, unused
 msgid "dasboard.tutorial-hero.info"
 msgstr ""
-"Penpot पर बुनियादी बातें सीखें और इस इंटरैक्टिव ट्यूटोरियल के साथ मज़ा भी करें।"
+"Kizuku पर बुनियादी बातें सीखें और इस इंटरैक्टिव ट्यूटोरियल के साथ मज़ा भी करें।"
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -309,7 +308,7 @@ msgstr "प्रायोगिक ट्यूटोरियल"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "Penpot की सैर करें और इसके मुख्य फीचर्स को जानें।"
+msgstr "Kizuku की सैर करें और इसके मुख्य फीचर्स को जानें।"
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -381,7 +380,7 @@ msgstr "व्यक्तिगत एक्सेस टोकन"
 msgid "dashboard.access-tokens.personal.description"
 msgstr ""
 "व्यक्तिगत एक्सेस टोकन हमारे लॉगिन/पासवर्ड प्रमाणीकरण प्रणाली का विकल्प के रूप में कार्य करते"
-" हैं और इन्हें किसी एप्लिकेशन को Penpot की आंतरिक API तक पहुंच प्रदान करने के लिए उपयोग "
+" हैं और इन्हें किसी एप्लिकेशन को Kizuku की आंतरिक API तक पहुंच प्रदान करने के लिए उपयोग "
 "किया जा सकता है"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
@@ -426,7 +425,7 @@ msgstr "टीम हटाएं"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "पेनपोट फ़ाइल (.penpot) डाउनलोड करें"
+msgstr "पेनपोट फ़ाइल (.kizu) डाउनलोड करें"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -461,14 +460,14 @@ msgstr "अभी तक कोई फ़ाइल नहीं।"
 msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "परियोजना में जोड़ी गई लाइब्रेरी यहाँ दिखाई देंगी। अपने फ़ाइलों को साझा करने की कोशिश करें "
-"या हमारी [लाइब्रेरी और टेम्पलेट्स](https://penpot.app/libraries-templates) से जोड़ें।"
+"या हमारी [लाइब्रेरी और टेम्पलेट्स](https://kizu.app/libraries-templates) से जोड़ें।"
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "परियोजना में जोड़ी गई लाइब्रेरी यहाँ दिखाई देंगी। अपनी फ़ाइलें साझा करने का प्रयास करें या "
-"हमारी [लाइब्रेरी और टेम्पलेट्स](https://penpot.app/libraries-templates) से जोड़ें।"
+"हमारी [लाइब्रेरी और टेम्पलेट्स](https://kizu.app/libraries-templates) से जोड़ें।"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -499,8 +498,8 @@ msgid "dashboard.empty-project.import"
 msgstr "एक फ़ाइल आयात करें"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
-msgid "dashboard.empty-project.import-penpot"
-msgstr "एक .penpot फ़ाइल आयात करें"
+msgid "dashboard.empty-project.import-kizu"
+msgstr "एक .kizu फ़ाइल आयात करें"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -508,7 +507,7 @@ msgstr "शानदार चीज़ें बनाना शुरू क�
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "%s Penpot फ़ाइलें (.penpot) डाउनलोड करें"
+msgstr "%s Kizuku फ़ाइलें (.kizu) डाउनलोड करें"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -636,8 +635,8 @@ msgstr ""
 #, markdown
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
-"आपको केवल वही फ़ॉन्ट्स अपलोड करने चाहिए जो आपके पास हों या जिन्हें आप Penpot में उपयोग "
-"करने के लिए लाइसेंस प्राप्त हैं। अधिक जानकारी के लिए [Penpot की सेवा की शर्तें](%s) के कंटेंट "
+"आपको केवल वही फ़ॉन्ट्स अपलोड करने चाहिए जो आपके पास हों या जिन्हें आप Kizuku में उपयोग "
+"करने के लिए लाइसेंस प्राप्त हैं। अधिक जानकारी के लिए [Kizuku की सेवा की शर्तें](%s) के कंटेंट "
 "राइट्स सेक्शन को पढ़ें। आप [फ़ॉन्ट लाइसेंसिंग](https://www.typography.com/faq) के बारे में "
 "भी पढ़ना चाह सकते हैं।"
 
@@ -1075,7 +1074,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "रचनात्मकता पर कोई सीमा नहीं"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.penpot-free"
+msgid "dashboard.upgrade-plan.kizu-free"
 msgstr "पेनपॉट मुफ़्त"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -1105,7 +1104,7 @@ msgstr "वेबहुक सफलतापूर्वक बनाया ग
 #: src/app/main/ui/dashboard/team.cljs:971
 msgid "dashboard.webhooks.description"
 msgstr ""
-"वेबहुक्स एक सरल तरीका हैं जिससे अन्य वेबसाइटें और ऐप्स Penpot में कुछ घटनाएँ होने पर सूचित हो "
+"वेबहुक्स एक सरल तरीका हैं जिससे अन्य वेबसाइटें और ऐप्स Kizuku में कुछ घटनाएँ होने पर सूचित हो "
 "सकें। हम आपके द्वारा दिए गए प्रत्येक URL पर POST अनुरोध भेजेंगे।"
 
 #: src/app/main/ui/dashboard/team.cljs:1100
@@ -1133,7 +1132,7 @@ msgid "dashboard.your-name"
 msgstr "आपका नाम"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
+msgid "dashboard.your-kizu"
 msgstr "आपका पेनपॉट"
 
 #: src/app/main/ui/alert.cljs:35
@@ -1252,7 +1251,7 @@ msgstr ""
 msgid "errors.feature-mismatch"
 msgstr ""
 "ऐसा लगता है कि आप एक ऐसी फ़ाइल खोल रहे हैं जिसमें '%s' सुविधा सक्षम है, लेकिन वर्तमान "
-"Penpot संस्करण इसे समर्थन नहीं करता या इसे अक्षम कर दिया गया है।"
+"Kizuku संस्करण इसे समर्थन नहीं करता या इसे अक्षम कर दिया गया है।"
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -1486,17 +1485,15 @@ msgstr "वर्णन"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "पेनपोट फोरम पर जाएं"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
 msgstr ""
-"हमें खुशी है कि आप यहाँ हैं। यदि आपको सहायता की आवश्यकता हो, तो कृपया पोस्ट करने से पहले "
-"खोजें।"
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "पेनपॉट समुदाय"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -1514,15 +1511,15 @@ msgstr "ईमेल"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "X पर जाएँ"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "यहाँ आपकी तकनीकी प्रश्नों में मदद के लिए।"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "X समर्थन खाता"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1907,7 +1904,7 @@ msgid "labels.continue-with"
 msgstr "के साथ जारी रखें"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
+msgid "labels.continue-with-kizu"
 msgstr "आप पेनपॉट खाते के साथ जारी रख सकते हैं"
 
 #: src/app/main/ui/components/copy_button.cljs:41
@@ -1924,7 +1921,7 @@ msgstr "लिंक कॉपी"
 
 #: src/app/main/ui/static.cljs:62
 msgid "labels.copyright"
-msgstr "Kaleidos @2024"
+msgstr "Kizuku @2025"
 
 #: src/app/main/ui/workspace/sidebar/assets/groups.cljs:151, src/app/main/ui/workspace/sidebar/options/menus/component.cljs:201
 msgid "labels.create"
@@ -2076,7 +2073,7 @@ msgstr "ग्राफ़िक डिज़ाइन"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "सहायता केंद्र"
+msgstr ""
 
 #: src/app/main/ui/dashboard/templates.cljs:90
 msgid "labels.hide"
@@ -2500,7 +2497,7 @@ msgstr "आपका खाता"
 #: src/app/main/ui/onboarding/questions.cljs:403
 #, unused
 msgid "labels.youtube"
-msgstr "YouTube"
+msgstr ""
 
 #: src/app/main/ui/ds/product/loader.cljs:21
 msgid "loader.tips.01.message"
@@ -3107,7 +3104,6 @@ msgstr "404 त्रुटि"
 #: src/app/main/ui/static.cljs:135
 msgid "not-found.login.free"
 msgstr ""
-"पेनपॉट डिज़ाइन और कोड के बीच सहयोग के लिए एक मुफ्त और ओपन-सोर्स डिज़ाइन टूल है"
 
 #: src/app/main/ui/auth/recovery_request.cljs:114
 msgid "not-found.login.sent-recovery"
@@ -3127,7 +3123,7 @@ msgstr "और सेकंडों में पेनपॉट का उप�
 
 #: src/app/main/ui/static.cljs:64
 msgid "not-found.made-with-love"
-msgstr "प्यार और ओपन सोर्स के साथ बनाया गया"
+msgstr ""
 
 #: src/app/main/ui/static.cljs:290
 msgid "not-found.no-permission.already-requested.file"
@@ -3175,7 +3171,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "यदि स्वामी अनुमति देता है, तो आपको टीम में आमंत्रित किया जाएगा।"
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.penpot-file"
+msgid "not-found.no-permission.kizu-file"
 msgstr "पेनपॉट फ़ाइल"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -3226,8 +3222,6 @@ msgstr "%s को सत्यापन ईमेल भेजा गया ह�
 #, unused
 msgid "onboarding-v2.before-start.desc1"
 msgstr ""
-"आपको पता होना चाहिए कि पेनपॉट के साथ शुरू करने में आपकी मदद के लिए कई संसाधन उपलब्ध हैं, "
-"जैसे यूजर गाइड और हमारा यूट्यूब चैनल।"
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
@@ -3242,7 +3236,6 @@ msgstr "उपयोगकर्ता मार्गदर्शिका"
 #, unused
 msgid "onboarding-v2.before-start.desc3"
 msgstr ""
-"आप हमारे ट्यूटोरियल और हमारी कम्युनिटी द्वारा बनाए गए ट्यूटोरियल देख सकते हैं।"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -3260,7 +3253,6 @@ msgstr ""
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
 msgstr ""
-"मुझे पेनपॉट से जुड़ी ख़बरें भेजें (ब्लॉग पोस्ट, वीडियो ट्यूटोरियल्स, स्ट्रीमिंग आदि)।"
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -3280,28 +3272,22 @@ msgstr "मुझे उत्पाद अपडेट भेजें (नई 
 #, unused
 msgid "onboarding-v2.welcome.desc1"
 msgstr ""
-"पेनपॉट एक ओपन सोर्स प्रोजेक्ट है जिसे Kaleidos और समुदाय द्वारा मिलकर बनाया गया है, जहाँ"
-" कई लोग पहले से ही एक-दूसरे की मदद कर रहे हैं। हर कोई निम्न तरीकों से सहयोग कर सकता है:"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
 msgstr ""
-"एक सार्वजनिक स्थान जहाँ पूरी कम्युनिटी और पेनपॉट कोर टीम के साथ पेनपॉट, उसके वर्तमान और "
-"भविष्य के बारे में सीखने, साझा करने और चर्चा करने के लिए।"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2.title"
-msgstr "समुदाय में भागीदारी"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
 msgstr ""
-"जहाँ आप अनुवाद, फीचर अनुरोध, मुख्य योगदान, बग खोज आदि में सहयोग करने का तरीका जान सकते"
-" हैं…"
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "योगदान मार्गदर्शिका"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
@@ -4981,7 +4967,7 @@ msgstr "%s को अपनी टीमों पर लागू करें"
 #: src/app/main/ui/settings/subscription.cljs:282
 #, fuzzy
 msgid "subscription.settings.member-since"
-msgstr "%s से Penpot सदस्य"
+msgstr "%s से Kizuku सदस्य"
 
 #: src/app/main/ui/settings/subscription.cljs:295, src/app/main/ui/settings/subscription.cljs:309, src/app/main/ui/settings/subscription.cljs:323
 msgid "subscription.settings.more-information"
@@ -7726,7 +7712,7 @@ msgstr "संस्करण मेनू खोलें"
 #, markdown
 msgid "workspace.versions.warning.subtext"
 msgstr ""
-"यदि आप इस सीमा को बढ़ाना चाहते हैं, तो हमें [support@penpot.app](%s) पर लिखें"
+"यदि आप इस सीमा को बढ़ाना चाहते हैं, तो हमें [support@kizu.app](%s) पर लिखें"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

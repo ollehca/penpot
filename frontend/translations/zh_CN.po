@@ -3,7 +3,7 @@ msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: 王世阳 <wangshiyangchina@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
-"projects/penpot/frontend/zh_Hans/>\n"
+"projects/kizu/frontend/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -22,7 +22,7 @@ msgstr "请检查您的邮箱"
 #: src/app/main/ui/auth/register.cljs:277
 #, unused
 msgid "auth.check-your-email"
-msgstr "请检查电子邮箱，点击邮件中的超链接来验证，然后开始使用Penpot。"
+msgstr "请检查电子邮箱，点击邮件中的超链接来验证，然后开始使用Kizuku。"
 
 #: src/app/main/ui/auth/recovery.cljs:67
 msgid "auth.confirm-password"
@@ -63,7 +63,7 @@ msgstr "登录"
 
 #: src/app/main/ui/auth/login.cljs:285
 msgid "auth.login-tagline"
-msgstr "Penpot是一款自由开源的设计工具，用于「设计」和「开发」协同"
+msgstr ""
 
 #: src/app/main/ui/auth/login.cljs:222
 msgid "auth.login-with-github-submit"
@@ -152,7 +152,7 @@ msgstr "创建账号"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "设计与原型的开源解决方案。"
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:246, src/app/main/ui/dashboard/sidebar.cljs:1083, src/app/main/ui/workspace/main_menu.cljs:155
 msgid "auth.terms-of-service"
@@ -181,7 +181,7 @@ msgstr "发布"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "所有Penpot用户"
+msgstr "所有Kizuku用户"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -255,7 +255,7 @@ msgstr "团队管理"
 
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
-msgstr "Penpot是为团队协作而设计，邀请成员合作处理项目和文件"
+msgstr "Kizuku是为团队协作而设计，邀请成员合作处理项目和文件"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
 msgid "dasboard.team-hero.title"
@@ -264,7 +264,7 @@ msgstr "组建团队!"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.tutorial-hero.info"
-msgstr "通过有趣的实践教程学习Penpot的基础知识。"
+msgstr "通过有趣的实践教程学习Kizuku的基础知识。"
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -279,7 +279,7 @@ msgstr "实践教程"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "浏览Penpot, 了解其主要功能。"
+msgstr "浏览Kizuku, 了解其主要功能。"
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -349,7 +349,7 @@ msgstr "个人访问令牌"
 
 #: src/app/main/ui/settings/access_tokens.cljs:186
 msgid "dashboard.access-tokens.personal.description"
-msgstr "个人访问令牌可被理解为密码认证的代替选项，常用于允许（第三方）应用访问Penpot内部API"
+msgstr "个人访问令牌可被理解为密码认证的代替选项，常用于允许（第三方）应用访问Kizuku内部API"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
 msgid "dashboard.access-tokens.token-will-expire"
@@ -377,7 +377,7 @@ msgstr "创建新团队"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "你的Penpot"
+msgstr "你的Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -385,7 +385,7 @@ msgstr "删除团队"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "下载Penpot文件 (.penpot)"
+msgstr "下载Kizuku文件 (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -401,7 +401,7 @@ msgstr "复制 %s 个文件"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "下载 %s Penpot文件 (.penpot)"
+msgstr "下载 %s Kizuku文件 (.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -429,7 +429,7 @@ msgstr "你可以在设计选项中为元素添加导出设置（位于右侧边
 
 #: src/app/main/ui/exports/assets.cljs:181
 msgid "dashboard.export-shapes.how-to-link"
-msgstr "关于如何使用Penpot导出。"
+msgstr "关于如何使用Kizuku导出。"
 
 #: src/app/main/ui/exports/assets.cljs:176
 msgid "dashboard.export-shapes.no-elements"
@@ -508,7 +508,7 @@ msgstr ""
 #, markdown
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
-"你应当只向Penpot上传你所拥有的字体，或是你持有使用许可的字体。点击[Penpot服务条例](https://penpot.app/terms."
+"你应当只向Kizuku上传你所拥有的字体，或是你持有使用许可的字体。点击[Kizuku服务条例](https://kizu.app/terms."
 "html)查看更多有关内容权利的章节。或许你也想了解一下[字体许可授权] (https://www.typography.com/faq)。"
 
 #: src/app/main/ui/dashboard/fonts.cljs:214
@@ -799,7 +799,7 @@ msgstr "Webhook创建成功。"
 
 #: src/app/main/ui/dashboard/team.cljs:971
 msgid "dashboard.webhooks.description"
-msgstr "Webhooks是一种简单的方式，允许其他网站和应用程序在Penpot的某些事件发生时得到通知。我们将发送一个POST请求到你提供的每个URL。"
+msgstr "Webhooks是一种简单的方式，允许其他网站和应用程序在Kizuku的某些事件发生时得到通知。我们将发送一个POST请求到你提供的每个URL。"
 
 #: src/app/main/ui/dashboard/team.cljs:1100
 msgid "dashboard.webhooks.empty.add-one"
@@ -826,8 +826,8 @@ msgid "dashboard.your-name"
 msgstr "你的姓名"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
-msgstr "你的Penpot"
+msgid "dashboard.your-kizu"
+msgstr "你的Kizuku"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"
@@ -907,7 +907,7 @@ msgstr "此邮箱[%s]已被标记为垃圾邮件或已被永久拉黑。"
 
 #: src/app/main/errors.cljs:241
 msgid "errors.feature-mismatch"
-msgstr "看起来你正在打开一个启用了'%s'功能的文件，但当前penpot版本并不支持该功能或已将其禁用。"
+msgstr "看起来你正在打开一个启用了'%s'功能的文件，但当前kizu版本并不支持该功能或已将其禁用。"
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -1079,15 +1079,15 @@ msgstr "描述"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "前往Penpot论坛"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
-msgstr "我们很欢迎你的到来。请在发布帮助请求前搜索你所需要的帮助内容。"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "Penpot社区"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -1103,15 +1103,15 @@ msgstr "电子邮件"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "前往X(原Twitter)"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "这里可以帮助您解决技术问题。"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "X(原Twitter)支持帐号"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1299,7 +1299,7 @@ msgstr "大写"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:163
 msgid "inspect.empty.help"
-msgstr "如果您想了解有关设计检查的更多信息，请访问Penpot的帮助中心"
+msgstr "如果您想了解有关设计检查的更多信息，请访问Kizuku的帮助中心"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:166
 msgid "inspect.empty.more-info"
@@ -1447,8 +1447,8 @@ msgid "labels.continue-with"
 msgstr "继续"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
-msgstr "你可以使用Penpot帐号继续"
+msgid "labels.continue-with-kizu"
+msgstr "你可以使用Kizuku帐号继续"
 
 #: src/app/main/ui/dashboard/team.cljs:700
 msgid "labels.copy-invitation-link"
@@ -1582,7 +1582,7 @@ msgstr "平面设计"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "帮助中心"
+msgstr ""
 
 #: src/app/main/ui/viewer/comments.cljs:104, src/app/main/ui/workspace/comments.cljs:73
 msgid "labels.hide-resolved-comments"
@@ -1915,7 +1915,7 @@ msgstr "你的账户"
 #: src/app/main/ui/onboarding/questions.cljs:403
 #, unused
 msgid "labels.youtube"
-msgstr "YouTube"
+msgstr ""
 
 #: src/app/main/ui/workspace/colorpicker.cljs:479, src/app/main/ui/workspace/colorpicker.cljs:480, src/app/main/ui/workspace/colorpicker.cljs:482
 msgid "media.choose-image"
@@ -2416,7 +2416,7 @@ msgstr "免费注册"
 
 #: src/app/main/ui/static.cljs:150
 msgid "not-found.login.start-using"
-msgstr "并在数秒内开始使用 Penpot！"
+msgstr "并在数秒内开始使用 Kizuku！"
 
 #: src/app/main/ui/static.cljs:290
 msgid "not-found.no-permission.already-requested.file"
@@ -2452,15 +2452,15 @@ msgstr "您没有针对此文件的访问权限。"
 
 #: src/app/main/ui/static.cljs:51, src/app/main/ui/static.cljs:286, src/app/main/ui/static.cljs:292, src/app/main/ui/static.cljs:298, src/app/main/ui/static.cljs:304, src/app/main/ui/static.cljs:313, src/app/main/ui/static.cljs:322
 msgid "not-found.no-permission.go-dashboard"
-msgstr "前往您的Penpot"
+msgstr "前往您的Kizuku"
 
 #: src/app/main/ui/static.cljs:310, src/app/main/ui/static.cljs:319
 msgid "not-found.no-permission.if-approves"
 msgstr "如果所有者允许，您会被邀请加入此团队。"
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.penpot-file"
-msgstr "Penpot文件"
+msgid "not-found.no-permission.kizu-file"
+msgstr "Kizuku文件"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
 msgid "not-found.no-permission.project"
@@ -2496,11 +2496,11 @@ msgstr "验证邮件已发至%s。请检查电子邮箱！"
 
 #, unused
 msgid "onboarding-v2.before-start.desc1"
-msgstr "有很多资源可以帮助你开始使用Penpot，如用户指南和我们的Youtube频道。"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
-msgstr "有关如何使用Penpot的详细信息。从原型设计到组织或共享设计。"
+msgstr "有关如何使用Kizuku的详细信息。从原型设计到组织或共享设计。"
 
 #, unused
 msgid "onboarding-v2.before-start.desc2.title"
@@ -2508,7 +2508,7 @@ msgstr "用户指南"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
-msgstr "您可以观看我们的官方教程以及社区制作的教程。"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -2520,11 +2520,11 @@ msgstr "在开始之前"
 
 #: src/app/main/ui/onboarding/newsletter.cljs:68
 msgid "onboarding-v2.newsletter.desc"
-msgstr "订阅Penpot通知邮件，跟进产品开发进度，获取最新消息。"
+msgstr "订阅Kizuku通知邮件，跟进产品开发进度，获取最新消息。"
 
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
-msgstr "发给我有关Penpot的新闻（博客文章、视频教程、直播等）。"
+msgstr ""
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -2540,27 +2540,27 @@ msgstr "向我发送一些产品更新（新功能，新版本，新修复等）
 
 #, unused
 msgid "onboarding-v2.welcome.desc1"
-msgstr "Penpot是由Kaleidos及社区共同开发的开源软件，许多人已经在社区中互相帮助。每个人都可以通过以下方式进行协作："
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
-msgstr "一个与整个社区和Penpot核心团队学习、分享和讨论Penpot及其现在和未来的公共空间。"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc2.title"
-msgstr "参与到社区中"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
-msgstr "在这里，您将了解如何协作进行翻译、功能需求提出、核心代码贡献、BUG修复等…"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "贡献指南"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
-msgstr "欢迎来到Penpot!"
+msgstr "欢迎来到Kizuku!"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:254
 #, unused
@@ -2633,7 +2633,7 @@ msgstr "隐私策略。"
 
 #: src/app/main/ui/onboarding/newsletter.cljs:65
 msgid "onboarding.newsletter.title"
-msgstr "想要接收 Penpot 新闻？"
+msgstr "想要接收 Kizuku 新闻？"
 
 #: src/app/main/ui/onboarding/questions.cljs:108
 msgid "onboarding.questions.lets-get-started"
@@ -2674,7 +2674,7 @@ msgstr "创建一个团队"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:31
 msgid "onboarding.team-modal.create-team-desc"
-msgstr "团队能够让你与其它Penpot用户协作处理相同的文件和项目。"
+msgstr "团队能够让你与其它Kizuku用户协作处理相同的文件和项目。"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:36
 msgid "onboarding.team-modal.create-team-feature-1"
@@ -2710,7 +2710,7 @@ msgstr "开始设计"
 
 #, unused
 msgid "onboarding.welcome.alt"
-msgstr "Penpot"
+msgstr "Kizuku"
 
 #: src/app/main/ui/auth/recovery.cljs:88
 msgid "profile.recovery.go-to-login"
@@ -3380,31 +3380,31 @@ msgstr "缩放到选定对象"
 
 #: src/app/main/ui/dashboard/files.cljs:179
 msgid "title.dashboard.files"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:46
 msgid "title.dashboard.font-providers"
-msgstr "字体提供者 - %s - Penpot"
+msgstr "字体提供者 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:45
 msgid "title.dashboard.fonts"
-msgstr "字体 - %s - Penpot"
+msgstr "字体 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/projects.cljs:350
 msgid "title.dashboard.projects"
-msgstr "项目 - %s - Penpot"
+msgstr "项目 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/search.cljs:50
 msgid "title.dashboard.search"
-msgstr "搜索 - %s - Penpot"
+msgstr "搜索 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/libraries.cljs:57
 msgid "title.dashboard.shared-libraries"
-msgstr "共享库 - %s - Penpot"
+msgstr "共享库 - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "Penpot - 面向团队，设计自由"
+msgstr "Kizuku - 面向团队，设计自由"
 
 #: src/app/main/ui/settings/access_tokens.cljs:280
 msgid "title.settings.access-tokens"
@@ -3412,43 +3412,43 @@ msgstr "个人资料 — 访问令牌"
 
 #: src/app/main/ui/settings/feedback.cljs:107
 msgid "title.settings.feedback"
-msgstr "提交反馈 - Penpot"
+msgstr "提交反馈 - Kizuku"
 
 #: src/app/main/ui/settings/options.cljs:83
 msgid "title.settings.options"
-msgstr "设置 - Penpot"
+msgstr "设置 - Kizuku"
 
 #: src/app/main/ui/settings/password.cljs:103
 msgid "title.settings.password"
-msgstr "密码 - Penpot"
+msgstr "密码 - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
-msgstr "个人资料 - Penpot"
+msgstr "个人资料 - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
-msgstr "邀请函 - %s - Penpot"
+msgstr "邀请函 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
-msgstr "成员 - %s - Penpot"
+msgstr "成员 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1131
 msgid "title.team-settings"
-msgstr "设置 - %s - Penpot"
+msgstr "设置 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1084
 msgid "title.team-webhooks"
-msgstr "Webhooks - %s - Penpot"
+msgstr "Webhooks - %s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:423
 msgid "title.viewer"
-msgstr "%s - 预览模式）- Penpot"
+msgstr "%s - 预览模式）- Kizuku"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui.cljs:138
 #, unused

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Alejandro Alonso <alejandro.alonso@kaleidos.net>\n"
-"Language-Team: Igbo <https://hosted.weblate.org/projects/penpot/frontend/ig/>"
+"Language-Team: Igbo <https://hosted.weblate.org/projects/kizu/frontend/ig/>"
 "\n"
 "Language: ig\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgstr "Mepee ebe ntinye ihe"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "Nsina ghere oghe iji mee nse na atụtụ"
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:246, src/app/main/ui/dashboard/sidebar.cljs:1083, src/app/main/ui/workspace/main_menu.cljs:155
 msgid "auth.terms-of-service"
@@ -340,7 +340,7 @@ msgstr "kacha otu"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Butuo ederede ite mkpịsị (.penpot)"
+msgstr "Butuo ederede ite mkpịsị (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -356,7 +356,7 @@ msgstr "Mee o yiri  %s ederede"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Butuo %s ederede ite mkpịsị (.penpot)"
+msgstr "Butuo %s ederede ite mkpịsị (.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -709,7 +709,7 @@ msgid "dashboard.your-email"
 msgstr "Ozi-n"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
+msgid "dashboard.your-kizu"
 msgstr "Ite mkpịsị. gị"
 
 #: src/app/main/ui/alert.cljs:35
@@ -897,17 +897,15 @@ msgstr "Nkọwa"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "Gaa n'ebe ite mkpịsị"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
 msgstr ""
-"Obi dị anyị añụrị ịhụ gị ebea. Ọ bụrụ na  enyemaka dị mkpa , biko chọọ tupu "
-"ị ịga ozi ."
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "Ogbe Ite mkpịsị"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -925,11 +923,11 @@ msgstr "Ozi- n"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "Gaa na Twita"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "Ebe inyere gị aka n'ajụjụ nkà gị ."
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1234,7 +1232,7 @@ msgid "labels.continue-with"
 msgstr "Gaa n'ihu"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
+msgid "labels.continue-with-kizu"
 msgstr "I Nwere Ike ịganihu"
 
 #: src/app/main/ui/dashboard/team.cljs:700
@@ -1349,7 +1347,7 @@ msgstr "Gaa azụ"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "Ebe enyemaka"
+msgstr ""
 
 #: src/app/main/ui/viewer/comments.cljs:104, src/app/main/ui/workspace/comments.cljs:73
 msgid "labels.hide-resolved-comments"
@@ -1967,8 +1965,6 @@ msgstr "Ozi nnyocha n zigara na%s. Mepe ozi n gị !"
 #, unused
 msgid "onboarding-v2.before-start.desc1"
 msgstr ""
-"I kwesịrị ịma na e nwere ọtụtụ ihe e ji arụ ọrụ dị inwere gị iji bido n'ite "
-"mkpịsị , dị ka ntuziaka onye ọrụ na ọwa YouTube anyị l."
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
@@ -1982,7 +1978,7 @@ msgstr "Mkpanaka"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
-msgstr "Ị nwere ike ikiri amụmamụ anyị na amụmamụ nke ndị obodo anyị mere."
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -2001,8 +1997,6 @@ msgstr ""
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
 msgstr ""
-"Zitere m akụkọ banyere ite mkpịsị (ozi edemonye gasị, Nkụzi ihe onyonyo, "
-"nkirigarị...)."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -2023,19 +2017,14 @@ msgstr ""
 #, unused
 msgid "onboarding-v2.welcome.desc1"
 msgstr ""
-"Ite mkpịsị bụ nsina ghere oghe ma bụrụ nke Kaleidos nakwa ndị obodo rụrụ "
-"Ebe ọtụtụ mmadụ nyewegoroa onwe anyị aka..Onye ọ bụla nwere arụkọrịtasite "
-"na :"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
 msgstr ""
-"Oghere ọha na ndị obodo niile na ndị otu ite mkpịsị kpọmkwem ịmụ, kesa ma "
-"kọwaa maka ite mkpịsị , ọnọdụ ya ugbu a na ọdịnihu ya"
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "Ntụziaka inye aka"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"

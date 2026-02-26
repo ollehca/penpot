@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Ahmad HosseinBor <123hozeifeh@gmail.com>\n"
-"Language-Team: Persian <https://hosted.weblate.org/projects/penpot/frontend/"
+"Language-Team: Persian <https://hosted.weblate.org/projects/kizu/frontend/"
 "fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "ایمیل خود را مرور کنید"
 #, unused
 msgid "auth.check-your-email"
 msgstr ""
-"ایمیل خود را بررسی کنید و برای تأیید و شروع استفاده از Penpot روی لینک کلیک "
+"ایمیل خود را بررسی کنید و برای تأیید و شروع استفاده از Kizuku روی لینک کلیک "
 "کنید."
 
 #: src/app/main/ui/auth/recovery.cljs:67
@@ -68,8 +68,6 @@ msgstr "ورود"
 #: src/app/main/ui/auth/login.cljs:285
 msgid "auth.login-tagline"
 msgstr ""
-"Penpot یک ابزار طراحی و همکاری در کد نویسی است که رایگان و کد آن متن باز "
-"است."
 
 #: src/app/main/ui/auth/login.cljs:222
 msgid "auth.login-with-github-submit"
@@ -169,7 +167,7 @@ msgstr "ایجاد حساب"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "راه حل منبع-باز برای طراحی و نمونه‌سازی"
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:50
 #, markdown
@@ -203,7 +201,7 @@ msgstr "انتشار"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "همه کاربران Penpot"
+msgstr "همه کاربران Kizuku"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -280,7 +278,7 @@ msgstr "مدیریت تیم"
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
 msgstr ""
-"Penpot برای تیم‌ها در نظر گرفته شده است. از اعضا دعوت کنید تا روی پروژه‌ها "
+"Kizuku برای تیم‌ها در نظر گرفته شده است. از اعضا دعوت کنید تا روی پروژه‌ها "
 "و فایل‌ها با هم کار کنند"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
@@ -290,7 +288,7 @@ msgstr "تیم ایجاد کن!"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.tutorial-hero.info"
-msgstr "در عین حالی که با این آموزش سرگرم می‌شوید، اصول اولیه را در Penpot بیاموزید."
+msgstr "در عین حالی که با این آموزش سرگرم می‌شوید، اصول اولیه را در Kizuku بیاموزید."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -405,7 +403,7 @@ msgstr "ایجاد تیم جدید"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Penpot شما"
+msgstr "Kizuku شما"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -413,7 +411,7 @@ msgstr "حذف تیم"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "دانلود فایل پنپات (.penpot)"
+msgstr "دانلود فایل پنپات (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -429,7 +427,7 @@ msgstr "فایل‌های %s را کپی کنید"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "دانلود %s عدد فایل های پنپات (.penpot)"
+msgstr "دانلود %s عدد فایل های پنپات (.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -550,7 +548,7 @@ msgstr ""
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
 "شما فقط باید فونت‌هایی را که مالک آنها هستید یا مجوز استفاده از آنها را در "
-"Penpot دارید آپلود کنید. در بخش حقوق محتوا [شرایط خدمات Penpot] (%s) "
+"Kizuku دارید آپلود کنید. در بخش حقوق محتوا [شرایط خدمات Kizuku] (%s) "
 "اطلاعات بیشتری کسب کنید. همچنین ممکن است بخواهید درباره [مجوز فونت] "
 "(https://www.typography.com/faq) مطالعه کنید."
 
@@ -817,7 +815,7 @@ msgid "dashboard.your-name"
 msgstr "نام شما"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
+msgid "dashboard.your-kizu"
 msgstr "پن‌پات شما"
 
 #: src/app/main/ui/alert.cljs:35
@@ -968,17 +966,15 @@ msgstr "شرح"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "به انجمن Penpot بروید"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
 msgstr ""
-"ما خوشحالیم که شما اینجا هستید. اگر به کمک نیاز دارید، لطفا قبل از ارسال "
-"پست جستجو کنید."
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "انجمن Penpot"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -996,15 +992,15 @@ msgstr "ایمیل"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "به توییتر بروید"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "اینجا برای کمک به سوالات فنی شما."
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "حساب پشتیبانی در توییتر"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1290,8 +1286,8 @@ msgid "labels.continue-with"
 msgstr "ادامه دادن با"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
-msgstr "شما می‌توانید با یک حساب Penpot ادامه دهید"
+msgid "labels.continue-with-kizu"
+msgstr "شما می‌توانید با یک حساب Kizuku ادامه دهید"
 
 #: src/app/main/ui/workspace/sidebar/assets/groups.cljs:151, src/app/main/ui/workspace/sidebar/options/menus/component.cljs:201
 msgid "labels.create"
@@ -1395,7 +1391,7 @@ msgstr "برگرد"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "مرکز کمک"
+msgstr ""
 
 #: src/app/main/ui/viewer/comments.cljs:104, src/app/main/ui/workspace/comments.cljs:73
 msgid "labels.hide-resolved-comments"
@@ -1920,14 +1916,12 @@ msgstr "پروفایل با موفقیت ذخیره شد!"
 #, unused
 msgid "onboarding-v2.before-start.desc2"
 msgstr ""
-"اطلاعات دقیق در مورد نحوه استفاده از Penpot. از نمونه‌سازی تا سازماندهی یا "
+"اطلاعات دقیق در مورد نحوه استفاده از Kizuku. از نمونه‌سازی تا سازماندهی یا "
 "به اشتراک‌گذاری طرح‌ها."
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
 msgstr ""
-"شما می‌توانید آموزش‌های ما و آموزش‌های ساخته شده توسط انجمن ما را تماشا "
-"کنید."
 
 #: src/app/main/ui/onboarding/team_choice.cljs:177
 msgid "onboarding.choice.team-up.create-team-desc"
@@ -1935,7 +1929,7 @@ msgstr "پس از نامگذاری تیم خود، می‌توانید افرا�
 
 #, unused
 msgid "onboarding.welcome.alt"
-msgstr "Penpot"
+msgstr "Kizuku"
 
 #: src/app/main/ui/inspect/exports.cljs:148, src/app/main/ui/workspace/sidebar/options/menus/border_radius.cljs:91, src/app/main/ui/workspace/sidebar/options/menus/component.cljs:326, src/app/main/ui/workspace/sidebar/options/menus/component.cljs:802, src/app/main/ui/workspace/sidebar/options/menus/component.cljs:946, src/app/main/ui/workspace/sidebar/options/menus/constraints.cljs:137, src/app/main/ui/workspace/sidebar/options/menus/constraints.cljs:148, src/app/main/ui/workspace/sidebar/options/menus/exports.cljs:197, src/app/main/ui/workspace/sidebar/options/menus/fill.cljs:170, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:345, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:360, src/app/main/ui/workspace/sidebar/options/menus/layout_item.cljs:53, src/app/main/ui/workspace/sidebar/options/menus/layout_item.cljs:54, src/app/main/ui/workspace/sidebar/options/menus/measures.cljs:349, src/app/main/ui/workspace/sidebar/options/menus/measures.cljs:360, src/app/main/ui/workspace/sidebar/options/menus/measures.cljs:379, src/app/main/ui/workspace/sidebar/options/menus/measures.cljs:390, src/app/main/ui/workspace/sidebar/options/menus/measures.cljs:406, src/app/main/ui/workspace/sidebar/options/menus/shadow.cljs:312, src/app/main/ui/workspace/sidebar/options/menus/stroke.cljs:182, src/app/main/ui/workspace/sidebar/options/menus/typography.cljs:331, src/app/main/ui/workspace/sidebar/options/menus/typography.cljs:385, src/app/main/ui/workspace/sidebar/options/menus/typography.cljs:402, src/app/main/ui/workspace/sidebar/options/rows/color_row.cljs:251, src/app/main/ui/workspace/sidebar/options/rows/stroke_row.cljs:173
 msgid "settings.multiple"
@@ -2075,19 +2069,19 @@ msgstr "توزیع به صورت عمودی"
 
 #: src/app/main/ui/dashboard/files.cljs:179
 msgid "title.dashboard.files"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:45
 msgid "title.dashboard.fonts"
-msgstr "فونت‌ها - %s - Penpot"
+msgstr "فونت‌ها - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/projects.cljs:350
 msgid "title.dashboard.projects"
-msgstr "پروژه‌ها - %s - Penpot"
+msgstr "پروژه‌ها - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/search.cljs:50
 msgid "title.dashboard.search"
-msgstr "جستجو - %s - Penpot"
+msgstr "جستجو - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/libraries.cljs:57
 msgid "title.dashboard.shared-libraries"
@@ -2095,19 +2089,19 @@ msgstr "کتابخانه‌های مشترک - %s - پن‌پات"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "Penpot - طراحی آزاد برای تیم‌ها"
+msgstr "Kizuku - طراحی آزاد برای تیم‌ها"
 
 #: src/app/main/ui/settings/feedback.cljs:107
 msgid "title.settings.feedback"
-msgstr "بازخورد بدهید - Penpot"
+msgstr "بازخورد بدهید - Kizuku"
 
 #: src/app/main/ui/settings/options.cljs:83
 msgid "title.settings.options"
-msgstr "تنظیمات - Penpot"
+msgstr "تنظیمات - Kizuku"
 
 #: src/app/main/ui/settings/password.cljs:103
 msgid "title.settings.password"
-msgstr "رمزعبور - Penpot"
+msgstr "رمزعبور - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
@@ -2115,7 +2109,7 @@ msgstr "پروفایل - پن‌پات"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
-msgstr "دعوت‌نامه‌ها - %s - Penpot"
+msgstr "دعوت‌نامه‌ها - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
@@ -2131,7 +2125,7 @@ msgstr "%s - حالت مشاهده - پن‌پات"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui.cljs:138
 #, unused

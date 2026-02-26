@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Edgars Andersons <Edgars+Weblate@gaitenis.id.lv>\n"
-"Language-Team: Latvian <https://hosted.weblate.org/projects/penpot/frontend/"
+"Language-Team: Latvian <https://hosted.weblate.org/projects/kizu/frontend/"
 "lv/>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Jāpārbauda savs e-pasts"
 msgid "auth.check-your-email"
 msgstr ""
 "Jāpārbauda savs e-pasts un jānoklikšķina uz saites, lai apstiprinātu un "
-"sāktu izmantot Penpot."
+"sāktu izmantot Kizuku."
 
 #: src/app/main/ui/auth/recovery.cljs:67
 msgid "auth.confirm-password"
@@ -68,7 +68,7 @@ msgstr "Pieteikties"
 
 #: src/app/main/ui/auth/login.cljs:285
 msgid "auth.login-tagline"
-msgstr "Penpot ir bezmaksas atvērtā pirmkoda dizaina rīks dizaina un koda sadarbībai"
+msgstr ""
 
 #: src/app/main/ui/auth/login.cljs:222
 msgid "auth.login-with-github-submit"
@@ -162,7 +162,7 @@ msgstr "Izveidot kontu"
 #, unused
 msgid "auth.register-tagline"
 msgstr ""
-"Ar bezmaksas Penpot kontu var izveidot neierobežotu skaitu komandu un "
+"Ar bezmaksas Kizuku kontu var izveidot neierobežotu skaitu komandu un "
 "sadarboties ar citiem dizaineriem un izstrādātājiem cik vien daudzos "
 "projektos vēlies. "
 
@@ -173,7 +173,7 @@ msgstr "Izveidot kontu"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "Atvērtā pirmkoda risinājums dizaina izstrādei un modelēšanai."
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:50
 #, markdown
@@ -213,7 +213,7 @@ msgstr "Publicēt"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "Visi Penpot lietotāji"
+msgstr "Visi Kizuku lietotāji"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -289,7 +289,7 @@ msgstr "Komandas pārvaldība"
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
 msgstr ""
-"Penpot ir paredzēta komandām. Jāuzaicina dalībnieki, lai kopā strādātu ar "
+"Kizuku ir paredzēta komandām. Jāuzaicina dalībnieki, lai kopā strādātu ar "
 "projektiem un datnēm"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
@@ -299,7 +299,7 @@ msgstr "Apvienojieties!"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.tutorial-hero.info"
-msgstr "Penpot pamatu apgūšana, kamēr tiek gūts prieks, ar šo praktisko apmācību."
+msgstr "Kizuku pamatu apgūšana, kamēr tiek gūts prieks, ar šo praktisko apmācību."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -314,7 +314,7 @@ msgstr "Praktiskā apmācība"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "Caurskati Penpot un iepazīsties ar tās galvenajām iespējām."
+msgstr "Caurskati Kizuku un iepazīsties ar tās galvenajām iespējām."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -387,7 +387,7 @@ msgid "dashboard.access-tokens.personal.description"
 msgstr ""
 "Privātās piekļuves pilnvaras darbojas kā alternatīva mūsu "
 "pieteikšanās/paroles autentificēšanas sistēmai, un tās var izmantot, lai "
-"ļautu lietotnēm piekļūt iekšējam Penpot API"
+"ļautu lietotnēm piekļūt iekšējam Kizuku API"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
 msgid "dashboard.access-tokens.token-will-expire"
@@ -423,7 +423,7 @@ msgstr "Piespraust šo versiju"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Mans Penpot"
+msgstr "Mans Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -431,7 +431,7 @@ msgstr "Dzēst komandu"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Lejupielādēt Penpot datni (.penpot)"
+msgstr "Lejupielādēt Kizuku datni (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -467,7 +467,7 @@ msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Šeit parādīsies projektam pievienotās bibliotēkas. Mēģini kopīgot savas "
 "datnes vai pievienot no mūsu [bibliotēkām un "
-"sagatavēm](https://penpot.app/libraries-templates)!"
+"sagatavēm](https://kizu.app/libraries-templates)!"
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
@@ -475,7 +475,7 @@ msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Šeit parādīsies projektam pievienotās bibliotēkas. Mēģini kopīgot savas "
 "datnes vai pievienot no mūsu [bibliotēkām un "
-"sagatavēm](https://penpot.app/libraries-templates)!"
+"sagatavēm](https://kizu.app/libraries-templates)!"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -506,8 +506,8 @@ msgid "dashboard.empty-project.import"
 msgstr "Ievietot datni"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
-msgid "dashboard.empty-project.import-penpot"
-msgstr "Ievietot .penpot datni"
+msgid "dashboard.empty-project.import-kizu"
+msgstr "Ievietot .kizu datni"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -515,7 +515,7 @@ msgstr "Sākt veidot apbrīnojamas lietas"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Lejupielādēt %s Penpot datnes (.penpot)"
+msgstr "Lejupielādēt %s Kizuku datnes (.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -527,7 +527,7 @@ msgstr "Izgūt kā PDF"
 
 #, unused
 msgid "dashboard.export-multi"
-msgstr "Izgūt Penpot %s datnes"
+msgstr "Izgūt Kizuku %s datnes"
 
 #: src/app/main/ui/exports/assets.cljs:106
 msgid "dashboard.export-multiple.selected"
@@ -545,7 +545,7 @@ msgstr ""
 
 #: src/app/main/ui/exports/assets.cljs:181
 msgid "dashboard.export-shapes.how-to-link"
-msgstr "Informācija par to, kā iestatīt izgūšanu Penpot."
+msgstr "Informācija par to, kā iestatīt izgūšanu Kizuku."
 
 #: src/app/main/ui/exports/assets.cljs:176
 msgid "dashboard.export-shapes.no-elements"
@@ -646,7 +646,7 @@ msgstr ""
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
 "Vajadzētu augšupielādēt tikai sev piederošus fontus vai tos, kuriem ir "
-"licence to izmantošanai Penpot. Vairāk var uzzināt [Penpot pakalpojuma "
+"licence to izmantošanai Kizuku. Vairāk var uzzināt [Kizuku pakalpojuma "
 "sniegšanas noteikumos](%s). Varētu būt noderīgi izlasīt arī par [fontu "
 "licencēšanu](https://www.typography.com/faq)."
 
@@ -667,7 +667,7 @@ msgstr ""
 
 #: src/app/main/ui/dashboard/import.cljs:461, src/app/main/ui/dashboard/project_menu.cljs:109
 msgid "dashboard.import"
-msgstr "Ievietot Penpot datnes"
+msgstr "Ievietot Kizuku datnes"
 
 #: src/app/main/ui/dashboard/import.cljs:290, src/app/worker/import.cljs:121, src/app/worker/import.cljs:124
 msgid "dashboard.import.analyze-error"
@@ -1074,8 +1074,8 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "Nav ierobežojumu radošumam"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.penpot-free"
-msgstr "Bezmaksas Penpot"
+msgid "dashboard.upgrade-plan.kizu-free"
+msgstr "Bezmaksas Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:950
 msgid "dashboard.webhooks.active"
@@ -1105,7 +1105,7 @@ msgstr "Tīmekļa aizķere ir veiksmīgi izveidota."
 msgid "dashboard.webhooks.description"
 msgstr ""
 "Tīmekļa aizķeres ir vienkāršs veids, kā ļaut citām tīmekļa vietnēm un "
-"lietotnēm saņemt paziņojumus, kad Penpot notiek noteikti notikumi. Mēs "
+"lietotnēm saņemt paziņojumus, kad Kizuku notiek noteikti notikumi. Mēs "
 "nosūtīsim POST pieprasījumu katram norādītajam URL."
 
 #: src/app/main/ui/dashboard/team.cljs:1100
@@ -1133,8 +1133,8 @@ msgid "dashboard.your-name"
 msgstr "Vārds"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
-msgstr "Mans Penpot"
+msgid "dashboard.your-kizu"
+msgstr "Mans Kizuku"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"
@@ -1203,7 +1203,7 @@ msgstr "Bija kļūda saistībā ar piebildi"
 #: src/app/main/errors.cljs:264
 msgid "errors.deprecated"
 msgstr ""
-"Atvainojamies! Šī ir veca datne, kas izmanto novecojušu Penpot līdzekļu "
+"Atvainojamies! Šī ir veca datne, kas izmanto novecojušu Kizuku līdzekļu "
 "veidu, un to nevar atvērt."
 
 #: src/app/main/errors.cljs:267
@@ -1212,7 +1212,7 @@ msgstr "lai mēs varētu palīdzēt."
 
 #: src/app/main/errors.cljs:265
 msgid "errors.deprecated.contact.before"
-msgstr "Lai arī Penpot vairs neatbalsta šo līdzekļu veidu, Tu vari"
+msgstr "Lai arī Kizuku vairs neatbalsta šo līdzekļu veidu, Tu vari"
 
 #: src/app/main/errors.cljs:266
 msgid "errors.deprecated.contact.text"
@@ -1250,7 +1250,7 @@ msgstr "E-pasta adrese “%s” ir atzīmēta surogātpasts vai pastāvīgi saņ
 msgid "errors.feature-mismatch"
 msgstr ""
 "Šķiet, ka tiek atvērta datne, kurā ir iespējota iespēja '%s', bet "
-"pašreizējā Penpot versija to neatbalsta vai tā ir atspējota."
+"pašreizējā Kizuku versija to neatbalsta vai tā ir atspējota."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -1488,17 +1488,15 @@ msgstr "Apraksts"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "Doties uz Penpot forumu"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
 msgstr ""
-"Mēs esam priecīgi Tevi šeit redzēt. Ja ir nepieciešama palīdzība, lūgums "
-"meklēt pirms ieraksta veikšanas."
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "Penpot kopiena"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -1517,15 +1515,15 @@ msgstr "E-pasts"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "Atvērt X"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "Šeit, lai palīdzētu ar tehniskajiem jautājumiem."
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "X atbalsta konts"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1722,7 +1720,7 @@ msgstr "Paveida īpašības"
 #: src/app/main/ui/inspect/right_sidebar.cljs:163
 msgid "inspect.empty.help"
 msgstr ""
-"Ja ir vēlme uzzināt vairāk par dizaina apskati, jāapmeklē Penpot palīdzības "
+"Ja ir vēlme uzzināt vairāk par dizaina apskati, jāapmeklē Kizuku palīdzības "
 "centrs"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:166
@@ -1909,8 +1907,8 @@ msgid "labels.continue-with"
 msgstr "Turpināt ar"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
-msgstr "Varat turpināt ar Penpot kontu"
+msgid "labels.continue-with-kizu"
+msgstr "Varat turpināt ar Kizuku kontu"
 
 #: src/app/main/ui/components/copy_button.cljs:41
 msgid "labels.copy"
@@ -1926,7 +1924,7 @@ msgstr "Kopēt saiti"
 
 #: src/app/main/ui/static.cljs:62
 msgid "labels.copyright"
-msgstr "Kaleidos @2024"
+msgstr "Kizuku @2025"
 
 #: src/app/main/ui/workspace/sidebar/assets/groups.cljs:151, src/app/main/ui/workspace/sidebar/options/menus/component.cljs:201
 msgid "labels.create"
@@ -2074,7 +2072,7 @@ msgstr "Grafiskais dizains"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "Palīdzības centrs"
+msgstr ""
 
 #: src/app/main/ui/dashboard/templates.cljs:90
 msgid "labels.hide"
@@ -2500,7 +2498,7 @@ msgstr "Mans konts"
 #: src/app/main/ui/onboarding/questions.cljs:403
 #, unused
 msgid "labels.youtube"
-msgstr "YouTube"
+msgstr ""
 
 #: src/app/main/ui/ds/product/loader.cljs:21
 msgid "loader.tips.01.message"
@@ -2552,7 +2550,7 @@ msgstr "Mijiedarbīgi prototipi"
 
 #: src/app/main/ui/ds/product/loader.cljs:33
 msgid "loader.tips.07.message"
-msgstr "Penpot izmanto SVG un CSS plūdenai izstrādei."
+msgstr "Kizuku izmanto SVG un CSS plūdenai izstrādei."
 
 #: src/app/main/ui/ds/product/loader.cljs:32
 msgid "loader.tips.07.title"
@@ -2579,7 +2577,7 @@ msgstr "Tumšais un gaišais izskats"
 #: src/app/main/ui/ds/product/loader.cljs:39
 msgid "loader.tips.10.message"
 msgstr ""
-"Penpot paplašināšana ar kopienas veidotu spraudņu nodrošinātām papildu "
+"Kizuku paplašināšana ar kopienas veidotu spraudņu nodrošinātām papildu "
 "iespējām."
 
 #: src/app/main/ui/ds/product/loader.cljs:38
@@ -3127,8 +3125,6 @@ msgstr "404 kļūda"
 #: src/app/main/ui/static.cljs:135
 msgid "not-found.login.free"
 msgstr ""
-"Penpot ir bezmaksas un atvērta pirmkoda dizainēšanas rīks sadarbībai starp "
-"dizainu un kodu"
 
 #: src/app/main/ui/auth/recovery_request.cljs:114
 msgid "not-found.login.sent-recovery"
@@ -3146,11 +3142,11 @@ msgstr "Reģistrēties bez maksas"
 
 #: src/app/main/ui/static.cljs:150
 msgid "not-found.login.start-using"
-msgstr "un sāc izmantot Penpot dažu sekunžu laikā!"
+msgstr "un sāc izmantot Kizuku dažu sekunžu laikā!"
 
 #: src/app/main/ui/static.cljs:64
 msgid "not-found.made-with-love"
-msgstr "Izstrādāts ar MĪLESTĪBU un atvērta pirmkoda"
+msgstr ""
 
 #: src/app/main/ui/static.cljs:290
 msgid "not-found.no-permission.already-requested.file"
@@ -3190,15 +3186,15 @@ msgstr "Nav piekļuves šai datnei."
 
 #: src/app/main/ui/static.cljs:51, src/app/main/ui/static.cljs:286, src/app/main/ui/static.cljs:292, src/app/main/ui/static.cljs:298, src/app/main/ui/static.cljs:304, src/app/main/ui/static.cljs:313, src/app/main/ui/static.cljs:322
 msgid "not-found.no-permission.go-dashboard"
-msgstr "Doties uz savu Penpot"
+msgstr "Doties uz savu Kizuku"
 
 #: src/app/main/ui/static.cljs:310, src/app/main/ui/static.cljs:319
 msgid "not-found.no-permission.if-approves"
 msgstr "Ja īpašnieks to ļauj, tiksi uzaicināts pievienoties komandai."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.penpot-file"
-msgstr "Penpot datne"
+msgid "not-found.no-permission.kizu-file"
+msgstr "Kizuku datne"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
 msgid "not-found.no-permission.project"
@@ -3251,13 +3247,11 @@ msgstr ""
 #, unused
 msgid "onboarding-v2.before-start.desc1"
 msgstr ""
-"Jāņem vērā, ka ir pieejami daudz avotu, kas var palīdzēt uzsākt darbu ar "
-"Penpot, piemēram, lietotāja rokasgrāmata un mūsu Youtube kanāls."
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
 msgstr ""
-"Izvērsta informācija par Penpot izmantošanu. No prototipa izveides līdz "
+"Izvērsta informācija par Kizuku izmantošanu. No prototipa izveides līdz "
 "dizainu kārtošanai vai kopīgošanai."
 
 #, unused
@@ -3266,7 +3260,7 @@ msgstr "Lietotāja rokasgrāmata"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
-msgstr "Ir iespējams apskatīt mūsu pamācības un mūsu kopienas izveidotās pamācības."
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -3279,14 +3273,12 @@ msgstr "Pirms sākt"
 #: src/app/main/ui/onboarding/newsletter.cljs:68
 msgid "onboarding-v2.newsletter.desc"
 msgstr ""
-"Abonēt Penpot biļetenu, lai uzzinātu par produkta izstrādes gaitu un "
+"Abonēt Kizuku biļetenu, lai uzzinātu par produkta izstrādes gaitu un "
 "jaunumiem."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
 msgstr ""
-"Sūtīt man jaunumus par Penpot (emuāra ieraksti, video pamācības, "
-"straumēšanas...)."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -3307,32 +3299,26 @@ msgstr ""
 #, unused
 msgid "onboarding-v2.welcome.desc1"
 msgstr ""
-"Penpot ir Atvērtā pirmkoda lietotne, un to izstrādā Kaleidos, kā arī "
-"kopiena, kurā daudz cilvēku jau palīdz cits citam. Visi var sadarboties:"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
 msgstr ""
-"Publiska telpa, lai mācītos, dalītos un apspriestu Penpot, tās tagadni un "
-"nākotni ar visu kopienu un Penpot kodola komandu."
 
 #, unused
 msgid "onboarding-v2.welcome.desc2.title"
-msgstr "Dalība Kopienā"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
 msgstr ""
-"Kur būs atrodams, kā līdzdarboties pie tulkojumiem, iespēju pieprasījumiem, "
-"devuma kodolam, kļūdu meklēšanas…"
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "Līdzdalības rokasgrāmata"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
-msgstr "Laipni lūdzam Penpot!"
+msgstr "Laipni lūdzam Kizuku!"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:254
 #, unused
@@ -3411,7 +3397,7 @@ msgstr "Konfidencialitātes politika."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:65
 msgid "onboarding.newsletter.title"
-msgstr "Vai saņemt Penpot jaunumus?"
+msgstr "Vai saņemt Kizuku jaunumus?"
 
 #: src/app/main/ui/onboarding/questions.cljs:108
 msgid "onboarding.questions.lets-get-started"
@@ -3427,7 +3413,7 @@ msgstr "Tikai izpētes nolūkos"
 
 #: src/app/main/ui/onboarding/questions.cljs:246
 msgid "onboarding.questions.reasons.fit"
-msgstr "Lai novērtētu, vai Penpot būs piemērota manai komandai"
+msgstr "Lai novērtētu, vai Kizuku būs piemērota manai komandai"
 
 #: src/app/main/ui/onboarding/questions.cljs:252
 msgid "onboarding.questions.reasons.testing"
@@ -3470,16 +3456,16 @@ msgstr "Karkasattēlošana"
 
 #: src/app/main/ui/onboarding/questions.cljs:116
 msgid "onboarding.questions.step1.question1"
-msgstr "Kādam nolūkam Penpot tiks izmantota?"
+msgstr "Kādam nolūkam Kizuku tiks izmantota?"
 
 #: src/app/main/ui/onboarding/questions.cljs:273
 msgid "onboarding.questions.step1.question2"
-msgstr "Kas šodien novedis Tevi pie Penpot?"
+msgstr "Kas šodien novedis Tevi pie Kizuku?"
 
 #: src/app/main/ui/onboarding/questions.cljs:112
 msgid "onboarding.questions.step1.subtitle"
 msgstr ""
-"Ļauj mums mazliet uzzināt par Tevi, lai palīdzētu mums panākt, lai Penpot "
+"Ļauj mums mazliet uzzināt par Tevi, lai palīdzētu mums panākt, lai Kizuku "
 "Tev darbojas. Tavas atbildes palīdzēs mums noteikt svarīgas iespējas un "
 "norādīt Tev īsto uzsākšanas virzienu."
 
@@ -3515,7 +3501,7 @@ msgstr "Kur Tu vēlētos sākt?"
 #: src/app/main/ui/onboarding/questions.cljs:428
 #, unused
 msgid "onboarding.questions.step5.title"
-msgstr "Kā uzzināji par Penpot?"
+msgstr "Kā uzzināji par Kizuku?"
 
 #: src/app/main/ui/onboarding/questions.cljs:233
 msgid "onboarding.questions.team-size.11-30"
@@ -3560,7 +3546,7 @@ msgstr "Izveidot komandu"
 #: src/app/main/ui/onboarding/team_choice.cljs:31
 msgid "onboarding.team-modal.create-team-desc"
 msgstr ""
-"Komanda ļauj sadarboties ar citiem Penpot lietotājiem, kas darbojas ar tām "
+"Komanda ļauj sadarboties ar citiem Kizuku lietotājiem, kas darbojas ar tām "
 "pašām datnēm un projektiem."
 
 #: src/app/main/ui/onboarding/team_choice.cljs:36
@@ -3597,7 +3583,7 @@ msgstr "Sākt projektēšanu"
 
 #, unused
 msgid "onboarding.welcome.alt"
-msgstr "Penpot"
+msgstr "Kizuku"
 
 #: src/app/main/ui/auth/recovery.cljs:88
 msgid "profile.recovery.go-to-login"
@@ -4369,11 +4355,11 @@ msgstr "Pārvaldīt savu abonementu"
 #: src/app/main/ui/settings/subscription.cljs:282
 #, fuzzy
 msgid "subscription.settings.member-since"
-msgstr "Penpot dalībnieks kopš %s"
+msgstr "Kizuku dalībnieks kopš %s"
 
 #: src/app/main/ui/settings/subscription.cljs:285
 msgid "subscription.settings.other-plans"
-msgstr "Citi Penpot plāni"
+msgstr "Citi Kizuku plāni"
 
 #: src/app/main/ui/settings/subscription.cljs:289, src/app/main/ui/settings/subscription.cljs:302
 msgid "subscription.settings.price-editor-month"
@@ -4422,31 +4408,31 @@ msgstr "Neierobežotas komandas, un nav svarīgi, cik liela ir komanda"
 
 #: src/app/main/ui/dashboard/files.cljs:179
 msgid "title.dashboard.files"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:46
 msgid "title.dashboard.font-providers"
-msgstr "Fontu nodrošinātāji - %s - Penpot"
+msgstr "Fontu nodrošinātāji - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:45
 msgid "title.dashboard.fonts"
-msgstr "Fonti - %s - Penpot"
+msgstr "Fonti - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/projects.cljs:350
 msgid "title.dashboard.projects"
-msgstr "Projekti - %s - Penpot"
+msgstr "Projekti - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/search.cljs:50
 msgid "title.dashboard.search"
-msgstr "Meklēšana - %s - Penpot"
+msgstr "Meklēšana - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/libraries.cljs:57
 msgid "title.dashboard.shared-libraries"
-msgstr "Koplietojamās bibliotēkas - %s - Penpot"
+msgstr "Koplietojamās bibliotēkas - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "Penpot - Modelēšanas brīvība komandām"
+msgstr "Kizuku - Modelēšanas brīvība komandām"
 
 #: src/app/main/ui/settings/access_tokens.cljs:280
 msgid "title.settings.access-tokens"
@@ -4454,47 +4440,47 @@ msgstr "Profils - piekļuves pilnvaras"
 
 #: src/app/main/ui/settings/feedback.cljs:107
 msgid "title.settings.feedback"
-msgstr "Sniegt atsauksmes - Penpot"
+msgstr "Sniegt atsauksmes - Kizuku"
 
 #: src/app/main/ui/settings/notifications.cljs:45
 msgid "title.settings.notifications"
-msgstr "Paziņojumi - Penpot"
+msgstr "Paziņojumi - Kizuku"
 
 #: src/app/main/ui/settings/options.cljs:83
 msgid "title.settings.options"
-msgstr "Iestatījumi - Penpot"
+msgstr "Iestatījumi - Kizuku"
 
 #: src/app/main/ui/settings/password.cljs:103
 msgid "title.settings.password"
-msgstr "Parole - Penpot"
+msgstr "Parole - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
-msgstr "Profils - Penpot"
+msgstr "Profils - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
-msgstr "Uzaicinājumi - %s - Penpot"
+msgstr "Uzaicinājumi - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
-msgstr "Dalībnieki - %s - Penpot"
+msgstr "Dalībnieki - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1131
 msgid "title.team-settings"
-msgstr "Iestatījumi - %s - Penpot"
+msgstr "Iestatījumi - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1084
 msgid "title.team-webhooks"
-msgstr "Tīmekļa aizķeres - %s - Penpot"
+msgstr "Tīmekļa aizķeres - %s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:423
 msgid "title.viewer"
-msgstr "%s - skatīšana - Penpot"
+msgstr "%s - skatīšana - Kizuku"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui.cljs:138
 #, unused
@@ -7583,7 +7569,7 @@ msgstr "Atvērt versiju izvēlni"
 msgid "workspace.versions.warning.subtext"
 msgstr ""
 "Ja ir vēlēšanās palielināt šo ierobežojumu, jāraksta mums uz "
-"[support@penpot.app](%s)"
+"[support@kizu.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"
@@ -7634,11 +7620,11 @@ msgstr "Krāsa"
 
 #: src/app/main/ui/settings/options.cljs:68
 msgid "dashboard.select-ui-theme.dark"
-msgstr "Penpot tumšs (noklusējuma)"
+msgstr "Kizuku tumšs (noklusējuma)"
 
 #: src/app/main/ui/settings/options.cljs:69
 msgid "dashboard.select-ui-theme.light"
-msgstr "Penpot gaišs"
+msgstr "Kizuku gaišs"
 
 #: src/app/main/ui/settings/options.cljs:70
 msgid "dashboard.select-ui-theme.system"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Greek <https://hosted.weblate.org/projects/penpot/frontend/el/"
+"Language-Team: Greek <https://hosted.weblate.org/projects/kizu/frontend/el/"
 ">\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr "Δημιουργία λογαριασμού επίδειξης"
 msgid "auth.check-your-email"
 msgstr ""
 "Ελέγξτε το email σας και κάντε κλικ στον σύνδεσμο για επαλήθευση και έναρξη "
-"χρήσης του Penpot."
+"χρήσης του Kizuku."
 
 #: src/app/main/ui/auth/recovery.cljs:67
 msgid "auth.confirm-password"
@@ -134,7 +134,7 @@ msgstr "Δημιουργία λογαριασμού"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "Η λύση ανοιχτού κώδικα για σχεδιασμό και πρωτότυπο."
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:232
 msgid "auth.verification-email-sent"
@@ -158,7 +158,7 @@ msgstr "Δημιουργία νέας ομάδας"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Το Penpot σας"
+msgstr "Το Kizuku σας"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -334,8 +334,8 @@ msgid "dashboard.your-name"
 msgstr "Το όνομα σου"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
-msgstr "Το Penpot σας"
+msgid "dashboard.your-kizu"
+msgstr "Το Kizuku σας"
 
 #: src/app/main/ui/comments.cljs:670, src/app/main/ui/confirm.cljs:37, src/app/main/ui/settings/subscription.cljs:139, src/app/main/ui/workspace/plugins.cljs:325, src/app/main/ui/workspace/plugins.cljs:379
 msgid "ds.confirm-cancel"

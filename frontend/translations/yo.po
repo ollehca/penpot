@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Alejandro Alonso <alejandro.alonso@kaleidos.net>\n"
-"Language-Team: Yoruba <https://hosted.weblate.org/projects/penpot/frontend/"
+"Language-Team: Yoruba <https://hosted.weblate.org/projects/kizu/frontend/"
 "yo/>\n"
 "Language: yo\n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgstr "ṣẹ̀dá àkáùntì"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "ṣíṣí orísun yíyà àti àwòrán ni yóò fi  lojútùú ."
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:246, src/app/main/ui/dashboard/sidebar.cljs:1083, src/app/main/ui/workspace/main_menu.cljs:155
 msgid "auth.terms-of-service"
@@ -356,7 +356,7 @@ msgstr "pa ẹgbẹ́ rẹ́"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "sọ fáìlí pẹ́ńpọtì kalẹ̀ (.penpot)"
+msgstr "sọ fáìlí pẹ́ńpọtì kalẹ̀ (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -783,7 +783,7 @@ msgid "dashboard.your-name"
 msgstr "ímeèlì rẹ"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
+msgid "dashboard.your-kizu"
 msgstr "pẹ́ńpọtì rẹ"
 
 #: src/app/main/ui/alert.cljs:35
@@ -985,17 +985,15 @@ msgstr "Àpèjúwe"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "Lọ ibi àpérò pẹ́ńpọtì"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
 msgstr ""
-"Inú wa dùn láti rí ẹ níbí.  Tí o bá nílò ìrànlọ́wọ, please search before "
-"you jọ̀wọ́ ṣàwárí kí o tó  firáńṣẹ́."
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "Agbègbè pẹ́ńpọtì"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -1014,15 +1012,15 @@ msgstr "Ímeèlì"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "Lọ sí Tíwítà"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "A wà níbí láti ṣe ìrànlọ́wọ́ fún àwọn ìbéèrè tó bá wà lórí iṣẹ́ ọnà."
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "Àkáùnti àtìlẹ́yìn fún Tíwítà"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1354,7 +1352,7 @@ msgid "labels.continue-with"
 msgstr "Tẹ̀ síwájú pẹ̀lú"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
+msgid "labels.continue-with-kizu"
 msgstr "O lè tẹ̀ síwájú pẹ̀lú àkáúnti pẹ́ńpọtì"
 
 #: src/app/main/ui/dashboard/team.cljs:700
@@ -1485,7 +1483,7 @@ msgstr "Padà sẹ́yìn"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "Ibi ìranilọ́wọ́"
+msgstr ""
 
 #: src/app/main/ui/viewer/comments.cljs:104, src/app/main/ui/workspace/comments.cljs:73
 msgid "labels.hide-resolved-comments"
@@ -2199,9 +2197,6 @@ msgstr "Verification email sent to %s. Check your email!"
 #, unused
 msgid "onboarding-v2.before-start.desc1"
 msgstr ""
-"O ní láti mọ̀ pé oríṣiríṣi ohu ohun èlò ló wà láti ràn ọ́ lọ́wọ́ láti rí "
-"gbà bẹ̀rẹ̀ pẹ̀lú Pẹ́ńpọtì, gẹ́gẹ́ bí ohun èlò ìtọ́nisọ́nà àti yútuùbù wa "
-"fún ìlànà ìbáni sọ̀rọ̀."
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
@@ -2215,7 +2210,7 @@ msgstr "Ìtọ́ni sọ́nà Onílò"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
-msgstr "O lè wo ìbáṣepọ̀ wa àti ìbáṣepọ̀ ti èyí tí agbègbè wa ṣe."
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -2234,8 +2229,6 @@ msgstr ""
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
 msgstr ""
-"Fí ìròyìn ránńṣẹ́ sí mi nípa Pẹ́ńpọtì (àwọn bulọ́ọ̀gì,àwọn fídiò "
-"ìbáṣepọ̀, àwọn sísàn wọlé...)."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -2256,26 +2249,18 @@ msgstr ""
 #, unused
 msgid "onboarding-v2.welcome.desc1"
 msgstr ""
-"Pẹ́ńpọtì ni orísun ìṣílẹ̀kùn àti pe Kálẹidòsìló ṣe é àti àwọn agbègbè,  Ní "
-"bi ọ̀pọ̀lọpọ̀ àwọn ènìyàn ti ran ara wọn lọ́wọ́ tẹ́lẹ̀ .  Gbgbo wọn ló lè "
-"ṣe àjùmọ̀ṣenípa:"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
 msgstr ""
-"Ìkẹ́kọ̀ọ́ ìta gbangba,  pín-in kí ẹ sì jí ròrò nípa Pẹ́ńpọtì, ibi tó wà "
-"lọ́wọ́lọ́wọ́ ọ̀jọ́ iwájú pẹ̀lú gbogbo agbègbè àti ìmójútó ẹgbẹ́ pẹ́ńpọtì . "
-"  ."
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
 msgstr ""
-"Ibi tí a ó ti ri bí a ó ti ṣe àjùmọ̀ṣepọ̀ pẹ̀lú àwọn ìtumọ̀, àwọn ìbéèrè "
-"ẹ̀yà ara ẹ̀rọ, ìmójútó síṣe ojúṣe, ìṣọdẹ kòkòrò…"
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "Sísojúṣe ìtọ́sẹ́nà"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
@@ -2358,7 +2343,7 @@ msgstr "Ṣẹ̀dá ẹgbẹ́ kan"
 #: src/app/main/ui/onboarding/team_choice.cljs:31
 msgid "onboarding.team-modal.create-team-desc"
 msgstr ""
-"A team allows you to collaborate with other Penpot users working in the "
+"A team allows you to collaborate with other Kizuku users working in the "
 "Ẹgbẹ́ kan yí ó gbà ọ́ láyè láti lè siṣẹ́pọ̀ pẹ̀lú àwọn onílò pẹ́ńpọti tí ó "
 "siṣẹ́ nínú  àwọn fáìlì àti àwọn iṣẹ́ àgbéṣe kan náà ."
 
@@ -2982,27 +2967,27 @@ msgstr "Yiyan pelu sun-un"
 
 #: src/app/main/ui/dashboard/files.cljs:179
 msgid "title.dashboard.files"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:46
 msgid "title.dashboard.font-providers"
-msgstr "Pipese oniru fọnti - %s - Penpot"
+msgstr "Pipese oniru fọnti - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:45
 msgid "title.dashboard.fonts"
-msgstr "Fọnti - %s - Penpot"
+msgstr "Fọnti - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/projects.cljs:350
 msgid "title.dashboard.projects"
-msgstr "Awọn ísè agbèsè - %s - Penpot"
+msgstr "Awọn ísè agbèsè - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/search.cljs:50
 msgid "title.dashboard.search"
-msgstr "Wà - %s - Penpot"
+msgstr "Wà - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "Penpot – Se onìrú òmínìra fun awọ̀n ẹ̀gbẹ̀"
+msgstr "Kizuku – Se onìrú òmínìra fun awọ̀n ẹ̀gbẹ̀"
 
 #: src/app/main/ui/settings/access_tokens.cljs:280
 msgid "title.settings.access-tokens"
@@ -3010,43 +2995,43 @@ msgstr "Profaili – Aami wiwọle"
 
 #: src/app/main/ui/settings/feedback.cljs:107
 msgid "title.settings.feedback"
-msgstr "Fi esi- Penpot"
+msgstr "Fi esi- Kizuku"
 
 #: src/app/main/ui/settings/options.cljs:83
 msgid "title.settings.options"
-msgstr "Awon eto - Penpot"
+msgstr "Awon eto - Kizuku"
 
 #: src/app/main/ui/settings/password.cljs:103
 msgid "title.settings.password"
-msgstr "Ọrọigbaníwólé - Penpot"
+msgstr "Ọrọigbaníwólé - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
-msgstr "Profaili - Penpot"
+msgstr "Profaili - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
-msgstr "Ifíwẹ́pe - %s - Penpot"
+msgstr "Ifíwẹ́pe - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
-msgstr "Ọ́́mọ̀ ẹgbẹ - %s - Penpot"
+msgstr "Ọ́́mọ̀ ẹgbẹ - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1131
 msgid "title.team-settings"
-msgstr "Awọn eto - %s - Penpot"
+msgstr "Awọn eto - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1084
 msgid "title.team-webhooks"
-msgstr "Webhooks - %s - Penpot"
+msgstr "Webhooks - %s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:423
 msgid "title.viewer"
-msgstr "%s –Ipo wíwò - Penpot"
+msgstr "%s –Ipo wíwò - Kizuku"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:573
 msgid "viewer.empty-state"

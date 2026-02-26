@@ -3,7 +3,7 @@ msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: william chen <william.fromtw@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
-"projects/penpot/frontend/zh_Hant/>\n"
+"projects/kizu/frontend/zh_Hant/>\n"
 "Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -22,7 +22,7 @@ msgstr "檢查郵件"
 #: src/app/main/ui/auth/register.cljs:277
 #, unused
 msgid "auth.check-your-email"
-msgstr "檢查你的信箱，點擊信中連結來驗證並開始使用 Penpot。"
+msgstr "檢查你的信箱，點擊信中連結來驗證並開始使用 Kizuku。"
 
 #: src/app/main/ui/auth/recovery.cljs:67
 msgid "auth.confirm-password"
@@ -63,7 +63,7 @@ msgstr "登入"
 
 #: src/app/main/ui/auth/login.cljs:285
 msgid "auth.login-tagline"
-msgstr "Penpot 是用於設計與開發協作，免費且開源的設計工具"
+msgstr ""
 
 #: src/app/main/ui/auth/login.cljs:222
 msgid "auth.login-with-github-submit"
@@ -152,7 +152,7 @@ msgstr "建立帳號"
 #: src/app/main/ui/auth/register.cljs:124
 #, unused
 msgid "auth.register-tagline"
-msgstr "使用免費的 Penpot 帳戶，您可以建立無限制團隊，並與其他設計師和開發人員合作完成喜歡的專案 "
+msgstr "使用免費的 Kizuku 帳戶，您可以建立無限制團隊，並與其他設計師和開發人員合作完成喜歡的專案 "
 
 #: src/app/main/ui/auth/register.cljs:199
 msgid "auth.register-title"
@@ -161,7 +161,7 @@ msgstr "建立帳號"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "設計與原型製作的開源解決方案。"
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:50
 #, markdown
@@ -199,7 +199,7 @@ msgstr "發怖"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "所有 Penpot 用戶"
+msgstr "所有 Kizuku 用戶"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -272,7 +272,7 @@ msgstr "團隊管理"
 
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
-msgstr "Penpot旨在團隊協作。邀請隊員加入共同協作"
+msgstr "Kizuku旨在團隊協作。邀請隊員加入共同協作"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
 msgid "dasboard.team-hero.title"
@@ -281,7 +281,7 @@ msgstr "組隊！"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.tutorial-hero.info"
-msgstr "通過富趣味的教程實作學習 Penpot 的基礎知識。"
+msgstr "通過富趣味的教程實作學習 Kizuku 的基礎知識。"
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -296,7 +296,7 @@ msgstr "實踐教程"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "逐步遊覽Penpot以了解主要功能。"
+msgstr "逐步遊覽Kizuku以了解主要功能。"
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -366,7 +366,7 @@ msgstr "個人存取權杖"
 
 #: src/app/main/ui/settings/access_tokens.cljs:186
 msgid "dashboard.access-tokens.personal.description"
-msgstr "個人存取權杖就像是帳號密碼驗證系統的替代方案，且可用於讓第三方應用程式存取 Penpot 內部 API"
+msgstr "個人存取權杖就像是帳號密碼驗證系統的替代方案，且可用於讓第三方應用程式存取 Kizuku 內部 API"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
 msgid "dashboard.access-tokens.token-will-expire"
@@ -402,7 +402,7 @@ msgstr "固定此版本"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "你的 Penpot"
+msgstr "你的 Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -410,7 +410,7 @@ msgstr "刪除團隊"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "下載 Penpot 檔案 (.penpot)"
+msgstr "下載 Kizuku 檔案 (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -444,14 +444,14 @@ msgstr "尚無文件。"
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
-"新增到專案的圖庫將顯示在這裡。請分享您的檔案或從我們的[圖庫和範本](https://penpot.app/libraries-templates)"
+"新增到專案的圖庫將顯示在這裡。請分享您的檔案或從我們的[圖庫和範本](https://kizu.app/libraries-templates)"
 "中新增。"
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
-"新增到專案的圖庫將顯示在這裡。請分享您的檔案或從我們的[圖庫和範本](https://penpot.app/libraries-templates)"
+"新增到專案的圖庫將顯示在這裡。請分享您的檔案或從我們的[圖庫和範本](https://kizu.app/libraries-templates)"
 "中新增。"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
@@ -464,7 +464,7 @@ msgstr "還沒有圖庫。"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "下載 %s 個Penpot 檔案 （.penpot）"
+msgstr "下載 %s 個Kizuku 檔案 （.kizu）"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -492,7 +492,7 @@ msgstr "你可以從設計屬性（位於右側邊欄底部）為元素添加匯
 
 #: src/app/main/ui/exports/assets.cljs:181
 msgid "dashboard.export-shapes.how-to-link"
-msgstr "Penpot匯出功能的簡介。"
+msgstr "Kizuku匯出功能的簡介。"
 
 #: src/app/main/ui/exports/assets.cljs:176
 msgid "dashboard.export-shapes.no-elements"
@@ -579,8 +579,8 @@ msgstr ""
 #, markdown
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
-"你只能上傳你擁有的或獲許可在Penpot "
-"中使用的字型。如需瞭解更多，請參閱[Penpot的服務條款]（https://penpot.app/terms."
+"你只能上傳你擁有的或獲許可在Kizuku "
+"中使用的字型。如需瞭解更多，請參閱[Kizuku的服務條款]（https://kizu.app/terms."
 "html）的內容權利部分。您可能還想閱讀有關 [字體許可]（https://www.typography.com/faq） 的資訊。"
 
 #: src/app/main/ui/dashboard/fonts.cljs:214
@@ -973,8 +973,8 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "無建立限制"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.penpot-free"
-msgstr "Penpot 免費"
+msgid "dashboard.upgrade-plan.kizu-free"
+msgstr "Kizuku 免費"
 
 #: src/app/main/ui/dashboard/team.cljs:950
 msgid "dashboard.webhooks.active"
@@ -1002,7 +1002,7 @@ msgstr "成功添加Webhook。"
 
 #: src/app/main/ui/dashboard/team.cljs:971
 msgid "dashboard.webhooks.description"
-msgstr "當Penpot 發生特定事件時，Webhook 是一種使其他網站和應用程式收到通知的簡單方法。我們會向你指定的每個網址發送 POST 請求。"
+msgstr "當Kizuku 發生特定事件時，Webhook 是一種使其他網站和應用程式收到通知的簡單方法。我們會向你指定的每個網址發送 POST 請求。"
 
 #: src/app/main/ui/dashboard/team.cljs:1100
 msgid "dashboard.webhooks.empty.add-one"
@@ -1029,8 +1029,8 @@ msgid "dashboard.your-name"
 msgstr "你的名字"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
-msgstr "你的 Penpot"
+msgid "dashboard.your-kizu"
+msgstr "你的 Kizuku"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"
@@ -1114,7 +1114,7 @@ msgstr "電子郵件 «%s» 已被報告為垃圾郵件或永久退件。"
 
 #: src/app/main/errors.cljs:241
 msgid "errors.feature-mismatch"
-msgstr "你正開啟的檔案包含Penpot尚未支援或停用'%s' 功能。"
+msgstr "你正開啟的檔案包含Kizuku尚未支援或停用'%s' 功能。"
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -1299,15 +1299,15 @@ msgstr "狀況描述"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "前往 Penpot 討論區"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
-msgstr "歡迎光臨。如需協助，在發文求助前請先查閱相類內容。"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "Penpot 社群"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -1323,15 +1323,15 @@ msgstr "電子郵件"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "前往X"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "協助解你的決技術問題。"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "X支援帳戶"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1519,7 +1519,7 @@ msgstr "全大寫"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:163
 msgid "inspect.empty.help"
-msgstr "如果您想瞭解更多關於設計檢查的資訊，請訪問Penpot的幫助中心"
+msgstr "如果您想瞭解更多關於設計檢查的資訊，請訪問Kizuku的幫助中心"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:166
 msgid "inspect.empty.more-info"
@@ -1687,8 +1687,8 @@ msgid "labels.continue-with"
 msgstr "繼續"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
-msgstr "以Penpot帳戶繼續"
+msgid "labels.continue-with-kizu"
+msgstr "以Kizuku帳戶繼續"
 
 #: src/app/main/ui/dashboard/team.cljs:700
 msgid "labels.copy-invitation-link"
@@ -1696,7 +1696,7 @@ msgstr "複製連結"
 
 #: src/app/main/ui/static.cljs:62
 msgid "labels.copyright"
-msgstr "Kaleidos @2025"
+msgstr "Kizuku @2025"
 
 #: src/app/main/ui/workspace/sidebar/assets/groups.cljs:151, src/app/main/ui/workspace/sidebar/options/menus/component.cljs:201
 msgid "labels.create"
@@ -1836,7 +1836,7 @@ msgstr "平面設計"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "説明中心"
+msgstr ""
 
 #: src/app/main/ui/viewer/comments.cljs:104, src/app/main/ui/workspace/comments.cljs:73
 msgid "labels.hide-resolved-comments"
@@ -2230,7 +2230,7 @@ msgstr "你的帳戶"
 #: src/app/main/ui/onboarding/questions.cljs:403
 #, unused
 msgid "labels.youtube"
-msgstr "YouTube"
+msgstr ""
 
 #: src/app/main/ui/workspace/colorpicker.cljs:479, src/app/main/ui/workspace/colorpicker.cljs:480, src/app/main/ui/workspace/colorpicker.cljs:482
 msgid "media.choose-image"
@@ -2711,7 +2711,7 @@ msgstr "404 錯誤"
 
 #: src/app/main/ui/static.cljs:135
 msgid "not-found.login.free"
-msgstr "Penpot 是一款免費的開源設計工具，用於設計和程式碼之間的協作"
+msgstr ""
 
 #: src/app/main/ui/auth/recovery_request.cljs:114
 msgid "not-found.login.sent-recovery"
@@ -2727,11 +2727,11 @@ msgstr "免費註冊"
 
 #: src/app/main/ui/static.cljs:150
 msgid "not-found.login.start-using"
-msgstr "立即開始使用 Penpot！"
+msgstr "立即開始使用 Kizuku！"
 
 #: src/app/main/ui/static.cljs:64
 msgid "not-found.made-with-love"
-msgstr "滿懷愛與開源精神傾心打造"
+msgstr ""
 
 #: src/app/main/ui/static.cljs:290
 msgid "not-found.no-permission.already-requested.file"
@@ -2767,15 +2767,15 @@ msgstr "您無權存取此文件。"
 
 #: src/app/main/ui/static.cljs:51, src/app/main/ui/static.cljs:286, src/app/main/ui/static.cljs:292, src/app/main/ui/static.cljs:298, src/app/main/ui/static.cljs:304, src/app/main/ui/static.cljs:313, src/app/main/ui/static.cljs:322
 msgid "not-found.no-permission.go-dashboard"
-msgstr "前往您的 Penpot"
+msgstr "前往您的 Kizuku"
 
 #: src/app/main/ui/static.cljs:310, src/app/main/ui/static.cljs:319
 msgid "not-found.no-permission.if-approves"
 msgstr "如果團隊老大允許，你會被邀請加入團隊。"
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.penpot-file"
-msgstr "Penpot 文件"
+msgid "not-found.no-permission.kizu-file"
+msgstr "Kizuku 文件"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
 msgid "not-found.no-permission.project"
@@ -2823,11 +2823,11 @@ msgstr "已將驗證信傳送至 %s。請查看您的電子郵件信箱！"
 
 #, unused
 msgid "onboarding-v2.before-start.desc1"
-msgstr "我們有許多協助你開始使用Penpot的資源，例如使用者指南及我們的 Youtube 頻道。"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
-msgstr "有關如何使用 Penpot 的詳細資訊。從原型設計到組織或共享設計。"
+msgstr "有關如何使用 Kizuku 的詳細資訊。從原型設計到組織或共享設計。"
 
 #, unused
 msgid "onboarding-v2.before-start.desc2.title"
@@ -2835,7 +2835,7 @@ msgstr "使用者指南"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
-msgstr "您可以觀看我們以及社群製作的教學。"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -2847,11 +2847,11 @@ msgstr "開始之前"
 
 #: src/app/main/ui/onboarding/newsletter.cljs:68
 msgid "onboarding-v2.newsletter.desc"
-msgstr "訂閱 Penpot 簡報以了解最新的產品開發進度和新聞。"
+msgstr "訂閱 Kizuku 簡報以了解最新的產品開發進度和新聞。"
 
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
-msgstr "向我發送有關 Penpot 的新聞（部落格文章、影片教學、串流媒體…）。"
+msgstr ""
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -2867,27 +2867,27 @@ msgstr "向我發送產品更新（新功能、發布、修復…）。"
 
 #, unused
 msgid "onboarding-v2.welcome.desc1"
-msgstr "Penpot係由Kaleidos及與社群成員共同協作的開放原始碼軟件。所有人皆可以下方法協作："
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
-msgstr "這是與整個社群和 Penpot 核心團隊一起學習、分享和討論 Penpot、它的現在和未來的公共空間。"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc2.title"
-msgstr "參與社群活動"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
-msgstr "在這裡你可以找到如何協作翻譯、功能請求、核心貢獻、漏洞搜尋等…"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "貢獻指南"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
-msgstr "歡迎來到 Penpot！"
+msgstr "歡迎來到 Kizuku！"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:254
 #, unused
@@ -2960,7 +2960,7 @@ msgstr "隱私權政策。"
 
 #: src/app/main/ui/onboarding/newsletter.cljs:65
 msgid "onboarding.newsletter.title"
-msgstr "想要收到 Penpot 新聞嗎？"
+msgstr "想要收到 Kizuku 新聞嗎？"
 
 #: src/app/main/ui/onboarding/questions.cljs:108
 msgid "onboarding.questions.lets-get-started"
@@ -2976,7 +2976,7 @@ msgstr "正在探索"
 
 #: src/app/main/ui/onboarding/questions.cljs:246
 msgid "onboarding.questions.reasons.fit"
-msgstr "評估 Penpot 是否適合我的團隊"
+msgstr "評估 Kizuku 是否適合我的團隊"
 
 #: src/app/main/ui/onboarding/questions.cljs:252
 msgid "onboarding.questions.reasons.testing"
@@ -3019,15 +3019,15 @@ msgstr "線框圖"
 
 #: src/app/main/ui/onboarding/questions.cljs:116
 msgid "onboarding.questions.step1.question1"
-msgstr "您將使用 Penpot 來做什麼？"
+msgstr "您將使用 Kizuku 來做什麼？"
 
 #: src/app/main/ui/onboarding/questions.cljs:273
 msgid "onboarding.questions.step1.question2"
-msgstr "今天什麼風把你吹來Penpot?"
+msgstr "今天什麼風把你吹來Kizuku?"
 
 #: src/app/main/ui/onboarding/questions.cljs:112
 msgid "onboarding.questions.step1.subtitle"
-msgstr "請告訴我們一些關於您的訊息，以幫助我們讓 Penpot 為您服務。您的回答將幫助我們確定新功能的優先順序，並為您指明正確的入門方向。"
+msgstr "請告訴我們一些關於您的訊息，以幫助我們讓 Kizuku 為您服務。您的回答將幫助我們確定新功能的優先順序，並為您指明正確的入門方向。"
 
 #: src/app/main/ui/onboarding/questions.cljs:110
 msgid "onboarding.questions.step1.title"
@@ -3061,7 +3061,7 @@ msgstr "您想從哪裡開始？"
 #: src/app/main/ui/onboarding/questions.cljs:428
 #, unused
 msgid "onboarding.questions.step5.title"
-msgstr "您是如何了解 Penpot 的？"
+msgstr "您是如何了解 Kizuku 的？"
 
 #: src/app/main/ui/onboarding/questions.cljs:233
 msgid "onboarding.questions.team-size.11-30"
@@ -3105,7 +3105,7 @@ msgstr "建立團隊"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:31
 msgid "onboarding.team-modal.create-team-desc"
-msgstr "團隊讓你可以與其他Penpot使用者在相同的檔案和專案中進行協作。"
+msgstr "團隊讓你可以與其他Kizuku使用者在相同的檔案和專案中進行協作。"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:36
 msgid "onboarding.team-modal.create-team-feature-1"
@@ -3141,7 +3141,7 @@ msgstr "開始設計"
 
 #, unused
 msgid "onboarding.welcome.alt"
-msgstr "Penpot"
+msgstr "Kizuku"
 
 #: src/app/main/ui/auth/recovery.cljs:88
 msgid "profile.recovery.go-to-login"
@@ -3831,31 +3831,31 @@ msgstr "縮放至選取範圍"
 
 #: src/app/main/ui/dashboard/files.cljs:179
 msgid "title.dashboard.files"
-msgstr "%s – Penpot"
+msgstr "%s – Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:46
 msgid "title.dashboard.font-providers"
-msgstr "字體提供者 - %s - Penpot"
+msgstr "字體提供者 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:45
 msgid "title.dashboard.fonts"
-msgstr "字型 - %s - Penpot"
+msgstr "字型 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/projects.cljs:350
 msgid "title.dashboard.projects"
-msgstr "專案 - %s - Penpot"
+msgstr "專案 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/search.cljs:50
 msgid "title.dashboard.search"
-msgstr "搜尋 - %s - Penpot"
+msgstr "搜尋 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/libraries.cljs:57
 msgid "title.dashboard.shared-libraries"
-msgstr "共享圖庫 - %s - Penpot"
+msgstr "共享圖庫 - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "Penpot - 給團隊設計的自由"
+msgstr "Kizuku - 給團隊設計的自由"
 
 #: src/app/main/ui/settings/access_tokens.cljs:280
 msgid "title.settings.access-tokens"
@@ -3863,47 +3863,47 @@ msgstr "個人資料 - 存取權杖(token)"
 
 #: src/app/main/ui/settings/feedback.cljs:107
 msgid "title.settings.feedback"
-msgstr "提供回饋 - Penpot"
+msgstr "提供回饋 - Kizuku"
 
 #: src/app/main/ui/settings/notifications.cljs:45
 msgid "title.settings.notifications"
-msgstr "通知 - Penpot"
+msgstr "通知 - Kizuku"
 
 #: src/app/main/ui/settings/options.cljs:83
 msgid "title.settings.options"
-msgstr "設定 - Penpot"
+msgstr "設定 - Kizuku"
 
 #: src/app/main/ui/settings/password.cljs:103
 msgid "title.settings.password"
-msgstr "密碼 - Penpot"
+msgstr "密碼 - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
-msgstr "個人資料 - Penpot"
+msgstr "個人資料 - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
-msgstr "邀請 - %s - Penpot"
+msgstr "邀請 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
-msgstr "成員 - %s - Penpot"
+msgstr "成員 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1131
 msgid "title.team-settings"
-msgstr "設定 - %s - Penpot"
+msgstr "設定 - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1084
 msgid "title.team-webhooks"
-msgstr "Webhooks - %s - Penpot"
+msgstr "Webhooks - %s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:423
 msgid "title.viewer"
-msgstr "%s - 檢視模式 - Penpot"
+msgstr "%s - 檢視模式 - Kizuku"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui.cljs:138
 #, unused
@@ -6680,7 +6680,7 @@ msgstr "開啟版本選單"
 #: src/app/main/ui/workspace/sidebar/versions.cljs:372
 #, markdown
 msgid "workspace.versions.warning.subtext"
-msgstr "如果您希望提高此限制量，請來信至 [support@penpot.app](%s)"
+msgstr "如果您希望提高此限制量，請來信至 [support@kizu.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/penpot/frontend/nl/"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/kizu/frontend/nl/"
 ">\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Controleer je e-mail"
 #, unused
 msgid "auth.check-your-email"
 msgstr ""
-"Controleer je e-mail en klik op de link om te verifiëren en Penpot te gaan "
+"Controleer je e-mail en klik op de link om te verifiëren en Kizuku te gaan "
 "gebruiken."
 
 #: src/app/main/ui/auth/recovery.cljs:67
@@ -68,8 +68,6 @@ msgstr "Inloggen"
 #: src/app/main/ui/auth/login.cljs:285
 msgid "auth.login-tagline"
 msgstr ""
-"Penpot is de gratis open-source ontwerptool voor samenwerking op het gebied "
-"van ontwerp en code"
 
 #: src/app/main/ui/auth/login.cljs:222
 msgid "auth.login-with-github-submit"
@@ -159,7 +157,7 @@ msgstr "Account aanmaken"
 #, unused
 msgid "auth.register-tagline"
 msgstr ""
-"Met een gratis Penpot-account kun je onbeperkte teams maken en met andere "
+"Met een gratis Kizuku-account kun je onbeperkte teams maken en met andere "
 "ontwerpers en ontwikkelaars samenwerken aan zoveel projecten als je wilt. "
 
 #: src/app/main/ui/auth/register.cljs:199
@@ -169,7 +167,7 @@ msgstr "Account aanmaken"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "De open-source oplossing voor ontwerp en prototyping."
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:50
 #, markdown
@@ -209,7 +207,7 @@ msgstr "Publiceren"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "Alle Penpot-gebruikers"
+msgstr "Alle Kizuku-gebruikers"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -286,7 +284,7 @@ msgstr "Teambeheer"
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
 msgstr ""
-"Penpot is bedoeld voor teams. Nodig leden uit om samen te werken aan "
+"Kizuku is bedoeld voor teams. Nodig leden uit om samen te werken aan "
 "projecten en bestanden"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
@@ -297,7 +295,7 @@ msgstr "Werk samen!"
 #, unused
 msgid "dasboard.tutorial-hero.info"
 msgstr ""
-"Leer de basisprincipes van Penpot terwijl je plezier hebt met deze "
+"Leer de basisprincipes van Kizuku terwijl je plezier hebt met deze "
 "interactieve introductie."
 
 #: src/app/main/ui/dashboard/projects.cljs
@@ -313,7 +311,7 @@ msgstr "Praktische introductie"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "Maak een rondleiding door Penpot en leer de belangrijkste functies kennen."
+msgstr "Maak een rondleiding door Kizuku en leer de belangrijkste functies kennen."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -386,7 +384,7 @@ msgid "dashboard.access-tokens.personal.description"
 msgstr ""
 "Persoonlijke toegangsbewijzen functioneren als alternatief voor ons "
 "login/wachtwoord-authenticatiesysteem en kunnen worden gebruikt om een "
-"applicatie toegang te geven tot de interne Penpot API"
+"applicatie toegang te geven tot de interne Kizuku API"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
 msgid "dashboard.access-tokens.token-will-expire"
@@ -422,7 +420,7 @@ msgstr "Deze versie vastmaken"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Jouw Penpot"
+msgstr "Jouw Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -430,7 +428,7 @@ msgstr "Team verwijderen"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Penpot-bestand downloaden (.penpot)"
+msgstr "Kizuku-bestand downloaden (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -466,7 +464,7 @@ msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Hier verschijnen bibliotheken die aan het project zijn toegevoegd. Probeer "
 "je bestanden te delen of voeg ze toe vanuit onze [Bibliotheken en "
-"sjablonen] (https://penpot.app/libraries-templates)."
+"sjablonen] (https://kizu.app/libraries-templates)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
@@ -474,7 +472,7 @@ msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Hier verschijnen bibliotheken die aan het project zijn toegevoegd. Probeer "
 "je bestanden te delen of voeg ze toe vanuit onze [Bibliotheken en "
-"sjablonen] (https://penpot.app/libraries-templates)."
+"sjablonen] (https://kizu.app/libraries-templates)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -505,8 +503,8 @@ msgid "dashboard.empty-project.import"
 msgstr "Importeer een bestand"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
-msgid "dashboard.empty-project.import-penpot"
-msgstr "Importeer een .penpot-bestand"
+msgid "dashboard.empty-project.import-kizu"
+msgstr "Importeer een .kizu-bestand"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -514,7 +512,7 @@ msgstr "Begin met het bouwen van geweldige dingen"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "%s Penpot-bestanden downloaden (.penpot)"
+msgstr "%s Kizuku-bestanden downloaden (.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -526,7 +524,7 @@ msgstr "Exporteren als PDF"
 
 #, unused
 msgid "dashboard.export-multi"
-msgstr "%s Penpot-bestanden exporteren"
+msgstr "%s Kizuku-bestanden exporteren"
 
 #: src/app/main/ui/exports/assets.cljs:106
 msgid "dashboard.export-multiple.selected"
@@ -544,7 +542,7 @@ msgstr ""
 
 #: src/app/main/ui/exports/assets.cljs:181
 msgid "dashboard.export-shapes.how-to-link"
-msgstr "Info over het instellen van exports in Penpot."
+msgstr "Info over het instellen van exports in Kizuku."
 
 #: src/app/main/ui/exports/assets.cljs:176
 msgid "dashboard.export-shapes.no-elements"
@@ -644,8 +642,8 @@ msgstr ""
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
 "Je mag alleen lettertypen uploaden waarvan je de eigenaar bent of waarvoor "
-"je een licentie hebt om te gebruiken in Penpot. Lees meer in de sectie "
-"Inhoudsrechten van [Penpot's Servicevoorwaarden](%s). Misschien wil je ook "
+"je een licentie hebt om te gebruiken in Kizuku. Lees meer in de sectie "
+"Inhoudsrechten van [Kizuku's Servicevoorwaarden](%s). Misschien wil je ook "
 "meer lezen over [lettertypelicenties](https://www.typography.com/faq)."
 
 #: src/app/main/ui/dashboard/fonts.cljs:214
@@ -665,7 +663,7 @@ msgstr ""
 
 #: src/app/main/ui/dashboard/import.cljs:461, src/app/main/ui/dashboard/project_menu.cljs:109
 msgid "dashboard.import"
-msgstr "Importeer Penpot-bestanden"
+msgstr "Importeer Kizuku-bestanden"
 
 #: src/app/main/ui/dashboard/import.cljs:290, src/app/worker/import.cljs:121, src/app/worker/import.cljs:124
 msgid "dashboard.import.analyze-error"
@@ -1077,8 +1075,8 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "Onbeperkte creativiteit"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.penpot-free"
-msgstr "Penpot Free"
+msgid "dashboard.upgrade-plan.kizu-free"
+msgstr "Kizuku Free"
 
 #: src/app/main/ui/dashboard/team.cljs:950
 msgid "dashboard.webhooks.active"
@@ -1108,7 +1106,7 @@ msgstr "Webhook is succesvol aangemaakt."
 msgid "dashboard.webhooks.description"
 msgstr ""
 "Webhooks zijn een eenvoudige manier om andere websites en apps op de hoogte "
-"te stellen wanneer bepaalde gebeurtenissen bij Penpot plaatsvinden. We "
+"te stellen wanneer bepaalde gebeurtenissen bij Kizuku plaatsvinden. We "
 "sturen een POST-verzoek naar elke URL die je opgeeft."
 
 #: src/app/main/ui/dashboard/team.cljs:1100
@@ -1136,8 +1134,8 @@ msgid "dashboard.your-name"
 msgstr "Naam"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
-msgstr "Jouw Penpot"
+msgid "dashboard.your-kizu"
+msgstr "Jouw Kizuku"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"
@@ -1209,7 +1207,7 @@ msgstr "Er is een fout opgetreden bij de opmerking"
 msgid "errors.deprecated"
 msgstr ""
 "Sorry! Dit is een oud bestand dat gebruikmaakt van een verouderd type "
-"Penpot-component en je niet kunt openen."
+"Kizuku-component en je niet kunt openen."
 
 #: src/app/main/errors.cljs:267
 msgid "errors.deprecated.contact.after"
@@ -1217,7 +1215,7 @@ msgstr "zodat wij je kunnen helpen."
 
 #: src/app/main/errors.cljs:265
 msgid "errors.deprecated.contact.before"
-msgstr "Hoewel Penpot dit soort componenten niet meer ondersteunt, kun je wel"
+msgstr "Hoewel Kizuku dit soort componenten niet meer ondersteunt, kun je wel"
 
 #: src/app/main/errors.cljs:266
 msgid "errors.deprecated.contact.text"
@@ -1257,7 +1255,7 @@ msgstr "Het e-mailadres «%s» is gemeld als spam of permanent teruggestuurd."
 msgid "errors.feature-mismatch"
 msgstr ""
 "Het lijkt erop dat je een bestand opent waarin de functie '%s' is "
-"ingeschakeld, maar jouw Penpot- versie ondersteunt dit niet of heeft het "
+"ingeschakeld, maar jouw Kizuku- versie ondersteunt dit niet of heeft het "
 "uitgeschakeld."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
@@ -1501,17 +1499,15 @@ msgstr "Omschrijving"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "Ga naar het Penpot-forum"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
 msgstr ""
-"We zijn blij dat je er bent. Als je hulp nodig hebt, zoek dan eerst voordat "
-"je een nieuwe vraag stelt."
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "Penpot-gemeenschap"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -1529,15 +1525,15 @@ msgstr "E-mail"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "Ga naar X"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "Hier om te helpen met je technische vragen."
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "X-ondersteuningsaccount"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1735,7 +1731,7 @@ msgstr "Varianten eigenschappen"
 msgid "inspect.empty.help"
 msgstr ""
 "Als je meer wilt weten over ontwerpinspectie, ga dan naar het helpcentrum "
-"van Penpot"
+"van Kizuku"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:166
 msgid "inspect.empty.more-info"
@@ -1923,8 +1919,8 @@ msgid "labels.continue-with"
 msgstr "Doorgaan met"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
-msgstr "Je kunt doorgaan met een Penpot-account"
+msgid "labels.continue-with-kizu"
+msgstr "Je kunt doorgaan met een Kizuku-account"
 
 #: src/app/main/ui/components/copy_button.cljs:41
 msgid "labels.copy"
@@ -1940,7 +1936,7 @@ msgstr "Link kopiëren"
 
 #: src/app/main/ui/static.cljs:62
 msgid "labels.copyright"
-msgstr "Kaleidos @2024"
+msgstr "Kizuku @2025"
 
 #: src/app/main/ui/workspace/sidebar/assets/groups.cljs:151, src/app/main/ui/workspace/sidebar/options/menus/component.cljs:201
 msgid "labels.create"
@@ -2088,7 +2084,7 @@ msgstr "Grafisch ontwerp"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "Helpcentrum"
+msgstr ""
 
 #: src/app/main/ui/dashboard/templates.cljs:90
 msgid "labels.hide"
@@ -2511,7 +2507,7 @@ msgstr "Jouw account"
 #: src/app/main/ui/onboarding/questions.cljs:403
 #, unused
 msgid "labels.youtube"
-msgstr "YouTube"
+msgstr ""
 
 #: src/app/main/ui/ds/product/loader.cljs:21
 msgid "loader.tips.01.message"
@@ -2565,7 +2561,7 @@ msgstr "Interactieve prototypes"
 
 #: src/app/main/ui/ds/product/loader.cljs:33
 msgid "loader.tips.07.message"
-msgstr "Penpot maakt gebruik van SVG en CSS voor naadloze ontwikkeling."
+msgstr "Kizuku maakt gebruik van SVG en CSS voor naadloze ontwikkeling."
 
 #: src/app/main/ui/ds/product/loader.cljs:32
 msgid "loader.tips.07.title"
@@ -2592,7 +2588,7 @@ msgstr "Donkere en lichte modus"
 #: src/app/main/ui/ds/product/loader.cljs:39
 msgid "loader.tips.10.message"
 msgstr ""
-"Breid Penpot uit met door de community gebouwde plug-ins voor extra "
+"Breid Kizuku uit met door de community gebouwde plug-ins voor extra "
 "functionaliteit."
 
 #: src/app/main/ui/ds/product/loader.cljs:38
@@ -3138,8 +3134,6 @@ msgstr "404 fout"
 #: src/app/main/ui/static.cljs:135
 msgid "not-found.login.free"
 msgstr ""
-"Penpot is de gratis en open source ontwerptool voor samenwerking tussen "
-"Design en Code"
 
 #: src/app/main/ui/auth/recovery_request.cljs:114
 msgid "not-found.login.sent-recovery"
@@ -3155,11 +3149,11 @@ msgstr "Gratis aanmelden"
 
 #: src/app/main/ui/static.cljs:150
 msgid "not-found.login.start-using"
-msgstr "En begin binnen enkele seconden met Penpot!"
+msgstr "En begin binnen enkele seconden met Kizuku!"
 
 #: src/app/main/ui/static.cljs:64
 msgid "not-found.made-with-love"
-msgstr "Gemaakt met LIEFDE en Open Source"
+msgstr ""
 
 #: src/app/main/ui/static.cljs:290
 msgid "not-found.no-permission.already-requested.file"
@@ -3201,15 +3195,15 @@ msgstr "Je hebt geen toegang tot dit bestand."
 
 #: src/app/main/ui/static.cljs:51, src/app/main/ui/static.cljs:286, src/app/main/ui/static.cljs:292, src/app/main/ui/static.cljs:298, src/app/main/ui/static.cljs:304, src/app/main/ui/static.cljs:313, src/app/main/ui/static.cljs:322
 msgid "not-found.no-permission.go-dashboard"
-msgstr "Ga naar je Penpot"
+msgstr "Ga naar je Kizuku"
 
 #: src/app/main/ui/static.cljs:310, src/app/main/ui/static.cljs:319
 msgid "not-found.no-permission.if-approves"
 msgstr "Als de eigenaar het toestaat, word je uitgenodigd voor het team."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.penpot-file"
-msgstr "Penpot-bestand"
+msgid "not-found.no-permission.kizu-file"
+msgstr "Kizuku-bestand"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
 msgid "not-found.no-permission.project"
@@ -3266,13 +3260,11 @@ msgstr "Verificatie-e-mail verzonden naar %s. Controleer je e-mail!"
 #, unused
 msgid "onboarding-v2.before-start.desc1"
 msgstr ""
-"Je moet weten dat er veel bronnen beschikbaar zijn om je op weg te helpen "
-"met Penpot, zoals de gebruikershandleiding en ons YouTube-kanaal."
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
 msgstr ""
-"Gedetailleerde informatie over het gebruik van Penpot. Van prototyping tot "
+"Gedetailleerde informatie over het gebruik van Kizuku. Van prototyping tot "
 "het organiseren of delen van ontwerpen."
 
 #, unused
@@ -3281,7 +3273,7 @@ msgstr "Gebruikershandleiding"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
-msgstr "Je kunt onze introducties en die van onze gemeenschap bekijken."
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -3294,12 +3286,12 @@ msgstr "Voordat je begint"
 #: src/app/main/ui/onboarding/newsletter.cljs:68
 msgid "onboarding-v2.newsletter.desc"
 msgstr ""
-"Abonneer je op de Penpot-nieuwsbrief om op de hoogte te blijven van de "
+"Abonneer je op de Kizuku-nieuwsbrief om op de hoogte te blijven van de "
 "voortgang van de productontwikkeling en nieuws."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
-msgstr "Stuur mij nieuws over Penpot (blogposts, video-introducties, streamings…)."
+msgstr ""
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -3318,32 +3310,26 @@ msgstr "Stuur mij productnieuws (nieuwe functies, releases, correcties…)."
 #, unused
 msgid "onboarding-v2.welcome.desc1"
 msgstr ""
-"Penpot is Open Source en is gemaakt door zowel Kaleidos als de gemeenschap, "
-"waar al veel mensen elkaar helpen. Iedereen kan samenwerken door:"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
 msgstr ""
-"Een openbare ruimte om te leren, te delen en te discussiëren over Penpot, "
-"zijn heden en toekomst met de hele gemeenschap en het kernteam van Penpot."
 
 #, unused
 msgid "onboarding-v2.welcome.desc2.title"
-msgstr "Deelnemen aan de Penpot-gemeenschap"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
 msgstr ""
-"Waar je kunt vinden hoe je kunt samenwerken aan vertalingen, "
-"functieverzoeken, kernbijdragen, zoeken naar bugs…"
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "Bijdragen"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
-msgstr "Welkom bij Penpot!"
+msgstr "Welkom bij Kizuku!"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:254
 #, unused
@@ -3422,7 +3408,7 @@ msgstr "Privacybeleid."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:65
 msgid "onboarding.newsletter.title"
-msgstr "Wil je Penpot-nieuws ontvangen?"
+msgstr "Wil je Kizuku-nieuws ontvangen?"
 
 #: src/app/main/ui/onboarding/questions.cljs:108
 msgid "onboarding.questions.lets-get-started"
@@ -3438,7 +3424,7 @@ msgstr "Een beetje rondkijken"
 
 #: src/app/main/ui/onboarding/questions.cljs:246
 msgid "onboarding.questions.reasons.fit"
-msgstr "Om te kijken of Penpot goed bij mijn team past"
+msgstr "Om te kijken of Kizuku goed bij mijn team past"
 
 #: src/app/main/ui/onboarding/questions.cljs:252
 msgid "onboarding.questions.reasons.testing"
@@ -3481,16 +3467,16 @@ msgstr "Draadmodellering"
 
 #: src/app/main/ui/onboarding/questions.cljs:116
 msgid "onboarding.questions.step1.question1"
-msgstr "Waarvoor ga jij Penpot gebruiken?"
+msgstr "Waarvoor ga jij Kizuku gebruiken?"
 
 #: src/app/main/ui/onboarding/questions.cljs:273
 msgid "onboarding.questions.step1.question2"
-msgstr "Wat brengt jou vandaag naar Penpot?"
+msgstr "Wat brengt jou vandaag naar Kizuku?"
 
 #: src/app/main/ui/onboarding/questions.cljs:112
 msgid "onboarding.questions.step1.subtitle"
 msgstr ""
-"Laat ons iets over je weten om ons te helpen Penpot voor jou te laten "
+"Laat ons iets over je weten om ons te helpen Kizuku voor jou te laten "
 "werken. Je antwoorden helpen ons bij het prioriteren van nieuwe functies en "
 "wijzen je in de goede richting om te beginnen."
 
@@ -3526,7 +3512,7 @@ msgstr "Waar wil je aan de slag?"
 #: src/app/main/ui/onboarding/questions.cljs:428
 #, unused
 msgid "onboarding.questions.step5.title"
-msgstr "Hoe heb je over Penpot gehoord?"
+msgstr "Hoe heb je over Kizuku gehoord?"
 
 #: src/app/main/ui/onboarding/questions.cljs:233
 msgid "onboarding.questions.team-size.11-30"
@@ -3571,7 +3557,7 @@ msgstr "Team aanmaken"
 #: src/app/main/ui/onboarding/team_choice.cljs:31
 msgid "onboarding.team-modal.create-team-desc"
 msgstr ""
-"Met een team kun je samenwerken met andere Penpot-gebruikers die aan "
+"Met een team kun je samenwerken met andere Kizuku-gebruikers die aan "
 "dezelfde bestanden en projecten werken."
 
 #: src/app/main/ui/onboarding/team_choice.cljs:36
@@ -3608,7 +3594,7 @@ msgstr "Start met ontwerpen"
 
 #, unused
 msgid "onboarding.welcome.alt"
-msgstr "Penpot"
+msgstr "Kizuku"
 
 #: src/app/main/ui/auth/recovery.cljs:88
 msgid "profile.recovery.go-to-login"
@@ -4380,11 +4366,11 @@ msgstr "Beheer uw abonnement"
 #: src/app/main/ui/settings/subscription.cljs:282
 #, fuzzy
 msgid "subscription.settings.member-since"
-msgstr "Penpot lid sinds %s"
+msgstr "Kizuku lid sinds %s"
 
 #: src/app/main/ui/settings/subscription.cljs:285
 msgid "subscription.settings.other-plans"
-msgstr "Overige Penpot-abonnementen"
+msgstr "Overige Kizuku-abonnementen"
 
 #: src/app/main/ui/settings/subscription.cljs:289, src/app/main/ui/settings/subscription.cljs:302
 msgid "subscription.settings.price-editor-month"
@@ -4433,31 +4419,31 @@ msgstr "Onbeperkt aantal teams, ongeacht de grootte van je team"
 
 #: src/app/main/ui/dashboard/files.cljs:179
 msgid "title.dashboard.files"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:46
 msgid "title.dashboard.font-providers"
-msgstr "Lettertypeaanbieders - %s - Penpot"
+msgstr "Lettertypeaanbieders - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:45
 msgid "title.dashboard.fonts"
-msgstr "Lettertypen - %s - Penpot"
+msgstr "Lettertypen - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/projects.cljs:350
 msgid "title.dashboard.projects"
-msgstr "Projecten - %s - Penpot"
+msgstr "Projecten - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/search.cljs:50
 msgid "title.dashboard.search"
-msgstr "Zoeken - %s - Penpot"
+msgstr "Zoeken - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/libraries.cljs:57
 msgid "title.dashboard.shared-libraries"
-msgstr "Gedeelde bibliotheken - %s - Penpot"
+msgstr "Gedeelde bibliotheken - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "Penpot - Ontwerpvrijheid voor teams"
+msgstr "Kizuku - Ontwerpvrijheid voor teams"
 
 #: src/app/main/ui/settings/access_tokens.cljs:280
 msgid "title.settings.access-tokens"
@@ -4465,47 +4451,47 @@ msgstr "Profiel - Toegangsbewijzen"
 
 #: src/app/main/ui/settings/feedback.cljs:107
 msgid "title.settings.feedback"
-msgstr "Feedback geven - Penpot"
+msgstr "Feedback geven - Kizuku"
 
 #: src/app/main/ui/settings/notifications.cljs:45
 msgid "title.settings.notifications"
-msgstr "Meldingen - Penpot"
+msgstr "Meldingen - Kizuku"
 
 #: src/app/main/ui/settings/options.cljs:83
 msgid "title.settings.options"
-msgstr "Instellingen - Penpot"
+msgstr "Instellingen - Kizuku"
 
 #: src/app/main/ui/settings/password.cljs:103
 msgid "title.settings.password"
-msgstr "Wachtwoord - Penpot"
+msgstr "Wachtwoord - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
-msgstr "Profiel - Penpot"
+msgstr "Profiel - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
-msgstr "Uitnodigingen - %s - Penpot"
+msgstr "Uitnodigingen - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
-msgstr "Leden - %s - Penpot"
+msgstr "Leden - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1131
 msgid "title.team-settings"
-msgstr "Instellingen - %s - Penpot"
+msgstr "Instellingen - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1084
 msgid "title.team-webhooks"
-msgstr "Webhooks - %s - Penpot"
+msgstr "Webhooks - %s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:423
 msgid "title.viewer"
-msgstr "%s - Weergavemodus - Penpot"
+msgstr "%s - Weergavemodus - Kizuku"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui.cljs:138
 #, unused
@@ -7597,7 +7583,7 @@ msgstr "Versie-menu openen"
 msgid "workspace.versions.warning.subtext"
 msgstr ""
 "Als je deze limiet wilt verhogen, schrijf ons dan op "
-"[support@penpot.app](%s)"
+"[support@kizu.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"
@@ -7609,7 +7595,7 @@ msgstr "Klik om het pad te sluiten"
 
 #: src/app/main/ui/settings/options.cljs:69
 msgid "dashboard.select-ui-theme.light"
-msgstr "Penpot Licht"
+msgstr "Kizuku Licht"
 
 #: src/app/main/ui/settings/options.cljs:70
 msgid "dashboard.select-ui-theme.system"
@@ -7761,7 +7747,7 @@ msgstr "Leeg"
 
 #: src/app/main/ui/settings/options.cljs:68
 msgid "dashboard.select-ui-theme.dark"
-msgstr "Penpot Donker (standaard)"
+msgstr "Kizuku Donker (standaard)"
 
 #: src/app/main/ui/settings/subscription.cljs:295, src/app/main/ui/settings/subscription.cljs:309, src/app/main/ui/settings/subscription.cljs:323
 msgid "subscription.settings.more-information"

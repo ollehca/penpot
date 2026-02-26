@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
-"Language-Team: Basque <https://hosted.weblate.org/projects/penpot/frontend/"
+"Language-Team: Basque <https://hosted.weblate.org/projects/kizu/frontend/"
 "eu/>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr "Baduzu kontua?"
 #, unused
 msgid "auth.check-your-email"
 msgstr ""
-"Begiratu zure eposta eta egin klik egiaztapen estekan Penpot erabiltzen "
+"Begiratu zure eposta eta egin klik egiaztapen estekan Kizuku erabiltzen "
 "hasteko."
 
 #: src/app/main/ui/auth/recovery.cljs:67
@@ -140,7 +140,7 @@ msgstr "Sortu kontua"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "Diseinuak eta prototipoak egiteko kode irekiko soluzioa."
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:246, src/app/main/ui/dashboard/sidebar.cljs:1083, src/app/main/ui/workspace/main_menu.cljs:155
 msgid "auth.terms-of-service"
@@ -156,7 +156,7 @@ msgstr "Argitaratu"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "Penpoten erabiltzaile guztiak"
+msgstr "Kizukuen erabiltzaile guztiak"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -231,7 +231,7 @@ msgstr "Taldearen kudeaketa"
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
 msgstr ""
-"Penpot taldeentzat sortuta dago. Gonbidatu beste pertsona batzuk proiektu "
+"Kizuku taldeentzat sortuta dago. Gonbidatu beste pertsona batzuk proiektu "
 "eta fitxategietan batera lan egiteko"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
@@ -241,7 +241,7 @@ msgstr "Egin taldea!"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.tutorial-hero.info"
-msgstr "Ikasi Penpoten oinarriak tutorial atsegin honekin."
+msgstr "Ikasi Kizukuen oinarriak tutorial atsegin honekin."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -257,7 +257,7 @@ msgstr "Tutorial atsegina"
 #, unused
 msgid "dasboard.walkthrough-hero.info"
 msgstr ""
-"Eman begirada bat Penpoti bere oinarrizko funtzionalitateak zein diren "
+"Eman begirada bat Kizukui bere oinarrizko funtzionalitateak zein diren "
 "ezagutzeko."
 
 #: src/app/main/ui/dashboard/projects.cljs
@@ -288,7 +288,7 @@ msgstr "Sortu talde berria"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Zure Penpot"
+msgstr "Zure Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -296,7 +296,7 @@ msgstr "Ezabatu taldea"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Deskargatu Penpot fitxategia (.penpot)"
+msgstr "Deskargatu Kizuku fitxategia (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -312,7 +312,7 @@ msgstr "%s fitxategi bizkoiztu"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Deskargatu %s Penpot fitxategi (.penpot)"
+msgstr "Deskargatu %s Kizuku fitxategi (.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -324,7 +324,7 @@ msgstr "Esportatu PDFra"
 
 #, unused
 msgid "dashboard.export-multi"
-msgstr "Esportatu %s Penpot fitxategi"
+msgstr "Esportatu %s Kizuku fitxategi"
 
 #: src/app/main/ui/exports/assets.cljs:106
 msgid "dashboard.export-multiple.selected"
@@ -342,7 +342,7 @@ msgstr ""
 
 #: src/app/main/ui/exports/assets.cljs:181
 msgid "dashboard.export-shapes.how-to-link"
-msgstr "Penpoten esportazioak konfiguratzeari buruzko informazioa."
+msgstr "Kizukuen esportazioak konfiguratzeari buruzko informazioa."
 
 #: src/app/main/ui/exports/assets.cljs:176
 msgid "dashboard.export-shapes.no-elements"
@@ -430,9 +430,9 @@ msgstr ""
 #, markdown
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
-"Zureak diren edo Penpoten erabiltzeko lizentzia duzun letra-tipoak bakarrik "
+"Zureak diren edo Kizukuen erabiltzeko lizentzia duzun letra-tipoak bakarrik "
 "kargatu ditzakezu. Informazio gehiago lortzeko irakurri Edukiaren "
-"eskubideen atala: [Penpoten erabilpen baldintzak](%s). Letra-tipoen "
+"eskubideen atala: [Kizukuen erabilpen baldintzak](%s). Letra-tipoen "
 "lizentzien inguruan irakurtzea ere interesgarria izan daiteke: "
 "[letra-tipoen lizentziak](https://www.typography.com/faq)."
 
@@ -452,7 +452,7 @@ msgstr ""
 
 #: src/app/main/ui/dashboard/import.cljs:461, src/app/main/ui/dashboard/project_menu.cljs:109
 msgid "dashboard.import"
-msgstr "Inportatu Penpot fitxategiak"
+msgstr "Inportatu Kizuku fitxategiak"
 
 #: src/app/main/ui/dashboard/import.cljs:290, src/app/worker/import.cljs:121, src/app/worker/import.cljs:124
 msgid "dashboard.import.analyze-error"
@@ -719,7 +719,7 @@ msgstr "Webhooka ondo sortu da."
 #: src/app/main/ui/dashboard/team.cljs:971
 msgid "dashboard.webhooks.description"
 msgstr ""
-"Webhookak beste webgune batzuei Penpoten zerbait gertatu dela jakinarazteko "
+"Webhookak beste webgune batzuei Kizukuen zerbait gertatu dela jakinarazteko "
 "modu bat dira. Adierazitako URLtara POST eskaera bat bidaliko dugu."
 
 #: src/app/main/ui/dashboard/team.cljs:1100
@@ -747,8 +747,8 @@ msgid "dashboard.your-name"
 msgstr "Izena"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
-msgstr "Zure Penpot"
+msgid "dashboard.your-kizu"
+msgstr "Zure Kizuku"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"
@@ -820,7 +820,7 @@ msgstr ""
 msgid "errors.feature-mismatch"
 msgstr ""
 "Badirudi '%s' ezaugarria aktibo duen fitxategi bat irekitzen ari zarela "
-"baina zure penpot frontendak ezin du hori egin edo ezaugarri hori "
+"baina zure kizu frontendak ezin du hori egin edo ezaugarri hori "
 "desaktibatuta du."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
@@ -972,15 +972,15 @@ msgstr "Deskribapena"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "Penpoten forora joan"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
-msgstr "Ongi etorri! Laguntza behar baduzu, bilatu, idatzi edo galdetu lasai."
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "Penpot komunitatea"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -998,15 +998,15 @@ msgstr "Posta elektronikoa"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "Xrera joan"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "Zure zalantza teknikoak erantzuteko kontua."
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "Laguntzarako X kontua"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1191,7 +1191,7 @@ msgstr "Letra larriz"
 #: src/app/main/ui/inspect/right_sidebar.cljs:163
 msgid "inspect.empty.help"
 msgstr ""
-"Diseinua ikuskatzeari buruz gehiago jakin nahi baduzu zoaz Penpoten "
+"Diseinua ikuskatzeari buruz gehiago jakin nahi baduzu zoaz Kizukuen "
 "laguntza zentrora"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:166
@@ -1332,8 +1332,8 @@ msgid "labels.continue-with"
 msgstr "Honekin jarraitu"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
-msgstr "Penpot kontu batekin jarraitu dezakezu"
+msgid "labels.continue-with-kizu"
+msgstr "Kizuku kontu batekin jarraitu dezakezu"
 
 #: src/app/main/ui/dashboard/team.cljs:700
 msgid "labels.copy-invitation-link"
@@ -1441,7 +1441,7 @@ msgstr "Itzuli"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "Laguntza zentroa"
+msgstr ""
 
 #: src/app/main/ui/viewer/comments.cljs:104, src/app/main/ui/workspace/comments.cljs:73
 msgid "labels.hide-resolved-comments"
@@ -2104,13 +2104,11 @@ msgstr ""
 #, unused
 msgid "onboarding-v2.before-start.desc1"
 msgstr ""
-"Penpotekin lanean hasteko hainbat eta hainbat baliabide daude, adibidez "
-"erabiltzailearen gida eta gure Youtube kanala."
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
 msgstr ""
-"Penpot erabiltzeari buruko informazioa. Prototipoak egitetik, diseinuak "
+"Kizuku erabiltzeari buruko informazioa. Prototipoak egitetik, diseinuak "
 "antolatu eta partekatzera."
 
 #, unused
@@ -2119,7 +2117,7 @@ msgstr "Erabiltzailearen gida"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
-msgstr "Gure eta komunitateak egindako tutorialak ikusi ditzakezu."
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -2132,14 +2130,12 @@ msgstr "Hasi aurretik"
 #: src/app/main/ui/onboarding/newsletter.cljs:68
 msgid "onboarding-v2.newsletter.desc"
 msgstr ""
-"Harpidetu Penpoten buletinera produktuaren garapenaren inguruko albisteak "
+"Harpidetu Kizukuen buletinera produktuaren garapenaren inguruko albisteak "
 "ezagutzeko."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
 msgstr ""
-"Bidali Penpoti buruzko albisteak (blogeko artikuluak, bideo-tutorialak, "
-"zuzenekoak...)."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -2161,32 +2157,26 @@ msgstr ""
 #, unused
 msgid "onboarding-v2.welcome.desc1"
 msgstr ""
-"Penpot Kode Irekikoa da eta Kaleidos eta komunitateak egindakoa da. "
-"Laguntzeko erak:"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
 msgstr ""
-"Penpoten oraina eta etorkizunari buruz ikasi, partekatu eta eztabaidatzeko "
-"tokia."
 
 #, unused
 msgid "onboarding-v2.welcome.desc2.title"
-msgstr "Komunitatean parte hartzen"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
 msgstr ""
-"Hemen izango duzu itzulpenekin laguntzeko informazioa, funtzionalitateak "
-"eskatzeko modua, erroreak bilatzekoa…"
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "Laguntzeko gida"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
-msgstr "Ongi etorri Penpotera!"
+msgstr "Ongi etorri Kizukuera!"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:177
 msgid "onboarding.choice.team-up.create-team-desc"
@@ -2226,7 +2216,7 @@ msgstr "Pribatutasun politika."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:65
 msgid "onboarding.newsletter.title"
-msgstr "Penpoti buruzko albisteak jaso nahi dituzu?"
+msgstr "Kizukui buruzko albisteak jaso nahi dituzu?"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:175
 msgid "onboarding.team-modal.create-team"
@@ -2235,7 +2225,7 @@ msgstr "Sortu talde bat"
 #: src/app/main/ui/onboarding/team_choice.cljs:31
 msgid "onboarding.team-modal.create-team-desc"
 msgstr ""
-"Talde batek Penpoten fitxategi eta proiektuetan elkarrekin lan egiteko "
+"Talde batek Kizukuen fitxategi eta proiektuetan elkarrekin lan egiteko "
 "aukera ematen du."
 
 #: src/app/main/ui/onboarding/team_choice.cljs:36
@@ -2268,7 +2258,7 @@ msgstr "Hasi diseinatzen"
 
 #, unused
 msgid "onboarding.welcome.alt"
-msgstr "Penpot"
+msgstr "Kizuku"
 
 #: src/app/main/ui/auth/recovery.cljs:88
 msgid "profile.recovery.go-to-login"
@@ -2890,71 +2880,71 @@ msgstr "Zooma aukeraketara"
 
 #: src/app/main/ui/dashboard/files.cljs:179
 msgid "title.dashboard.files"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:46
 msgid "title.dashboard.font-providers"
-msgstr "Letra-tipoen hornitzaileak - %s - Penpot"
+msgstr "Letra-tipoen hornitzaileak - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:45
 msgid "title.dashboard.fonts"
-msgstr "Letra-tipoak - %s - Penpot"
+msgstr "Letra-tipoak - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/projects.cljs:350
 msgid "title.dashboard.projects"
-msgstr "Proiektuak - %s - Penpot"
+msgstr "Proiektuak - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/search.cljs:50
 msgid "title.dashboard.search"
-msgstr "Bilatu - %s - Penpot"
+msgstr "Bilatu - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/libraries.cljs:57
 msgid "title.dashboard.shared-libraries"
-msgstr "Partekatutako liburutegiak - %s - Penpot"
+msgstr "Partekatutako liburutegiak - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "Penpot - Taldeentzako diseinu librea"
+msgstr "Kizuku - Taldeentzako diseinu librea"
 
 #: src/app/main/ui/settings/feedback.cljs:107
 msgid "title.settings.feedback"
-msgstr "Eman zure iritzia - Penpot"
+msgstr "Eman zure iritzia - Kizuku"
 
 #: src/app/main/ui/settings/options.cljs:83
 msgid "title.settings.options"
-msgstr "Ezarpenak - Penpot"
+msgstr "Ezarpenak - Kizuku"
 
 #: src/app/main/ui/settings/password.cljs:103
 msgid "title.settings.password"
-msgstr "Pasahitza - Penpot"
+msgstr "Pasahitza - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
-msgstr "Profila - Penpot"
+msgstr "Profila - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
-msgstr "Gonbidapenak - %s - Penpot"
+msgstr "Gonbidapenak - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
-msgstr "Kideak - %s - Penpot"
+msgstr "Kideak - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1131
 msgid "title.team-settings"
-msgstr "Ezarpenak - %s - Penpot"
+msgstr "Ezarpenak - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1084
 msgid "title.team-webhooks"
-msgstr "Webhookak - %s - Penpot"
+msgstr "Webhookak - %s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:423
 msgid "title.viewer"
-msgstr "%s - Ikusteko modua - Penpot"
+msgstr "%s - Ikusteko modua - Kizuku"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui.cljs:138
 #, unused

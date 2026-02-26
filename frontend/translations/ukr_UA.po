@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Denys Kisil <ossenjoyer@proton.me>\n"
-"Language-Team: Ukrainian <https://hosted.weblate.org/projects/penpot/"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/kizu/"
 "frontend/ukr_UA/>\n"
 "Language: ukr_UA\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Перевірте свою електронну скриньку"
 msgid "auth.check-your-email"
 msgstr ""
 "Підтвердьте обліковий запис за посиланням в листі та почніть користуватись "
-"Penpot."
+"Kizuku."
 
 #: src/app/main/ui/auth/recovery.cljs:67
 msgid "auth.confirm-password"
@@ -69,8 +69,6 @@ msgstr "Вхід"
 #: src/app/main/ui/auth/login.cljs:285
 msgid "auth.login-tagline"
 msgstr ""
-"Penpot це вільний інструмент з відкритим сирцевим кодом для спільної роботи "
-"над дизайном та кодом"
 
 #: src/app/main/ui/auth/login.cljs:222
 msgid "auth.login-with-github-submit"
@@ -162,7 +160,7 @@ msgstr "Створити обліковий запис"
 #, unused
 msgid "auth.register-tagline"
 msgstr ""
-"З безкоштовним обліковим записом Penpot Ви зможете створювати необмежену "
+"З безкоштовним обліковим записом Kizuku Ви зможете створювати необмежену "
 "кількість команд і співпрацювати з іншими дизайнерами та розробниками над "
 "безліччю проєктів. "
 
@@ -173,7 +171,7 @@ msgstr "Створити обліковий запис"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "Відкрите рішення для дизайну та прототипування."
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:50
 #, markdown
@@ -215,7 +213,7 @@ msgstr "Опублікувати"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "Усі користувачі Penpot"
+msgstr "Усі користувачі Kizuku"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -293,7 +291,7 @@ msgstr "Керування командою"
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
 msgstr ""
-"Penpot призначений для командної роботи. Запрошуйте учасників до спільної "
+"Kizuku призначений для командної роботи. Запрошуйте учасників до спільної "
 "роботи над проєктами та файлами"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
@@ -303,7 +301,7 @@ msgstr "Об'єднуйтесь!"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.tutorial-hero.info"
-msgstr "Вивчайте основи Penpot, отримуючи задоволення від цих посібників."
+msgstr "Вивчайте основи Kizuku, отримуючи задоволення від цих посібників."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -318,7 +316,7 @@ msgstr "Навчальний посібник"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "Ознайомтесь з Penpot та дізнайтесь про його основні можливості."
+msgstr "Ознайомтесь з Kizuku та дізнайтесь про його основні можливості."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -391,7 +389,7 @@ msgid "dashboard.access-tokens.personal.description"
 msgstr ""
 "Персональні токени доступу є альтернативою нашій системі автентифікації "
 "\"логін/пароль\" та можуть бути використаними для надання застосунку "
-"доступу до внутрішнього API Penpot"
+"доступу до внутрішнього API Kizuku"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
 msgid "dashboard.access-tokens.token-will-expire"
@@ -427,7 +425,7 @@ msgstr "Пришпилити цю версію"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Ваш Penpot"
+msgstr "Ваш Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -435,7 +433,7 @@ msgstr "Видалити команду"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Завантажити файл Penpot (.penpot)"
+msgstr "Завантажити файл Kizuku (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -471,7 +469,7 @@ msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Додані до проєкту бібліотеки з'являться тут. Можете поширити власні файли "
 "чи додати з нашої [сторінки Бібліотек та "
-"шаблонів](https://penpot.app/libraries-templates)."
+"шаблонів](https://kizu.app/libraries-templates)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
@@ -479,7 +477,7 @@ msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Додані до проєкту бібліотеки з'являться тут. Можете поширити власні файли "
 "чи додати з нашої [сторінки Бібліотек та "
-"шаблонів](https://penpot.app/libraries-templates)."
+"шаблонів](https://kizu.app/libraries-templates)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -510,8 +508,8 @@ msgid "dashboard.empty-project.import"
 msgstr "Імпортувати файл"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
-msgid "dashboard.empty-project.import-penpot"
-msgstr "Імпортувати файл .penpot"
+msgid "dashboard.empty-project.import-kizu"
+msgstr "Імпортувати файл .kizu"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -519,7 +517,7 @@ msgstr "Почніть робити чудові речі"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Завантажити %s файлів Penpot (.penpot)"
+msgstr "Завантажити %s файлів Kizuku (.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -531,7 +529,7 @@ msgstr "Експортувати у PDF"
 
 #, unused
 msgid "dashboard.export-multi"
-msgstr "Експорт (%s) файлів Penpot"
+msgstr "Експорт (%s) файлів Kizuku"
 
 #: src/app/main/ui/exports/assets.cljs:106
 msgid "dashboard.export-multiple.selected"
@@ -549,7 +547,7 @@ msgstr ""
 
 #: src/app/main/ui/exports/assets.cljs:181
 msgid "dashboard.export-shapes.how-to-link"
-msgstr "Інформація про те, як налаштувати експорти в Penpot."
+msgstr "Інформація про те, як налаштувати експорти в Kizuku."
 
 #: src/app/main/ui/exports/assets.cljs:176
 msgid "dashboard.export-shapes.no-elements"
@@ -651,8 +649,8 @@ msgstr ""
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
 "Ви повинні завантажувати лише ті шрифти, якими володієте або маєте ліцензію "
-"на використання в Penpot. Дізнайтеся більше в розділі \"Content Rights\" в "
-"[Умовах користування Penpot](https://penpot.app/terms.html). Ви також "
+"на використання в Kizuku. Дізнайтеся більше в розділі \"Content Rights\" в "
+"[Умовах користування Kizuku](https://kizu.app/terms.html). Ви також "
 "можете прочитати про [ліцензування шрифтів](https://www.typography.com/faq)."
 
 #: src/app/main/ui/dashboard/fonts.cljs:214
@@ -672,7 +670,7 @@ msgstr ""
 
 #: src/app/main/ui/dashboard/import.cljs:461, src/app/main/ui/dashboard/project_menu.cljs:109
 msgid "dashboard.import"
-msgstr "Імпортувати файли Penpot"
+msgstr "Імпортувати файли Kizuku"
 
 #: src/app/main/ui/dashboard/import.cljs:290, src/app/worker/import.cljs:121, src/app/worker/import.cljs:124
 msgid "dashboard.import.analyze-error"
@@ -1081,8 +1079,8 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "Без обмежень на креативність"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.penpot-free"
-msgstr "Penpot Безкоштовний"
+msgid "dashboard.upgrade-plan.kizu-free"
+msgstr "Kizuku Безкоштовний"
 
 #: src/app/main/ui/dashboard/team.cljs:950
 msgid "dashboard.webhooks.active"
@@ -1112,7 +1110,7 @@ msgstr "Вебхук успішно створено."
 msgid "dashboard.webhooks.description"
 msgstr ""
 "Веб-хуки - це простий спосіб дозволити іншим веб-сайтам і застосункам "
-"отримувати сповіщення про певні події в Penpot. Ми надішлемо POST-запит на "
+"отримувати сповіщення про певні події в Kizuku. Ми надішлемо POST-запит на "
 "кожну з вказаних вами URL-адрес."
 
 #: src/app/main/ui/dashboard/team.cljs:1100
@@ -1140,8 +1138,8 @@ msgid "dashboard.your-name"
 msgstr "Ваше ім'я"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
-msgstr "Ваш Penpot"
+msgid "dashboard.your-kizu"
+msgstr "Ваш Kizuku"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"
@@ -1210,7 +1208,7 @@ msgstr "З коментарем сталась помилка"
 #: src/app/main/errors.cljs:264
 msgid "errors.deprecated"
 msgstr ""
-"Вибачте! Це старий файл, що використовує застарілий тип ресурсів Penpot, і "
+"Вибачте! Це старий файл, що використовує застарілий тип ресурсів Kizuku, і "
 "їх не можна відкрити."
 
 #: src/app/main/errors.cljs:267
@@ -1219,7 +1217,7 @@ msgstr "щоб ми Вам допомогли."
 
 #: src/app/main/errors.cljs:265
 msgid "errors.deprecated.contact.before"
-msgstr "Оскільки Penpot не підтримує цей тип Ресурсів, Ви можете"
+msgstr "Оскільки Kizuku не підтримує цей тип Ресурсів, Ви можете"
 
 #: src/app/main/errors.cljs:266
 msgid "errors.deprecated.contact.text"
@@ -1261,7 +1259,7 @@ msgstr ""
 msgid "errors.feature-mismatch"
 msgstr ""
 "Схоже, Ви намагаєтесь відкрити файл, який має активовану функцію \"%s\", "
-"але поточна версія Penpot наразі не підтримує її або вона вимкнена."
+"але поточна версія Kizuku наразі не підтримує її або вона вимкнена."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -1501,17 +1499,15 @@ msgstr "Опис"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "Відвідати форум Penpot"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
 msgstr ""
-"Ми раді вас бачити. Якщо потрібна допомога, спешру спробуйте знайти перш "
-"ніж публікувати."
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "Спільнота Penpot"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -1529,15 +1525,15 @@ msgstr "Електронна пошта"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "Відвідати X"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "Ми готові допомогти з вашими технічними питаннями."
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "Обліковий запис служби підтримки в X"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1735,7 +1731,7 @@ msgstr "Властивості варіантів"
 msgid "inspect.empty.help"
 msgstr ""
 "Якщо ви хочете дізнатися більше про інспекцію дизайну, відвідайте "
-"довідковий центр Penpot"
+"довідковий центр Kizuku"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:166
 msgid "inspect.empty.more-info"
@@ -1921,8 +1917,8 @@ msgid "labels.continue-with"
 msgstr "Продовжити з"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
-msgstr "Ви можете продовжувати з обліковим записом Penpot"
+msgid "labels.continue-with-kizu"
+msgstr "Ви можете продовжувати з обліковим записом Kizuku"
 
 #: src/app/main/ui/components/copy_button.cljs:41
 msgid "labels.copy"
@@ -1938,7 +1934,7 @@ msgstr "Копіювати посилання"
 
 #: src/app/main/ui/static.cljs:62
 msgid "labels.copyright"
-msgstr "Калейдос @2024"
+msgstr "Kizuku @2025"
 
 #: src/app/main/ui/workspace/sidebar/assets/groups.cljs:151, src/app/main/ui/workspace/sidebar/options/menus/component.cljs:201
 msgid "labels.create"
@@ -2086,7 +2082,7 @@ msgstr "Графічний дизайн"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "Центр Допомоги"
+msgstr ""
 
 #: src/app/main/ui/dashboard/templates.cljs:90
 msgid "labels.hide"
@@ -2514,7 +2510,7 @@ msgstr "Ваш обліковий запис"
 #: src/app/main/ui/onboarding/questions.cljs:403
 #, unused
 msgid "labels.youtube"
-msgstr "Ютуб"
+msgstr ""
 
 #: src/app/main/ui/ds/product/loader.cljs:21
 msgid "loader.tips.01.message"
@@ -2569,7 +2565,7 @@ msgstr "Прототипи із взаємодіями"
 #: src/app/main/ui/ds/product/loader.cljs:33
 msgid "loader.tips.07.message"
 msgstr ""
-"Penpot використовує SVG та CSS щоб забезпечити безперебійну роботу над "
+"Kizuku використовує SVG та CSS щоб забезпечити безперебійну роботу над "
 "дизайном."
 
 #: src/app/main/ui/ds/product/loader.cljs:32
@@ -2597,7 +2593,7 @@ msgstr "Темний і світлий режими"
 #: src/app/main/ui/ds/product/loader.cljs:39
 msgid "loader.tips.10.message"
 msgstr ""
-"Розширюйте Penpot за допомогою плагінами від спільноти для додаткового "
+"Розширюйте Kizuku за допомогою плагінами від спільноти для додаткового "
 "функціоналу."
 
 #: src/app/main/ui/ds/product/loader.cljs:38
@@ -3149,8 +3145,6 @@ msgstr "Сторінка 404"
 #: src/app/main/ui/static.cljs:135
 msgid "not-found.login.free"
 msgstr ""
-"Penpot - відкритий та вільний інструмент для спільної роботи над Дизайном "
-"та Кодом"
 
 #: src/app/main/ui/auth/recovery_request.cljs:114
 msgid "not-found.login.sent-recovery"
@@ -3168,11 +3162,11 @@ msgstr "Зареєструватись безкоштовно"
 
 #: src/app/main/ui/static.cljs:150
 msgid "not-found.login.start-using"
-msgstr "І почати використовувати Penpot у ту ж мить!"
+msgstr "І почати використовувати Kizuku у ту ж мить!"
 
 #: src/app/main/ui/static.cljs:64
 msgid "not-found.made-with-love"
-msgstr "Створено з ЛЮБОВ'Ю та Open Source"
+msgstr ""
 
 #: src/app/main/ui/static.cljs:290
 msgid "not-found.no-permission.already-requested.file"
@@ -3212,15 +3206,15 @@ msgstr "Ви не маєте доступу до цього файлу."
 
 #: src/app/main/ui/static.cljs:51, src/app/main/ui/static.cljs:286, src/app/main/ui/static.cljs:292, src/app/main/ui/static.cljs:298, src/app/main/ui/static.cljs:304, src/app/main/ui/static.cljs:313, src/app/main/ui/static.cljs:322
 msgid "not-found.no-permission.go-dashboard"
-msgstr "Відвідати ваш Penpot"
+msgstr "Відвідати ваш Kizuku"
 
 #: src/app/main/ui/static.cljs:310, src/app/main/ui/static.cljs:319
 msgid "not-found.no-permission.if-approves"
 msgstr "Якщо власник погодить, Ви будете запрошені до команди."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.penpot-file"
-msgstr "Файл Penpot"
+msgid "not-found.no-permission.kizu-file"
+msgstr "Файл Kizuku"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
 msgid "not-found.no-permission.project"
@@ -3273,13 +3267,11 @@ msgstr "Лист для підтвердження надіслано на %s. �
 #, unused
 msgid "onboarding-v2.before-start.desc1"
 msgstr ""
-"Ви маєте знати, що тут є багато ресурсів, які допоможуть вам почати "
-"працювати з Penpot, до прикладу, Посібник Користувача та наш YouTube канал."
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
 msgstr ""
-"Детальна інформація про те, як користуватися Penpot. Від створення "
+"Детальна інформація про те, як користуватися Kizuku. Від створення "
 "прототипів до організації та обміну дизайнами."
 
 #, unused
@@ -3288,7 +3280,7 @@ msgstr "Посібник користувача"
 
 #, unused
 msgid "onboarding-v2.before-start.desc3"
-msgstr "Ви можете переглянути наші посібники та посібники нашої спільноти."
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -3301,12 +3293,12 @@ msgstr "Перш ніж почати"
 #: src/app/main/ui/onboarding/newsletter.cljs:68
 msgid "onboarding-v2.newsletter.desc"
 msgstr ""
-"Підпішиться на розсилку Penpot щоб бути у курсі подій розробки та останніх "
+"Підпішиться на розсилку Kizuku щоб бути у курсі подій розробки та останніх "
 "новин."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
-msgstr "Надсилати мені новини про Penpot (пости з блоґу, відео посібники, етери...)."
+msgstr ""
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -3327,33 +3319,26 @@ msgstr ""
 #, unused
 msgid "onboarding-v2.welcome.desc1"
 msgstr ""
-"Penpot має відкритий вихідний код і розробляється Kaleidos, а також "
-"спільнотою, де багато людей вже допомагають один одному. Кожен може "
-"долучитися до співпраці:"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
 msgstr ""
-"Публічний простір, де можна дізнатися, поділитися та обговорити про Penpot, "
-"його сьогодення та майбутнє з усією спільнотою та основною командою Penpot."
 
 #, unused
 msgid "onboarding-v2.welcome.desc2.title"
-msgstr "Участь у спільноті"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
 msgstr ""
-"Тут Ви дізнаєтеся, як співпрацювати з перекладами, запитами на покращення, "
-"внесками в основний код, пошуком помилок…"
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "Посібник з внесення змін"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
-msgstr "Вітаємо в Penpot!"
+msgstr "Вітаємо в Kizuku!"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:254
 #, unused
@@ -3432,7 +3417,7 @@ msgstr "Потіика Конфіденційності."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:65
 msgid "onboarding.newsletter.title"
-msgstr "Бажаєте отримувати новини від Penpot?"
+msgstr "Бажаєте отримувати новини від Kizuku?"
 
 #: src/app/main/ui/onboarding/questions.cljs:108
 msgid "onboarding.questions.lets-get-started"
@@ -3448,7 +3433,7 @@ msgstr "Просто досліджую"
 
 #: src/app/main/ui/onboarding/questions.cljs:246
 msgid "onboarding.questions.reasons.fit"
-msgstr "Розглядою чи підійде Penpot для потреб моєї команди"
+msgstr "Розглядою чи підійде Kizuku для потреб моєї команди"
 
 #: src/app/main/ui/onboarding/questions.cljs:252
 msgid "onboarding.questions.reasons.testing"
@@ -3491,16 +3476,16 @@ msgstr "Фреймворкінг"
 
 #: src/app/main/ui/onboarding/questions.cljs:116
 msgid "onboarding.questions.step1.question1"
-msgstr "Для чого плануєте використовувати Penpot?"
+msgstr "Для чого плануєте використовувати Kizuku?"
 
 #: src/app/main/ui/onboarding/questions.cljs:273
 msgid "onboarding.questions.step1.question2"
-msgstr "Що саме вас привело до Penpot?"
+msgstr "Що саме вас привело до Kizuku?"
 
 #: src/app/main/ui/onboarding/questions.cljs:112
 msgid "onboarding.questions.step1.subtitle"
 msgstr ""
-"Розкажіть нам трохи про себе, щоб допомогти нам зробити Penpot зручним для "
+"Розкажіть нам трохи про себе, щоб допомогти нам зробити Kizuku зручним для "
 "вас. Ваші відповіді допоможуть нам визначити пріоритетність нових функцій і "
 "вказати Вам потрібний напрямок для початку роботи."
 
@@ -3536,7 +3521,7 @@ msgstr "Звідки хотіли б почати?"
 #: src/app/main/ui/onboarding/questions.cljs:428
 #, unused
 msgid "onboarding.questions.step5.title"
-msgstr "Як дізнались про Penpot?"
+msgstr "Як дізнались про Kizuku?"
 
 #: src/app/main/ui/onboarding/questions.cljs:233
 msgid "onboarding.questions.team-size.11-30"
@@ -3581,7 +3566,7 @@ msgstr "Створіть команду"
 #: src/app/main/ui/onboarding/team_choice.cljs:31
 msgid "onboarding.team-modal.create-team-desc"
 msgstr ""
-"Команда дозволяє вам співпрацювати з іншими користувачами Penpot, які "
+"Команда дозволяє вам співпрацювати з іншими користувачами Kizuku, які "
 "працюють з тими ж файлами і проєктами."
 
 #: src/app/main/ui/onboarding/team_choice.cljs:36
@@ -3618,7 +3603,7 @@ msgstr "Почніть проєктувати"
 
 #, unused
 msgid "onboarding.welcome.alt"
-msgstr "Penpot"
+msgstr "Kizuku"
 
 #: src/app/main/ui/auth/recovery.cljs:88
 msgid "profile.recovery.go-to-login"
@@ -4389,11 +4374,11 @@ msgstr "Керувати підписками"
 #: src/app/main/ui/settings/subscription.cljs:282
 #, fuzzy
 msgid "subscription.settings.member-since"
-msgstr "Учасник Penpot з %s"
+msgstr "Учасник Kizuku з %s"
 
 #: src/app/main/ui/settings/subscription.cljs:285
 msgid "subscription.settings.other-plans"
-msgstr "Інші плани Penpot"
+msgstr "Інші плани Kizuku"
 
 #: src/app/main/ui/settings/subscription.cljs:289, src/app/main/ui/settings/subscription.cljs:302
 msgid "subscription.settings.price-editor-month"
@@ -4442,31 +4427,31 @@ msgstr "Безліч команд з безліччю учасників"
 
 #: src/app/main/ui/dashboard/files.cljs:179
 msgid "title.dashboard.files"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:46
 msgid "title.dashboard.font-providers"
-msgstr "Постачальники шрифтів - %s - Penpot"
+msgstr "Постачальники шрифтів - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:45
 msgid "title.dashboard.fonts"
-msgstr "Шрифти - %s - Penpot"
+msgstr "Шрифти - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/projects.cljs:350
 msgid "title.dashboard.projects"
-msgstr "Проєкти - %s - Penpot"
+msgstr "Проєкти - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/search.cljs:50
 msgid "title.dashboard.search"
-msgstr "Пошук - %s - Penpot"
+msgstr "Пошук - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/libraries.cljs:57
 msgid "title.dashboard.shared-libraries"
-msgstr "Спільні бібліотеки - %s - Penpot"
+msgstr "Спільні бібліотеки - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "Penpot - свобода дизайну для команд"
+msgstr "Kizuku - свобода дизайну для команд"
 
 #: src/app/main/ui/settings/access_tokens.cljs:280
 msgid "title.settings.access-tokens"
@@ -4474,47 +4459,47 @@ msgstr "Профіль - токени доступу"
 
 #: src/app/main/ui/settings/feedback.cljs:107
 msgid "title.settings.feedback"
-msgstr "Надіслати відгук - Penpot"
+msgstr "Надіслати відгук - Kizuku"
 
 #: src/app/main/ui/settings/notifications.cljs:45
 msgid "title.settings.notifications"
-msgstr "Сповіщення - Penpot"
+msgstr "Сповіщення - Kizuku"
 
 #: src/app/main/ui/settings/options.cljs:83
 msgid "title.settings.options"
-msgstr "Налаштування - Penpot"
+msgstr "Налаштування - Kizuku"
 
 #: src/app/main/ui/settings/password.cljs:103
 msgid "title.settings.password"
-msgstr "Пароль - Penpot"
+msgstr "Пароль - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
-msgstr "Профіль - Penpot"
+msgstr "Профіль - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
-msgstr "Запрошення - %s - Penpot"
+msgstr "Запрошення - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
-msgstr "Учасники - %s - Penpot"
+msgstr "Учасники - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1131
 msgid "title.team-settings"
-msgstr "Налаштування - %s - Penpot"
+msgstr "Налаштування - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1084
 msgid "title.team-webhooks"
-msgstr "Вебхуки - %s - Penpot"
+msgstr "Вебхуки - %s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:423
 msgid "title.viewer"
-msgstr "%s - Режим перегляду - Penpot"
+msgstr "%s - Режим перегляду - Kizuku"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"
-msgstr "%s - Penpot"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui.cljs:138
 #, unused
@@ -7602,7 +7587,7 @@ msgstr "Відкрити меню версій"
 msgid "workspace.versions.warning.subtext"
 msgstr ""
 "Якщо Ви хочете збільшити це обмеження, зверніться до нас через "
-"[support@penpot.app](%s)"
+"[support@kizu.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"
@@ -7810,11 +7795,11 @@ msgstr "Помилкове значення: Одиниці не дозволе�
 
 #: src/app/main/ui/settings/options.cljs:68
 msgid "dashboard.select-ui-theme.dark"
-msgstr "Penpot Темний (завмовчки)"
+msgstr "Kizuku Темний (завмовчки)"
 
 #: src/app/main/ui/settings/options.cljs:69
 msgid "dashboard.select-ui-theme.light"
-msgstr "Penpot Світлий"
+msgstr "Kizuku Світлий"
 
 #: src/app/main/ui/settings/options.cljs:70
 msgid "dashboard.select-ui-theme.system"

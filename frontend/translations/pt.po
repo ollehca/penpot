@@ -3,7 +3,7 @@ msgstr ""
 "PO-Revision-Date: 2025-06-05 09:01+0000\n"
 "Last-Translator: Anderson Paulo <anderson.pr10@gmail.com>\n"
 "Language-Team: Portuguese "
-"<https://hosted.weblate.org/projects/penpot/frontend/pt/>\n"
+"<https://hosted.weblate.org/projects/kizu/frontend/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -24,7 +24,7 @@ msgstr "Verifique seu e-mail"
 msgid "auth.check-your-email"
 msgstr ""
 "Verifique seu e-mail e clique no link para verificar e começar a usar o "
-"Penpot."
+"Kizuku."
 
 #: src/app/main/ui/auth/recovery.cljs:67
 msgid "auth.confirm-password"
@@ -68,8 +68,6 @@ msgstr "Login"
 #: src/app/main/ui/auth/login.cljs:285
 msgid "auth.login-tagline"
 msgstr ""
-"Penpot é a ferramenta de design de código aberto e gratuita para "
-"colaboração em design e código"
 
 #: src/app/main/ui/auth/login.cljs:222
 msgid "auth.login-with-github-submit"
@@ -161,7 +159,7 @@ msgstr "Criar uma conta"
 #, unused
 msgid "auth.register-tagline"
 msgstr ""
-"Com uma conta gratuita do Penpot, você pode criar equipes ilimitadas e "
+"Com uma conta gratuita do Kizuku, você pode criar equipes ilimitadas e "
 "colaborar com outros designers e desenvolvedores em quantos projetos "
 "quiser. "
 
@@ -172,7 +170,7 @@ msgstr "Criar uma conta"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "A solução de código aberto para design e prototipagem."
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:50
 #, markdown
@@ -212,7 +210,7 @@ msgstr "Publicar"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "Todos os usuários do Penpot"
+msgstr "Todos os usuários do Kizuku"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -289,7 +287,7 @@ msgstr "Gestão da equipe"
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
 msgstr ""
-"O Penpot foi feito para equipes. Convide membros para trabalharem juntos em "
+"O Kizuku foi feito para equipes. Convide membros para trabalharem juntos em "
 "projetos e arquivos"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
@@ -299,7 +297,7 @@ msgstr "Monte sua equipe!"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.tutorial-hero.info"
-msgstr "Aprenda o básico no Penpot enquanto se diverte com este tutorial prático."
+msgstr "Aprenda o básico no Kizuku enquanto se diverte com este tutorial prático."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -314,7 +312,7 @@ msgstr "Tutorial prático"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "Explore o Penpot e conheça suas principais funcionalidades."
+msgstr "Explore o Kizuku e conheça suas principais funcionalidades."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -387,7 +385,7 @@ msgid "dashboard.access-tokens.personal.description"
 msgstr ""
 "Tokens de acesso pessoal funcionam como uma alternativa ao nosso sistema de "
 "autenticação por login e senha, e podem ser usados para permitir que um "
-"aplicativo acesse a API interna do Penpot"
+"aplicativo acesse a API interna do Kizuku"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
 msgid "dashboard.access-tokens.token-will-expire"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Revenant <mohdmuizz22@yahoo.com>\n"
-"Language-Team: Malay <https://hosted.weblate.org/projects/penpot/frontend/ms/"
+"Language-Team: Malay <https://hosted.weblate.org/projects/kizu/frontend/ms/"
 ">\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
@@ -125,7 +125,7 @@ msgstr "Cipta akaun"
 #: src/app/main/ui/auth.cljs
 #, unused
 msgid "auth.sidebar-tagline"
-msgstr "Penyelesaian sumber terbuka untuk reka bentuk dan prototaip."
+msgstr ""
 
 #: src/app/main/ui/auth/register.cljs:246, src/app/main/ui/dashboard/sidebar.cljs:1083, src/app/main/ui/workspace/main_menu.cljs:155
 msgid "auth.terms-of-service"
@@ -152,7 +152,7 @@ msgstr "Terbitkan"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "Semua pengguna Penpot"
+msgstr "Semua pengguna Kizuku"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -228,7 +228,7 @@ msgstr "Pengurusan pasukan"
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
 msgstr ""
-"Penpot dibuat untuk pasukan. Jemput ahli untuk bekerjasama dalam projek dan "
+"Kizuku dibuat untuk pasukan. Jemput ahli untuk bekerjasama dalam projek dan "
 "fail"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
@@ -239,7 +239,7 @@ msgstr "Berganding bahu!"
 #, unused
 msgid "dasboard.tutorial-hero.info"
 msgstr ""
-"Pelajari asas-asas di Penpot sambil berseronok dengan tutorial guna tangan "
+"Pelajari asas-asas di Kizuku sambil berseronok dengan tutorial guna tangan "
 "ini."
 
 #: src/app/main/ui/dashboard/projects.cljs
@@ -255,7 +255,7 @@ msgstr "Tutorial guna tangan"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "Terokai Penpot untuk mengetahui lebih lanjut tentang ciri utamanya."
+msgstr "Terokai Kizuku untuk mengetahui lebih lanjut tentang ciri utamanya."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -328,7 +328,7 @@ msgid "dashboard.access-tokens.personal.description"
 msgstr ""
 "Token capaian peribadi berfungsi seperti alternatif kepada sistem "
 "pengesahan log masuk/kata laluan kami dan boleh digunakan untuk membenarkan "
-"aplikasi mengakses API dalaman Penpot"
+"aplikasi mengakses API dalaman Kizuku"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
 msgid "dashboard.access-tokens.token-will-expire"
@@ -356,7 +356,7 @@ msgstr "Buat pasukan baharu"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Penpot anda"
+msgstr "Kizuku anda"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -364,7 +364,7 @@ msgstr "Padam pasukan"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Muat turun fail Penpot (.penpot)"
+msgstr "Muat turun fail Kizuku (.kizu)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -380,7 +380,7 @@ msgstr "Pendua %s fail"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Muat turun %s fail Penpot (.penpot)"
+msgstr "Muat turun %s fail Kizuku (.kizu)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -392,7 +392,7 @@ msgstr "Eksport sebagai PDF"
 
 #, unused
 msgid "dashboard.export-multi"
-msgstr "Eksport fail Penpot %s"
+msgstr "Eksport fail Kizuku %s"
 
 #: src/app/main/ui/exports/assets.cljs:106
 msgid "dashboard.export-multiple.selected"
@@ -410,7 +410,7 @@ msgstr ""
 
 #: src/app/main/ui/exports/assets.cljs:181
 msgid "dashboard.export-shapes.how-to-link"
-msgstr "Maklumat cara untuk menetapkan eksport di Penpot."
+msgstr "Maklumat cara untuk menetapkan eksport di Kizuku."
 
 #: src/app/main/ui/exports/assets.cljs:176
 msgid "dashboard.export-shapes.no-elements"
@@ -500,8 +500,8 @@ msgstr ""
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
 "Anda hanya perlu memuat naik fon yang anda miliki atau mempunyai lesen "
-"untuk digunakan dalam Penpot. Ketahui lebih lanjut dalam bahagian Hak "
-"kandungan [Syarat Perkhidmatan Penpot](%s). Anda juga mungkin ingin membaca "
+"untuk digunakan dalam Kizuku. Ketahui lebih lanjut dalam bahagian Hak "
+"kandungan [Syarat Perkhidmatan Kizuku](%s). Anda juga mungkin ingin membaca "
 "tentang [pelesenan fon](https://www.typography.com/faq)."
 
 #: src/app/main/ui/dashboard/fonts.cljs:214
@@ -521,7 +521,7 @@ msgstr ""
 
 #: src/app/main/ui/dashboard/import.cljs:461, src/app/main/ui/dashboard/project_menu.cljs:109
 msgid "dashboard.import"
-msgstr "Import fail Penpot"
+msgstr "Import fail Kizuku"
 
 #: src/app/main/ui/dashboard/import.cljs:290, src/app/worker/import.cljs:121, src/app/worker/import.cljs:124
 msgid "dashboard.import.analyze-error"
@@ -798,7 +798,7 @@ msgstr "Webhook berjaya dihasilkan."
 msgid "dashboard.webhooks.description"
 msgstr ""
 "Webhooks adalah cara mudah untuk membolehkan tapak web dan apl lain "
-"dimaklumkan apabila acara tertentu berlaku di Penpot. Kami akan menghantar "
+"dimaklumkan apabila acara tertentu berlaku di Kizuku. Kami akan menghantar "
 "permintaan POST ke setiap URL yang anda berikan."
 
 #: src/app/main/ui/dashboard/team.cljs:1100
@@ -826,8 +826,8 @@ msgid "dashboard.your-name"
 msgstr "Nama anda"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-penpot"
-msgstr "Penpot anda"
+msgid "dashboard.your-kizu"
+msgstr "Kizuku anda"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"
@@ -901,7 +901,7 @@ msgstr "E-mel «%s» telah dilaporkan sebagai spam atau melantun secara kekal."
 msgid "errors.feature-mismatch"
 msgstr ""
 "Nampaknya anda sedang membuka fail yang mendayakan ciri '%s' tetapi versi "
-"penpot semasa tidak menyokongnya atau menyahdayakannya."
+"kizu semasa tidak menyokongnya atau menyahdayakannya."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -1075,17 +1075,15 @@ msgstr "Penerangan"
 
 #: src/app/main/ui/settings/feedback.cljs:92
 msgid "feedback.discourse-go-to"
-msgstr "Pergi ke forum Penpot"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:86
 msgid "feedback.discourse-subtitle1"
 msgstr ""
-"Kami berbesar hati anda berada disini. Jika anda memerlukan bantuan, sila "
-"cari sebelum anda menyiarkan siaran baharu."
 
 #: src/app/main/ui/settings/feedback.cljs:85
 msgid "feedback.discourse-title"
-msgstr "Komuniti Penpot"
+msgstr "Kizuku support"
 
 #: src/app/main/ui/settings/feedback.cljs:69
 msgid "feedback.subject"
@@ -1103,15 +1101,15 @@ msgstr "E-mel"
 
 #: src/app/main/ui/settings/feedback.cljs:102
 msgid "feedback.twitter-go-to"
-msgstr "Pergi ke Twitter"
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:96
 msgid "feedback.twitter-subtitle1"
-msgstr "Kami di sini untuk membantu dengan pertanyaan teknikal anda."
+msgstr ""
 
 #: src/app/main/ui/settings/feedback.cljs:95
 msgid "feedback.twitter-title"
-msgstr "Akaun sokongan Twitter"
+msgstr ""
 
 #: src/app/main/ui/settings/password.cljs:29
 msgid "generic.error"
@@ -1301,7 +1299,7 @@ msgstr "Huruf Besar"
 msgid "inspect.empty.help"
 msgstr ""
 "Jika anda ingin mengetahui lebih lanjut tentang pemeriksaan reka bentuk, "
-"lawati pusat bantuan Penpot"
+"lawati pusat bantuan Kizuku"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:166
 msgid "inspect.empty.more-info"
@@ -1451,8 +1449,8 @@ msgid "labels.continue-with"
 msgstr "Teruskan dengan"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-penpot"
-msgstr "Anda boleh meneruskan dengan akaun Penpot"
+msgid "labels.continue-with-kizu"
+msgstr "Anda boleh meneruskan dengan akaun Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:700
 msgid "labels.copy-invitation-link"
@@ -1582,7 +1580,7 @@ msgstr "Pergi balik"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:1039, src/app/main/ui/workspace/main_menu.cljs:107, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1084, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1109, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:1295
 msgid "labels.help-center"
-msgstr "Pusat Bantuan"
+msgstr ""
 
 #: src/app/main/ui/viewer/comments.cljs:104, src/app/main/ui/workspace/comments.cljs:73
 msgid "labels.hide-resolved-comments"
@@ -2379,14 +2377,11 @@ msgstr "E-mel pengesahan dihantar kepada %s. Semak e-mel anda!"
 #, unused
 msgid "onboarding-v2.before-start.desc1"
 msgstr ""
-"Anda harus tahu bahawa terdapat banyak sumber yang tersedia untuk membantu "
-"anda bermula dengan Penpot, seperti Panduan Pengguna dan saluran Youtube "
-"kami."
 
 #, unused
 msgid "onboarding-v2.before-start.desc2"
 msgstr ""
-"Maklumat terperinci tentang cara menggunakan Penpot. Daripada prototaip "
+"Maklumat terperinci tentang cara menggunakan Kizuku. Daripada prototaip "
 "kepada menyusun atau berkongsi reka bentuk."
 
 #, unused
@@ -2396,8 +2391,6 @@ msgstr "Panduan pengguna"
 #, unused
 msgid "onboarding-v2.before-start.desc3"
 msgstr ""
-"Anda boleh menonton tutorial kami dan tutorial yang dibuat oleh komuniti "
-"kami."
 
 #, unused
 msgid "onboarding-v2.before-start.desc3.title"
@@ -2410,14 +2403,12 @@ msgstr "Sebelum anda mula"
 #: src/app/main/ui/onboarding/newsletter.cljs:68
 msgid "onboarding-v2.newsletter.desc"
 msgstr ""
-"Langgan surat berita Penpot untuk mengikuti perkembangan dan berita "
+"Langgan surat berita Kizuku untuk mengikuti perkembangan dan berita "
 "pembangunan produk."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
 msgstr ""
-"Hantar kepada saya berita tentang Penpot (siaran blog, tutorial video, "
-"penstriman...)."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:96
 msgid "onboarding-v2.newsletter.privacy1"
@@ -2437,33 +2428,26 @@ msgstr "Hantar kepada saya kemas kini produk (ciri baharu, keluaran, pembetulan.
 #, unused
 msgid "onboarding-v2.welcome.desc1"
 msgstr ""
-"Penpot ialah Sumber Terbuka dan ia dibuat oleh Kaleidos serta komuniti, di "
-"mana ramai orang sudah membantu antara satu sama lain. Semua orang boleh "
-"bekerjasama dengan:"
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
 msgstr ""
-"Ruang awam untuk belajar, berkongsi dan membincangkan tentang Penpot, masa "
-"kini dan masa depannya dengan seluruh Komuniti dan pasukan teras Penpot."
 
 #, unused
 msgid "onboarding-v2.welcome.desc2.title"
-msgstr "Mengambil bahagian dalam Komuniti"
+msgstr ""
 
 #, unused
 msgid "onboarding-v2.welcome.desc3"
 msgstr ""
-"Di mana anda akan menemui cara untuk bekerjasama dengan terjemahan, "
-"permintaan ciri, sumbangan teras, pemburuan pepijat…"
 
 #, unused
 msgid "onboarding-v2.welcome.desc3.title"
-msgstr "Panduan memberi sumbangan"
+msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
-msgstr "Selamat datang ke Penpot!"
+msgstr "Selamat datang ke Kizuku!"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:254
 #, unused
@@ -2542,7 +2526,7 @@ msgstr "Dasar Privasi."
 
 #: src/app/main/ui/onboarding/newsletter.cljs:65
 msgid "onboarding.newsletter.title"
-msgstr "Ingin menerima berita Penpot?"
+msgstr "Ingin menerima berita Kizuku?"
 
 #: src/app/main/ui/onboarding/questions.cljs:108
 msgid "onboarding.questions.lets-get-started"
@@ -2584,7 +2568,7 @@ msgstr "Cipta pasukan"
 #: src/app/main/ui/onboarding/team_choice.cljs:31
 msgid "onboarding.team-modal.create-team-desc"
 msgstr ""
-"Pasukan membolehkan anda bekerjasama dengan pengguna Penpot lain yang "
+"Pasukan membolehkan anda bekerjasama dengan pengguna Kizuku lain yang "
 "bekerja dalam fail dan projek yang sama."
 
 #: src/app/main/ui/onboarding/team_choice.cljs:36
@@ -2617,7 +2601,7 @@ msgstr "Mula mereka bentuk"
 
 #, unused
 msgid "onboarding.welcome.alt"
-msgstr "Penpot"
+msgstr "Kizuku"
 
 #: src/app/main/ui/auth/recovery.cljs:88
 msgid "profile.recovery.go-to-login"
