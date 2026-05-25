@@ -4,6 +4,16 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Project list items now render an inline folder icon, pinned
+;;   indicator, and Kizuku-specific row layout. Team switcher hidden via
+;;   sibling SCSS (single-team mode).
+;; Date: 2026-05-19
+;; ============================================================================
+
 (ns app.main.ui.dashboard.sidebar
   (:require-macros [app.main.style :as stl])
   (:require
@@ -187,7 +197,22 @@
       (if (:edition? local)
         [:& inline-edition {:content (:name item)
                             :on-end on-edit}]
-        [:span {:class (stl/css :element-title)} (:name item)])]
+        [:span {:class (stl/css :project-item-row)}
+         [:svg {:class (stl/css :project-folder-icon)
+                :viewBox "0 0 16 16"
+                :width "14" :height "14"
+                :fill "none"
+                :xmlns "http://www.w3.org/2000/svg"}
+          [:path {:d "M2 3.5A1.5 1.5 0 0 1 3.5 2h2.879a1.5 1.5 0 0 1 1.06.44l.622.62a.5.5 0 0 0 .354.147H12.5A1.5 1.5 0 0 1 14 4.707V12.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 12.5v-9z"
+                  :fill "currentColor"}]]
+         [:span {:class (stl/css :element-title)} (:name item)]
+         (when (:is-pinned item)
+           [:svg {:class (stl/css :pin-indicator)
+                  :viewBox "0 0 16 16"
+                  :width "10" :height "10"
+                  :fill "currentColor"
+                  :xmlns "http://www.w3.org/2000/svg"}
+            [:path {:d "M8 1.5l1.76 3.57 3.94.57-2.85 2.78.67 3.93L8 10.67l-3.52 1.68.67-3.93L2.3 5.64l3.94-.57L8 1.5z"}]])])]
      [:> project-menu* {:project item
                         :show (:menu-open local)
                         :left (:x (:menu-pos local))
@@ -601,6 +626,7 @@
         projects?   (= section :dashboard-recent)
         fonts?      (= section :dashboard-fonts)
         libs?       (= section :dashboard-libraries)
+        templates?  (= section :dashboard-templates)
         drafts?     (and (= section :dashboard-files)
                          (= (:id project) default-project-id))
         container   (mf/use-ref nil)
@@ -680,15 +706,26 @@
                    (dom/focus! libs-title)
                    (dom/set-attribute! libs-title "tabindex" "-1"))))))))
 
-        pinned-projects
+        on-create-project
+        (mf/use-fn
+         (mf/deps team-id)
+         (fn [event]
+           (dom/stop-propagation event)
+           (st/emit! (dd/create-project))))
+
+        go-templates
+        (mf/use-fn
+         (mf/deps team-id)
+         #(st/emit! (dcm/go-to-dashboard-libraries :team-id team-id)))
+
+        sorted-projects
         (mf/with-memo [projects]
           (->> projects
                (remove :is-default)
-               (filter :is-pinned)
-               (sort-by :name)
+               (sort-by (juxt (comp not :is-pinned) :name))
                (not-empty)))]
 
-    (mf/with-layout-effect [pinned-projects]
+    (mf/with-layout-effect [sorted-projects]
       (let [node          (mf/ref-val container)
             client-height (.-clientHeight ^js node)
             scroll-height (.-scrollHeight ^js node)]
@@ -702,6 +739,17 @@
       [:> sidebar-search* {:search-term search-term
                            :team-id (:id team)}]
 
+      ;; Drafts — standalone section
+      [:div {:class (stl/css :sidebar-content-section)}
+       [:ul {:class (stl/css :sidebar-nav)}
+        [:li {:class (stl/css-case :current drafts?
+                                   :sidebar-nav-item true)}
+         [:& link {:action go-drafts
+                   :class (stl/css :sidebar-link)
+                   :keyboard-action go-drafts-with-key}
+          [:span {:class (stl/css :element-title)} (tr "labels.drafts")]]]]]
+
+      ;; Projects + project list
       [:div {:class (stl/css :sidebar-content-section)}
        [:ul {:class (stl/css :sidebar-nav)}
         [:li {:class (stl/css-case :recent-projects true
@@ -710,16 +758,22 @@
          [:& link {:action go-projects
                    :class (stl/css :sidebar-link)
                    :keyboard-action go-projects-with-key}
-          [:span {:class (stl/css :element-title)} (tr "labels.projects")]]]
+          [:span {:class (stl/css :element-title)} (tr "labels.projects")]]
+         [:button {:class (stl/css :add-project-btn)
+                   :on-click on-create-project
+                   :title "New Project"}
+          "+"]]]
+       (when (some? sorted-projects)
+         [:ul {:class (stl/css :sidebar-nav :sidebar-project-list)}
+          (for [item sorted-projects]
+            [:> sidebar-project*
+             {:item item
+              :key (dm/str (:id item))
+              :id (:id item)
+              :team-id (:id team)
+              :is-selected (= (:id item) (:id project))}])])]
 
-        [:li {:class (stl/css-case :current drafts?
-                                   :sidebar-nav-item true)}
-         [:& link {:action go-drafts
-                   :class (stl/css :sidebar-link)
-                   :keyboard-action go-drafts-with-key}
-          [:span {:class (stl/css :element-title)} (tr "labels.drafts")]]]]]
-
-
+      ;; Sources
       [:div {:class (stl/css :sidebar-content-section)}
        [:div {:class (stl/css :sidebar-section-title)}
         (tr "labels.sources")]
@@ -737,25 +791,12 @@
                    :data-testid "libs-link-sidebar"
                    :class (stl/css :sidebar-link)
                    :keyboard-action go-libs-with-key}
-          [:span {:class (stl/css :element-title)} (tr "labels.shared-libraries")]]]]]
-
-
-      [:div {:class (stl/css :sidebar-content-section)
-             :data-testid "pinned-projects"}
-       [:div {:class (stl/css :sidebar-section-title)}
-        (tr "labels.pinned-projects")]
-       (if (some? pinned-projects)
-         [:ul {:class (stl/css :sidebar-nav :pinned-projects)}
-          (for [item pinned-projects]
-            [:> sidebar-project*
-             {:item item
-              :key (dm/str (:id item))
-              :id (:id item)
-              :team-id (:id team)
-              :is-selected (= (:id item) (:id project))}])]
-         [:div {:class (stl/css :sidebar-empty-placeholder)}
-          pin-icon
-          [:span {:class (stl/css :empty-text)} (tr "dashboard.no-projects-placeholder")]])]]
+          [:span {:class (stl/css :element-title)} (tr "labels.shared-libraries")]]]
+        [:li {:class (stl/css-case :sidebar-nav-item true
+                                   :current templates?)}
+         [:& link {:action go-templates
+                   :class (stl/css :sidebar-link)}
+          [:span {:class (stl/css :element-title)} "Templates"]]]]]]
      [:div {:class (stl/css-case :separator true :overflow-separator overflow?)}]]))
 
 (mf/defc profile-section*

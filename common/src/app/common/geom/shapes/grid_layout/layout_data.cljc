@@ -4,6 +4,16 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Off-by-one fix for grid track range — to-idx now clamps to
+;;   count (exclusive upper bound) instead of count-1, matching subvec's
+;;   expectation; otherwise the last row/column track was unreachable.
+;; Date: 2026-05-19
+;; ============================================================================
+
 ;;   Each track has specified minimum and maximum sizing functions (which may be the same)
 ;;   - Fixed
 ;;   - Percent
@@ -215,7 +225,7 @@
         from-idx (-> (dec (get cell prop))
                      (mth/clamp 0 (dec (count track-list))))
         to-idx (-> (+ (dec (get cell prop)) (get cell prop-span))
-                   (mth/clamp 0 (dec (count track-list))))
+                   (mth/clamp 0 (count track-list)))
         tracks (subvec track-list from-idx to-idx)]
     (some? (->> tracks (d/seek #(= :flex (:type %)))))))
 
@@ -296,7 +306,7 @@
                       from-idx (-> (dec (get cell prop))
                                    (mth/clamp 0 (dec (count track-list))))
                       to-idx (-> (+ (dec (get cell prop)) (get cell prop-span))
-                                 (mth/clamp 0 (dec (count track-list))))
+                                 (mth/clamp 0 (count track-list)))
 
                       indexed-tracks (subvec (d/enumerate track-list) from-idx to-idx)
                       to-allocate (size-to-allocate type parent (get children-map shape-id) cell bounds objects)

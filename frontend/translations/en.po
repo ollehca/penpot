@@ -1,3 +1,10 @@
+# ============================================================================
+# MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+# Original file from PenPot (https://github.com/penpot/penpot) — MPL-2.0
+# Modifications: Rebranded "Your Kizuku" team-name strings to "Kizuku" for
+#   single-team mode (removes the implicit ownership phrasing).
+# Date: 2026-05-19
+# ============================================================================
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-06-09 09:13+0000\n"
@@ -418,7 +425,7 @@ msgstr "Pin this version"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Your Kizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -1130,7 +1137,7 @@ msgstr "Your name"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
 msgid "dashboard.your-kizu"
-msgstr "Your Kizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"

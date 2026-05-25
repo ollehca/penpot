@@ -4,6 +4,15 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Swapped WorkSans → Inter for body/button/input font stacks
+//   to match Kizuku's design system.
+// Date: 2026-05-19
+// ============================================================================
+
 // TODO: Legacy sass vars. We should use DS tokens.
 $color-gray-50: #303236;
 $fs12: 0.75rem;
@@ -23,7 +32,7 @@ body {
   color: var(--color-foreground-primary);
   display: flex;
   flex-direction: column;
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -63,7 +72,7 @@ a {
 }
 
 button {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
 }
 
 p {
@@ -129,7 +138,7 @@ input[type="number"] {
 input,
 select {
   box-sizing: border-box;
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs14;
   margin-bottom: $size-4;
   -webkit-appearance: none;

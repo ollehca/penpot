@@ -4,6 +4,15 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Replaced WorkSans → Inter in shared typography mixins so
+//   all consumers pick up the Kizuku font.
+// Date: 2026-05-19
+// ============================================================================
+
 @mixin flexCenter {
   display: flex;
   justify-content: center;
@@ -35,7 +44,7 @@
 }
 
 @mixin uppercaseTitleTipography {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs-11;
   font-weight: $fw500;
   line-height: 1.2;
@@ -43,28 +52,28 @@
 }
 
 @mixin bigTitleTipography {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs-24;
   font-weight: $fw400;
   line-height: 1.2;
 }
 
 @mixin medTitleTipography {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs-20;
   font-weight: $fw400;
   line-height: 1.2;
 }
 
 @mixin smallTitleTipography {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs-14;
   font-weight: $fw400;
   line-height: 1.2;
 }
 
 @mixin headlineLargeTypography {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs-18;
   line-height: 1.2;
   text-transform: uppercase;
@@ -72,7 +81,7 @@
 }
 
 @mixin headlineMediumTypography {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs-16;
   line-height: 1.4;
   text-transform: uppercase;
@@ -80,7 +89,7 @@
 }
 
 @mixin headlineSmallTypography {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs-12;
   line-height: 1.2;
   text-transform: uppercase;
@@ -88,28 +97,28 @@
 }
 
 @mixin bodyLargeTypography {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs-16;
   line-height: 1.5;
   font-weight: $fw400;
 }
 
 @mixin bodyMediumTypography {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs-14;
   line-height: 1.4;
   font-weight: $fw400;
 }
 
 @mixin bodySmallTypography {
-  font-family: "worksans", "vazirmatn", sans-serif;
+  font-family: "inter", "vazirmatn", sans-serif;
   font-size: $fs-12;
   font-weight: $fw400;
   line-height: 1.4;
 }
 
 @mixin codeTypography {
-  font-family: "robotomono", monospace;
+  font-family: "jetbrainsmono", monospace;
   font-size: $fs-12;
   font-weight: $fw400;
   line-height: 1.2;

@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Hid the team switch (single-team mode); added grid template
+//   row + styles for the inline folder icon / pin indicator added in the
+//   sibling sidebar.cljs.
+// Date: 2026-05-19
+// ============================================================================
+
 @use "../ds/typography.scss" as *;
 @use "../ds/colors.scss" as *;
 @use "../ds/spacing.scss" as *;
@@ -31,8 +41,8 @@
 //SIDEBAR CONTENT COMPONENT
 .sidebar-content {
   display: grid;
-  grid-template-rows: auto auto auto auto 1fr;
-  gap: $s-24;
+  grid-template-rows: auto auto auto auto auto 1fr;
+  gap: $s-12;
   height: 100%;
   padding: 0;
   overflow-x: hidden;
@@ -57,6 +67,7 @@
 
 // SIDEBAR TEAM SWITCH
 .sidebar-team-switch {
+  display: none;
   position: relative;
   margin: $s-4 $s-16;
 }
@@ -237,12 +248,17 @@
 
 .sidebar-nav-item {
   cursor: pointer;
+  position: relative;
 
   &:hover {
     background-color: var(--sidebar-element-background-color-hover);
 
     span {
       color: var(--sidebar-element-foreground-color-hover);
+    }
+
+    .add-project-btn {
+      opacity: 1;
     }
   }
 
@@ -270,13 +286,63 @@
   }
 }
 
+.sidebar-project-list {
+  padding-left: $s-16;
+}
+
+.project-item-row {
+  display: flex;
+  align-items: center;
+  gap: $s-6;
+  width: 100%;
+  overflow: hidden;
+}
+
+.project-folder-icon {
+  flex-shrink: 0;
+  color: var(--color-accent-primary);
+}
+
+.pin-indicator {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--color-accent-primary);
+  opacity: 0.7;
+}
+
+.add-project-btn {
+  position: absolute;
+  right: $s-8;
+  top: 50%;
+  transform: translateY(-50%);
+  width: $s-20;
+  height: $s-20;
+  border: none;
+  background: transparent;
+  color: var(--color-foreground-secondary);
+  font-size: $fs-14;
+  cursor: pointer;
+  border-radius: $br-4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+
+  &:hover {
+    background: var(--color-background-quaternary);
+    color: var(--color-accent-primary);
+    opacity: 1;
+  }
+}
+
 .project-element {
   padding: $s-8 $s-8 $s-8 $s-24;
 }
 
 .element-title {
   @include textEllipsis;
-  width: $s-256;
+  flex: 1;
+  min-width: 0;
   color: var(--color-foreground-primary);
   font-size: $fs-14;
 }

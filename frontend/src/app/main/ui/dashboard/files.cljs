@@ -4,6 +4,15 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Added folder-tree-panel integration to the project files
+;;   page so users can navigate by folder alongside the flat grid.
+;; Date: 2026-05-19
+;; ============================================================================
+
 (ns app.main.ui.dashboard.files
   (:require-macros [app.main.style :as stl])
   (:require
@@ -13,6 +22,7 @@
    [app.main.data.project :as dpj]
    [app.main.refs :as refs]
    [app.main.store :as st]
+   [app.main.ui.dashboard.folder-tree :refer [folder-tree-panel*]]
    [app.main.ui.dashboard.grid :refer [grid*]]
    [app.main.ui.dashboard.inline-edition :refer [inline-edition]]
    [app.main.ui.dashboard.pin-button :refer [pin-button*]]
@@ -136,13 +146,23 @@
   [{:keys [project team]}]
   (let [files            (mf/deref refs/files)
         project-id       (get project :id)
+        active-folder*    (mf/use-state nil)
+        active-folder     (deref active-folder*)
+        assigned-ids*     (mf/use-state #{})
+        assigned-ids      (deref assigned-ids*)
 
-        files            (mf/with-memo [project-id files]
-                           (->> (vals files)
-                                (filter #(= project-id (:project-id %)))
-                                (sort-by :modified-at)
-                                (reverse)))
+        all-files         (mf/with-memo [project-id files]
+                            (->> (vals files)
+                                 (filter #(= project-id (:project-id %)))
+                                 (sort-by :modified-at)
+                                 (reverse)))
 
+        ;; Hide files assigned to folders from the main grid
+        files             (mf/with-memo [all-files assigned-ids]
+                            (if (seq assigned-ids)
+                              (remove #(assigned-ids (str (:id %)))
+                                      all-files)
+                              all-files))
 
         can-edit?          (-> team :permissions :can-edit)
         project-id         (:id project)
@@ -170,7 +190,15 @@
            (let [mdata  {:on-success on-file-created}
                  params {:project-id (:id project)}]
              (st/emit! (-> (dd/create-file (with-meta params mdata))
-                           (with-meta {::ev/origin origin :has-files (> file-count 0)}))))))]
+                           (with-meta {::ev/origin origin :has-files (> file-count 0)}))))))
+
+        on-folder-change
+        (mf/use-fn
+         (fn [fid] (reset! active-folder* fid)))
+
+        on-assigned-files
+        (mf/use-fn
+         (fn [ids] (reset! assigned-ids* ids)))]
 
     (mf/with-effect [project]
       (when project
@@ -188,6 +216,14 @@
                   :can-edit can-edit?
                   :project project
                   :create-fn create-file}]
+
+     (when-not is-draft-proyect
+       [:> folder-tree-panel*
+        {:project-id project-id
+         :project project
+         :on-assigned-files on-assigned-files
+         :on-folder-change on-folder-change}])
+
      [:section {:class (stl/css :dashboard-container :no-bg)
                 :ref rowref}
       (if empty-state-viewer

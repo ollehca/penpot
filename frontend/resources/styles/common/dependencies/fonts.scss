@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Added @font-face declarations for Inter, Fira Sans, JetBrains
+//   Mono and Lato to support the Kizuku design system. Source font files
+//   bundled in penpot/frontend/resources/fonts/.
+// Date: 2026-05-19
+// ============================================================================
+
 @use "sass:string";
 
 @mixin font-face(
@@ -42,6 +52,12 @@ $_arabic-unicode-list: "U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+08
 $_latin-unicode-list: "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD, U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF";
 
 @include font-face-variable("worksans", "WorkSans-VariableFont", $_latin-unicode-list);
+
+@font-face {
+  font-family: "inter";
+  src: url("/fonts/Inter-VariableFont.woff2") format("woff2");
+  unicode-range: $_latin-unicode-list;
+}
 @include font-face-variable("vazirmatn", "Vazirmatn-VariableFont", $_arabic-unicode-list);
 
 // Source Sans Pro
@@ -60,3 +76,50 @@ $_latin-unicode-list: "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+
 
 // Roboto mono
 @include font-face("robotomono", "RobotoMono-Regular", $_latin-unicode-list, normal);
+
+// Kizuku design system fonts
+@include font-face("jetbrainsmono", "jetbrainsmono-regular", null, normal);
+@include font-face("jetbrainsmono", "jetbrainsmono-medium", null, "500");
+@include font-face("jetbrainsmono", "jetbrainsmono-bold", null, bold);
+
+// Top 20 popular fonts (offline bundle for Figma import)
+@include font-face("Roboto", "roboto-regular", null, normal);
+@include font-face("Roboto", "roboto-bold", null, bold);
+@include font-face("Open Sans", "open-sans-regular", null, normal);
+@include font-face("Open Sans", "open-sans-bold", null, bold);
+@include font-face("Lato", "lato-regular", null, normal);
+@include font-face("Lato", "lato-bold", null, bold);
+@include font-face("Montserrat", "montserrat-regular", null, normal);
+@include font-face("Montserrat", "montserrat-bold", null, bold);
+@include font-face("Poppins", "poppins-regular", null, normal);
+@include font-face("Poppins", "poppins-bold", null, bold);
+@include font-face("Raleway", "raleway-regular", null, normal);
+@include font-face("Raleway", "raleway-bold", null, bold);
+@include font-face("Oswald", "oswald-regular", null, normal);
+@include font-face("Oswald", "oswald-bold", null, bold);
+@include font-face("Merriweather", "merriweather-regular", null, normal);
+@include font-face("Merriweather", "merriweather-bold", null, bold);
+@include font-face("Nunito", "nunito-regular", null, normal);
+@include font-face("Nunito", "nunito-bold", null, bold);
+@include font-face("Playfair Display", "playfair-display-regular", null, normal);
+@include font-face("Playfair Display", "playfair-display-bold", null, bold);
+@include font-face("Ubuntu", "ubuntu-regular", null, normal);
+@include font-face("Ubuntu", "ubuntu-bold", null, bold);
+@include font-face("Noto Sans", "noto-sans-regular", null, normal);
+@include font-face("Noto Sans", "noto-sans-bold", null, bold);
+@include font-face("Roboto Condensed", "roboto-condensed-regular", null, normal);
+@include font-face("Roboto Condensed", "roboto-condensed-bold", null, bold);
+@include font-face("PT Sans", "pt-sans-regular", null, normal);
+@include font-face("PT Sans", "pt-sans-bold", null, bold);
+@include font-face("Source Code Pro", "source-code-pro-regular", null, normal);
+@include font-face("Source Code Pro", "source-code-pro-bold", null, bold);
+@include font-face("Rubik", "rubik-regular", null, normal);
+@include font-face("Rubik", "rubik-bold", null, bold);
+@include font-face("Fira Sans", "fira-sans-regular", null, normal);
+@include font-face("Fira Sans", "fira-sans-bold", null, bold);
+@include font-face("Quicksand", "quicksand-regular", null, normal);
+@include font-face("Quicksand", "quicksand-bold", null, bold);
+@include font-face("Mulish", "mulish-regular", null, normal);
+@include font-face("Mulish", "mulish-bold", null, bold);
+@include font-face("Nunito Sans", "nunito-sans-regular", null, normal);
+@include font-face("Nunito Sans", "nunito-sans-bold", null, bold);

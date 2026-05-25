@@ -4,6 +4,15 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Removed the templates-section drawer — templates now live
+;;   in the Sources sidebar instead, simplifying the dashboard layout.
+;; Date: 2026-05-19
+;; ============================================================================
+
 (ns app.main.ui.dashboard
   (:require-macros [app.main.style :as stl])
   (:require
@@ -28,7 +37,7 @@
    [app.main.ui.dashboard.search :refer [search-page*]]
    [app.main.ui.dashboard.sidebar :refer [sidebar*]]
    [app.main.ui.dashboard.team :refer [team-settings-page* team-members-page* team-invitations-page* webhooks-page*]]
-   [app.main.ui.dashboard.templates :refer [templates-section*]]
+   ;; templates-section* drawer removed — templates now in Sources sidebar
    [app.main.ui.hooks :as hooks]
    [app.main.ui.modal :refer [modal-container*]]
    [app.main.ui.workspace.plugins]
@@ -71,9 +80,7 @@
         (mf/use-fn
          #(st/emit! (dd/clear-selected-files)))
 
-        show-templates?
-        (and (contains? cf/flags :dashboard-templates-section)
-             (:can-edit permissions))]
+]
 
     (mf/with-effect []
       (let [key1 (events/listen js/window "resize" on-resize)]
@@ -87,19 +94,10 @@
      (case section
        :dashboard-recent
        (when (seq projects)
-         [:*
-          [:> projects-section*
-           {:team team
-            :projects projects
-            :profile profile}]
-
-          (when ^boolean show-templates?
-            [:> templates-section*
-             {:profile profile
-              :project-id project-id
-              :team-id team-id
-              :default-project-id default-project-id
-              :content-width @content-width}])])
+         [:> projects-section*
+          {:team team
+           :projects projects
+           :profile profile}])
 
        :dashboard-fonts
        [:> fonts-page* {:team team}]
@@ -109,16 +107,8 @@
 
        :dashboard-files
        (when project
-         [:*
-          [:> files-section* {:team team
-                              :project project}]
-          (when ^boolean show-templates?
-            [:> templates-section*
-             {:profile profile
-              :team-id team-id
-              :project-id project-id
-              :default-project-id default-project-id
-              :content-width @content-width}])])
+         [:> files-section* {:team team
+                             :project project}])
 
        :dashboard-search
        [:> search-page* {:team team

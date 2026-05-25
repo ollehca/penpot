@@ -1,3 +1,10 @@
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot) — MPL-2.0
+;; Modifications: Added :catalog build target (port 3450) for Kizuku's
+;;   component catalog dev server.
+;; Date: 2026-05-19
+;; ============================================================================
 {:deps {:aliases [:dev]}
  :http {:port #shadow/env ["HTTP_PORT" :as :int :default 3448]}
  :nrepl {:port #shadow/env ["NREPL_PORT" :as :int :default 3447] :host "0.0.0.0"}
@@ -153,6 +160,26 @@
    :modules
    {:test {:init-fn frontend-tests.runner/init
            :prepend-js ";if (typeof globalThis.navigator?.userAgent === 'undefined') { globalThis.navigator = {userAgent: ''}; };"}}}
+
+  :catalog
+  {:target :browser
+   :output-dir "resources/public/catalog/js"
+   :asset-path "/catalog/js"
+   :modules {:main {:init-fn catalog.core/init}}
+   :devtools {:http-root "resources/public/catalog"
+              :http-port 3450
+              :watch-dir "resources/public"
+              :reload-strategy :full}
+   :js-options
+   {:entry-keys ["module" "browser" "main"]
+    :export-conditions ["module" "import", "browser" "require" "default"]
+    :js-provider :external
+    :external-index "target/index.js"
+    :external-index-format :esm}
+   :compiler-options
+   {:output-feature-set :es2020
+    :output-wrapper false
+    :warnings {:fn-deprecated false}}}
 
   :bench
   {:target :node-script
