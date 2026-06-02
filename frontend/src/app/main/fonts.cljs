@@ -4,6 +4,14 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Added Inter and JetBrains Mono as builtin fonts
+;; Date: 2026-03-15
+;; ============================================================================
+
 (ns app.main.fonts
   "Fonts management and loading logic."
   (:require-macros [app.main.fonts :refer [preload-gfonts]])
@@ -42,7 +50,26 @@
      {:id "bold" :name "700" :weight "700" :style "normal" :ttf-url "sourcesanspro-bold.ttf"}
      {:id "bolditalic" :name "700 Italic" :weight "700" :style "italic" :ttf-url "sourcesanspro-bolditalic.ttf"}
      {:id "black" :name "900" :weight "900" :style "normal" :ttf-url "sourcesanspro-black.ttf"}
-     {:id "blackitalic" :name "900 Italic" :weight "900" :style "italic" :ttf-url "sourcesanspro-blackitalic.ttf"}]}])
+     {:id "blackitalic" :name "900 Italic" :weight "900" :style "italic" :ttf-url "sourcesanspro-blackitalic.ttf"}]}
+
+   ;; Kizuku design system fonts (variable font — @font-face in fonts.scss)
+   {:id "inter"
+    :name "Inter"
+    :family "inter"
+    :variants
+    [{:id "regular" :name "400" :weight "400" :style "normal"}
+     {:id "italic" :name "400 Italic" :weight "400" :style "italic"}
+     {:id "500" :name "500" :weight "500" :style "normal"}
+     {:id "600" :name "600" :weight "600" :style "normal"}
+     {:id "bold" :name "700" :weight "700" :style "normal"}]}
+
+   {:id "jetbrainsmono"
+    :name "JetBrains Mono"
+    :family "jetbrainsmono"
+    :variants
+    [{:id "regular" :name "400" :weight "400" :style "normal" :ttf-url "jetbrainsmono-regular.ttf"}
+     {:id "500" :name "500" :weight "500" :style "normal" :ttf-url "jetbrainsmono-medium.ttf"}
+     {:id "bold" :name "700" :weight "700" :style "normal" :ttf-url "jetbrainsmono-bold.ttf"}]}])
 
 (defonce fontsdb (l/atom {}))
 (defonce fonts (l/atom []))

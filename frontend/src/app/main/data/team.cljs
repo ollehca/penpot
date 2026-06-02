@@ -4,7 +4,14 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
-;; MODIFIED BY KIZUKU - Add feature flag to disable team auth for single-user mode
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Single-user mode — synthetic team creation, skip team auth
+;; Date: 2026-02-15
+;; ============================================================================
+
 (ns app.main.data.team
   (:require
    [app.common.data :as d]

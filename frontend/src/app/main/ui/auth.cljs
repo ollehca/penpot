@@ -4,7 +4,14 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
-;; MODIFIED BY KIZUKU - Return nil when Kizuku auth exists
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Bypass PenPot auth when Kizuku license auth is active
+;; Date: 2026-02-15
+;; ============================================================================
+
 (ns app.main.ui.auth
   (:require-macros [app.main.style :as stl])
   (:require

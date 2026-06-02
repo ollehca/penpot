@@ -245,9 +245,21 @@
          [:div {:class (stl/css :color-name)}
           (uc/gradient-type->string (dm/get-in color [:gradient :type]))]
 
+         ;; ============================================================================
+         ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+         ;; Original file from PenPot (https://github.com/penpot/penpot)
+         ;; Licensed under Mozilla Public License Version 2.0
+         ;; Modifications: Make the whole "Image" label clickable to open the
+         ;;   image fill editor — upstream only binds the click handler to the
+         ;;   16px bullet, which is too small a click target for users coming
+         ;;   from Figma.
+         ;; Date: 2026-05-02
+         ;; ============================================================================
          ;; Rendering an image
          image-color?
-         [:div {:class (stl/css :color-name)}
+         [:div {:class (stl/css :color-name)
+                :style {:cursor "pointer"}
+                :on-click (fn [event] (handle-click-color color event))}
           (tr "media.image")]
 
               ;; Rendering a plain color
