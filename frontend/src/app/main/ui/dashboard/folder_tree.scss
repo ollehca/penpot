@@ -1,0 +1,211 @@
+// Copyright (c) 2026 Kizuku. All rights reserved.
+// This file is NOT part of the original PenPot project.
+// Proprietary — see /LICENSE in the project root.
+//
+// Kizuku Folder Tree Styles (CSS Module)
+
+@import "refactor/common-refactor.scss";
+
+.folder-panel {
+  border-top: 1px solid var(--color-background-quaternary);
+  margin-top: $s-8;
+  padding-top: $s-4;
+}
+
+.folder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $s-4 $s-16 $s-4 $s-16;
+}
+
+.folder-header-title {
+  font-size: $fs-11;
+  font-weight: $fw500;
+  color: var(--color-foreground-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.folder-add-btn {
+  width: $s-20;
+  height: $s-20;
+  border: none;
+  background: transparent;
+  color: var(--color-foreground-secondary);
+  font-size: $fs-14;
+  cursor: pointer;
+  border-radius: $br-4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--color-background-quaternary);
+    color: var(--color-accent-primary);
+  }
+}
+
+.folder-tree {
+  padding: $s-2 0;
+}
+
+.folder-node {
+  user-select: none;
+}
+
+.folder-row {
+  display: flex;
+  align-items: center;
+  gap: $s-6;
+  padding: $s-4 $s-16 $s-4 $s-12;
+  cursor: pointer;
+  font-size: $fs-12;
+  color: var(--color-foreground-primary);
+  border-radius: $br-4;
+  margin: 0 $s-8;
+
+  &:hover {
+    background: var(--color-background-quaternary);
+  }
+}
+
+.folder-selected {
+  background: var(--color-background-quaternary);
+  color: var(--color-accent-primary);
+}
+
+.folder-drag-over {
+  background: var(--color-accent-primary);
+  color: var(--color-foreground-primary);
+  opacity: 0.9;
+}
+
+.folder-rename-input {
+  flex: 1;
+  border: 1px solid var(--color-accent-primary);
+  background: var(--color-background-tertiary);
+  color: var(--color-foreground-primary);
+  font-size: $fs-12;
+  padding: $s-1 $s-4;
+  border-radius: $br-4;
+  outline: none;
+  min-width: 0;
+}
+
+.folder-expand {
+  width: $s-12;
+  height: $s-12;
+  border: none;
+  background: transparent;
+  color: var(--color-foreground-secondary);
+  font-size: 8px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.folder-expanded {
+  transform: rotate(90deg);
+}
+
+.folder-expand-spacer {
+  width: $s-12;
+  display: inline-block;
+}
+
+.folder-icon {
+  font-size: $fs-12;
+  line-height: 1;
+}
+
+.folder-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.folder-badge {
+  font-size: 10px;
+  color: var(--color-foreground-secondary);
+  background: var(--color-background-tertiary);
+  border-radius: $br-8;
+  padding: $s-1 $s-6;
+  min-width: $s-16;
+  text-align: center;
+}
+
+.folder-dots-btn {
+  border: none;
+  background: transparent;
+  color: var(--color-foreground-secondary);
+  font-size: $fs-14;
+  cursor: pointer;
+  padding: 0 $s-2;
+  opacity: 0;
+  margin-left: auto;
+
+  &:hover {
+    color: var(--color-accent-primary);
+  }
+}
+
+.folder-row:hover .folder-dots-btn {
+  opacity: 1;
+}
+
+.folder-menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+}
+
+.folder-context-menu {
+  position: fixed;
+  z-index: 10000;
+  background: var(--color-background-tertiary);
+  border: 1px solid var(--color-background-quaternary);
+  border-radius: $br-6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  padding: $s-4 0;
+  min-width: 140px;
+}
+
+.folder-menu-item {
+  padding: $s-6 $s-12;
+  font-size: $fs-12;
+  color: var(--color-foreground-primary);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-background-quaternary);
+  }
+}
+
+.folder-menu-danger {
+  color: var(--color-accent-error);
+
+  &:hover {
+    background: var(--color-background-error);
+  }
+}
+
+.folder-files {
+  padding: $s-8 $s-8 $s-8 $s-32;
+  border-left: 1px solid var(--color-background-quaternary);
+  margin-left: $s-24;
+}
+
+.folder-empty-msg {
+  padding: $s-8 $s-12 $s-8 $s-32;
+  font-size: $fs-11;
+  color: var(--color-foreground-secondary);
+  font-style: italic;
+}
