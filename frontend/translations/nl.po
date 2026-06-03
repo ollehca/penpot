@@ -503,7 +503,7 @@ msgid "dashboard.empty-project.import"
 msgstr "Importeer een bestand"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
-msgid "dashboard.empty-project.import-kizu"
+msgid "dashboard.empty-project.import-penpot"
 msgstr "Importeer een .kizu-bestand"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
@@ -1134,7 +1134,7 @@ msgid "dashboard.your-name"
 msgstr "Naam"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
-msgid "dashboard.your-kizu"
+msgid "dashboard.your-penpot"
 msgstr "Jouw Kizuku"
 
 #: src/app/main/ui/alert.cljs:35
@@ -1919,7 +1919,7 @@ msgid "labels.continue-with"
 msgstr "Doorgaan met"
 
 #: src/app/main/ui/viewer/login.cljs:69
-msgid "labels.continue-with-kizu"
+msgid "labels.continue-with-penpot"
 msgstr "Je kunt doorgaan met een Kizuku-account"
 
 #: src/app/main/ui/components/copy_button.cljs:41
