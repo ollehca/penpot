@@ -120,13 +120,13 @@
                        ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
                        ;; Original file from PenPot (https://github.com/penpot/penpot)
                        ;; Licensed under Mozilla Public License Version 2.0
-                       ;; Modifications: Check localStorage for Kizu auth before redirecting to login
+                       ;; Modifications: Check localStorage for Kizuku auth before redirecting to login
                        ;; Date: 2025-10-29
                        ;; ============================================================================
-                       (let [kizu-auth? (some? (.getItem js/localStorage "auth-token"))]
+                       (let [kizuku-auth? (some? (.getItem js/localStorage "auth-token"))]
                          (cond
-                           ;; If Kizu auth exists, skip login redirect (profile will load from localStorage)
-                           (and (= id uuid/zero) (not kizu-auth?))
+                           ;; If Kizuku auth exists, skip login redirect (profile will load from localStorage)
+                           (and (= id uuid/zero) (not kizuku-auth?))
                            (do
                              (store-session-params query-params)
                              (st/emit! (rt/nav :auth-login)))

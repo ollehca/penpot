@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Revenant <mohdmuizz22@yahoo.com>\n"
-"Language-Team: Malay <https://hosted.weblate.org/projects/kizu/frontend/ms/"
+"Language-Team: Malay\n"
 ">\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
@@ -364,7 +364,7 @@ msgstr "Padam pasukan"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Muat turun fail Kizuku (.kizu)"
+msgstr "Muat turun fail Kizuku (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -380,7 +380,7 @@ msgstr "Pendua %s fail"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Muat turun %s fail Kizuku (.kizu)"
+msgstr "Muat turun %s fail Kizuku (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -901,7 +901,7 @@ msgstr "E-mel «%s» telah dilaporkan sebagai spam atau melantun secara kekal."
 msgid "errors.feature-mismatch"
 msgstr ""
 "Nampaknya anda sedang membuka fail yang mendayakan ciri '%s' tetapi versi "
-"kizu semasa tidak menyokongnya atau menyahdayakannya."
+"kizuku semasa tidak menyokongnya atau menyahdayakannya."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"

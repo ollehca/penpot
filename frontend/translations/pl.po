@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Radek Sawicki <radek@sqrc.pl>\n"
-"Language-Team: Polish <https://hosted.weblate.org/projects/kizu/frontend/"
-"pl/>\n"
+"Language-Team: Polish\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -298,7 +297,7 @@ msgstr "Usuń zespół"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Pobierz plik Kizuku (.kizu)"
+msgstr "Pobierz plik Kizuku (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -314,7 +313,7 @@ msgstr "Zduplikuj %s pliki"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Pobierz %s plików Kizuku (.kizu)"
+msgstr "Pobierz %s plików Kizuku (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -806,7 +805,7 @@ msgstr "Email «%s» został zgłoszony jako spam lub trwale odrzucony."
 msgid "errors.feature-mismatch"
 msgstr ""
 "Wygląda na to, że otwierasz plik, który ma włączoną funkcję '%s'. Twój "
-"interfejs użytkownika kizua jej nie obsługuje lub ma ją wyłączoną."
+"interfejs użytkownika Kizuku jej nie obsługuje lub ma ją wyłączoną."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"

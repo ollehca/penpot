@@ -78,7 +78,7 @@
                              (->> (read-zip-manifest zip-reader)
                                   (rx/map
                                    (fn [manifest]
-                                     (if (= (:type manifest) "kizu/export-files")
+                                     (if (= (:type manifest) "kizuku/export-files")
                                        (let [manifest (decode-manifest manifest)]
                                          (assoc file :type :binfile-v3 :files (:files manifest)))
                                        (assoc file :type :legacy-zip :body body))))
@@ -146,7 +146,7 @@
                   (rx/mapcat
                    (fn [file]
                      (->> (rp/cmd! ::sse/import-binfile
-                                   {:name (str/replace (:name data) #".kizu$" "")
+                                   {:name (str/replace (:name data) #".kizuku$" "")
                                     :file file
                                     :project-id project-id})
                           (rx/tap (fn [event]

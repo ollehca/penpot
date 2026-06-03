@@ -9,8 +9,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-06-09 09:13+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: English <https://hosted.weblate.org/projects/kizu/frontend/"
-"en/>\n"
+"Language-Team: English\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -433,7 +432,7 @@ msgstr "Delete team"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Download Kizuku file (.kizu)"
+msgstr "Download Kizuku file (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -505,7 +504,7 @@ msgstr "Import a file"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Import a .kizu file"
+msgstr "Import a .kizuku file"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -513,7 +512,7 @@ msgstr "Start building amazing stuff"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Download %s Kizuku files (.kizu)"
+msgstr "Download %s Kizuku files (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -1077,7 +1076,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "No limits on creativity"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.kizu-free"
+msgid "dashboard.upgrade-plan.kizuku-free"
 msgstr "Kizuku Free"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -1256,7 +1255,7 @@ msgstr "Email does not match the invitation."
 msgid "errors.feature-mismatch"
 msgstr ""
 "Looks like you are opening a file that has the feature '%s' enabled but the "
-"current kizu version does not supports it or has it disabled."
+"current kizuku version does not supports it or has it disabled."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -3202,7 +3201,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "If the owner allows it, you're going to be invited to the team."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "Kizuku file"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -4476,7 +4475,7 @@ msgstr "More information"
 
 #: src/app/main/ui/settings/subscription.cljs:285
 msgid "subscription.settings.other-plans"
-msgstr "Other kizu plans"
+msgstr "Other kizuku plans"
 
 #: src/app/main/ui/settings/subscription.cljs:289, src/app/main/ui/settings/subscription.cljs:302
 msgid "subscription.settings.price-editor-month"

@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <https://hosted.weblate.org/projects/kizu/frontend/"
-"he/>\n"
+"Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -418,7 +417,7 @@ msgstr "מחיקת צוות"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "הורדת קובץ Kizuku‏ (‎.kizu)"
+msgstr "הורדת קובץ Kizuku‏ (‎.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -453,14 +452,14 @@ msgstr "אין קבצים עדיין."
 msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "ספריות שנוספו למיזם תופענה כאן. כדאי לנסות לשתף את הקבצים שלך או להוסיף "
-"מ[הספריות והתבניות](https://kizu.app/libraries-templates) שלנו."
+"מ[הספריות והתבניות](https://getkizuku.app) שלנו."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "ספריות שנוספו למיזם תופענה כאן. כדאי לנסות לשתף את הקבצים שלך או להוסיף "
-"מ[הספריות והתבניות](https://kizu.app/libraries-templates) שלנו."
+"מ[הספריות והתבניות](https://getkizuku.app) שלנו."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -492,7 +491,7 @@ msgstr "ייבוא קובץ"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "ייבוא קובץ ‎.kizu"
+msgstr "ייבוא קובץ ‎.kizuku"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -500,7 +499,7 @@ msgstr "נתחיל לבנות דברים מדהימים"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "הורדת %s קובצי Kizuku‏ (‎.kizu)"
+msgstr "הורדת %s קובצי Kizuku‏ (‎.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -1050,7 +1049,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "ללא מגבלות על יצירתיות"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.kizu-free"
+msgid "dashboard.upgrade-plan.kizuku-free"
 msgstr "Kizuku חינמי"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -3142,7 +3141,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "כתלות בהרשאת הבעלים, תישלח אליך הזמנה לצוות."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "קובץ Kizuku"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -7490,7 +7489,7 @@ msgstr "פתיחת תפריט גרסאות"
 #: src/app/main/ui/workspace/sidebar/versions.cljs:372
 #, markdown
 msgid "workspace.versions.warning.subtext"
-msgstr "כדי להגדיל את המגבלה הזאת, נא לכתוב אלינו לכתובת [support@kizu.app](%s)"
+msgstr "כדי להגדיל את המגבלה הזאת, נא לכתוב אלינו לכתובת [support@getkizuku.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

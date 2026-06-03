@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: The_BadUser <vanjavs41@gmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/kizu/frontend/"
-"ru/>\n"
+"Language-Team: Russian\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -425,7 +424,7 @@ msgstr "Удалить команду"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Скачать файл Kizuku (.kizu)"
+msgstr "Скачать файл Kizuku (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -461,7 +460,7 @@ msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Библиотеки, добавленные в проект, будут отображаться здесь. Попробуйте "
 "поделиться своими файлами или добавьте из наших [Библиотек и "
-"шаблонов](https://kizu.app/libraries-templates)."
+"шаблонов](https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
@@ -469,7 +468,7 @@ msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Библиотеки, добавленные в проект, будут отображаться здесь. Попробуйте "
 "поделиться своими файлами или добавьте из наших [Библиотек и "
-"шаблонов](https://kizu.app/libraries-templates)."
+"шаблонов](https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -481,7 +480,7 @@ msgstr "Библиотек пока нет."
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Скачать файлы Kizuku (.kizu) (%s)"
+msgstr "Скачать файлы Kizuku (.kizuku) (%s)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -605,7 +604,7 @@ msgid "dashboard.fonts.hero-text2"
 msgstr ""
 "Вам следует загружать только собственные шрифты, или у которых есть "
 "лицензия на использование в Kizuku. Больше информации в разделе \"Content "
-"rights\" в [Условиях использования Kizuku](https://kizu.app/terms.html). "
+"rights\" в [Условиях использования Kizuku](https://getkizuku.app). "
 "Также можете прочитать о [лицензировании "
 "шрифтов](https://www.typography.com/faq)."
 
@@ -1122,7 +1121,7 @@ msgstr "Эл. почта «%s» была отмечена как спам или
 msgid "errors.feature-mismatch"
 msgstr ""
 "Похоже, вы открываете файл, в котором включена функция '%s', но текущая "
-"версия kizu её не поддерживает или она отключена."
+"версия kizuku её не поддерживает или она отключена."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -6071,7 +6070,7 @@ msgstr "История"
 msgid "workspace.versions.warning.subtext"
 msgstr ""
 "Если вы хотите увеличить этот лимит, напишите нам на "
-"[support@kizu.app](%s)"
+"[support@getkizuku.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

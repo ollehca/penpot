@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Henrik Allberg <henrik@thexorb.com>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/kizu/frontend/"
-"sv/>\n"
+"Language-Team: Swedish\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -426,7 +425,7 @@ msgstr "Radera team"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Ladda ner Kizuku-fil (.kizu)"
+msgstr "Ladda ner Kizuku-fil (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -462,7 +461,7 @@ msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Bibliotek som läggs till i projektet kommer att visas här. Försök att dela "
 "dina filer eller lägg till från våra [Bibliotek & mallar] "
-"(https://kizu.app/libraries-templates)."
+"(https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
@@ -470,7 +469,7 @@ msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Bibliotek som läggs till i projektet kommer att visas här. Försök att dela "
 "dina filer eller lägg till från våra [Bibliotek & mallar] "
-"(https://kizu.app/libraries-templates)."
+"(https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -482,7 +481,7 @@ msgstr "Inga bibliotek än."
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Ladda ner % Kizuku-filer (.kizu)"
+msgstr "Ladda ner % Kizuku-filer (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -1012,7 +1011,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "Inga gränser för kreativitet"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.kizu-free"
+msgid "dashboard.upgrade-plan.kizuku-free"
 msgstr "Gratis Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -2900,7 +2899,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "Om ägaren tillåter det kommer du att bli inbjuden till teamet."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "Kizuku-fil"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -6793,7 +6792,7 @@ msgstr "Öppna versionsmenyn"
 msgid "workspace.versions.warning.subtext"
 msgstr ""
 "Om du vill höja denna gräns kan du skriva till oss på "
-"[support@kizu.app](%s)"
+"[support@getkizuku.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

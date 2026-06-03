@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Edgars Andersons <Edgars+Weblate@gaitenis.id.lv>\n"
-"Language-Team: Latvian <https://hosted.weblate.org/projects/kizu/frontend/"
-"lv/>\n"
+"Language-Team: Latvian\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -431,7 +430,7 @@ msgstr "Dzēst komandu"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Lejupielādēt Kizuku datni (.kizu)"
+msgstr "Lejupielādēt Kizuku datni (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -467,7 +466,7 @@ msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Šeit parādīsies projektam pievienotās bibliotēkas. Mēģini kopīgot savas "
 "datnes vai pievienot no mūsu [bibliotēkām un "
-"sagatavēm](https://kizu.app/libraries-templates)!"
+"sagatavēm](https://getkizuku.app)!"
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
@@ -475,7 +474,7 @@ msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Šeit parādīsies projektam pievienotās bibliotēkas. Mēģini kopīgot savas "
 "datnes vai pievienot no mūsu [bibliotēkām un "
-"sagatavēm](https://kizu.app/libraries-templates)!"
+"sagatavēm](https://getkizuku.app)!"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -507,7 +506,7 @@ msgstr "Ievietot datni"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Ievietot .kizu datni"
+msgstr "Ievietot .kizuku datni"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -515,7 +514,7 @@ msgstr "Sākt veidot apbrīnojamas lietas"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Lejupielādēt %s Kizuku datnes (.kizu)"
+msgstr "Lejupielādēt %s Kizuku datnes (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -1074,7 +1073,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "Nav ierobežojumu radošumam"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.kizu-free"
+msgid "dashboard.upgrade-plan.kizuku-free"
 msgstr "Bezmaksas Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -3193,7 +3192,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "Ja īpašnieks to ļauj, tiksi uzaicināts pievienoties komandai."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "Kizuku datne"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -7569,7 +7568,7 @@ msgstr "Atvērt versiju izvēlni"
 msgid "workspace.versions.warning.subtext"
 msgstr ""
 "Ja ir vēlēšanās palielināt šo ierobežojumu, jāraksta mums uz "
-"[support@kizu.app](%s)"
+"[support@getkizuku.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

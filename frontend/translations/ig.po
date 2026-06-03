@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Alejandro Alonso <alejandro.alonso@kaleidos.net>\n"
-"Language-Team: Igbo <https://hosted.weblate.org/projects/kizu/frontend/ig/>"
+"Language-Team: Igbo\n"
 "\n"
 "Language: ig\n"
 "MIME-Version: 1.0\n"
@@ -340,7 +340,7 @@ msgstr "kacha otu"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Butuo ederede ite mkpịsị (.kizu)"
+msgstr "Butuo ederede ite mkpịsị (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -356,7 +356,7 @@ msgstr "Mee o yiri  %s ederede"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Butuo %s ederede ite mkpịsị (.kizu)"
+msgstr "Butuo %s ederede ite mkpịsị (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"

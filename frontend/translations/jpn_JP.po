@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2024-09-26 15:15+0000\n"
 "Last-Translator: Tatsuto Yamamoto <me@laminne33569.net>\n"
-"Language-Team: Japanese "
-"<https://hosted.weblate.org/projects/kizu/frontend/ja/>\n"
+"Language-Team: translators\n"
 "Language: jpn_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -271,7 +270,7 @@ msgstr "チームを削除"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Kizukuファイル(.kizu)をダウンロード"
+msgstr "Kizukuファイル(.kizuku)をダウンロード"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"

@@ -274,15 +274,15 @@
         (rx/of (dws/select-shapes frames-id)
                dwz/zoom-to-selected-shape)))))
 
-(defn- load-kizu-file-from-window
-  "Load .kizu file data from window.__KIZU_FILE_DATA__ (Transit-encoded string injected by Electron)"
+(defn- load-kizuku-file-from-window
+  "Load .kizuku file data from window.__KIZUKU_FILE_DATA__ (Transit-encoded string injected by Electron)"
   [file-id]
   (try
-    (let [file-data-map (unchecked-get ug/global "__KIZU_FILE_DATA__")
+    (let [file-data-map (unchecked-get ug/global "__KIZUKU_FILE_DATA__")
           transit-str (when file-data-map
                         (unchecked-get file-data-map (dm/str file-id)))]
 
-      (log/info :hint "load-kizu-file-from-window"
+      (log/info :hint "load-kizuku-file-from-window"
                 :file-id (dm/str file-id)
                 :has-data (some? transit-str)
                 :data-type (type transit-str))
@@ -292,21 +292,21 @@
         (let [file-obj (t/decode-str transit-str {:type :json-verbose})
               file {:id file-id
                     :name (:name file-obj)
-                    :project-id "kizu-local"
+                    :project-id "kizuku-local"
                     :revn (:revn file-obj 0)
                     :features (into #{} (:features file-obj))
                     :data (:data file-obj)}]
-          (log/info :hint "kizu-file-loaded"
+          (log/info :hint "kizuku-file-loaded"
                     :file-id (dm/str file-id)
                     :name (:name file)
                     :has-pages-index (some? (get-in file [:data :pages-index])))
           (rx/of file))
         (do
-          (log/error :hint "kizu-file-not-found"
+          (log/error :hint "kizuku-file-not-found"
                      :file-id (dm/str file-id))
-          (rx/throw (ex-info "Kizu file data not found in window.__KIZU_FILE_DATA__" {})))))
+          (rx/throw (ex-info "Kizuku file data not found in window.__KIZUKU_FILE_DATA__" {})))))
     (catch :default e
-      (log/error :hint "kizu-file-load-error"
+      (log/error :hint "kizuku-file-load-error"
                  :error e)
       (rx/throw e))))
 
@@ -317,17 +317,17 @@
     ptk/WatchEvent
     (watch [_ _ stream]
       (let [stopper-s (rx/filter (ptk/type? ::finalize-workspace) stream)
-            ;; Check if this is a kizu-local project
-            is-kizu-local? (= project-id "kizu-local")]
+            ;; Check if this is a kizuku-local project
+            is-kizuku-local? (= project-id "kizuku-local")]
 
         (log/debug :hint "fetch-bundle"
                    :file-id (dm/str file-id)
                    :project-id project-id
-                   :is-kizu-local? is-kizu-local?)
+                   :is-kizuku-local? is-kizuku-local?)
 
-        (if is-kizu-local?
-          ;; Load from window global (Electron-injected .kizu file)
-          (->> (load-kizu-file-from-window file-id)
+        (if is-kizuku-local?
+          ;; Load from window global (Electron-injected .kizuku file)
+          (->> (load-kizuku-file-from-window file-id)
                (rx/take 1)
                (rx/mapcat
                 (fn [file]
@@ -420,12 +420,12 @@
                    (rx/mapcat
                     (fn [{:keys [file]}]
                       (let [project-id (:project-id file)
-                            is-kizu-local? (= project-id "kizu-local")]
+                            is-kizuku-local? (= project-id "kizuku-local")]
                         (log/info :hint "after-bundle-fetched"
                                   :project-id project-id
-                                  :is-kizu-local? is-kizu-local?)
-                        (if is-kizu-local?
-                          ;; For kizu-local projects, skip backend project initialization
+                                  :is-kizuku-local? is-kizuku-local?)
+                        (if is-kizuku-local?
+                          ;; For kizuku-local projects, skip backend project initialization
                           (rx/of (dwn/initialize team-id file-id)
                                  (dwsl/initialize-shape-layout)
                                  (-> (workspace-initialized file-id)

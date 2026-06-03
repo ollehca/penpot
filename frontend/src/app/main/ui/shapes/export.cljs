@@ -206,32 +206,32 @@
   (mf/html
    (for [{:keys [style hidden color offset-x offset-y blur spread]} shadow]
      [:> "penpot:shadow"
-      #js {:kizu:shadow-type (d/name style)
+      #js {:penpot:shadow-type (d/name style)
            :key (swap! internal-counter inc)
-           :kizu:hidden (str hidden)
-           :kizu:color (str (:color color))
-           :kizu:opacity (str (:opacity color))
-           :kizu:offset-x (str offset-x)
-           :kizu:offset-y (str offset-y)
-           :kizu:blur (str blur)
-           :kizu:spread (str spread)}])))
+           :penpot:hidden (str hidden)
+           :penpot:color (str (:color color))
+           :penpot:opacity (str (:opacity color))
+           :penpot:offset-x (str offset-x)
+           :penpot:offset-y (str offset-y)
+           :penpot:blur (str blur)
+           :penpot:spread (str spread)}])))
 
 (defn- export-blur-data [{:keys [blur]}]
   (when-let [{:keys [type hidden value]} blur]
     (mf/html
      [:> "penpot:blur"
-      #js {:kizu:blur-type (d/name type)
-           :kizu:hidden    (str hidden)
-           :kizu:value     (str value)}])))
+      #js {:penpot:blur-type (d/name type)
+           :penpot:hidden    (str hidden)
+           :penpot:value     (str value)}])))
 
 (defn export-exports-data [{:keys [exports]}]
   (mf/html
    (for [{:keys [scale suffix type]} exports]
      [:> "penpot:export"
-      #js {:kizu:type   (d/name type)
+      #js {:penpot:type   (d/name type)
            :key (swap! internal-counter inc)
-           :kizu:suffix suffix
-           :kizu:scale  (str scale)}])))
+           :penpot:suffix suffix
+           :penpot:scale  (str scale)}])))
 
 (defn str->style
   [style-str]
@@ -259,17 +259,17 @@
             svg-attrs     (->> shape :svg-attrs keys (mapv (comp d/name str/kebab)) (str/join ","))
             svg-defs      (->> shape :svg-defs keys (mapv d/name) (str/join ","))]
         [:> "penpot:svg-import"
-         #js {:kizu:svg-attrs          (when-not (empty? svg-attrs) svg-attrs)
+         #js {:penpot:svg-attrs          (when-not (empty? svg-attrs) svg-attrs)
               ;; Style and filter are special properties so we need to save it otherwise will be indistingishible from
               ;; standard properties
-              :kizu:svg-style          (when (contains? (:svg-attrs shape) :style) (style->str (get-in shape [:svg-attrs :style])))
-              :kizu:svg-filter         (when (contains? (:svg-attrs shape) :filter) (get-in shape [:svg-attrs :filter]))
-              :kizu:svg-defs           (when-not (empty? svg-defs) svg-defs)
-              :kizu:svg-transform      (when svg-transform (str svg-transform))
-              :kizu:svg-viewbox-x      (get-in shape [:svg-viewbox :x])
-              :kizu:svg-viewbox-y      (get-in shape [:svg-viewbox :y])
-              :kizu:svg-viewbox-width  (get-in shape [:svg-viewbox :width])
-              :kizu:svg-viewbox-height (get-in shape [:svg-viewbox :height])}
+              :penpot:svg-style          (when (contains? (:svg-attrs shape) :style) (style->str (get-in shape [:svg-attrs :style])))
+              :penpot:svg-filter         (when (contains? (:svg-attrs shape) :filter) (get-in shape [:svg-attrs :filter]))
+              :penpot:svg-defs           (when-not (empty? svg-defs) svg-defs)
+              :penpot:svg-transform      (when svg-transform (str svg-transform))
+              :penpot:svg-viewbox-x      (get-in shape [:svg-viewbox :x])
+              :penpot:svg-viewbox-y      (get-in shape [:svg-viewbox :y])
+              :penpot:svg-viewbox-width  (get-in shape [:svg-viewbox :width])
+              :penpot:svg-viewbox-height (get-in shape [:svg-viewbox :height])}
          (for [[def-id def-xml] (:svg-defs shape)]
            [:> "penpot:svg-def" #js {:def-id def-id
                                      :key (swap! internal-counter inc)}
@@ -299,7 +299,7 @@
         (for [[index fill] (d/enumerate fills)]
           (let [fill-image-id (dm/str "fill-image-" render-id "-" index)]
             [:> "penpot:fill"
-             #js {:kizu:fill-color          (cond
+             #js {:penpot:fill-color          (cond
                                                 (some? (:fill-color-gradient fill))
                                                 (str/format "url(#%s)" (str "fill-color-gradient-" render-id "-" index))
 
@@ -307,10 +307,10 @@
                                                 (d/name (:fill-color fill)))
                   :key                        (swap! internal-counter inc)
 
-                  :kizu:fill-image-id       (when (:fill-image fill) fill-image-id)
-                  :kizu:fill-color-ref-file (d/name (:fill-color-ref-file fill))
-                  :kizu:fill-color-ref-id   (d/name (:fill-color-ref-id fill))
-                  :kizu:fill-opacity        (d/name (:fill-opacity fill))}]))]))))
+                  :penpot:fill-image-id       (when (:fill-image fill) fill-image-id)
+                  :penpot:fill-color-ref-file (d/name (:fill-color-ref-file fill))
+                  :penpot:fill-color-ref-id   (d/name (:fill-color-ref-id fill))
+                  :penpot:fill-opacity        (d/name (:fill-opacity fill))}]))]))))
 
 (defn- export-strokes-data [{:keys [strokes]}]
   (when-let [strokes (seq strokes)]
@@ -320,22 +320,22 @@
         (for [[index stroke] (d/enumerate strokes)]
           (let [stroke-image-id (dm/str "stroke-image-" render-id "-" index)]
             [:> "penpot:stroke"
-             #js {:kizu:stroke-color          (cond
+             #js {:penpot:stroke-color          (cond
                                                   (some? (:stroke-color-gradient stroke))
                                                   (str/format "url(#%s)" (str "stroke-color-gradient-" render-id "-" index))
 
                                                   :else
                                                   (d/name (:stroke-color stroke)))
                   :key                          (swap! internal-counter inc)
-                  :kizu:stroke-image-id       (when (:stroke-image stroke) stroke-image-id)
-                  :kizu:stroke-color-ref-file (d/name (:stroke-color-ref-file stroke))
-                  :kizu:stroke-color-ref-id   (d/name (:stroke-color-ref-id stroke))
-                  :kizu:stroke-opacity        (d/name (:stroke-opacity stroke))
-                  :kizu:stroke-style          (d/name (:stroke-style stroke))
-                  :kizu:stroke-width          (d/name (:stroke-width stroke))
-                  :kizu:stroke-alignment      (d/name (:stroke-alignment stroke))
-                  :kizu:stroke-cap-start      (d/name (:stroke-cap-start stroke))
-                  :kizu:stroke-cap-end        (d/name (:stroke-cap-end stroke))}]))]))))
+                  :penpot:stroke-image-id       (when (:stroke-image stroke) stroke-image-id)
+                  :penpot:stroke-color-ref-file (d/name (:stroke-color-ref-file stroke))
+                  :penpot:stroke-color-ref-id   (d/name (:stroke-color-ref-id stroke))
+                  :penpot:stroke-opacity        (d/name (:stroke-opacity stroke))
+                  :penpot:stroke-style          (d/name (:stroke-style stroke))
+                  :penpot:stroke-width          (d/name (:stroke-width stroke))
+                  :penpot:stroke-alignment      (d/name (:stroke-alignment stroke))
+                  :penpot:stroke-cap-start      (d/name (:stroke-cap-start stroke))
+                  :penpot:stroke-cap-end        (d/name (:stroke-cap-end stroke))}]))]))))
 
 (defn- export-interactions-data [{:keys [interactions]}]
   (when-let [interactions (seq interactions)]
@@ -343,18 +343,18 @@
      [:> "penpot:interactions" #js {}
       (for [interaction interactions]
         [:> "penpot:interaction"
-         #js {:kizu:event-type (d/name (:event-type interaction))
-              :kizu:action-type (d/name (:action-type interaction))
-              :kizu:delay ((d/nilf str) (:delay interaction))
-              :kizu:destination ((d/nilf str) (:destination interaction))
-              :kizu:overlay-pos-type ((d/nilf d/name) (:overlay-pos-type interaction))
-              :kizu:overlay-position-x ((d/nilf get-in) interaction [:overlay-position :x])
-              :kizu:overlay-position-y ((d/nilf get-in) interaction [:overlay-position :y])
-              :kizu:url (:url interaction)
+         #js {:penpot:event-type (d/name (:event-type interaction))
+              :penpot:action-type (d/name (:action-type interaction))
+              :penpot:delay ((d/nilf str) (:delay interaction))
+              :penpot:destination ((d/nilf str) (:destination interaction))
+              :penpot:overlay-pos-type ((d/nilf d/name) (:overlay-pos-type interaction))
+              :penpot:overlay-position-x ((d/nilf get-in) interaction [:overlay-position :x])
+              :penpot:overlay-position-y ((d/nilf get-in) interaction [:overlay-position :y])
+              :penpot:url (:url interaction)
               :key (swap! internal-counter inc)
-              :kizu:close-click-outside ((d/nilf str) (:close-click-outside interaction))
-              :kizu:background-overlay ((d/nilf str) (:background-overlay interaction))
-              :kizu:preserve-scroll ((d/nilf str) (:preserve-scroll interaction))}])])))
+              :penpot:close-click-outside ((d/nilf str) (:close-click-outside interaction))
+              :penpot:background-overlay ((d/nilf str) (:background-overlay interaction))
+              :penpot:preserve-scroll ((d/nilf str) (:preserve-scroll interaction))}])])))
 
 
 (defn- export-layout-container-data
@@ -377,38 +377,38 @@
   (when layout
     (mf/html
      [:> "penpot:layout"
-      #js {:kizu:layout (d/name layout)
-           :kizu:layout-flex-dir (d/name layout-flex-dir)
-           :kizu:layout-gap-type (d/name layout-gap-type)
-           :kizu:layout-gap-row (:row-gap layout-gap)
-           :kizu:layout-gap-column (:column-gap layout-gap)
-           :kizu:layout-wrap-type (d/name layout-wrap-type)
-           :kizu:layout-padding-type (d/name layout-padding-type)
-           :kizu:layout-padding-p1 (:p1 layout-padding)
-           :kizu:layout-padding-p2 (:p2 layout-padding)
-           :kizu:layout-padding-p3 (:p3 layout-padding)
-           :kizu:layout-padding-p4 (:p4 layout-padding)
-           :kizu:layout-justify-items (d/name layout-justify-items)
-           :kizu:layout-justify-content (d/name layout-justify-content)
-           :kizu:layout-align-items (d/name layout-align-items)
-           :kizu:layout-align-content (d/name layout-align-content)
-           :kizu:layout-grid-dir (d/name layout-grid-dir)}
+      #js {:penpot:layout (d/name layout)
+           :penpot:layout-flex-dir (d/name layout-flex-dir)
+           :penpot:layout-gap-type (d/name layout-gap-type)
+           :penpot:layout-gap-row (:row-gap layout-gap)
+           :penpot:layout-gap-column (:column-gap layout-gap)
+           :penpot:layout-wrap-type (d/name layout-wrap-type)
+           :penpot:layout-padding-type (d/name layout-padding-type)
+           :penpot:layout-padding-p1 (:p1 layout-padding)
+           :penpot:layout-padding-p2 (:p2 layout-padding)
+           :penpot:layout-padding-p3 (:p3 layout-padding)
+           :penpot:layout-padding-p4 (:p4 layout-padding)
+           :penpot:layout-justify-items (d/name layout-justify-items)
+           :penpot:layout-justify-content (d/name layout-justify-content)
+           :penpot:layout-align-items (d/name layout-align-items)
+           :penpot:layout-align-content (d/name layout-align-content)
+           :penpot:layout-grid-dir (d/name layout-grid-dir)}
 
       [:> "penpot:grid-rows" #js {}
        (for [[idx {:keys [type value]}] (d/enumerate layout-grid-rows)]
          [:> "penpot:grid-track"
-          #js {:kizu:index idx
+          #js {:penpot:index idx
                :key (swap! internal-counter inc)
-               :kizu:type (d/name type)
-               :kizu:value value}])]
+               :penpot:type (d/name type)
+               :penpot:value value}])]
 
       [:> "penpot:grid-columns" #js {}
        (for [[idx {:keys [type value]}] (d/enumerate layout-grid-columns)]
          [:> "penpot:grid-track"
-          #js {:kizu:index idx
+          #js {:penpot:index idx
                :key (swap! internal-counter inc)
-               :kizu:type (d/name type)
-               :kizu:value value}])]
+               :penpot:type (d/name type)
+               :penpot:value value}])]
 
       [:> "penpot:grid-cells" #js {}
        (for [[_ {:keys [id
@@ -422,17 +422,17 @@
                         justify-self
                         shapes]}] layout-grid-cells]
          [:> "penpot:grid-cell"
-          #js {:kizu:id id
+          #js {:penpot:id id
                :key (swap! internal-counter inc)
-               :kizu:area-name area-name
-               :kizu:row row
-               :kizu:row-span row-span
-               :kizu:column column
-               :kizu:column-span column-span
-               :kizu:position (d/name position)
-               :kizu:align-self (d/name align-self)
-               :kizu:justify-self (d/name justify-self)
-               :kizu:shapes (str/join " " shapes)}])]])))
+               :penpot:area-name area-name
+               :penpot:row row
+               :penpot:row-span row-span
+               :penpot:column column
+               :penpot:column-span column-span
+               :penpot:position (d/name position)
+               :penpot:align-self (d/name align-self)
+               :penpot:justify-self (d/name justify-self)
+               :penpot:shapes (str/join " " shapes)}])]])))
 
 (defn- export-layout-item-data
   [{:keys [layout-item-margin
@@ -460,20 +460,20 @@
             layout-item-z-index)
     (mf/html
      [:> "penpot:layout-item"
-      #js {:kizu:layout-item-margin-m1 (:m1 layout-item-margin)
-           :kizu:layout-item-margin-m2 (:m2 layout-item-margin)
-           :kizu:layout-item-margin-m3 (:m3 layout-item-margin)
-           :kizu:layout-item-margin-m4 (:m4 layout-item-margin)
-           :kizu:layout-item-margin-type (d/name layout-item-margin-type)
-           :kizu:layout-item-h-sizing (d/name layout-item-h-sizing)
-           :kizu:layout-item-v-sizing (d/name layout-item-v-sizing)
-           :kizu:layout-item-max-h layout-item-max-h
-           :kizu:layout-item-min-h layout-item-min-h
-           :kizu:layout-item-max-w layout-item-max-w
-           :kizu:layout-item-min-w layout-item-min-w
-           :kizu:layout-item-align-self (d/name layout-item-align-self)
-           :kizu:layout-item-absolute layout-item-absolute
-           :kizu:layout-item-z-index layout-item-z-index}])))
+      #js {:penpot:layout-item-margin-m1 (:m1 layout-item-margin)
+           :penpot:layout-item-margin-m2 (:m2 layout-item-margin)
+           :penpot:layout-item-margin-m3 (:m3 layout-item-margin)
+           :penpot:layout-item-margin-m4 (:m4 layout-item-margin)
+           :penpot:layout-item-margin-type (d/name layout-item-margin-type)
+           :penpot:layout-item-h-sizing (d/name layout-item-h-sizing)
+           :penpot:layout-item-v-sizing (d/name layout-item-v-sizing)
+           :penpot:layout-item-max-h layout-item-max-h
+           :penpot:layout-item-min-h layout-item-min-h
+           :penpot:layout-item-max-w layout-item-max-w
+           :penpot:layout-item-min-w layout-item-min-w
+           :penpot:layout-item-align-self (d/name layout-item-align-self)
+           :penpot:layout-item-absolute layout-item-absolute
+           :penpot:layout-item-z-index layout-item-z-index}])))
 
 
 (mf/defc export-data

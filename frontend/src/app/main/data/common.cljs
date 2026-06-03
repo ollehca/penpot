@@ -364,7 +364,7 @@
     (watch [_ state _]
       (let [team-id (or team-id (:current-team-id state))
             file-id (or file-id (:current-file-id state))
-            ;; KIZU FIX: Preserve project-id from router params or state
+            ;; KIZUKU FIX: Preserve project-id from router params or state
             project-id (or project-id
                            (:current-project-id state)
                            (-> (rt/get-params state) :project-id))

@@ -34,10 +34,10 @@
 
 (log/set-level! :warn)
 
-;; KIZU: Check if single-user mode is enabled
-(defn- kizu-single-user-mode? []
+;; KIZUKU: Check if single-user mode is enabled
+(defn- kizuku-single-user-mode? []
   (try
-    (= "true" (.getItem js/localStorage "kizu-single-user-mode"))
+    (= "true" (.getItem js/localStorage "kizuku-single-user-mode"))
     (catch :default _ false)))
 
 (defn get-last-team-id
@@ -111,12 +111,12 @@
     (watch [_ state _]
       (let [teams (get state :teams)
             team  (get teams team-id)
-            kizu-mode? (kizu-single-user-mode?)]
-        
-        ;; KIZU: If single-user mode + no team + valid team-id, create synthetic team
-        (if (and kizu-mode? (not team) (some? team-id))
+            kizuku-mode? (kizuku-single-user-mode?)]
+
+        ;; KIZUKU: If single-user mode + no team + valid team-id, create synthetic team
+        (if (and kizuku-mode? (not team) (some? team-id))
           (do
-            (.log js/console "[KIZU] Single-user mode: creating synthetic team for ID:" (str team-id))
+            (.log js/console "[KIZUKU] Single-user mode: creating synthetic team for ID:" (str team-id))
             (let [default-permissions {:can-edit true
                                       :can-read true
                                       :is-owner true
@@ -127,9 +127,9 @@
                                  :permissions default-permissions
                                  :is-owner true}]
               (rx/of
-               #(do (.log js/console "[KIZU] Adding synthetic team to state.teams")
+               #(do (.log js/console "[KIZUKU] Adding synthetic team to state.teams")
                     (assoc-in % [:teams team-id] synthetic-team))
-               #(do (.log js/console "[KIZU] Setting permissions")
+               #(do (.log js/console "[KIZUKU] Setting permissions")
                     (assoc % :permissions default-permissions)))))
           
           ;; Original PenPot logic

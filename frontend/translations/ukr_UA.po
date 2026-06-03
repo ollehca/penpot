@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Denys Kisil <ossenjoyer@proton.me>\n"
-"Language-Team: Ukrainian <https://hosted.weblate.org/projects/kizu/"
-"frontend/ukr_UA/>\n"
+"Language-Team: Ukrainian\n"
 "Language: ukr_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -433,7 +432,7 @@ msgstr "Видалити команду"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Завантажити файл Kizuku (.kizu)"
+msgstr "Завантажити файл Kizuku (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -469,7 +468,7 @@ msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Додані до проєкту бібліотеки з'являться тут. Можете поширити власні файли "
 "чи додати з нашої [сторінки Бібліотек та "
-"шаблонів](https://kizu.app/libraries-templates)."
+"шаблонів](https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
@@ -477,7 +476,7 @@ msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Додані до проєкту бібліотеки з'являться тут. Можете поширити власні файли "
 "чи додати з нашої [сторінки Бібліотек та "
-"шаблонів](https://kizu.app/libraries-templates)."
+"шаблонів](https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -509,7 +508,7 @@ msgstr "Імпортувати файл"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Імпортувати файл .kizu"
+msgstr "Імпортувати файл .kizuku"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -517,7 +516,7 @@ msgstr "Почніть робити чудові речі"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Завантажити %s файлів Kizuku (.kizu)"
+msgstr "Завантажити %s файлів Kizuku (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -650,7 +649,7 @@ msgid "dashboard.fonts.hero-text2"
 msgstr ""
 "Ви повинні завантажувати лише ті шрифти, якими володієте або маєте ліцензію "
 "на використання в Kizuku. Дізнайтеся більше в розділі \"Content Rights\" в "
-"[Умовах користування Kizuku](https://kizu.app/terms.html). Ви також "
+"[Умовах користування Kizuku](https://getkizuku.app). Ви також "
 "можете прочитати про [ліцензування шрифтів](https://www.typography.com/faq)."
 
 #: src/app/main/ui/dashboard/fonts.cljs:214
@@ -1079,7 +1078,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "Без обмежень на креативність"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.kizu-free"
+msgid "dashboard.upgrade-plan.kizuku-free"
 msgstr "Kizuku Безкоштовний"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -3213,7 +3212,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "Якщо власник погодить, Ви будете запрошені до команди."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "Файл Kizuku"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -7587,7 +7586,7 @@ msgstr "Відкрити меню версій"
 msgid "workspace.versions.warning.subtext"
 msgstr ""
 "Якщо Ви хочете збільшити це обмеження, зверніться до нас через "
-"[support@kizu.app](%s)"
+"[support@getkizuku.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

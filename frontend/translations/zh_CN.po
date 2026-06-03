@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: 王世阳 <wangshiyangchina@gmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
-"projects/kizu/frontend/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -385,7 +384,7 @@ msgstr "删除团队"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "下载Kizuku文件 (.kizu)"
+msgstr "下载Kizuku文件 (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -401,7 +400,7 @@ msgstr "复制 %s 个文件"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "下载 %s Kizuku文件 (.kizu)"
+msgstr "下载 %s Kizuku文件 (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -508,7 +507,7 @@ msgstr ""
 #, markdown
 msgid "dashboard.fonts.hero-text2"
 msgstr ""
-"你应当只向Kizuku上传你所拥有的字体，或是你持有使用许可的字体。点击[Kizuku服务条例](https://kizu.app/terms."
+"你应当只向Kizuku上传你所拥有的字体，或是你持有使用许可的字体。点击[Kizuku服务条例](https://getkizuku.app"
 "html)查看更多有关内容权利的章节。或许你也想了解一下[字体许可授权] (https://www.typography.com/faq)。"
 
 #: src/app/main/ui/dashboard/fonts.cljs:214
@@ -907,7 +906,7 @@ msgstr "此邮箱[%s]已被标记为垃圾邮件或已被永久拉黑。"
 
 #: src/app/main/errors.cljs:241
 msgid "errors.feature-mismatch"
-msgstr "看起来你正在打开一个启用了'%s'功能的文件，但当前kizu版本并不支持该功能或已将其禁用。"
+msgstr "看起来你正在打开一个启用了'%s'功能的文件，但当前Kizuku版本并不支持该功能或已将其禁用。"
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -2459,7 +2458,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "如果所有者允许，您会被邀请加入此团队。"
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "Kizuku文件"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317

@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/kizu/frontend/"
-"es/>\n"
+"Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -431,7 +430,7 @@ msgstr "Eliminar equipo"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Descargar archivo Kizuku (.kizu)"
+msgstr "Descargar archivo Kizuku (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -467,7 +466,7 @@ msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Las bibliotecas añadidas al proyecto aparecerán aquí. Si quieres probar con "
 "alguna plantilla ve a [Bibliotecas y "
-"plantillas](https://kizu.app/libraries-templates)."
+"plantillas](https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
@@ -475,7 +474,7 @@ msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Las bibliotecas añadidas al proyecto aparecerán aquí. Si quieres probar con "
 "alguna plantilla ve a [Bibliotecas y "
-"plantillas](https://kizu.app/libraries-templates)."
+"plantillas](https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -507,7 +506,7 @@ msgstr "Importa un fichero"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Importa un fichero .kizu"
+msgstr "Importa un fichero .kizuku"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -515,7 +514,7 @@ msgstr "Empieza a crear cosas increíbles"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Descargar %s archivos Kizuku (.kizu)"
+msgstr "Descargar %s archivos Kizuku (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -1086,7 +1085,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "Sin límites a la creatividad"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.kizu-free"
+msgid "dashboard.upgrade-plan.kizuku-free"
 msgstr "Kizuku Gratis"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -1258,7 +1257,7 @@ msgstr "El email «%s» tiene reportes de spam o de rebote permanente."
 msgid "errors.feature-mismatch"
 msgstr ""
 "Parece que está abriendo un archivo que tiene la función '%s' habilitada, "
-"pero la versión actual de kizu no la admite o la tiene deshabilitada."
+"pero la versión actual de kizuku no la admite o la tiene deshabilitada."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -3199,7 +3198,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "Si el propietario lo aprueba, te invitará al equipo."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "Archivo de Kizuku"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -4475,11 +4474,11 @@ msgstr "Aplica %s a tus equipos"
 
 #: src/app/main/ui/settings/subscription.cljs:282
 msgid "subscription.settings.member-since"
-msgstr "Miembro de kizu desde: %s"
+msgstr "Miembro de kizuku desde: %s"
 
 #: src/app/main/ui/settings/subscription.cljs:285
 msgid "subscription.settings.other-plans"
-msgstr "Otros planes de kizu"
+msgstr "Otros planes de kizuku"
 
 #: src/app/main/ui/settings/subscription.cljs:289, src/app/main/ui/settings/subscription.cljs:302
 msgid "subscription.settings.price-editor-month"
@@ -7813,7 +7812,7 @@ msgstr "Abrir menu de versiones"
 #: src/app/main/ui/workspace/sidebar/versions.cljs:372
 #, markdown
 msgid "workspace.versions.warning.subtext"
-msgstr "Si quieres aumentar este límite, contáctanos en [support@kizu.app](%s)"
+msgstr "Si quieres aumentar este límite, contáctanos en [support@getkizuku.app](%s)"
 
 #, markdown
 msgid "subscription.workspace.versions.warning.subtext-owner"

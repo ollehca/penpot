@@ -143,24 +143,24 @@
         ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
         ;; Original file from PenPot (https://github.com/penpot/penpot)
         ;; Licensed under Mozilla Public License Version 2.0
-        ;; Modifications: Check localStorage for Kizu auth to bypass team-id validation
+        ;; Modifications: Check localStorage for Kizuku auth to bypass team-id validation
         ;; Date: 2025-10-29
         ;; ============================================================================
-        kizu-auth? (some? (.getItem js/localStorage "auth-token"))
+        kizuku-auth? (some? (.getItem js/localStorage "auth-token"))
         team-matches? (= team-id (:id team))
-        ;; For Kizu auth, provide default permissions if team not loaded
-        effective-permissions (if (and kizu-auth? (not team-matches?))
+        ;; For Kizuku auth, provide default permissions if team not loaded
+        effective-permissions (if (and kizuku-auth? (not team-matches?))
                                (hash-map :can-edit true
                                          :can-read true
                                          :is-owner true
                                          :is-admin true)
                                permissions)
-        should-render? (or kizu-auth? team-matches?)
+        should-render? (or kizuku-auth? team-matches?)
         _debug (do
-                 (.log js/console "[KIZU-UI] team-container* render check:")
+                 (.log js/console "[KIZUKU-UI] team-container* render check:")
                  (.log js/console "  team-id:" (str team-id))
                  (.log js/console "  team:" (js/JSON.stringify (clj->js team)))
-                 (.log js/console "  kizu-auth?:" kizu-auth?)
+                 (.log js/console "  kizuku-auth?:" kizuku-auth?)
                  (.log js/console "  team-matches?:" team-matches?)
                  (.log js/console "  should-render?:" should-render?)
                  (.log js/console "  effective-permissions:" (js/JSON.stringify (clj->js effective-permissions))))]

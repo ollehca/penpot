@@ -79,7 +79,7 @@
         navigate-to-help
         (mf/use-fn
          (fn []
-           (dom/open-new-window "https://help.kizu.app/user-guide/inspect/")))
+           (dom/open-new-window "https://getkizuku.app")))
 
         tabs
         (mf/with-memo []

@@ -98,11 +98,11 @@
 
 (def terms-of-service-uri (obj/get global "penpotTermsOfServiceURI"))
 (def privacy-policy-uri   (obj/get global "penpotPrivacyPolicyURI"))
-(def flex-help-uri        (obj/get global "penpotGridHelpURI" "https://help.kizu.app/user-guide/flexible-layouts/"))
-(def grid-help-uri        (obj/get global "penpotGridHelpURI" "https://help.kizu.app/user-guide/flexible-layouts/"))
+(def flex-help-uri        (obj/get global "penpotGridHelpURI" "https://getkizuku.app"))
+(def grid-help-uri        (obj/get global "penpotGridHelpURI" "https://getkizuku.app"))
 (def plugins-list-uri     (obj/get global "penpotPluginsListUri" "https://penpot.app/penpothub/plugins"))
 (def plugins-whitelist    (into #{} (obj/get global "penpotPluginsWhitelist" [])))
-(def templates-uri        (obj/get global "kizuTemplatesUri" "https://kizu.github.io/kizu-files/"))
+(def templates-uri        (obj/get global "kizukuTemplatesUri" "https://getkizuku.app"))
 
 
 ;; We set the current parsed flags under common for make

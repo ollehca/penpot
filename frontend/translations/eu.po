@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
-"Language-Team: Basque <https://hosted.weblate.org/projects/kizu/frontend/"
-"eu/>\n"
+"Language-Team: Basque\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -296,7 +295,7 @@ msgstr "Ezabatu taldea"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Deskargatu Kizuku fitxategia (.kizu)"
+msgstr "Deskargatu Kizuku fitxategia (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -312,7 +311,7 @@ msgstr "%s fitxategi bizkoiztu"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Deskargatu %s Kizuku fitxategi (.kizu)"
+msgstr "Deskargatu %s Kizuku fitxategi (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -820,7 +819,7 @@ msgstr ""
 msgid "errors.feature-mismatch"
 msgstr ""
 "Badirudi '%s' ezaugarria aktibo duen fitxategi bat irekitzen ari zarela "
-"baina zure kizu frontendak ezin du hori egin edo ezaugarri hori "
+"baina zure kizuku frontendak ezin du hori egin edo ezaugarri hori "
 "desaktibatuta du."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259

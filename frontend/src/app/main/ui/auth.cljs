@@ -39,7 +39,7 @@
                      (= section :auth-register-success))
         params  (:query-params route)
         error   (:error params)
-        kizu-auth? (some? (.getItem js/localStorage "auth-token"))]
+        kizuku-auth? (some? (.getItem js/localStorage "auth-token"))]
 
     (mf/with-effect []
       (dom/set-html-title (tr "title.default")))
@@ -48,12 +48,12 @@
       (when error
         (st/emit! (da/show-redirect-error error))))
 
-    (mf/with-effect [kizu-auth?]
-      (when (and kizu-auth? (= section :auth-login))
-        (.log js/console "[KIZU-CLJS] Redirecting from login")
+    (mf/with-effect [kizuku-auth?]
+      (when (and kizuku-auth? (= section :auth-login))
+        (.log js/console "[KIZUKU-CLJS] Redirecting from login")
         (st/emit! (rt/nav :dashboard-recent {}))))
 
-    (if (and kizu-auth? (= section :auth-login))
+    (if (and kizuku-auth? (= section :auth-login))
       nil
       [:main {:class (stl/css-case
                       :auth-section true

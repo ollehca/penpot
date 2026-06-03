@@ -212,9 +212,9 @@
 ;; --- EVENT: logout
 
 ;; MODIFIED BY KIZUKU - Check single-user mode and skip login redirect
-(defn- kizu-single-user-mode? []
+(defn- kizuku-single-user-mode? []
   (try
-    (= "true" (.getItem js/localStorage "kizu-single-user-mode"))
+    (= "true" (.getItem js/localStorage "kizuku-single-user-mode"))
     (catch :default _ false)))
 
 (defn logged-out
@@ -229,8 +229,8 @@
       (rx/merge
        ;; NOTE: We need the `effect` of the current event to be
        ;; executed before the redirect.
-       ;; KIZU: In single-user mode, go to dashboard instead of login
-       (->> (rx/of (if (kizu-single-user-mode?)
+       ;; KIZUKU: In single-user mode, go to dashboard instead of login
+       (->> (rx/of (if (kizuku-single-user-mode?)
                      (rt/nav :dashboard-recent)
                      (rt/nav :auth-login)))
             (rx/observe-on :async))

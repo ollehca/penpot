@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: \"Amerey.eu\" <info@amerey.eu>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/kizu/frontend/cs/"
+"Language-Team: Czech\n"
 ">\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -428,7 +428,7 @@ msgstr "Smazat tým"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Stáhnout soubor Kizuku (.kizu)"
+msgstr "Stáhnout soubor Kizuku (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -463,14 +463,14 @@ msgstr "Zatím žádné soubory."
 msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Zde se zobrazí knihovny přidané do projektu. Zkuste své soubory sdílet nebo "
-"je přidat z [Knihovny a šablony](https://kizu.app/libraries-templates)."
+"je přidat z [Knihovny a šablony](https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Zde se zobrazí knihovny přidané do projektu. Zkuste své soubory sdílet nebo "
-"je přidat z [Knihovny a šablony](https://kizu.app/libraries-templates)."
+"je přidat z [Knihovny a šablony](https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -482,7 +482,7 @@ msgstr "Zatím žádné knihovny."
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Stáhnout soubory %s Kizuku (.kizu)"
+msgstr "Stáhnout soubory %s Kizuku (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -1016,7 +1016,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "Kreativitě se meze nekladou"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.kizu-free"
+msgid "dashboard.upgrade-plan.kizuku-free"
 msgstr "Kizuku Free"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -1162,7 +1162,7 @@ msgstr "E-mail «%s» byl nahlášen jako spam nebo byl trvale nedostupný."
 msgid "errors.feature-mismatch"
 msgstr ""
 "Vypadá to, že otevíráte soubor, který má povolenou funkci '%s', ale "
-"aktuální verze kizuu ji nepodporuje nebo je deaktivovaná."
+"aktuální verze Kizuku ji nepodporuje nebo je deaktivovaná."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -2914,7 +2914,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "Pokud to vlastník dovolí, budete pozváni do týmu."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "Soubor Kizuku"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -6832,7 +6832,7 @@ msgstr "Otevřít nabídku verzí"
 msgid "workspace.versions.warning.subtext"
 msgstr ""
 "Pokud byste chtěli tento limit zvýšit, napište nám na "
-"[support@kizu.app](%s)"
+"[support@getkizuku.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

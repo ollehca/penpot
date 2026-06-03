@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: VKing9 <vaibhavrathod2282@gmail.com>\n"
-"Language-Team: Hindi <https://hosted.weblate.org/projects/kizu/frontend/hi/"
+"Language-Team: Hindi\n"
 ">\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
@@ -425,7 +425,7 @@ msgstr "टीम हटाएं"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "पेनपोट फ़ाइल (.kizu) डाउनलोड करें"
+msgstr "पेनपोट फ़ाइल (.kizuku) डाउनलोड करें"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -460,14 +460,14 @@ msgstr "अभी तक कोई फ़ाइल नहीं।"
 msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "परियोजना में जोड़ी गई लाइब्रेरी यहाँ दिखाई देंगी। अपने फ़ाइलों को साझा करने की कोशिश करें "
-"या हमारी [लाइब्रेरी और टेम्पलेट्स](https://kizu.app/libraries-templates) से जोड़ें।"
+"या हमारी [लाइब्रेरी और टेम्पलेट्स](https://getkizuku.app) से जोड़ें।"
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "परियोजना में जोड़ी गई लाइब्रेरी यहाँ दिखाई देंगी। अपनी फ़ाइलें साझा करने का प्रयास करें या "
-"हमारी [लाइब्रेरी और टेम्पलेट्स](https://kizu.app/libraries-templates) से जोड़ें।"
+"हमारी [लाइब्रेरी और टेम्पलेट्स](https://getkizuku.app) से जोड़ें।"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -499,7 +499,7 @@ msgstr "एक फ़ाइल आयात करें"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "एक .kizu फ़ाइल आयात करें"
+msgstr "एक .kizuku फ़ाइल आयात करें"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -507,7 +507,7 @@ msgstr "शानदार चीज़ें बनाना शुरू क�
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "%s Kizuku फ़ाइलें (.kizu) डाउनलोड करें"
+msgstr "%s Kizuku फ़ाइलें (.kizuku) डाउनलोड करें"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -1074,7 +1074,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "रचनात्मकता पर कोई सीमा नहीं"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.kizu-free"
+msgid "dashboard.upgrade-plan.kizuku-free"
 msgstr "पेनपॉट मुफ़्त"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -3171,7 +3171,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "यदि स्वामी अनुमति देता है, तो आपको टीम में आमंत्रित किया जाएगा।"
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "पेनपॉट फ़ाइल"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -7712,7 +7712,7 @@ msgstr "संस्करण मेनू खोलें"
 #, markdown
 msgid "workspace.versions.warning.subtext"
 msgstr ""
-"यदि आप इस सीमा को बढ़ाना चाहते हैं, तो हमें [support@kizu.app](%s) पर लिखें"
+"यदि आप इस सीमा को बढ़ाना चाहते हैं, तो हमें [support@getkizuku.app](%s) पर लिखें"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

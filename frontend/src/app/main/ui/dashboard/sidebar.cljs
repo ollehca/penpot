@@ -886,7 +886,7 @@
        [:button {:class (stl/css :upgrade-plan-section)
                  :on-click on-power-up-click}
         [:div {:class (stl/css :penpot-free)}
-         [:span (tr "dashboard.upgrade-plan.kizu-free")]
+         [:span (tr "dashboard.upgrade-plan.kizuku-free")]
          [:span {:class (stl/css :no-limits)}
           (tr "dashboard.upgrade-plan.no-limits")]]
         [:div {:class (stl/css :power-up)}
@@ -923,13 +923,13 @@
        [:li {:class (stl/css :profile-separator)}]
 
        [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
-                                :data-url "https://help.kizu.app"
+                                :data-url "https://getkizuku.app"
                                 :on-click handle-click-url
                                 :data-testid "help-center-profile-opt"}
         (tr "labels.help-center")]
 
        [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
-                                :data-url "https://community.kizu.app"
+                                :data-url "https://getkizuku.app"
                                 :on-click handle-click-url}
         (tr "labels.community")]
 

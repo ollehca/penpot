@@ -46,7 +46,7 @@
      [:button
       {:class (stl/css :exception-header)
        :on-click on-nav-root}
-      [:> raw-svg* {:id "kizu-logo-icon" :class (stl/css :kizu-logo)}]
+      [:> raw-svg* {:id "kizuku-logo-icon" :class (stl/css :kizuku-logo)}]
       (when profile-id
         [:div {:class (stl/css :go-back-wrapper)}
          [:> icon* {:icon-id "arrow" :class (stl/css :back-arrow)}] [:span (tr "not-found.no-permission.go-dashboard")]])]
@@ -451,7 +451,7 @@
        i/logo-icon
        [:div
         [:div {:class (stl/css :project-name)} (tr "not-found.no-permission.project-name")]
-        [:div {:class (stl/css :file-name)} (tr "not-found.no-permission.kizu-file")]]]
+        [:div {:class (stl/css :file-name)} (tr "not-found.no-permission.kizuku-file")]]]
       [:div {:class (stl/css :workspace-right)}]]
 
      is-viewer
@@ -464,7 +464,7 @@
       [:& viewer.header/header {:project
                                 {:name (tr "not-found.no-permission.project-name")}
                                 :index 0
-                                :file {:name (tr "not-found.no-permission.kizu-file")}
+                                :file {:name (tr "not-found.no-permission.kizuku-file")}
                                 :page nil
                                 :frame nil
                                 :permissions {:is-logged true}

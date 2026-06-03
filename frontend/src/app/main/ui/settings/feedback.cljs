@@ -87,7 +87,7 @@
 
      [:a
       {:class (stl/css :feedback-button-link)
-       :href "https://community.kizu.app"
+       :href "https://getkizuku.app"
        :target "_blank"}
       (tr "feedback.discourse-go-to")]
      [:hr]

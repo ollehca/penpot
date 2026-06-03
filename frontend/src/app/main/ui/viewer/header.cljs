@@ -261,8 +261,8 @@
        [:span {:class (stl/css :frame-name)} frame-name]
        [:span {:class (stl/css :icon)} i/arrow]]]]))
 
-(def ^:private kizu-logo-icon
-  (i/icon-xref :kizu-logo-icon (stl/css :logo-icon)))
+(def ^:private kizuku-logo-icon
+  (i/icon-xref :kizuku-logo-icon (stl/css :logo-icon)))
 
 
 (mf/defc header
@@ -315,7 +315,7 @@
            :data-testid "penpot-logo-link"
            :style {:cursor (when-not (:in-team permissions) "auto")
                    :pointer-events (when-not (:in-team permissions) "none")}}
-       kizu-logo-icon]
+       kizuku-logo-icon]
 
       [:& header-sitemap {:project project
                           :file file

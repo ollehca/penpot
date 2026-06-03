@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Alejandro Alonso <alejandro.alonso@kaleidos.net>\n"
-"Language-Team: Hausa <https://hosted.weblate.org/projects/kizu/frontend/ha/"
+"Language-Team: Hausa\n"
 ">\n"
 "Language: ha\n"
 "MIME-Version: 1.0\n"
@@ -375,7 +375,7 @@ msgstr "kwafi %s kundaye"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "sauke %s kundayen manhajar fenfot(.kizu)"
+msgstr "sauke %s kundayen manhajar fenfot(.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"

@@ -50,10 +50,10 @@
    ::mf/wrap [mf/memo]}
   [{:keys [layout on-close]}]
   (let [nav-to-helpc-center
-        (mf/use-fn #(dom/open-new-window "https://help.kizu.app"))
+        (mf/use-fn #(dom/open-new-window "https://getkizuku.app"))
 
         nav-to-community
-        (mf/use-fn #(dom/open-new-window "https://community.kizu.app"))
+        (mf/use-fn #(dom/open-new-window "https://getkizuku.app"))
 
         nav-to-youtube
         (mf/use-fn #(dom/open-new-window "https://www.youtube.com/c/Penpot"))

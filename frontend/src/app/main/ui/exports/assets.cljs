@@ -178,7 +178,7 @@
    [:p {:class (stl/css :modal-scd-msg)} (tr "dashboard.export-shapes.how-to")]
    [:a {:target "_blank"
         :class (stl/css :modal-link)
-        :href "https://help.kizu.app/user-guide/exporting/ "}
+        :href "https://getkizuku.app"}
     (tr "dashboard.export-shapes.how-to-link")]])
 
 (mf/defc export-shapes-dialog

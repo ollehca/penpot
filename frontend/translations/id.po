@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Linerly <linerly@proton.me>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/kizu/"
-"frontend/id/>\n"
+"Language-Team: Indonesian\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -430,7 +429,7 @@ msgstr "Hapus tim"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Unduh berkas Kizuku (.kizu)"
+msgstr "Unduh berkas Kizuku (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -466,7 +465,7 @@ msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Pustaka yang ditambahkan ke proyek akan muncul di sini. Coba membagikan "
 "berkas Anda atau tambahkan dari [Pustaka dan tempat] "
-"(https://kizu.app/libraries-templates) kami."
+"(https://getkizuku.app) kami."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
@@ -474,7 +473,7 @@ msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Pustaka yang ditambahkan ke proyek akan muncul di sini. Coba membagikan "
 "berkas Anda atau tambahkan dari [Pustaka dan tempat] "
-"(https://kizu.app/libraries-templates) kami."
+"(https://getkizuku.app) kami."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -506,7 +505,7 @@ msgstr "Impor berkas"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Impor berkas .kizu"
+msgstr "Impor berkas .kizuku"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -514,7 +513,7 @@ msgstr "Mulai membuat hal-hal yang hebat"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "Unduh %s berkas Kizuku (.kizu)"
+msgstr "Unduh %s berkas Kizuku (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -1051,7 +1050,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "Tanpa batasan kreativitas"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.kizu-free"
+msgid "dashboard.upgrade-plan.kizuku-free"
 msgstr "Kizuku Gratis"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -3088,7 +3087,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "Jika pemilik mengizinkan, Anda akan diundang ke tim."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "Berkas Kizuku"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -7235,7 +7234,7 @@ msgstr "Buka menu versi"
 msgid "workspace.versions.warning.subtext"
 msgstr ""
 "Jika Anda ingin meningkatkan batas ini, tulis kepada kami di "
-"[support@kizu.app](%s)"
+"[support@getkizuku.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

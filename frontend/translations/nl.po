@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/kizu/frontend/nl/"
+"Language-Team: Dutch\n"
 ">\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -428,7 +428,7 @@ msgstr "Team verwijderen"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Kizuku-bestand downloaden (.kizu)"
+msgstr "Kizuku-bestand downloaden (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -464,7 +464,7 @@ msgid "dashboard.empty-placeholder-libraries"
 msgstr ""
 "Hier verschijnen bibliotheken die aan het project zijn toegevoegd. Probeer "
 "je bestanden te delen of voeg ze toe vanuit onze [Bibliotheken en "
-"sjablonen] (https://kizu.app/libraries-templates)."
+"sjablonen] (https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
@@ -472,7 +472,7 @@ msgid "dashboard.empty-placeholder-libraries-subtitle"
 msgstr ""
 "Hier verschijnen bibliotheken die aan het project zijn toegevoegd. Probeer "
 "je bestanden te delen of voeg ze toe vanuit onze [Bibliotheken en "
-"sjablonen] (https://kizu.app/libraries-templates)."
+"sjablonen] (https://getkizuku.app)."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -504,7 +504,7 @@ msgstr "Importeer een bestand"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Importeer een .kizu-bestand"
+msgstr "Importeer een .kizuku-bestand"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -512,7 +512,7 @@ msgstr "Begin met het bouwen van geweldige dingen"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "%s Kizuku-bestanden downloaden (.kizu)"
+msgstr "%s Kizuku-bestanden downloaden (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -1075,7 +1075,7 @@ msgid "dashboard.upgrade-plan.no-limits"
 msgstr "Onbeperkte creativiteit"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
-msgid "dashboard.upgrade-plan.kizu-free"
+msgid "dashboard.upgrade-plan.kizuku-free"
 msgstr "Kizuku Free"
 
 #: src/app/main/ui/dashboard/team.cljs:950
@@ -3202,7 +3202,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "Als de eigenaar het toestaat, word je uitgenodigd voor het team."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "Kizuku-bestand"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
@@ -7583,7 +7583,7 @@ msgstr "Versie-menu openen"
 msgid "workspace.versions.warning.subtext"
 msgstr ""
 "Als je deze limiet wilt verhogen, schrijf ons dan op "
-"[support@kizu.app](%s)"
+"[support@getkizuku.app](%s)"
 
 #: src/app/main/ui/workspace/sidebar/versions.cljs:368
 msgid "workspace.versions.warning.text"

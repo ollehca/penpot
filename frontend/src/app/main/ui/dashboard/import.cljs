@@ -58,7 +58,7 @@
   [{:keys [project-id on-finish-import]} external-ref]
   (let [on-file-selected (use-import-file project-id on-finish-import)]
     [:form.import-file {:aria-hidden "true"}
-     [:& file-uploader {:accept ".kizu,.zip"
+     [:& file-uploader {:accept ".kizuku,.zip"
                         :multi true
                         :ref external-ref
                         :on-selected on-file-selected}]]))

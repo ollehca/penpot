@@ -2,8 +2,7 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2025-08-11 07:21+0000\n"
 "Last-Translator: Merih Güz <iletisim@merihguz.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/kizu/frontend/"
-"tr/>\n"
+"Language-Team: Turkish\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -417,7 +416,7 @@ msgstr "Takımı sil"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "Kizuku dosyasını indir (.kizu)"
+msgstr "Kizuku dosyasını indir (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -433,7 +432,7 @@ msgstr "%s dosyanın kopyasını oluştur"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "%s Kizuku dosyasını indir (.kizu)"
+msgstr "%s Kizuku dosyasını indir (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -971,7 +970,7 @@ msgstr "«%s» e-postasının spam veya kalıcı olarak geri döndüğü bildiri
 msgid "errors.feature-mismatch"
 msgstr ""
 "Görünüşe göre '%s' özelliğinin etkin olduğu bir dosyayı açıyorsunuz, ancak "
-"şu anki kizu sürümü bunu desteklemiyor veya devre dışı bırakıldı."
+"şu anki kizuku sürümü bunu desteklemiyor veya devre dışı bırakıldı."
 
 #: src/app/main/errors.cljs:245, src/app/main/errors.cljs:259
 msgid "errors.feature-not-supported"
@@ -2622,7 +2621,7 @@ msgid "not-found.no-permission.if-approves"
 msgstr "Sahibi izin verirse takıma davet edileceksiniz."
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
-msgid "not-found.no-permission.kizu-file"
+msgid "not-found.no-permission.kizuku-file"
 msgstr "Kizuku dosyası"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
