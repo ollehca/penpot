@@ -60,8 +60,12 @@
         on-menu-click
         (mf/use-fn
          (fn [event]
-           (let [position (dom/get-client-position event)]
-             (dom/prevent-default event)
+           (dom/prevent-default event)
+           ;; Position from the button's bounding rect, not clientX/Y.
+           ;; Icon clicks (and keyboard activation) report clientX/Y = 0,
+           ;; which pushed the menu off-screen via the (- x 180) offset below.
+           (let [rect     (dom/get-bounding-rect (dom/get-target event))
+                 position {:x (:left rect) :y (:bottom rect)}]
              (swap! local assoc :menu-open true :menu-pos position))))
 
         on-menu-close
@@ -135,7 +139,7 @@
       (when ^boolean can-edit
         [:> project-menu* {:project project
                            :show (:menu-open @local)
-                           :left (- (:x (:menu-pos @local)) 180)
+                           :left (+ 24 (:x (:menu-pos @local)))
                            :top (:y (:menu-pos @local))
                            :on-edit on-edit
                            :on-close on-menu-close

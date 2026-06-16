@@ -138,15 +138,17 @@
         (mf/use-fn
          (fn [event]
            (dom/prevent-default event)
-
+           ;; Right-click carries real clientX/Y; an icon/keyboard click on the
+           ;; ⋮ button reports 0 (not nil). The previous nil? guard never fired,
+           ;; so the menu opened at {0,0} → off-screen. Fall back to the target's
+           ;; bounding rect whenever coords are missing or zero.
            (let [client-position (dom/get-client-position event)
-                 position (if (and (nil? (:y client-position)) (nil? (:x client-position)))
-                            (let [target-element (dom/get-target event)
-                                  points         (dom/get-bounding-rect target-element)
-                                  y              (:top points)
-                                  x              (:left points)]
-                              (gpt/point x y))
-                            client-position)]
+                 has-coords?     (and (pos? (or (:x client-position) 0))
+                                      (pos? (or (:y client-position) 0)))
+                 position        (if has-coords?
+                                   client-position
+                                   (let [points (dom/get-bounding-rect (dom/get-target event))]
+                                     (gpt/point (:left points) (:bottom points))))]
              (swap! local assoc
                     :menu-open true
                     :menu-pos position))))

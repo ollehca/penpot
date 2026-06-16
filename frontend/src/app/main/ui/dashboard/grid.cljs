@@ -352,14 +352,19 @@
            (let [client-position
                  (dom/get-client-position event)
 
+                 ;; Right-click carries real clientX/Y; an icon/keyboard click
+                 ;; reports 0 (not nil). Fall back to the target's bounding
+                 ;; rect whenever the coords are missing OR zero, else the menu
+                 ;; opens at {0,0} → off-screen.
+                 has-coords?
+                 (and (pos? (or (:x client-position) 0))
+                      (pos? (or (:y client-position) 0)))
+
                  position
-                 (if (and (nil? (:y client-position)) (nil? (:x client-position)))
-                   (let [target-element (dom/get-target event)
-                         points         (dom/get-bounding-rect target-element)
-                         y              (:top points)
-                         x              (:left points)]
-                     (gpt/point x y))
-                   client-position)]
+                 (if has-coords?
+                   client-position
+                   (let [points (dom/get-bounding-rect (dom/get-target event))]
+                     (gpt/point (:left points) (:bottom points))))]
 
              (st/emit! (dd/show-file-menu-with-position file-id position)))))
 
