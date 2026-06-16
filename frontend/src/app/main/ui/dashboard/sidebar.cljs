@@ -6,7 +6,7 @@
 
 ;; ============================================================================
 ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
-;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Original file from PenPot (https://getkizuku.app)
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Project list items now render an inline folder icon, pinned
 ;;   indicator, and Kizuku-specific row layout. Team switcher hidden via
@@ -875,7 +875,7 @@
         (mf/use-fn
          (fn []
            (st/emit! (ptk/event ::ev/event {::ev/name "explore-pricing-click" ::ev/origin "dashboard" :section "sidebar"}))
-           (dom/open-new-window "https://penpot.app/pricing")))]
+           (dom/open-new-window "https://getkizuku.app")))]
 
     [:*
      (when (contains? cf/flags :subscriptions)
@@ -934,7 +934,7 @@
         (tr "labels.community")]
 
        [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
-                                :data-url "https://www.youtube.com/c/Penpot"
+                                :data-url "https://getkizuku.app"
                                 :on-click handle-click-url}
         (tr "labels.tutorials")]
 
@@ -946,18 +946,18 @@
        [:li {:class (stl/css :profile-separator)}]
 
        [:> dropdown-menu-item* {:class     (stl/css :profile-dropdown-item)
-                                :data-url "https://penpot.app/libraries-templates"
+                                :data-url "https://getkizuku.app"
                                 :on-click handle-click-url
                                 :data-testid "libraries-templates-profile-opt"}
         (tr "labels.libraries-and-templates")]
 
        [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
-                                :data-url "https://github.com/penpot/penpot"
+                                :data-url "https://getkizuku.app"
                                 :on-click handle-click-url}
         (tr "labels.github-repo")]
 
        [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
-                                :data-url "https://penpot.app/terms"
+                                :data-url "https://getkizuku.app"
                                 :on-click handle-click-url}
         (tr "auth.terms-of-service")]
 

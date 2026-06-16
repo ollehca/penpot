@@ -56,16 +56,16 @@
         (mf/use-fn #(dom/open-new-window "https://getkizuku.app"))
 
         nav-to-youtube
-        (mf/use-fn #(dom/open-new-window "https://www.youtube.com/c/Penpot"))
+        (mf/use-fn #(dom/open-new-window "https://getkizuku.app"))
 
         nav-to-templates
-        (mf/use-fn #(dom/open-new-window "https://penpot.app/libraries-templates"))
+        (mf/use-fn #(dom/open-new-window "https://getkizuku.app"))
 
         nav-to-github
-        (mf/use-fn #(dom/open-new-window "https://github.com/penpot/penpot"))
+        (mf/use-fn #(dom/open-new-window "https://getkizuku.app"))
 
         nav-to-terms
-        (mf/use-fn #(dom/open-new-window "https://penpot.app/terms"))
+        (mf/use-fn #(dom/open-new-window "https://getkizuku.app"))
 
         nav-to-feedback
         (mf/use-fn #(st/emit! (dcm/go-to-feedback)))
@@ -799,7 +799,7 @@
         (mf/use-fn
          (fn []
            (st/emit! (ptk/event ::ev/event {::ev/name "explore-pricing-click" ::ev/origin "workspace-menu"}))
-           (dom/open-new-window "https://penpot.app/pricing")))
+           (dom/open-new-window "https://getkizuku.app")))
 
         toggle-flag
         (mf/use-fn

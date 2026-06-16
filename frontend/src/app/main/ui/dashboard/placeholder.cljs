@@ -30,7 +30,9 @@
            (st/emit! (ptk/event ::ev/event {::ev/name "explore-libraries-click"
                                             ::ev/origin "dashboard"
                                             :section "empty-placeholder-projects"}))
-           (dom/open-new-window "https://penpot.app/penpothub/libraries-templates")))
+           ;; MODIFIED BY KIZUKU: was penpot.app/penpothub URL (wrong brand +
+           ;; broken offline). Point at the bare Kizuku domain.
+           (dom/open-new-window "https://getkizuku.app")))
 
         on-import
         (mf/use-fn #(dom/click (mf/ref-val file-input)))]

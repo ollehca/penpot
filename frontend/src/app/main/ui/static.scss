@@ -85,7 +85,10 @@
   align-items: center;
 }
 
-.penpot-logo {
+// MODIFIED BY KIZUKU: renamed .penpot-logo → .kizuku-logo to match the
+// class applied in static.cljs (error/exception pages); without this the
+// error-page logo rendered unstyled (no fill, default sizing).
+.kizuku-logo {
   fill: var(--color-foreground-primary);
   width: $s-48;
   height: $s-48;
