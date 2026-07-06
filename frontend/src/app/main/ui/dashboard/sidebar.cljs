@@ -12,6 +12,8 @@
 ;;   indicator, and Kizuku-specific row layout. Team switcher hidden via
 ;;   sibling SCSS (single-team mode).
 ;; Date: 2026-05-19
+;; Kata polish: static non-interactive sidebar footer ("Local · offline" +
+;;   getkizuku.app) pinned below the profile section. Date: 2026-07-07
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.sidebar
@@ -988,5 +990,9 @@
    [:> sidebar-content* props]
    [:> profile-section*
     {:profile profile
-     :team team}]])
+     :team team}]
+   ;; Kizuku: static footer, plain spans by design (no links, no handlers)
+   [:div {:class (stl/css :sidebar-footer)}
+    [:span {:class (stl/css :sidebar-footer-tagline)} "Local · offline"]
+    [:span {:class (stl/css :sidebar-footer-url)} "getkizuku.app"]]])
 

@@ -4,6 +4,16 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Kata polish — header renders a "stored on this device"
+;;   subtitle under the title, using the shared-files list already computed
+;;   in this component (no new subscriptions).
+;; Date: 2026-07-07
+;; ============================================================================
+
 (ns app.main.ui.dashboard.libraries
   (:require-macros [app.main.style :as stl])
   (:require
@@ -63,7 +73,13 @@
     [:*
      [:header {:class (stl/css :dashboard-header) :data-testid "dashboard-header"}
       [:div#dashboard-libraries-title {:class (stl/css :dashboard-title)}
-       [:h1 (tr "dashboard.libraries-title")]]]
+       [:h1 (tr "dashboard.libraries-title")]
+       ;; Kizuku: static subtitle (hardcoded English per fork precedent)
+       [:span {:class (stl/css :dashboard-subtitle)}
+        (let [n (count files)]
+          (if (pos? n)
+            (str n (if (= 1 n) " file" " files") " · stored on this device")
+            "Stored on this device"))]]]
 
      [:section {:class (stl/css :dashboard-container :no-bg :dashboard-shared)
                 :ref rowref}

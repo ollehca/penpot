@@ -4,6 +4,16 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Kata polish — header renders a "stored on this device"
+;;   subtitle under the title, with the project count already available in
+;;   the section component (no new subscriptions).
+;; Date: 2026-07-07
+;; ============================================================================
+
 (ns app.main.ui.dashboard.projects
   (:require-macros [app.main.style :as stl])
   (:require
@@ -48,11 +58,18 @@
   {::mf/wrap [mf/memo]
    ::mf/props :obj
    ::mf/private true}
-  [{:keys [can-edit]}]
+  [{:keys [can-edit project-count]}]
   (let [on-click (mf/use-fn #(st/emit! (dd/create-project)))]
     [:header {:class (stl/css :dashboard-header) :data-testid "dashboard-header"}
      [:div#dashboard-projects-title {:class (stl/css :dashboard-title)}
-      [:h1 (tr "dashboard.projects-title")]]
+      [:h1 (tr "dashboard.projects-title")]
+      ;; Kizuku: static subtitle (hardcoded English per fork precedent)
+      [:span {:class (stl/css :dashboard-subtitle)}
+       (if (pos? project-count)
+         (str project-count
+              (if (= 1 project-count) " project" " projects")
+              " · stored on this device")
+         "Stored on this device")]]
      (when can-edit
        [:button {:class (stl/css :btn-secondary :btn-small)
                  :on-click on-click
@@ -356,7 +373,9 @@
 
     (when (seq projects)
       [:*
-       [:> header* {:can-edit can-edit}]
+       ;; Kizuku: count already present in props — drafts is not a project
+       [:> header* {:can-edit can-edit
+                    :project-count (count (remove :is-default projects))}]
        [:div {:class (stl/css :projects-container)}
         [:*
          (when (and show-team-hero?

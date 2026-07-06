@@ -4,6 +4,15 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Kata polish — header renders the static "Stored on this
+;;   device" subtitle under the title (no count available in header props).
+;; Date: 2026-07-07
+;; ============================================================================
+
 (ns app.main.ui.dashboard.fonts
   (:require-macros [app.main.style :as stl])
   (:require
@@ -58,7 +67,9 @@
   (use-page-title team section)
   [:header {:class (stl/css :dashboard-header) :data-testid "dashboard-header"}
    [:div#dashboard-fonts-title {:class (stl/css :dashboard-title)}
-    [:h1 (tr "labels.fonts")]]])
+    [:h1 (tr "labels.fonts")]
+    ;; Kizuku: static subtitle (hardcoded English per fork precedent)
+    [:span {:class (stl/css :dashboard-subtitle)} "Stored on this device"]]])
 
 (mf/defc font-variant-display-name*
   {::mf/props :obj

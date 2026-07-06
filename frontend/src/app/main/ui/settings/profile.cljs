@@ -4,6 +4,16 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Kata polish pass 2 — static local-first notice and "own your
+;;   work" card below the profile form (hardcoded English per fork precedent;
+;;   no state, no handlers).
+;; Date: 2026-07-07
+;; ============================================================================
+
 (ns app.main.ui.settings.profile
   (:require-macros [app.main.style :as stl])
   (:require
@@ -127,5 +137,18 @@
    [:div {:class (stl/css :form-container)}
     [:h2 (tr "labels.profile")]
     [:& profile-photo-form]
-    [:& profile-form]]])
+    [:& profile-form]
+
+    ;; KIZUKU: static local-first notice (Kata info tint)
+    [:div {:class (stl/css :local-notice)}
+     "Your files stay on this device. Kizuku never syncs to the cloud."]
+
+    ;; KIZUKU: static ownership card (Kata raised surface)
+    [:div {:class (stl/css :own-work-card)}
+     [:span {:class (stl/css :own-work-title)}
+      "Own your work locally"]
+     [:span {:class (stl/css :own-work-body)}
+      "No subscriptions, no lock-in. Export any time to open formats."]
+     [:span {:class (stl/css :own-work-url)}
+      "getkizuku.app"]]]])
 

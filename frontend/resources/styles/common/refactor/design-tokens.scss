@@ -12,6 +12,10 @@
 //   dedicated --color-canvas-background primitive (Kata canvas #0a0a14 in
 //   dark, white in light) so the canvas is distinct from the app background.
 // Date: 2026-07-06
+// 2026-07-07: Kata hovers lighten — remapped --layer-row-background-color-hover
+//   and --sidebar-element-background-color-hover from background-secondary
+//   (darker than base in dark theme) to background-tertiary (Kata surface
+//   #1e1e3a in dark; #f0f2f5 in light, still a sane light hover).
 // ============================================================================
 
 @use "sass:color";
@@ -130,7 +134,7 @@
 
   // LAYER ELEMENT
   --layer-row-background-color: var(--color-background-primary);
-  --layer-row-background-color-hover: var(--color-background-secondary);
+  --layer-row-background-color-hover: var(--color-background-tertiary);
   --layer-row-background-color-selected: var(--color-background-quaternary);
   --layer-row-background-color-drag: var(--color-background-quaternary);
   --layer-row-foreground-color: var(--color-foreground-secondary);
@@ -423,7 +427,7 @@
 
   //DASHBOARD
   --sidebar-element-foreground-color: var(--color-foreground-secondary);
-  --sidebar-element-background-color-hover: var(--color-background-secondary);
+  --sidebar-element-background-color-hover: var(--color-background-tertiary);
   --sidebar-element-foreground-color-hover: var(--color-accent-primary);
   --sidebar-element-background-color-selected: var(--color-background-quaternary);
   --sidebar-element-foreground-color-selected: var(--color-accent-primary);

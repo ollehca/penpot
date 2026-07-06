@@ -11,6 +11,9 @@
 ;; Modifications: Added folder-tree-panel integration to the project files
 ;;   page so users can navigate by folder alongside the flat grid.
 ;; Date: 2026-05-19
+;; Kata polish: header renders a "stored on this device" subtitle under the
+;;   title (drafts + project views; skipped while renaming), using the file
+;;   count already computed in the section component. Date: 2026-07-07
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.files
@@ -42,8 +45,16 @@
 (mf/defc header*
   {::mf/props :obj
    ::mf/private true}
-  [{:keys [project create-fn can-edit]}]
+  [{:keys [project create-fn can-edit file-count]}]
   (let [project-id (:id project)
+
+        ;; Kizuku: static subtitle (hardcoded English per fork precedent)
+        subtitle
+        (if (pos? file-count)
+          (str file-count
+               (if (= 1 file-count) " file" " files")
+               " · stored on this device")
+          "Stored on this device")
 
         local
         (mf/use-state
@@ -90,7 +101,8 @@
     [:header {:class (stl/css :dashboard-header) :data-testid "dashboard-header"}
      (if (:is-default project)
        [:div#dashboard-drafts-title {:class (stl/css :dashboard-title)}
-        [:h1 (tr "labels.drafts")]]
+        [:h1 (tr "labels.drafts")]
+        [:span {:class (stl/css :dashboard-subtitle)} subtitle]]
 
        (if (and (:edition @local) can-edit)
          [:& inline-edition
@@ -106,7 +118,8 @@
           [:h1 {:on-double-click on-edit
                 :data-testid "project-title"
                 :id (:id project)}
-           (:name project)]]))
+           (:name project)]
+          [:span {:class (stl/css :dashboard-subtitle)} subtitle]]))
 
      [:div {:class (stl/css :dashboard-header-actions)}
       (when ^boolean can-edit
@@ -219,7 +232,9 @@
      [:> header* {:team team
                   :can-edit can-edit?
                   :project project
-                  :create-fn create-file}]
+                  :create-fn create-file
+                  ;; Kizuku: total project files (folder-assigned included)
+                  :file-count (count all-files)}]
 
      (when-not is-draft-proyect
        [:> folder-tree-panel*

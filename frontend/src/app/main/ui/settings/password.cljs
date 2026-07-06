@@ -4,6 +4,17 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Kata polish pass 2 — static hint under the new-password
+;;   field (hardcoded English per fork precedent). Uses the forms `hint`
+;;   prop, which renders in the same slot as validation errors and is
+;;   mutually exclusive with them (same pattern as auth/register).
+;; Date: 2026-07-07
+;; ============================================================================
+
 (ns app.main.ui.settings.password
   (:require-macros [app.main.style :as stl])
   (:require
@@ -81,7 +92,8 @@
        {:type "password"
         :name :password-1
         :show-success? true
-        :label (tr "labels.new-password")}]]
+        :label (tr "labels.new-password")
+        :hint "At least 12 characters. Stored only on this device."}]]
 
      [:div {:class (stl/css :fields-row)}
       [:& fm/input

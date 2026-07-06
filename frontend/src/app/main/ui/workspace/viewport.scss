@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata canvas dot grid — subtle radial-gradient dots on the
+//   render svg, dark theme only (EXPERIMENTAL; dots are viewport-static and
+//   do not pan/zoom with the canvas).
+// Date: 2026-07-07
+// ============================================================================
+
 @use "common/refactor/common-refactor.scss" as *;
 
 .viewport {
@@ -24,6 +34,14 @@
   height: 100%;
   position: absolute;
   width: 100%;
+
+  // KIZUKU (Kata, experimental): dot grid composited over the svg's inline
+  // background-color. Dark theme only — 4% white is invisible noise on light.
+  // Revert: delete this block.
+  :global(.default) & {
+    background-image: radial-gradient(rgb(255 255 255 / 4%) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
 }
 
 .viewport-overlays {

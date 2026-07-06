@@ -4,6 +4,15 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Replaced the PenPot Twitter link with the Kizuku site link
+;;   (bare https://getkizuku.app, hardcoded English label per fork precedent).
+;; Date: 2026-07-07
+;; ============================================================================
+
 (ns app.main.ui.settings.feedback
   "Feedback form."
   (:require-macros [app.main.style :as stl])
@@ -97,9 +106,9 @@
 
      [:a
       {:class (stl/css :feedback-button-link)
-       :href "https://twitter.com/penpotapp"
+       :href "https://getkizuku.app"
        :target "_blank"}
-      (tr "feedback.twitter-go-to")]]))
+      "getkizuku.app"]]))
 
 (mf/defc feedback-page
   []

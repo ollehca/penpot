@@ -13,6 +13,9 @@
 //   hover deepen and press nudge; secondary buttons to sentence case with
 //   5px radius; fixed nav hover text that resolved to a near-invisible color.
 // Date: 2026-07-06
+// Kata polish: .dashboard-title stacks as a column so views can render the
+//   "stored on this device" subtitle (.dashboard-subtitle) under the h1.
+// Date: 2026-07-07
 // ============================================================================
 
 @use "refactor/common-refactor" as *;
@@ -80,9 +83,20 @@
   }
 
   .dashboard-title {
+    // Kata polish: column layout so the subtitle stacks under the h1;
+    // views without a subtitle keep the same vertical centering
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     margin-left: $s-12;
+
+    .dashboard-subtitle {
+      color: var(--color-foreground-secondary);
+      font-size: $fs-12;
+      font-weight: $fw400;
+      white-space: nowrap;
+    }
 
     h1 {
       color: var(--color-foreground-primary);
