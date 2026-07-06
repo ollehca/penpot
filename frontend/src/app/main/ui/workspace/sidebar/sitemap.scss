@@ -4,6 +4,15 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — page rows follow the layer-row treatment:
+//   hover lightens to surface, selected rows get the 2px inset violet bar.
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .sitemap {
@@ -13,6 +22,9 @@
   flex: 1;
   width: 100%;
   height: var(--height, $s-200);
+
+  // Kata: hovers lighten up the surface ramp (token default darkens)
+  --layer-row-background-color-hover: var(--color-background-tertiary);
 }
 
 .title {
@@ -151,7 +163,10 @@
     .element-list-body {
       color: var(--layer-row-foreground-color-selected);
       background-color: var(--layer-row-background-color-selected);
-      box-shadow: $s-16 $s-0 $s-0 $s-0 var(--layer-row-background-color-selected);
+      // Kata selected row: surface-hover fill + 2px inset violet accent bar
+      box-shadow:
+        inset $s-2 $s-0 $s-0 $s-0 #7c3aed,
+        $s-16 $s-0 $s-0 $s-0 var(--layer-row-background-color-selected);
       .page-actions button {
         svg {
           stroke: var(--layer-row-foreground-color-selected);

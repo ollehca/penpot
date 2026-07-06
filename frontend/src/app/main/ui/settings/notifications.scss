@@ -4,17 +4,33 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata design refresh (settings surface) — Kata primary submit
+//   button, 12px/500 muted question labels (h4), panel column widened to
+//   match the other settings pages; section titles inherit the Kata group
+//   style from ./profile.
+// Date: 2026-07-06
+// ============================================================================
+
 @use "common/refactor/common-refactor.scss" as *;
 @use "./profile" as *;
 
 .update-btn {
   margin-top: $s-16;
   @extend .button-primary;
-  height: $s-36;
+  height: $s-32;
+  width: fit-content;
+  padding: 0 $s-24;
+  align-self: flex-end;
+  @include kataPrimaryButton;
 }
 
 .notifications-form {
-  width: $s-400;
+  width: 100%;
+  max-width: $s-640;
 }
 
 .notifications-page {
@@ -29,14 +45,12 @@
 }
 
 .form-container {
-  h3 {
-    color: var(--color-foreground-secondary);
-  }
-
+  // Kata field labels: 12px/500, muted, sentence case
   h4 {
-    font-size: $fs-11;
-    color: var(--color-foreground-primary);
-    text-transform: uppercase;
-    margin: $s-12;
+    font-size: $fs-12;
+    font-weight: $fw500;
+    color: var(--color-foreground-secondary);
+    text-transform: none;
+    margin: $s-12 0 $s-4;
   }
 }

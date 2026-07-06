@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — panel group titles at 11px/600 uppercase
+//   +.06em tracking in Kata text-dim (#64708d has no PenPot semantic var).
+//   Used by the workspace options/layers/assets panels and inspect sidebar.
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .title-bar {
@@ -21,6 +31,10 @@
 .title-only,
 .inspect-title {
   @include headlineSmallTypography;
+  // Kata group titles: 11px / 600, uppercase, +.06em tracking
+  font-size: $fs-11;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   display: grid;
   align-items: center;
   justify-content: flex-start;
@@ -29,6 +43,12 @@
   min-height: $s-32;
 
   overflow: hidden;
+}
+
+.title,
+.title-only {
+  // Kata text-dim (no semantic var exists for this tier)
+  color: #64708d;
 }
 
 .title-only {
@@ -52,6 +72,7 @@
   &:hover {
     color: var(--title-foreground-color-hover);
     .title {
+      color: var(--title-foreground-color-hover);
       stroke: var(--title-foreground-color-hover);
     }
   }

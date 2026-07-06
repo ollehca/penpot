@@ -4,27 +4,64 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata design refresh (settings surface). Form column becomes
+//   a surface panel (radius 12, hairline border, shadow-lg); inputs move to
+//   bg-base with 5px radius and a violet focus ring; labels 12px/500 muted;
+//   Kata primary/secondary buttons; 2-col profile field grid; smaller avatar.
+//   Shared by password/options/notifications/feedback via `@use "./profile"`.
+// Date: 2026-07-06
+// ============================================================================
+
 @use "common/refactor/common-refactor" as *;
 
 .dashboard-settings {
   display: flex;
   width: 100%;
   justify-content: center;
-  align-items: center;
-  a:not(.button-primary) {
+  align-items: flex-start;
+
+  a:not(.button-primary):not(.feedback-button-link) {
     color: var(--color-foreground-secondary);
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: var(--color-accent-primary);
+    }
   }
 }
 
 .form-container {
+  // Kata panel: surface background, hairline border, 12px radius, shadow-lg
   display: flex;
   justify-content: center;
   flex-direction: column;
-  max-width: $s-500;
-  margin-bottom: $s-32;
-  width: $s-580;
-  margin: $s-80 auto $s-120 auto;
-  justify-content: center;
+  width: 100%;
+  max-width: $s-640;
+  margin: $s-48 auto $s-120 auto;
+  padding: $s-20 $s-24 $s-24;
+  border: $s-1 solid var(--panel-border-color);
+  border-radius: $br-12;
+  background-color: var(--color-background-tertiary);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%); // Kata --shadow-lg
+
+  // Kata controls: fields sit on bg-base inside the surface panel
+  --input-height: #{$s-32};
+  --input-background-color: var(--color-background-primary);
+  --input-background-color-rest: var(--color-background-primary);
+  --input-background-color-hover: var(--color-background-primary);
+  --input-background-color-focus: var(--color-background-primary);
+  --input-background-color-active: var(--color-background-primary);
+  --input-border-color: var(--color-background-quaternary);
+  --input-border-color-rest: var(--color-background-quaternary);
+  --input-border-color-hover: var(--color-accent-primary-muted);
+  --input-border-color-focus: var(--color-accent-tertiary); // Kata --focus-ring
+  --input-border-color-active: var(--color-accent-tertiary);
+  // Custom selects (options page) read the inherited menu background
+  --menu-background-color: var(--color-background-primary);
 
   form {
     display: flex;
@@ -32,31 +69,48 @@
 
     .btn-secondary {
       width: 100%;
-      font-size: $fs-11;
-      text-transform: uppercase;
-      background-color: var(--color-background-tertiary);
-      color: var(--color-foreground-primary);
-      &:hover {
-        color: var(--color-accent-primary);
-        background-color: var(--color-background-quaternary);
-      }
+      @include kataSecondaryButton;
     }
+
     hr {
       display: none;
     }
   }
 
   .fields-row {
-    --input-height: #{$s-40};
+    --input-height: #{$s-32};
     margin-bottom: $s-20;
     flex-direction: column;
+
+    // Kata field labels: 12px/500, muted, sentence case
+    label {
+      font-size: $fs-12;
+      font-weight: $fw500;
+      color: var(--color-foreground-secondary);
+      text-transform: none;
+    }
+
+    :where(input, select, textarea) {
+      border-radius: $br-5; // Kata controls: 5px, do not snap to 4
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+    }
 
     .options {
       display: flex;
       justify-content: flex-end;
-      font-size: $fs-14;
+      font-size: $fs-12;
       margin-top: $s-12;
     }
+  }
+
+  // Violet focus ring (border + 3px accent shadow at 18%)
+  .fields-row input:focus,
+  .fields-row select:focus,
+  .fields-row textarea:focus {
+    @include kataControlFocus;
+    border-radius: $br-5;
   }
 
   .field {
@@ -67,11 +121,12 @@
     color: var(--color-foreground-primary);
 
     &:not(:first-child) {
-      margin-top: $s-64;
+      margin-top: $s-40;
     }
   }
 
   .field-text {
+    font-size: $fs-12;
     color: var(--color-foreground-secondary);
   }
 
@@ -80,21 +135,21 @@
     flex-direction: column-reverse;
     label {
       position: relative;
-      text-transform: uppercase;
-      color: var(--color-foreground-primary);
-      font-size: $fs-11;
+      font-size: $fs-12;
+      font-weight: $fw500;
+      color: var(--color-foreground-secondary);
       margin-bottom: $s-12;
       margin-left: calc(-1 * $s-4);
     }
     input,
     select {
-      background-color: var(--color-background-tertiary);
-      border-radius: $br-8;
-      border-color: transparent;
+      background-color: var(--color-background-primary);
+      border-radius: $br-5;
+      border: $s-1 solid var(--color-background-quaternary);
       color: var(--color-foreground-primary);
       padding: 0 $s-16;
       &:focus {
-        outline: $s-1 solid var(--color-accent-primary);
+        @include kataControlFocus;
       }
       ::placeholder {
         color: var(--color-foreground-secondary);
@@ -115,8 +170,8 @@
       }
     }
     .input-container {
-      background-color: var(--color-background-tertiary);
-      border-radius: $br-8;
+      background-color: var(--color-background-primary);
+      border-radius: $br-5;
       border-color: transparent;
       margin-top: $s-24;
       .main-content {
@@ -129,17 +184,17 @@
         }
       }
       &:focus {
-        border: $s-1 solid var(--color-accent-primary);
+        border: $s-1 solid var(--color-accent-tertiary);
       }
     }
     textarea {
-      border-radius: $br-8;
+      border-radius: $br-5;
       padding: $s-12 $s-16;
-      background-color: var(--color-background-tertiary);
+      background-color: var(--color-background-primary);
       color: var(--color-foreground-primary);
-      border: none;
+      border: $s-1 solid var(--color-background-quaternary);
       &:focus {
-        outline: $s-1 solid var(--color-accent-primary);
+        @include kataControlFocus;
       }
     }
   }
@@ -191,37 +246,41 @@
     text-align: center;
   }
 
+  // Kata title: 20px/600, tight tracking
   h2 {
-    font-size: $fs-24;
-    font-weight: $fw400;
+    font-size: $fs-20;
+    font-weight: 600;
+    letter-spacing: -0.015em;
     color: var(--color-foreground-primary);
     display: flex;
     align-items: center;
-    margin: $s-16 0;
+    margin: $s-8 0 $s-20;
   }
 
+  // Kata group title: 11px/600 uppercase, +0.06em, text-dim
   h3 {
-    font-size: $fs-12;
-    font-weight: $fw400;
-    color: var(--color-foreground-primary);
+    font-size: $fs-11;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #64708d; // Kata text-dim (no semantic var exists)
     display: flex;
     align-items: center;
-    margin: $s-8 0;
+    margin: $s-16 0 $s-8;
     text-transform: uppercase;
   }
 
-  a:not(.button-primary) {
+  a:not(.button-primary):not(.feedback-button-link) {
     &:hover {
       text-decoration: underline;
     }
   }
 
   p {
-    color: var(--color-background-primary);
+    color: var(--color-foreground-secondary);
   }
 
   hr {
-    border-color: var(--color-foreground-secondary);
+    border-color: var(--panel-border-color);
   }
 
   .links {
@@ -232,9 +291,9 @@
 form.avatar-form {
   display: flex;
   flex-direction: column;
-  width: $s-148;
-  height: $s-148;
-  margin: $s-16 0;
+  width: $s-80;
+  height: $s-80;
+  margin: $s-8 0 $s-24;
 
   img {
     border-radius: 50%;
@@ -242,6 +301,7 @@ form.avatar-form {
     height: 100%;
     margin-right: $s-16;
     width: 100%;
+    border: $s-1 solid var(--panel-border-color);
   }
 }
 
@@ -257,12 +317,16 @@ form.avatar-form {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    font-size: $fs-24;
+    display: grid;
+    place-content: center;
+    font-size: $fs-11;
+    font-weight: $fw500;
+    line-height: normal;
     color: var(--color-foreground-primary);
-    line-height: 6;
     text-align: center;
     background: var(--color-accent-tertiary);
     z-index: $z-index-modal;
+    transition: opacity 0.15s ease;
   }
 
   input[type="file"] {
@@ -283,15 +347,23 @@ form.avatar-form {
 }
 
 .profile-form {
-  display: flex;
-  flex-direction: column;
-  max-width: $s-368;
+  // Kata: 2-col field grid inside the panel; actions span the full row
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: $s-16;
+  align-items: start;
+  max-width: 100%;
   width: 100%;
+
+  .btn-primary,
+  .links {
+    grid-column: 1 / -1;
+  }
 }
 
 .newsletter-subs {
-  border-bottom: $s-1 solid var(--color-foreground-secondary);
-  border-top: $s-1 solid var(--color-foreground-secondary);
+  border-bottom: $s-1 solid var(--panel-border-color);
+  border-top: $s-1 solid var(--panel-border-color);
   padding: $s-32 0;
   margin-bottom: $s-32;
 
@@ -323,9 +395,15 @@ form.avatar-form {
 .btn-secondary {
   @extend .button-secondary;
   height: $s-32;
+  @include kataSecondaryButton;
 }
 
 .btn-primary {
   @extend .button-primary;
   height: $s-32;
+  width: fit-content;
+  padding: 0 $s-24;
+  align-self: flex-end;
+  justify-self: end;
+  @include kataPrimaryButton;
 }

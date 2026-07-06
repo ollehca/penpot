@@ -4,26 +4,49 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata design refresh (settings surface) — textarea on
+//   bg-base with 5px radius + violet focus ring; action buttons use the Kata
+//   primary style; submit right-aligned. Also fixed the textarea padding
+//   token ($br-12 -> $s-12).
+// Date: 2026-07-06
+// ============================================================================
+
 @use "common/refactor/common-refactor" as *;
 @use "./profile";
 
 .feedback-form {
   textarea {
-    border-radius: $br-8;
-    padding: $br-12;
-    background-color: var(--color-background-tertiary);
+    border-radius: $br-5;
+    padding: $s-12;
+    background-color: var(--color-background-primary);
     color: var(--color-foreground-primary);
-    border: none;
+    border: $s-1 solid var(--color-background-quaternary);
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
 
     ::placeholder {
-      color: var(--color-background-disabled);
+      color: var(--input-placeholder-color);
     }
     &:focus {
-      outline: $s-1 solid var(--color-accent-primary);
+      @include kataControlFocus;
     }
   }
 }
 
 .feedback-button-link {
   @extend .button-primary;
+  height: $s-32;
+  width: fit-content;
+  padding: 0 $s-24;
+  @include kataPrimaryButton;
+}
+
+// The form submit sits at the end of its section, flush right
+button.feedback-button-link {
+  align-self: flex-end;
 }

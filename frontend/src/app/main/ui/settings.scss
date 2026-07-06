@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata design refresh (settings surface) — header title at
+//   20px/600 with the teal gradient brand-mark tile (+ mark glow, one of the
+//   four sanctioned glow uses).
+// Date: 2026-07-06
+// ============================================================================
+
 @use "common/refactor/common-refactor.scss" as *;
 @use "common/refactor/common-dashboard";
 
@@ -269,5 +279,35 @@
   h2 {
     font-size: $fs-14;
     margin-bottom: $s-20;
+  }
+}
+
+// Kata header: teal gradient brand-mark tile + 20px/600 title.
+// Overrides the shared common-dashboard header styles (same specificity,
+// declared later in this module).
+.dashboard-header {
+  .dashboard-title {
+    &::before {
+      content: "";
+      display: block;
+      width: $s-32;
+      height: $s-32;
+      flex-shrink: 0;
+      margin-right: $s-12;
+      border-radius: $br-8;
+      background: linear-gradient(
+        135deg,
+        #35f6e6,
+        #27bdb1 55%,
+        #11605a
+      ); // Kata --gradient-mark (brand mark only)
+      box-shadow: 0 0 20px rgb(53 246 230 / 25%); // Kata --glow-mark
+    }
+
+    h1 {
+      font-size: $fs-20;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
   }
 }

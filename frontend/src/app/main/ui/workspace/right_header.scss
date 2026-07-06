@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — header hairline bottom border; viewer/preview
+//   play icon carries the teal-300 run accent (teal is reserved for
+//   run/preview affordances and the brand mark).
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .workspace-header-right {
@@ -14,6 +24,7 @@
   padding: $s-8;
   gap: $s-8;
   background-color: var(--panel-background-color);
+  border-bottom: $s-1 solid var(--panel-border-color);
 }
 
 .users-section {
@@ -230,6 +241,29 @@
   &:hover {
     background-color: transparent;
     border: none;
+  }
+}
+
+.viewer-btn {
+  // Kata run/preview accent: teal-300 (no semantic var; teal ramp is
+  // reserved for run/preview + brand mark only)
+  svg {
+    stroke: #35f6e6;
+  }
+
+  &:hover svg {
+    stroke: #35f6e6;
+  }
+
+  // Light theme: teal-300 is illegible on light surfaces; use teal-700
+  :global(.light) & {
+    svg {
+      stroke: #11605a;
+    }
+
+    &:hover svg {
+      stroke: #11605a;
+    }
   }
 }
 

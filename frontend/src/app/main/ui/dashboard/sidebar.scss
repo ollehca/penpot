@@ -12,6 +12,9 @@
 //   row + styles for the inline folder icon / pin indicator added in the
 //   sibling sidebar.cljs.
 // Date: 2026-05-19
+// Kata refresh: nav rows 5px radius with surface hover / surface-hover
+//   active states, muted inactive text, search input restyled to bg-base
+//   with violet focus ring. Date: 2026-07-06
 // ============================================================================
 
 @use "../ds/typography.scss" as *;
@@ -62,7 +65,9 @@
 .sidebar-section-title {
   @include use-typography("headline-small");
   padding: 0 var(--sp-s) var(--sp-s) var(--sp-xxl);
-  color: var(--color-foreground-secondary);
+  letter-spacing: 0.06em;
+  // Kata text-dim (no semantic var exists; applied directly per token handoff)
+  color: #64708d;
 }
 
 // SIDEBAR TEAM SWITCH
@@ -249,12 +254,16 @@
 .sidebar-nav-item {
   cursor: pointer;
   position: relative;
+  margin: 0 $s-8;
+  border-radius: $br-5; // Kata control radius (5px — do not snap to 4)
+  transition: background-color 0.15s ease;
 
   &:hover {
-    background-color: var(--sidebar-element-background-color-hover);
+    // Kata: hovers lighten to surface (#1e1e3a), never darken
+    background-color: var(--color-background-tertiary);
 
     span {
-      color: var(--sidebar-element-foreground-color-hover);
+      color: var(--color-foreground-primary);
     }
 
     .add-project-btn {
@@ -263,10 +272,11 @@
   }
 
   &.current {
-    background-color: var(--sidebar-element-background-color-selected);
+    // Kata: active row = surface-hover + primary text (icons stay violet-300)
+    background-color: var(--color-background-quaternary);
 
     .element-title {
-      color: var(--sidebar-element-foreground-color-selected);
+      color: var(--color-foreground-primary);
     }
   }
 }
@@ -277,8 +287,9 @@
 
 .sidebar-link {
   display: block;
-  padding: $s-8 $s-8 $s-8 $s-24;
-  font-weight: $fw400;
+  // Row itself is inset $s-8, so text stays aligned at 24px from the edge
+  padding: $s-8 $s-8 $s-8 $s-16;
+  font-weight: $fw500;
   width: 100%;
 
   &:hover {
@@ -336,15 +347,18 @@
 }
 
 .project-element {
-  padding: $s-8 $s-8 $s-8 $s-24;
+  padding: $s-8 $s-8 $s-8 $s-16;
 }
 
 .element-title {
   @include textEllipsis;
   flex: 1;
   min-width: 0;
-  color: var(--color-foreground-primary);
-  font-size: $fs-14;
+  // Kata: inactive nav text is muted; hover/active raise it to primary
+  color: var(--color-foreground-secondary);
+  font-size: 0.813rem; // Kata nav rows 13px/500
+  font-weight: $fw500;
+  transition: color 0.15s ease;
 }
 
 // Pinned projects
@@ -373,28 +387,39 @@
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
-  border: $s-1 solid transparent;
+  // Kata search input: bg-base fill, border-strong (white 14%), 5px radius
+  border: $s-1 solid rgb(255 255 255 / 14%);
   margin: 0 $s-16;
-  border-radius: $br-8;
-  background-color: var(--search-bar-input-background-color);
+  border-radius: $br-5;
+  background-color: var(--color-background-primary);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &:focus-within {
+    // Kata focus ring: violet-400 border + 3px accent ring at 18%
+    border-color: var(--color-accent-tertiary);
+    box-shadow: 0 0 0 3px rgb(139 71 242 / 18%);
+  }
 }
 
 .input-text {
   @include smallTitleTipography;
-  height: $s-40;
+  height: 1.875rem; // Kata control height (30px)
   width: 100%;
-  padding: $s-6 $s-12;
+  padding: $s-4 $s-12;
   margin: 0;
   border: transparent;
-  border-radius: $br-8;
+  border-radius: $br-5;
   background: transparent;
   color: var(--search-bar-foreground-color);
 
   &:focus,
   &:focus-within,
   &:focus-visible {
+    // Focus ring is drawn on the container (.sidebar-search:focus-within)
     outline: none;
-    border: $s-1 solid var(--search-bar-input-border-color-focus);
+    border: transparent;
   }
 
   ::placeholder {
@@ -407,6 +432,8 @@
   @include flexCenter;
   position: absolute;
   right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   height: $s-24;
   width: $s-32;
   padding: 0 $s-8;

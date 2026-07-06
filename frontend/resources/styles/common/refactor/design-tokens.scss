@@ -3,12 +3,23 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 // Copyright (c) KALEIDOS INC
+
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — --canvas-background-color remapped to the
+//   dedicated --color-canvas-background primitive (Kata canvas #0a0a14 in
+//   dark, white in light) so the canvas is distinct from the app background.
+// Date: 2026-07-06
+// ============================================================================
+
 @use "sass:color";
 
 .light,
 .default {
   // BASE COLORS
-  --canvas-background-color: var(--color-background-primary);
+  --canvas-background-color: var(--color-canvas-background);
   --canvas-fill-color: var(--color-canvas);
 
   --scrollbar-background-color: var(--color-foreground-secondary);

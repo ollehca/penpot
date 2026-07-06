@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — Layers/Assets tab strip restyled from pill
+//   fills to the Kata underline pattern (primary text + 2px violet underline
+//   with accent glow on the active tab).
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 @import "../ds/_sizes.scss";
 
@@ -103,6 +113,48 @@ $width-settings-bar-max: $sz-500;
 .left-sidebar-tabs {
   --tabs-nav-padding-inline-start: var(--sp-m);
   --tabs-nav-padding-inline-end: var(--sp-m);
+
+  // Kata tab strip: flat nav, active tab = primary text + violet underline.
+  // The ds tab-switcher re-declares its pill colors on the elements
+  // themselves, so we win with attribute selectors scoped to this instance
+  // (and a doubled class for the nav background custom property).
+  &.left-sidebar-tabs {
+    --tabs-bg-color: transparent;
+  }
+
+  [role="tab"] {
+    position: relative;
+    background-color: transparent;
+    border-radius: $br-5;
+    color: var(--color-foreground-secondary);
+    transition: color 0.15s ease;
+
+    // Kata tab label: 13px/500 sentence case (ds default is 12px uppercase)
+    span {
+      text-transform: none;
+      font-size: 0.813rem;
+    }
+
+    &:hover {
+      color: var(--color-foreground-primary);
+    }
+  }
+
+  [role="tab"][aria-selected="true"] {
+    color: var(--color-foreground-primary);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0;
+      height: $s-2;
+      border-radius: $br-2;
+      // Kata violet-500 underline + the accent glow reserved for active tabs
+      background-color: #7c3aed;
+      box-shadow: 0 0 10px #7c3aed;
+    }
+  }
 }
 
 .collapse-sidebar-button {

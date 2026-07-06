@@ -3,6 +3,9 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-07-06): default canvas background switched to the
+;; Kata design-system dark canvas (#0a0a14, was PenPot light #E8E9EA).
 
 (ns app.common.colors
   (:refer-clojure :exclude [test])
@@ -28,7 +31,7 @@
 (def new-primary-light "#6911d4")
 (def background-quaternary "#2e3434")
 (def background-quaternary-light "#eef0f2")
-(def canvas "#E8E9EA")
+(def canvas "#0a0a14")
 
 (def names
   {"aliceblue" "#f0f8ff"

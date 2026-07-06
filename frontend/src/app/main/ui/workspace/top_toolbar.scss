@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — toolset pill on surface with hairline border,
+//   5px control radius, .15s ease hovers, press nudge, and the active tool in
+//   Kata violet-500 with white icon + accent glow.
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .main-toolbar {
@@ -17,9 +27,9 @@
   height: $s-56;
   padding: $s-8 $s-16;
   border-radius: $s-8;
-  border: $s-2 solid var(--panel-border-color);
+  border: $s-1 solid var(--panel-border-color);
   z-index: $z-index-3;
-  background-color: var(--color-background-primary);
+  background-color: var(--color-background-tertiary);
   transition:
     top 0.3s,
     height 0.3s,
@@ -66,16 +76,32 @@
   height: $s-36;
   width: $s-36;
   flex-shrink: 0;
-  border-radius: $s-8;
+  border-radius: $br-5;
   margin: 0 $s-2;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 
   svg {
     @extend .button-icon;
     stroke: var(--color-foreground-secondary);
   }
 
+  &:active {
+    transform: translateY(0.5px);
+  }
+
   &.selected {
     @extend .button-icon-selected;
+    // Kata marquee action: violet-500 fill, white glyph, accent glow
+    // (no semantic var maps to violet-500 in the dark theme; see tokens notes)
+    background-color: #7c3aed;
+    box-shadow: 0 4px 16px rgb(124 58 237 / 30%);
+
+    svg {
+      stroke: var(--app-white);
+    }
   }
 }
 

@@ -4,6 +4,17 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — dashboard title 24px/600 tracking -0.015em;
+//   primary buttons restyled to Kata violet-500 + white + accent glow with
+//   hover deepen and press nudge; secondary buttons to sentence case with
+//   5px radius; fixed nav hover text that resolved to a near-invisible color.
+// Date: 2026-07-06
+// ============================================================================
+
 @use "refactor/common-refactor" as *;
 
 .dashboard-header {
@@ -57,8 +68,11 @@
         height: $s-40;
         padding: $s-4 $s-24;
         font-weight: $fw400;
+        transition: color 0.15s ease;
         &:hover {
-          color: var(--color-background-secondary);
+          // Was --color-background-secondary, which is near-black on the
+          // dark theme; Kata hover raises text to primary
+          color: var(--color-foreground-primary);
           text-decoration: none;
         }
       }
@@ -75,7 +89,8 @@
       display: block;
       flex-shrink: 0;
       font-size: $fs-24;
-      font-weight: $fw400;
+      font-weight: 600; // Kata title: 24px/600, tracking -0.015em
+      letter-spacing: -0.015em;
       max-width: $s-712;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -139,15 +154,72 @@
 
 .btn-primary {
   @extend .button-primary;
-  text-transform: uppercase;
+  text-transform: none; // Kata copy voice: sentence case
   font-size: $fs-14;
-  font-weight: $fw400;
+  font-weight: $fw500;
+  border-radius: $br-5;
+  // Kata marquee primary action: violet-500 bg + white text + accent glow.
+  // Token-driven --color-accent-primary is violet-300 (readable-text variant),
+  // so the hero CTA uses the Kata ramp literals per the design handoff.
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+  color: #fff;
+  box-shadow: 0 4px 16px rgb(124 58 237 / 30%);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+
+  svg,
+  span svg {
+    stroke: #fff;
+  }
+
+  &:hover {
+    background-color: #6a2cc7; // Kata violet-600: hover deepens the ramp
+    border-color: #6a2cc7;
+    color: #fff;
+
+    svg,
+    span svg {
+      stroke: #fff;
+    }
+  }
+
+  &:active {
+    background-color: #6a2cc7;
+    border-color: #6a2cc7;
+    color: #fff;
+    transform: translateY(0.5px); // Kata press nudge
+
+    svg,
+    span svg {
+      stroke: #fff;
+    }
+  }
 }
 
 .btn-secondary {
   @extend .button-secondary;
   color: var(--color-foreground-primary);
   font-size: $fs-12;
-  text-transform: uppercase;
+  font-weight: $fw500;
+  text-transform: none; // Kata copy voice: sentence case
   padding: 0 $s-16;
+  border-radius: $br-5;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    // Kata: hover lightens the surface; text stays primary (not accent)
+    color: var(--color-foreground-primary);
+  }
+
+  &:active {
+    transform: translateY(0.5px);
+  }
 }

@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — project rows get a 5px radius surface hover,
+//   project names weighted as headlines, team-hero title aligned to the Kata
+//   title scale.
+// Date: 2026-07-06
+// ============================================================================
+
 @use "common/refactor/common-refactor.scss" as *;
 @use "common/refactor/common-dashboard";
 
@@ -65,7 +75,13 @@
   max-height: $s-40;
   padding: $s-8 $s-8 $s-8 $s-16;
   margin-top: $s-16;
-  border-radius: $br-4;
+  border-radius: $br-5; // Kata control radius
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    // Kata: hover lightens to surface
+    background-color: var(--color-background-tertiary);
+  }
 }
 
 .project-name-wrapper {
@@ -86,6 +102,8 @@
   color: var(--title-foreground-color-hover);
   cursor: pointer;
   height: $s-16;
+  font-weight: 600; // Kata headline weight for section names
+  letter-spacing: -0.01em;
 }
 
 .info-wrapper {
@@ -191,7 +209,8 @@
 .title {
   font-size: $fs-24;
   color: var(--color-foreground-primary);
-  font-weight: $fw400;
+  font-weight: 600; // Kata title: 24px/600
+  letter-spacing: -0.015em;
 }
 
 .info {

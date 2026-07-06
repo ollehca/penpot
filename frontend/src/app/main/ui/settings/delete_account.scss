@@ -4,6 +4,17 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata design refresh (settings surface) — modal becomes a
+//   surface panel (radius 12, hairline border, shadow-lg); action buttons get
+//   Kata control radius/typography; the destructive confirm keeps the danger
+//   (error) colors from the shared modal styles.
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .modal-overlay {
@@ -13,6 +24,11 @@
 .modal-container {
   @extend .modal-container-base;
   min-width: $s-408;
+  // Kata panel: surface bg, hairline border, 12px radius, shadow-lg
+  border: $s-1 solid var(--modal-border-color);
+  border-radius: $br-12;
+  background-color: var(--color-background-tertiary);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
 }
 
 .modal-header {
@@ -50,10 +66,17 @@
 
 .cancel-button {
   @extend .modal-cancel-btn;
+  @include kataSecondaryButton;
 }
 
 .accept-button {
   @extend .modal-accept-btn;
+  // Kata control shape/typography; colors stay with the (danger) variant
+  border-radius: $br-5;
+  font-size: 0.813rem; // 13px
+  font-weight: $fw500;
+  text-transform: none;
+
   &.danger {
     @extend .modal-danger-btn;
   }

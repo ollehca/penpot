@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — "New file" header action promoted to the
+//   marquee primary button (violet-500 + white + accent glow, hover deepen,
+//   press nudge).
+// Date: 2026-07-06
+// ============================================================================
+
 @use "common/refactor/common-refactor.scss" as *;
 @use "common/refactor/common-dashboard";
 
@@ -29,6 +39,32 @@
 
 .new-file {
   margin-inline-end: $s-8;
+  // Kata marquee primary: violet-500 + white + accent glow (this is the
+  // dashboard's hero CTA; glows are reserved for primary actions)
+  background-color: #7c3aed;
+  border: $s-1 solid #7c3aed;
+  color: #fff;
+  font-weight: $fw500;
+  border-radius: $br-5;
+  box-shadow: 0 4px 16px rgb(124 58 237 / 30%);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    background-color: #6a2cc7; // Kata violet-600: hover deepens the ramp
+    border-color: #6a2cc7;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: #6a2cc7;
+    border-color: #6a2cc7;
+    color: #fff;
+    transform: translateY(0.5px); // Kata press nudge
+  }
 }
 
 .menu-icon {

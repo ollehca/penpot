@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata design refresh (settings surface) — Kata primary hero
+//   button; token rows become bordered cards with violet hover border; modal
+//   panel radius 12 + hairline border; Kata modal action buttons.
+// Date: 2026-07-06
+// ============================================================================
+
 @use "common/refactor/common-refactor.scss" as *;
 
 // ACCESS TOKENS PAGE
@@ -38,6 +48,10 @@
 
 .hero-btn {
   @extend .button-primary;
+  height: $s-32;
+  width: fit-content;
+  padding: 0 $s-24;
+  @include kataPrimaryButton;
 }
 
 // table empty
@@ -77,9 +91,15 @@
   height: $s-64;
   width: 100%;
   padding: 0 $s-16;
+  border: $s-1 solid var(--panel-border-color);
   border-radius: $br-8;
   background-color: var(--dashboard-list-background-color);
   color: var(--dashboard-list-foreground-color);
+  transition: border-color 0.15s ease;
+
+  &:hover {
+    border-color: rgb(124 58 237 / 25%); // Kata --border-accent
+  }
 }
 
 .field-name {
@@ -125,6 +145,11 @@
 .modal-container {
   @extend .modal-container-base;
   min-width: $s-408;
+  // Kata panel: surface bg, hairline border, 12px radius, shadow-lg
+  border: $s-1 solid var(--modal-border-color);
+  border-radius: $br-12;
+  background-color: var(--color-background-tertiary);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
 }
 
 .modal-header {
@@ -144,6 +169,26 @@
   gap: $s-24;
   @include bodySmallTypography;
   margin-bottom: $s-24;
+
+  // Kata controls: fields sit on bg-base inside the surface panel
+  --input-height: #{$s-32};
+  --input-background-color: var(--color-background-primary);
+  --input-background-color-rest: var(--color-background-primary);
+  --input-background-color-hover: var(--color-background-primary);
+  --input-background-color-focus: var(--color-background-primary);
+  --input-background-color-active: var(--color-background-primary);
+  --input-border-color: var(--color-background-quaternary);
+  --input-border-color-rest: var(--color-background-quaternary);
+  --input-border-color-focus: var(--color-accent-tertiary);
+  --input-border-color-active: var(--color-accent-tertiary);
+  --menu-background-color: var(--color-background-primary);
+
+  label {
+    font-size: $fs-12;
+    font-weight: $fw500;
+    color: var(--color-foreground-secondary);
+    text-transform: none;
+  }
 }
 
 .select-title {
@@ -194,9 +239,11 @@
   @extend .modal-action-btns;
   button {
     @extend .modal-accept-btn;
+    @include kataPrimaryButton;
   }
 }
 
 .cancel-button {
   @extend .modal-cancel-btn;
+  @include kataSecondaryButton;
 }

@@ -4,6 +4,17 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — "create new" tile restyled to the dashed
+//   border-strong + 45° stripe new-file pattern; empty-project cards hover
+//   now lightens the surface with a violet accent border instead of a
+//   violet fill (Kata: hovers never hue-shift).
+// Date: 2026-07-06
+// ============================================================================
+
 @use "common/refactor/common-refactor.scss" as *;
 @use "./grid.scss" as g;
 @use "../ds/typography.scss" as t;
@@ -43,29 +54,40 @@
   }
 
   .create-new {
-    background-color: var(--color-background-tertiary);
+    // Kata new-file tile: dashed border-strong + 45° stripe fill (white 3%)
+    background-color: transparent;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgb(255 255 255 / 3%) 0,
+      rgb(255 255 255 / 3%) 6px,
+      transparent 6px,
+      transparent 12px
+    );
     border-radius: $br-8;
-    color: var(--color-foreground-primary);
+    color: var(--color-foreground-secondary);
     cursor: pointer;
     height: $s-160;
     margin: $s-8;
-    border: $s-2 solid transparent;
+    border: $s-1 dashed rgb(255 255 255 / 14%);
     width: var(--th-width, #{g.$thumbnail-default-width});
     height: var(--th-height, #{g.$thumbnail-default-height});
+    transition:
+      border-color 0.15s ease,
+      color 0.15s ease;
 
     svg {
-      width: $s-32;
-      height: $s-32;
+      width: $s-24;
+      height: $s-24;
       stroke: var(--color-foreground-secondary);
+      transition: stroke 0.15s ease;
     }
 
     &:hover {
-      border: $s-2 solid var(--color-accent-tertiary);
-      background-color: var(--color-background-quaternary);
-      color: var(--color-accent-primary);
+      border: $s-1 dashed rgb(124 58 237 / 45%);
+      color: var(--color-foreground-primary);
 
       svg {
-        stroke: var(--color-accent-tertiary);
+        stroke: var(--color-accent-primary);
       }
     }
   }
@@ -121,14 +143,22 @@
   justify-content: center;
   align-items: center;
   background-color: var(--color-card-background);
-  border: $s-2 solid var(--color-background-quaternary);
+  border: $s-1 solid var(--color-background-quaternary);
   border-radius: $br-8;
   padding: var(--sp-m) 0;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 
   &:hover {
-    --color-card-background: var(--color-accent-primary);
-    --color-card-title: var(--color-background-secondary);
-    --color-card-subtitle: var(--color-background-secondary);
+    // Kata: hover lightens the surface + violet accent border (no hue-shift
+    // fill; the old violet fill left near-black text on violet-300)
+    --color-card-background: var(--color-background-quaternary);
+    border-color: rgb(124 58 237 / 25%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 40%);
     cursor: pointer;
 
     .empty-project-card-title {

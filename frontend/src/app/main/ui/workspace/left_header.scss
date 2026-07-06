@@ -4,6 +4,15 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — header surface on bg-base with a subtle
+//   bottom hairline; file name at 13px/600 per the workspace topbar spec.
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .workspace-header-left {
@@ -11,6 +20,8 @@
   align-items: center;
   padding: $s-12 $s-12 $s-8 $s-12;
   min-height: $s-52;
+  background-color: var(--panel-background-color);
+  border-bottom: $s-1 solid var(--panel-border-color);
 }
 
 .main-icon {
@@ -47,6 +58,9 @@
 
 .file-name {
   @include smallTitleTipography;
+  // Kata topbar file name: 13px / 600
+  font-size: 0.813rem;
+  font-weight: 600;
   text-transform: none;
   color: var(--title-foreground-color-hover);
   align-items: center;

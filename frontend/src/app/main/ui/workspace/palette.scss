@@ -4,6 +4,15 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — bottom palette dock uses a 1px hairline
+//   border instead of the 2px panel border.
+// Date: 2026-07-06
+// ============================================================================
+
 @use "../ds/spacing.scss" as *;
 @use "../ds/z-index.scss" as *;
 @use "../ds/_sizes.scss" as *;
@@ -41,7 +50,7 @@
   padding: $s-0 $s-0 $s-8 $s-8;
   border-radius: $br-8;
   background-color: var(--palette-background-color);
-  border: $s-2 solid var(--panel-border-color);
+  border: $s-1 solid var(--panel-border-color);
   transition:
     right 0.3s,
     opacity 0.2s,

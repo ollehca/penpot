@@ -11,13 +11,16 @@
 // Modifications: Reworked palette CSS variables to use Kizuku's violet/navy
 //   design tokens instead of PenPot's teal/grey scheme.
 // Date: 2026-05-19
+// 2026-07-06: Kata refresh — status colors updated to Kata (success #2d9f8f,
+//   warning #f5a91b, error #ff3277, info #0e9be9); dark overlay now tracks
+//   Kata bg-base #0f0f1e. Selection rectangle stays Kata violet-500 #7c3aed.
 // ============================================================================
 
 @use "sass:color";
 
 :root {
-  // DARK — Kizuku DS tokens
-  --db-primary-60: #{color.change(#1a1a2e, $alpha: 0.6)}; // overlay dark mode
+  // DARK — Kizuku DS tokens (Kata)
+  --db-primary-60: #{color.change(#0f0f1e, $alpha: 0.6)}; // overlay dark mode (Kata bg-base)
   --df-secondary: #8892b0; // disabled bg dark, grid metadata
   --df-secondary-40: #{color.change(#8892b0, $alpha: 0.4)}; // disabled fg dark
   --da-tertiary-10: #{color.change(#7c3aed, $alpha: 0.1)}; // selection rect dark
@@ -30,12 +33,12 @@
   --la-tertiary-10: #{color.change(#7c3aed, $alpha: 0.1)}; // selection rect light
   --la-tertiary-70: #{color.change(#7c3aed, $alpha: 0.7)}; // selection rect bg light
 
-  // STATUS — Kizuku DS tokens
-  --status-color-success-200: #a7f3d0;
-  --status-color-success-500: #10b981;
-  --status-color-warning-500: #f59e0b;
-  --status-color-error-500: #ef233c;
-  --status-color-info-500: #3b82f6;
+  // STATUS — Kizuku DS tokens (Kata)
+  --status-color-success-200: #a9dfd7;
+  --status-color-success-500: #2d9f8f;
+  --status-color-warning-500: #f5a91b;
+  --status-color-error-500: #ff3277;
+  --status-color-info-500: #0e9be9;
 
   // APP COLORS
   --app-white: #ffffff; // Used in several places

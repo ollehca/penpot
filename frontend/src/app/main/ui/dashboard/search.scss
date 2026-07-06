@@ -4,6 +4,15 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — search empty state restyled to the centered
+//   56px surface circle + icon + title pattern (border box removed).
+// Date: 2026-07-06
+// ============================================================================
+
 @use "common/refactor/common-refactor.scss" as *;
 @use "common/refactor/common-dashboard";
 @use "./placeholder.scss";
@@ -33,17 +42,32 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  gap: $s-16;
   height: $s-200;
   background: transparent;
-  border: $s-1 solid var(--color-background-quaternary);
+  border: none; // Kata empty states float on the page, no border box
   border-radius: $br-8;
 
   .text {
     color: var(--color-foreground-primary);
+    font-size: $fs-14;
+    font-weight: 600; // Kata empty-state title: 14px/600
   }
+
+  // Kata empty state: 56px surface circle with a 22px icon
+  .icon {
+    align-items: center;
+    background-color: var(--color-background-tertiary);
+    border-radius: $br-circle;
+    display: flex;
+    height: $s-56;
+    justify-content: center;
+    width: $s-56;
+  }
+
   .icon svg {
     stroke: var(--color-foreground-secondary);
-    width: $s-32;
-    height: $s-32;
+    width: 1.375rem; // 22px
+    height: 1.375rem;
   }
 }

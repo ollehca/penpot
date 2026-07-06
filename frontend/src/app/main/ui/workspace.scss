@@ -4,6 +4,17 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — workspace canvas surround wired to the new
+//   --canvas-background-color token (Kata canvas #0a0a14). Note: the visible
+//   page background is still painted by the render SVG inline style
+//   (viewport.cljs / clr/canvas); this only themes the CSS fallback layer.
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .workspace {
@@ -24,7 +35,7 @@
 }
 
 .workspace-content {
-  background-color: var(--color-canvas);
+  background-color: var(--canvas-background-color, var(--color-canvas));
   display: flex;
   padding: 0;
   margin: 0;

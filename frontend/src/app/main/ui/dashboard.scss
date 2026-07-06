@@ -4,6 +4,15 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — subtle violet radial "brand moment" gradient
+//   over the dashboard main column.
+// Date: 2026-07-06
+// ============================================================================
+
 @use "refactor/common-refactor.scss" as *;
 
 .dashboard {
@@ -23,4 +32,11 @@
   padding: $s-16 $s-16 0 0;
   overflow: hidden;
   width: 100%;
+  // Kata brand moment: faint violet radial glow at the top of the main column
+  background-image: radial-gradient(
+    640px 220px at 18% -40px,
+    rgb(124 58 237 / 7%),
+    transparent 70%
+  );
+  background-repeat: no-repeat;
 }

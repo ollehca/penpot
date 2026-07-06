@@ -4,6 +4,17 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — Design/Interactions/Code tab strip restyled
+//   to the Kata underline pattern; property fields inside the options panel
+//   moved to bg-base with strong hairline borders and mono values; hairline
+//   dividers between option groups.
+// Date: 2026-07-06
+// ============================================================================
+
 @import "../../ds/_sizes.scss";
 @import "refactor/common-refactor.scss";
 
@@ -32,6 +43,22 @@
   width: 100%;
   height: calc(100vh - $sz-88);
   padding-top: $s-8;
+
+  // Kata property fields: bg-base fill with a strong hairline border.
+  // color-mix keeps the border readable in both themes (white 14% on dark,
+  // near-black 14% on light).
+  --input-background-color: var(--color-background-primary);
+  --input-background-color-rest: var(--color-background-primary);
+  --input-border-color: color-mix(
+    in srgb,
+    var(--color-foreground-primary) 14%,
+    transparent
+  );
+  --input-border-color-rest: color-mix(
+    in srgb,
+    var(--color-foreground-primary) 14%,
+    transparent
+  );
 }
 
 .read-only {
@@ -47,6 +74,17 @@
 
 .design-options {
   padding-inline: var(--sp-m);
+
+  // Kata option groups: hairline dividers between groups
+  > * + * {
+    border-block-start: $s-1 solid var(--panel-border-color);
+    padding-block-start: var(--sp-s);
+  }
+
+  // Kata: mono for property values (numeric fields, hex, opacity)
+  input {
+    font-family: "jetbrainsmono", monospace;
+  }
 }
 
 .inspect {
@@ -56,4 +94,43 @@
 .options-tab-switcher {
   --tabs-nav-padding-inline-start: var(--sp-m);
   --tabs-nav-padding-inline-end: var(--sp-m);
+
+  // Kata tab strip: flat nav, active tab = primary text + violet underline
+  // (mirrors the Layers/Assets strip in sidebar.scss).
+  &.options-tab-switcher {
+    --tabs-bg-color: transparent;
+  }
+
+  [role="tab"] {
+    position: relative;
+    background-color: transparent;
+    border-radius: $br-5;
+    color: var(--color-foreground-secondary);
+    transition: color 0.15s ease;
+
+    // Kata tab label: 13px/500 sentence case (ds default is 12px uppercase)
+    span {
+      text-transform: none;
+      font-size: 0.813rem;
+    }
+
+    &:hover {
+      color: var(--color-foreground-primary);
+    }
+  }
+
+  [role="tab"][aria-selected="true"] {
+    color: var(--color-foreground-primary);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0;
+      height: $s-2;
+      border-radius: $br-2;
+      background-color: #7c3aed;
+      box-shadow: 0 0 10px #7c3aed;
+    }
+  }
 }

@@ -4,16 +4,33 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — layer row hover now LIGHTENS to surface
+//   (instead of darkening), selected rows carry a 2px inset violet accent
+//   bar, board icons use teal-300, component rows use violet-300, and the
+//   visibility/lock toggles rest at 35% opacity until hovered.
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .layer-row {
   --layer-indentation-size: calc(#{$s-4} * 6);
+  // Kata: hovers lighten up the surface ramp (token default darkens)
+  --layer-row-background-color-hover: var(--color-background-tertiary);
+  // Kata: components identify with violet-300 (accent-primary); selection
+  // stays distinguishable via the surface-hover fill + inset accent bar
+  --layer-row-component-foreground-color: var(--color-accent-primary);
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
   background-color: var(--layer-row-background-color);
   border: $s-2 solid transparent;
+  transition: background-color 0.15s ease;
 
   &.highlight,
   &:hover {
@@ -29,7 +46,10 @@
 
   &.selected {
     background-color: var(--layer-row-background-color-selected);
-    box-shadow: $s-16 $s-0 $s-0 $s-0 var(--layer-row-background-color-selected);
+    // Kata selected row: surface-hover fill + 2px inset violet accent bar
+    box-shadow:
+      inset $s-2 $s-0 $s-0 $s-0 #7c3aed,
+      $s-16 $s-0 $s-0 $s-0 var(--layer-row-background-color-selected);
   }
 
   &.selected.highlight,
@@ -141,6 +161,19 @@
       stroke: var(--layer-row-foreground-color-hover);
     }
   }
+  // Kata: board icons keep the teal-300 identity in every row state
+  // (declared last so hover/selected strokes above do not override it)
+  .layer-row.type-frame & {
+    svg {
+      stroke: #35f6e6;
+    }
+  }
+  // Light theme: teal-300 is illegible on light surfaces; use teal-700
+  :global(.light) .layer-row.type-frame & {
+    svg {
+      stroke: #11605a;
+    }
+  }
 }
 
 .absolute {
@@ -242,8 +275,15 @@
   .layer-row:hover & {
     display: flex;
     svg {
-      opacity: $op-10;
+      // Kata: eye/lock toggles rest at 35% until directly hovered or toggled
+      opacity: 0.35;
       stroke: var(--layer-row-foreground-color-hover);
+      transition: opacity 0.15s ease;
+    }
+
+    &:hover svg,
+    &.selected svg {
+      opacity: $op-10;
     }
   }
   .layer-row.selected & {

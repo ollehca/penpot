@@ -11,6 +11,9 @@
 // Modifications: Replaced WorkSans → Inter in shared typography mixins so
 //   all consumers pick up the Kizuku font.
 // Date: 2026-05-19
+// 2026-07-06: Added Kata (design refresh) action-button and focus-ring mixins
+//   (kataPrimaryButton, kataSecondaryButton, kataControlFocus). Emission-free
+//   unless included; first consumers are the settings surface styles.
 // ============================================================================
 
 @mixin flexCenter {
@@ -168,6 +171,92 @@
   color: var(--input-foreground-color-disabled);
   stroke: var(--input-foreground-color-disabled);
   background-color: transparent;
+}
+
+// Kata (Kizuku design refresh) — marquee actions use the explicit Kata
+// violet-500 ramp with white text and the accent glow (the token-driven
+// --color-accent-primary is the readable violet-300 used for text/icons).
+// Glows are reserved for primary actions per the Kata spec.
+@mixin kataPrimaryButton {
+  border: none;
+  border-radius: $br-5;
+  background-color: #7c3aed; // Kata violet-500
+  color: #fff;
+  font-size: 0.813rem; // 13px
+  font-weight: $fw500;
+  text-transform: none;
+  letter-spacing: normal;
+  box-shadow: 0 4px 16px rgb(124 58 237 / 30%); // Kata --glow-accent
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+
+  svg,
+  span svg {
+    stroke: #fff;
+  }
+
+  &:hover {
+    border: none;
+    background-color: #6a2cc7; // Kata violet-600
+    color: #fff;
+
+    svg,
+    span svg {
+      stroke: #fff;
+    }
+  }
+
+  &:active {
+    border: none;
+    background-color: #6a2cc7;
+    color: #fff;
+    transform: translateY(0.5px);
+  }
+
+  &:global(.disabled),
+  &[disabled],
+  &:disabled {
+    background-color: var(--button-background-color-disabled);
+    border: $s-1 solid var(--button-border-color-disabled);
+    color: var(--button-foreground-color-disabled);
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+// Kata secondary/ghost action: surface fill, strong hairline border; hover
+// lightens up the surface ramp (never hue-shifts), press nudges down.
+@mixin kataSecondaryButton {
+  border: $s-1 solid var(--color-background-quaternary);
+  border-radius: $br-5;
+  background-color: var(--color-background-tertiary);
+  color: var(--color-foreground-primary);
+  font-size: 0.813rem; // 13px
+  font-weight: $fw500;
+  text-transform: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    border: $s-1 solid var(--color-background-quaternary);
+    background-color: var(--color-background-quaternary);
+    color: var(--color-foreground-primary);
+  }
+
+  &:active {
+    transform: translateY(0.5px);
+  }
+}
+
+// Kata control focus: violet-400 border + 3px accent ring at 18%.
+@mixin kataControlFocus {
+  outline: none;
+  border: $s-1 solid var(--color-accent-tertiary); // Kata --focus-ring (violet-400)
+  box-shadow: 0 0 0 $s-3 rgb(124 58 237 / 18%);
 }
 
 @keyframes spin-animation {

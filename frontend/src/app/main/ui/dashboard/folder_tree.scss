@@ -3,6 +3,9 @@
 // Proprietary — see /LICENSE in the project root.
 //
 // Kizuku Folder Tree Styles (CSS Module)
+// Kata refresh (2026-07-06): rows 5px radius, hover lightens to surface,
+//   selected = surface-hover + primary text, drag-over uses the marquee
+//   violet-500; colors/radii only — tree/drag-drop behavior untouched.
 
 @import "refactor/common-refactor.scss";
 
@@ -22,9 +25,10 @@
 .folder-header-title {
   font-size: $fs-11;
   font-weight: $fw500;
-  color: var(--color-foreground-secondary);
+  // Kata text-dim (no semantic var exists; applied directly per token handoff)
+  color: #64708d;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 .folder-add-btn {
@@ -35,13 +39,17 @@
   color: var(--color-foreground-secondary);
   font-size: $fs-14;
   cursor: pointer;
-  border-radius: $br-4;
+  border-radius: $br-5; // Kata control radius
   display: flex;
   align-items: center;
   justify-content: center;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 
   &:hover {
-    background: var(--color-background-quaternary);
+    // Kata: hovers lighten to surface; icon takes the violet accent
+    background: var(--color-background-tertiary);
     color: var(--color-accent-primary);
   }
 }
@@ -61,34 +69,44 @@
   padding: $s-4 $s-16 $s-4 $s-12;
   cursor: pointer;
   font-size: $fs-12;
-  color: var(--color-foreground-primary);
-  border-radius: $br-4;
+  color: var(--color-foreground-secondary);
+  border-radius: $br-5; // Kata control radius
   margin: 0 $s-8;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 
   &:hover {
-    background: var(--color-background-quaternary);
+    // Kata: hovers lighten to surface
+    background: var(--color-background-tertiary);
+    color: var(--color-foreground-primary);
   }
 }
 
 .folder-selected {
+  // Kata active row: surface-hover + primary text
   background: var(--color-background-quaternary);
-  color: var(--color-accent-primary);
+  color: var(--color-foreground-primary);
 }
 
 .folder-drag-over {
-  background: var(--color-accent-primary);
-  color: var(--color-foreground-primary);
+  // Kata marquee violet-500 + white: drop target must stay unmistakable
+  // (--color-accent-primary is violet-300, too light under white text)
+  background: #7c3aed;
+  color: #fff;
   opacity: 0.9;
 }
 
 .folder-rename-input {
   flex: 1;
-  border: 1px solid var(--color-accent-primary);
-  background: var(--color-background-tertiary);
+  // Kata focus ring: violet-400 border + 3px accent ring at 18%
+  border: 1px solid var(--color-accent-tertiary);
+  box-shadow: 0 0 0 3px rgb(139 71 242 / 18%);
+  background: var(--color-background-primary);
   color: var(--color-foreground-primary);
   font-size: $fs-12;
   padding: $s-1 $s-4;
-  border-radius: $br-4;
+  border-radius: $br-5;
   outline: none;
   min-width: 0;
 }
@@ -172,8 +190,8 @@
   z-index: 10000;
   background: var(--color-background-tertiary);
   border: 1px solid var(--color-background-quaternary);
-  border-radius: $br-6;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-radius: $br-8; // Kata card radius
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); // Kata menu shadow
   padding: $s-4 0;
   min-width: 140px;
 }

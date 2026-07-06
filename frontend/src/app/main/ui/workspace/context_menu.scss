@@ -4,6 +4,15 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — context menus use a 1px hairline border
+//   instead of the 2px panel border.
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .workspace-context-menu {
@@ -20,7 +29,7 @@
   width: $s-240;
   padding: $s-4;
   border-radius: $br-8;
-  border: $s-2 solid var(--panel-border-color);
+  border: $s-1 solid var(--panel-border-color);
   background-color: var(--menu-background-color);
   max-height: 100vh;
   overflow-y: auto;

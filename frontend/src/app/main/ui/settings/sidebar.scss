@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata design refresh (settings surface) — nav rows get 5px
+//   radius, 13px/500 type, hover lightens to surface, active row uses
+//   surface-hover with a 2px violet left inset bar; 0.15s ease motion.
+// Date: 2026-07-06
+// ============================================================================
+
 @use "common/refactor/common-refactor.scss" as *;
 
 .dashboard-sidebar {
@@ -44,19 +54,27 @@
   --settings-background-color: transparent;
   display: flex;
   align-items: center;
-  padding: $s-8 $s-8 $s-8 $s-24;
+  margin: 0 $s-8;
+  padding: $s-8 $s-12 $s-8 $s-16;
+  border-radius: $br-5;
   color: var(--settings-foreground-color);
   background-color: var(--settings-background-color);
   cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 
+  // Kata: hover lightens up the surface ramp, never hue-shifts
   &:hover {
-    --settings-foreground-color: var(--sidebar-element-foreground-color-hover);
-    --settings-background-color: var(--sidebar-element-background-color-hover);
+    --settings-foreground-color: var(--color-foreground-primary);
+    --settings-background-color: var(--color-background-tertiary);
   }
 
+  // Kata: active row = surface-hover + primary text + 2px violet inset bar
   &.current {
-    --settings-foreground-color: var(--sidebar-element-foreground-color-selected);
-    --settings-background-color: var(--sidebar-element-background-color-selected);
+    --settings-foreground-color: var(--color-foreground-primary);
+    --settings-background-color: var(--color-background-quaternary);
+    box-shadow: inset $s-2 0 0 0 #7c3aed; // Kata violet-500 indicator
   }
 }
 
@@ -69,6 +87,8 @@
 .element-title {
   @include textEllipsis;
   @include bodyMediumTypography;
+  font-size: 0.813rem; // Kata nav rows: 13px/500
+  font-weight: $fw500;
 }
 
 .back-to-dashboard {
@@ -76,7 +96,8 @@
   display: flex;
   align-items: center;
   padding: $s-12 $s-16;
-  font-size: $fs-14;
+  font-size: 0.813rem; // 13px
+  transition: color 0.15s ease;
 }
 
 .back-text {

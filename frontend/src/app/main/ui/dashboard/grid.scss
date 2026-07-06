@@ -4,6 +4,18 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Kata refresh — file cards get surface bg + hairline border
+//   + 8px radius, hover lift with violet accent border and shadow-md,
+//   staggered fade-up entrance (reduced-motion aware); new-file tile gets
+//   dashed border-strong + 45° stripe fill; card meta type scale updated.
+//   Styling only: drag/drop, selection and menu behavior untouched.
+// Date: 2026-07-06
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 // TODO: Legacy sass variables. We should remove them in favor of DS tokens.
@@ -28,6 +40,19 @@ $thumbnail-default-height: $s-168; // Default width
   gap: $s-24;
 }
 
+// Kata entrance: fade-up + scale, staggered per card (see .grid-item)
+@keyframes kizuku-card-in {
+  from {
+    opacity: 0;
+    transform: translateY($s-8) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .grid-item {
   align-items: center;
   cursor: pointer;
@@ -36,6 +61,30 @@ $thumbnail-default-height: $s-168; // Default width
   margin: $s-12 0;
   position: relative;
   text-align: center;
+
+  // Kata file card: surface bg, hairline border, 8px radius
+  background-color: var(--color-background-tertiary);
+  border: $s-1 solid var(--color-background-quaternary);
+  border-radius: $br-8;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+  animation: kizuku-card-in 0.4s ease backwards;
+
+  // Stagger the first dozen cards 45ms apart, then flat
+  @for $i from 2 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 45}ms;
+    }
+  }
+
+  &:hover {
+    // Kata card hover: lift + violet accent border + shadow-md
+    border-color: rgb(124 58 237 / 25%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 40%);
+  }
 
   a,
   button {
@@ -49,7 +98,7 @@ $thumbnail-default-height: $s-168; // Default width
   }
 
   .grid-item-th {
-    border-radius: $br-8;
+    border-radius: $br-8 $br-8 0 0;
     text-align: initial;
     width: var(--th-width, #{$thumbnail-default-width});
     height: var(--th-height, #{$thumbnail-default-height});
@@ -67,6 +116,8 @@ $thumbnail-default-height: $s-168; // Default width
     text-align: initial;
     width: calc(var(--th-width) + $s-12);
     height: var(--th-height, #{$thumbnail-default-height});
+    // Drag placeholders must appear instantly, not fade in
+    animation: none;
   }
 
   &.overlay {
@@ -94,7 +145,7 @@ $thumbnail-default-height: $s-168; // Default width
 
   .item-info {
     display: grid;
-    padding: $s-8;
+    padding: 0.625rem 0.75rem; // Kata card meta: 10px 12px
     text-align: left;
     width: 100%;
     font-size: $fs-12;
@@ -102,10 +153,10 @@ $thumbnail-default-height: $s-168; // Default width
     h3 {
       border: $s-1 solid transparent;
       color: var(--color-foreground-primary);
-      font-size: $fs-16;
-      font-weight: $fw400;
-      height: $s-28;
-      line-height: 1.92;
+      font-size: 0.813rem; // Kata card name: 13px/600
+      font-weight: 600;
+      height: $s-24;
+      line-height: 1.6;
       max-width: $s-260;
       overflow: hidden;
       padding-right: $s-8;
@@ -120,7 +171,9 @@ $thumbnail-default-height: $s-168; // Default width
     }
 
     .date {
-      color: var(--color-foreground-secondary);
+      // Kata card time: 11px text-dim (no semantic var; applied directly)
+      color: #64708d;
+      font-size: $fs-11;
       overflow: hidden;
       text-overflow: ellipsis;
       width: 100%;
@@ -157,19 +210,40 @@ $thumbnail-default-height: $s-168; // Default width
   }
 
   &.add-file {
-    border: $s-1 dashed var(--color-foreground-secondary);
+    // Kata new-file tile: dashed border-strong + 45° stripe fill (white 3%)
+    background-color: transparent;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgb(255 255 255 / 3%) 0,
+      rgb(255 255 255 / 3%) 6px,
+      transparent 6px,
+      transparent 12px
+    );
+    border: $s-1 dashed rgb(255 255 255 / 14%);
     justify-content: center;
     box-shadow: none;
 
     span {
-      color: var(--color-background-primary);
+      color: var(--color-foreground-secondary);
       font-size: $fs-14;
+      transition: color 0.15s ease;
     }
 
     &:hover {
-      background-color: var(--color-foreground-primary);
-      border: $s-2 solid var(--color-accent-tertiary);
+      // Keep the stripes; just raise the border to the violet accent
+      border: $s-1 dashed rgb(124 58 237 / 45%);
+      box-shadow: none;
+
+      span {
+        color: var(--color-foreground-primary);
+      }
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-item {
+    animation: none;
   }
 }
 
@@ -190,7 +264,9 @@ $thumbnail-default-height: $s-168; // Default width
 
 // PROJECTS, ELEMENTS & ICONS GRID
 .project-th {
-  background-color: transparent;
+  // Kata card surface (file cards carry .grid-item AND .project-th; this
+  // block is emitted later, so it must agree with the .grid-item card look)
+  background-color: var(--color-background-tertiary);
   border-radius: $br-8;
   padding-top: $s-6;
 
@@ -223,7 +299,9 @@ $thumbnail-default-height: $s-168; // Default width
   width: $s-32;
 
   span {
-    color: var(--color-background-secondary);
+    // Was --color-background-secondary (near-black, unreadable on the
+    // Kata card surface)
+    color: var(--color-foreground-secondary);
   }
 }
 

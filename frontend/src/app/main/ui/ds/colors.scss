@@ -10,45 +10,48 @@
 // Licensed under Mozilla Public License Version 2.0
 // Modifications: Replaced PenPot teal/grey palette with Kizuku violet/navy
 // Date: 2026-03-10
+// 2026-07-06: Reworked dark theme to the Kata ramp (bg-base #0f0f1e, raised
+//   #16213e, surface #1e1e3a, hover #2a2a4a, canvas #0a0a14), Kata status
+//   colors, accent-primary -> violet-300 for text readability, and a new
+//   --color-canvas-background primitive.
 // ============================================================================
 
 @use "sass:color";
 
 // ==========================================================================
-// Kizuku Design System Palette
-// Source of truth: design-system/tokens.json
+// Kizuku Design System Palette — Kata
+// Source of truth: design_handoff_kizuku_desktop_polish/ds/tokens
+// Kata violet ramp: 300 #a678f5 / 400 #8b47f2 / 500 #7c3aed / 600 #6a2cc7
 // ==========================================================================
 
 // Primary accent (violet)
-$mint-150: #8b47f2;           // violet-400 — primary accent (dark theme)
-$mint-250: #a775f5;           // violet-300 — tertiary accent
-$mint-700: #5722a1;           // violet-700 — muted accent
-$mint-150-60: #8b47f299;      // violet-400 @ 60%
-$mint-250-10: #a775f51a;      // violet-300 @ 10%
+$mint-150: #a678f5;           // violet-300 — primary accent (dark): readable as text/icon on Kata surfaces
+$mint-250: #8b47f2;           // violet-400 — tertiary accent (dark hover deepens 300 -> 400 per Kata)
+$mint-700: #5722a1;           // violet-700 — muted accent (disabled); Kata ramp extension
+$mint-150-60: #7c3aed99;      // violet-500 @ 60% — accent overlay (matches Kata selection violet)
+$mint-150-10: #a678f51a;      // violet-300 @ 10% — accent select tint
 
-// Status: success
-$green-200: #a7f3d0;          // green-200
-$green-500: #10b981;          // green-500
-$green-950: #064e3b;          // green-900
+// Status: success (Kata #2d9f8f)
+$green-200: #a9dfd7;          // success-200 — light-theme tint / confirmation text
+$green-500: #2d9f8f;          // success-500 — Kata
+// Status: warning (Kata #f5a91b)
+$orange-200: #fce7b3;         // warning-200 — light-theme tint / premium badge (dark)
+$orange-500: #f5a91b;         // warning-500 — Kata
+// Status: error (Kata #ff3277)
+$red-200: #ffb3cc;            // error-200 — light-theme tint
+$red-400: #ff3277;            // error-500 — Kata (accent + dark fg)
+$red-500: #ff3d60;            // error text (light theme)
+// Status: info (Kata #0e9be9)
+$blue-200: #b4e0f9;           // info-200 — light-theme tint
+$blue-500: #0e9be9;           // info-500 — Kata
 
-// Status: warning
-$orange-200: #fde68a;         // amber-200
-$orange-500: #f59e0b;         // amber-500
-$orange-950: #78350f;         // amber-900
-
-// Status: error
-$red-200: #ffa3b3;            // red-200
-$red-400: #ef233c;            // red-500
-$red-500: #ff3d60;            // red-400
-$red-950: #530d1a;            // red-900
-
-$pink-400: #c4a3f9;           // violet-200 (replaces pink)
+$pink-400: #c4a3f9;           // violet-200 (grid-layout editor accent)
 
 // Light theme accents (violet-based)
 $purple-200: #e0d1fc;         // violet-100
-$purple-400: #14b8a6;         // teal-500 — secondary accent
+$purple-400: #27bdb1;         // Kata teal-500 — secondary accent (dark: component highlight)
 $purple-600: #8b47f2;         // violet-400
-$purple-700: #7c3aed;         // violet-500 — primary accent (light theme)
+$purple-700: #7c3aed;         // violet-500 — primary accent (light theme; Kata primary action)
 $purple-600-10: #8b47f21a;    // violet-400 @ 10%
 $purple-700-60: #7c3aed99;    // violet-500 @ 60%
 
@@ -64,22 +67,18 @@ $violet-600: #8b47f2;         // violet-400
 $violet-700: #5722a1;         // violet-700
 $violet-800: #331155;         // violet-900
 
-// Status: info
-$blue-200: #bfdbfe;           // blue-200
-$blue-500: #3b82f6;           // blue-500
-$blue-950: #1e3a8a;           // blue-900
+$cobalt-700: #2563eb;         // blue-600 (light theme secondary accent)
 
-$cobalt-700: #2563eb;         // blue-600
-
-// Surfaces (deep navy, not cold grey)
-$black: #0f0f1e;              // slate-950
-$gray-950: #1a1a2e;           // slate-850 — primary bg
-$gray-950-60: #1a1a2e99;      // slate-850 @ 60%
-$gray-950-90: #1a1a2ee6;      // slate-850 @ 90%
-$gray-900: #1e1e3a;           // slate-800 — tertiary bg
-$gray-800: #2a2a4a;           // slate-700 — quaternary bg
+// Surfaces (Kata deep navy ramp, deepest -> lightest)
+$black: #0a0a14;              // Kata canvas — deepest recess (dark); ink (light fg)
+$gray-950: #0f0f1e;           // Kata bg-base — app/panel background (dark)
+$gray-950-60: color.change($gray-950, $alpha: 0.6);
+$gray-950-90: color.change($gray-950, $alpha: 0.9);
+$gray-925: #16213e;           // Kata bg-raised — raised panels / notifications (dark)
+$gray-900: #1e1e3a;           // Kata surface — cards/menus/inputs (dark)
+$gray-800: #2a2a4a;           // Kata surface-hover — hover fills & hairline borders (dark)
 $gray-200: #d4dae3;           // slate-100
-$gray-100: #f0f2f5;           // slate-50
+$gray-100: #f0f2f5;           // Kata text-primary (dark)
 $gray-50: #f0f2f5;            // slate-50
 $white: #fff;
 $white-60: #ffffff99;
@@ -87,9 +86,9 @@ $white-90: #ffffffe6;
 
 // Foreground
 $blue-teal-700: #475569;      // slate-500 — fg secondary (light)
-$grayish-blue-500: #8892b0;   // slate-300 — fg secondary (dark)
+$grayish-blue-500: #8892b0;   // Kata text-muted — fg secondary (dark)
 
-$grayish-red: #bfbfbf;        // canvas bg (unchanged)
+$grayish-red: #bfbfbf;        // canvas FILL default (document background) — deliberately unchanged
 
 :global(.light) {
   --color-accent-primary: #{$purple-700};
@@ -125,6 +124,7 @@ $grayish-red: #bfbfbf;        // canvas bg (unchanged)
   --color-overlay-default: #{$white-60};
   --color-overlay-onboarding: #{$white-90};
   --color-canvas: #{$grayish-red};
+  --color-canvas-background: #{$white};
 
   --color-token-background: #{$aqua-200};
   --color-token-border: #{$aqua-400};
@@ -141,18 +141,20 @@ $grayish-red: #bfbfbf;        // canvas bg (unchanged)
   --color-accent-tertiary: #{$mint-250};
   --color-accent-quaternary: #{$pink-400};
   --color-accent-overlay: #{$mint-150-60};
-  --color-accent-select: #{$mint-250-10};
+  --color-accent-select: #{$mint-150-10};
 
+  // Status backgrounds: Kata 14% tints precomposited over bg-base #0f0f1e so
+  // alerts/toasts stay opaque over the light document canvas.
   --color-accent-success: #{$green-500};
-  --color-background-success: #{$green-950};
+  --color-background-success: #13232e; // mix(#2d9f8f 14%, #0f0f1e)
   --color-accent-warning: #{$orange-500};
-  --color-background-warning: #{$orange-950};
+  --color-background-warning: #2f251e; // mix(#f5a91b 14%, #0f0f1e)
   --color-accent-error: #{$red-400};
-  --color-background-error: #{$red-950};
-  --color-foreground-error: #{$red-500};
+  --color-background-error: #31142a; // mix(#ff3277 14%, #0f0f1e)
+  --color-foreground-error: #{$red-400};
   --color-accent-info: #{$blue-500};
-  --color-background-info: #{$blue-950};
-  --color-background-default: #{$gray-950};
+  --color-background-info: #0f233a; // mix(#0e9be9 14%, #0f0f1e)
+  --color-background-default: #{$gray-925};
   --color-accent-default: #{$gray-800};
   --color-icon-default: #{$grayish-blue-500};
 
@@ -161,13 +163,14 @@ $grayish-red: #bfbfbf;        // canvas bg (unchanged)
   --color-background-tertiary: #{$gray-900};
   --color-background-quaternary: #{$gray-800};
 
-  --color-foreground-primary: #{$white};
+  --color-foreground-primary: #{$gray-100};
   --color-foreground-secondary: #{$grayish-blue-500};
 
   --color-shadow-dark: #{color.change($black, $alpha: 0.6)};
   --color-overlay-default: #{$gray-950-60};
   --color-overlay-onboarding: #{$gray-950-90};
   --color-canvas: #{$grayish-red};
+  --color-canvas-background: #{$black};
 
   --color-token-background: #{$violet-800};
   --color-token-border: #{$violet-700};
