@@ -36,7 +36,7 @@
                   :font-weight "700"
                   :letter-spacing "-0.02em"
                   :color "var(--catalog-accent, #7c3aed)"}}
-    "Kizuku Catalog"]
+    "Kata 型"]
    [:ul {:style {:list-style "none"
                  :margin "0"
                  :padding "0"}}

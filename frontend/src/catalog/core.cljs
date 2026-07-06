@@ -2,7 +2,7 @@
 ;; This file is NOT part of the original PenPot project.
 ;; Proprietary — see /LICENSE in the project root.
 ;;
-;; Kizuku Component Catalog — Entry Point
+;; Kata 型 — Kizuku component catalog — Entry Point
 ;; Mounts the catalog app into #catalog-app.
 
 (ns catalog.core
