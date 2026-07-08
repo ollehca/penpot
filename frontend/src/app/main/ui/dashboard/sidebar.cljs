@@ -12,8 +12,12 @@
 ;;   indicator, and Kizuku-specific row layout. Team switcher hidden via
 ;;   sibling SCSS (single-team mode).
 ;; Date: 2026-05-19
-;; Kata polish: static non-interactive sidebar footer ("Local · offline" +
-;;   getkizuku.app) pinned below the profile section. Date: 2026-07-07
+;; Kata polish: sidebar footer added 2026-07-07, removed 2026-07-08 per Scott
+;;   (superfluous copy).
+;; Beta hide pass (2026-07-08): removed comment-notifications bubble in the
+;;   profile row, the "Templates" sidebar nav entry, and cloud/external
+;;   profile-menu items (Community, Tutorials, Github repository, Terms of
+;;   service, Libraries & Templates, Logout) — dead offline.
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.sidebar
@@ -23,7 +27,6 @@
    [app.common.data.macros :as dm]
    [app.common.uuid :as uuid]
    [app.config :as cf]
-   [app.main.data.auth :as da]
    [app.main.data.common :as dcm]
    [app.main.data.dashboard :as dd]
    [app.main.data.event :as ev]
@@ -36,7 +39,6 @@
    [app.main.ui.components.dropdown-menu :refer [dropdown-menu*
                                                  dropdown-menu-item*]]
    [app.main.ui.components.link :refer [link]]
-   [app.main.ui.dashboard.comments :refer [comments-icon* comments-section]]
    [app.main.ui.dashboard.inline-edition :refer [inline-edition]]
    [app.main.ui.dashboard.project-menu :refer [project-menu*]]
    [app.main.ui.dashboard.subscription :refer [subscription-sidebar* menu-team-icon* get-subscription-type]]
@@ -76,9 +78,6 @@
 
 (def ^:private pin-icon
   (icon-xref :pin (stl/css :pin-icon)))
-
-(def ^:private exit-icon
-  (icon-xref :exit (stl/css :exit-icon)))
 
 (mf/defc sidebar-project*
   {::mf/private true}
@@ -628,7 +627,6 @@
         projects?   (= section :dashboard-recent)
         fonts?      (= section :dashboard-fonts)
         libs?       (= section :dashboard-libraries)
-        templates?  (= section :dashboard-templates)
         drafts?     (and (= section :dashboard-files)
                          (= (:id project) default-project-id))
         container   (mf/use-ref nil)
@@ -715,11 +713,6 @@
            (dom/stop-propagation event)
            (st/emit! (dd/create-project))))
 
-        go-templates
-        (mf/use-fn
-         (mf/deps team-id)
-         #(st/emit! (dcm/go-to-dashboard-libraries :team-id team-id)))
-
         sorted-projects
         (mf/with-memo [projects]
           (->> projects
@@ -793,16 +786,11 @@
                    :data-testid "libs-link-sidebar"
                    :class (stl/css :sidebar-link)
                    :keyboard-action go-libs-with-key}
-          [:span {:class (stl/css :element-title)} (tr "labels.shared-libraries")]]]
-        [:li {:class (stl/css-case :sidebar-nav-item true
-                                   :current templates?)}
-         [:& link {:action go-templates
-                   :class (stl/css :sidebar-link)}
-          [:span {:class (stl/css :element-title)} "Templates"]]]]]]
+          [:span {:class (stl/css :element-title)} (tr "labels.shared-libraries")]]]]]]
      [:div {:class (stl/css-case :separator true :overflow-separator overflow?)}]]))
 
 (mf/defc profile-section*
-  [{:keys [profile team]}]
+  [{:keys [profile]}]
   (let [show-profile-menu* (mf/use-state false)
         show-profile-menu? (deref show-profile-menu*)
 
@@ -826,19 +814,6 @@
              (if (and (kbd/alt? event) (kbd/mod? event))
                (st/emit! (modal/show {:type :onboarding}))
                (st/emit! (modal/show {:type :release-notes :version version}))))))
-
-        show-comments* (mf/use-state false)
-        show-comments? @show-comments*
-
-        handle-hide-comments
-        (mf/use-fn
-         (fn []
-           (reset! show-comments* false)))
-
-        handle-show-comments
-        (mf/use-fn
-         (fn []
-           (reset! show-comments* true)))
 
         handle-click
         (mf/use-fn
@@ -865,10 +840,6 @@
         handle-feedback-click
         (mf/use-fn #(on-click :settings-feedback %))
 
-        handle-logout-click
-        (mf/use-fn
-         #(on-click (da/logout) %))
-
         handle-set-profile
         (mf/use-fn
          #(on-click :settings-profile %))
@@ -893,14 +864,6 @@
           (tr "dashboard.upgrade-plan.no-limits")]]
         [:div {:class (stl/css :power-up)}
          (tr "subscription.dashboard.upgrade-plan.power-up")]])
-
-     (when (and team profile)
-       [:& comments-section
-        {:profile profile
-         :team team
-         :show? show-comments?
-         :on-show-comments handle-show-comments
-         :on-hide-comments handle-hide-comments}])
 
      [:div {:class (stl/css :profile-section)}
       [:button {:class (stl/css :profile)
@@ -930,69 +893,25 @@
                                 :data-testid "help-center-profile-opt"}
         (tr "labels.help-center")]
 
-       [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
-                                :data-url "https://getkizuku.app"
-                                :on-click handle-click-url}
-        (tr "labels.community")]
-
-       [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
-                                :data-url "https://getkizuku.app"
-                                :on-click handle-click-url}
-        (tr "labels.tutorials")]
-
        [:> dropdown-menu-item* {:tab-index "0"
                                 :class (stl/css :profile-dropdown-item)
                                 :on-click show-release-notes}
         (tr "labels.release-notes")]
 
-       [:li {:class (stl/css :profile-separator)}]
-
-       [:> dropdown-menu-item* {:class     (stl/css :profile-dropdown-item)
-                                :data-url "https://getkizuku.app"
-                                :on-click handle-click-url
-                                :data-testid "libraries-templates-profile-opt"}
-        (tr "labels.libraries-and-templates")]
-
-       [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
-                                :data-url "https://getkizuku.app"
-                                :on-click handle-click-url}
-        (tr "labels.github-repo")]
-
-       [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
-                                :data-url "https://getkizuku.app"
-                                :on-click handle-click-url}
-        (tr "auth.terms-of-service")]
-
-       [:li {:class (stl/css :profile-separator)}]
-
        (when (contains? cf/flags :user-feedback)
-         [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
-                                  :on-click handle-feedback-click
-                                  :data-testid "feedback-profile-opt"}
-          (tr "labels.give-feedback")])
-
-       [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item :item-with-icon)
-                                :on-click handle-logout-click
-                                :data-testid "logout-profile-opt"}
-        exit-icon
-        (tr "labels.logout")]]
-
-      (when (and team profile)
-        [:> comments-icon*
-         {:profile profile
-          :on-show-comments handle-show-comments}])]]))
+         [:*
+          [:li {:class (stl/css :profile-separator)}]
+          [:> dropdown-menu-item* {:class (stl/css :profile-dropdown-item)
+                                   :on-click handle-feedback-click
+                                   :data-testid "feedback-profile-opt"}
+           (tr "labels.give-feedback")]])]]]))
 
 (mf/defc sidebar*
   {::mf/props :obj
    ::mf/wrap [mf/memo]}
-  [{:keys [team profile] :as props}]
+  [{:keys [profile] :as props}]
   [:nav {:class (stl/css :dashboard-sidebar) :data-testid "dashboard-sidebar"}
    [:> sidebar-content* props]
    [:> profile-section*
-    {:profile profile
-     :team team}]
-   ;; Kizuku: static footer, plain spans by design (no links, no handlers)
-   [:div {:class (stl/css :sidebar-footer)}
-    [:span {:class (stl/css :sidebar-footer-tagline)} "Local · offline"]
-    [:span {:class (stl/css :sidebar-footer-url)} "getkizuku.app"]]])
+    {:profile profile}]])
 

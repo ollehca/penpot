@@ -4,6 +4,16 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: internal-error* retry now navigates to the dashboard root
+;;   (rt/nav-root, same target as the go-dashboard affordance) instead of
+;;   re-rendering the crashed route, which crashed again immediately
+;; Date: 2026-07-08
+;; ============================================================================
+
 (ns app.main.ui.static
   (:require-macros [app.main.style :as stl])
   (:require
@@ -346,9 +356,13 @@
       nil)))
 
 (mf/defc internal-error*
-  [{:keys [on-reset report] :as props}]
+  [{:keys [report] :as props}]
   (let [report-uri (mf/use-ref nil)
-        on-reset   (or on-reset #(st/emit! (rt/assign-exception nil)))
+
+        ;; KIZUKU: Retry navigates to the dashboard root (same target as
+        ;; the go-dashboard header affordance) instead of re-rendering the
+        ;; crashed route, which would crash again immediately
+        on-retry   (mf/use-fn #(st/emit! (rt/nav-root)))
 
         on-download
         (mf/use-fn
@@ -371,7 +385,7 @@
      (when (some? report)
        [:a {:on-click on-download} "Download report.txt"])
      [:div {:class (stl/css :sign-info)}
-      [:button {:on-click on-reset} (tr "labels.retry")]]]))
+      [:button {:on-click on-retry} (tr "labels.retry")]]]))
 
 ;; ============================================================================
 ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)

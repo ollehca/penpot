@@ -17,6 +17,8 @@
 //   with violet focus ring. Date: 2026-07-06
 // Kata polish: static sidebar footer ("Local · offline" + getkizuku.app in
 //   mono teal) anchored below the profile section. Date: 2026-07-07
+// Beta hide pass: dropped .item-with-icon and .exit-icon (logout entry
+//   removed in sibling sidebar.cljs). Date: 2026-07-08
 // ============================================================================
 
 @use "../ds/typography.scss" as *;
@@ -504,40 +506,6 @@
 .profile-separator {
   height: $s-6;
   border-top: solid $s-1 var(--color-background-quaternary);
-}
-
-.item-with-icon {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: $s-8;
-}
-
-.exit-icon {
-  @extend .button-icon;
-  stroke: var(--icon-foreground);
-}
-
-// Kizuku footer — static, non-interactive; sits in an implicit auto grid row
-// below .profile-section, so it never overlaps the scrollable sidebar content
-.sidebar-footer {
-  display: flex;
-  flex-direction: column;
-  gap: $s-2;
-  padding: $s-8 $s-16;
-  user-select: none;
-}
-
-.sidebar-footer-tagline {
-  font-size: $fs-11;
-  color: var(--color-foreground-secondary);
-}
-
-.sidebar-footer-url {
-  font-size: $fs-11;
-  font-family: "jetbrainsmono", monospace;
-  // Kata teal-500: reserved brand accent for the getkizuku.app URL
-  // (no semantic var exists; applied directly per token handoff)
-  color: #27bdb1;
 }
 
 .upgrade-plan-section {

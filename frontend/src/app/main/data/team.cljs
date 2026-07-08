@@ -10,6 +10,10 @@
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Single-user mode — synthetic team creation, skip team auth
 ;; Date: 2026-02-15
+;; Modifications: Restore fetch-shared-files, shared-files-fetched and the
+;;   finalize-team state cleanup that were accidentally removed in 46faa952b;
+;;   they are still referenced by dashboard/workspace libraries UI
+;; Date: 2026-07-08
 ;; ============================================================================
 
 (ns app.main.data.team
@@ -166,5 +170,35 @@
               (rx/take-until stopper)))))))
 
 (defn finalize-team
-  []
-  (ptk/reify ::finalize-team))
+  [team-id]
+  (ptk/reify ::finalize-team
+    ptk/UpdateEvent
+    (update [_ state]
+      (let [team-id' (get state :current-team-id)]
+        (if (= team-id' team-id)
+          (-> state
+              (dissoc :current-team-id)
+              (dissoc :shared-files)
+              (dissoc :fonts))
+          state)))))
+
+(defn- shared-files-fetched
+  [files]
+  (ptk/reify ::shared-files-fetched
+    ptk/UpdateEvent
+    (update [_ state]
+      (let [files (d/index-by :id files)]
+        (update state :shared-files merge files)))))
+
+(defn fetch-shared-files
+  "Event mainly used for fetch a list of shared libraries for a team,
+  this list does not includes the content of the library per se.  It
+  is used mainly for show available libraries and a summary of it."
+  ([] (fetch-shared-files nil))
+  ([team-id]
+   (ptk/reify ::fetch-shared-files
+     ptk/WatchEvent
+     (watch [_ state _]
+       (when-let [team-id (or team-id (:current-team-id state))]
+         (->> (rp/cmd! :get-team-shared-files {:team-id team-id})
+              (rx/map shared-files-fetched)))))))
