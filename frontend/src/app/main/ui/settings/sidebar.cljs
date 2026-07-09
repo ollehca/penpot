@@ -11,7 +11,17 @@
 ;; Modifications: Beta hide pass — removed "Password" (auth is license-based),
 ;;   "Notifications" (no email in a local app) and "Release notes" nav
 ;;   entries; routes for the hidden pages still exist so deep links work.
-;; Date: 2026-07-08
+;;   The "Settings" nav entry renders only when at least one of the
+;;   :ui-language-selection / :ui-theme-selection feature flags is present
+;;   in cf/flags — with both absent (the Kizuku default) the options page
+;;   has no visible controls, so the entry is hidden and the settings
+;;   sidebar shows Profile only. The :settings-options route stays mounted
+;;   so deep links still render, consistent with the other hidden pages.
+;;   To bring the entry back, add "enable-ui-language-selection" and/or
+;;   "enable-ui-theme-selection" to the space-separated window.penpotFlags
+;;   string in the served frontend index (cf. app.config/parse-flags +
+;;   app.common.flags/parse).
+;; Date: 2026-07-08, updated 2026-07-09
 ;; ============================================================================
 
 (ns app.main.ui.settings.sidebar
@@ -81,11 +91,13 @@
              :on-click go-settings-profile}
         [:span {:class (stl/css :element-title)} (tr "labels.profile")]]
 
-       [:li {:class (stl/css-case :current options?
-                                  :settings-item true)
-             :on-click go-settings-options
-             :data-testid "settings-profile"}
-        [:span {:class (stl/css :element-title)} (tr "labels.settings")]]
+       (when (or (contains? cf/flags :ui-language-selection)
+                 (contains? cf/flags :ui-theme-selection))
+         [:li {:class (stl/css-case :current options?
+                                    :settings-item true)
+               :on-click go-settings-options
+               :data-testid "settings-profile"}
+          [:span {:class (stl/css :element-title)} (tr "labels.settings")]])
 
        (when (contains? cf/flags :subscriptions)
          [:li {:class (stl/css-case :current subscription?
