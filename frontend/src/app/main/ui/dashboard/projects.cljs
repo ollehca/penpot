@@ -12,6 +12,9 @@
 ;;   subtitle under the title, with the project count already available in
 ;;   the section component (no new subscriptions).
 ;; Date: 2026-07-07
+;; Copy review (2026-07-09): subtitle is now the project count only; the
+;;   "stored on this device" tail was repetitive. No subtitle when the count
+;;   is zero.
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.projects
@@ -64,12 +67,10 @@
      [:div#dashboard-projects-title {:class (stl/css :dashboard-title)}
       [:h1 (tr "dashboard.projects-title")]
       ;; Kizuku: static subtitle (hardcoded English per fork precedent)
-      [:span {:class (stl/css :dashboard-subtitle)}
-       (if (pos? project-count)
+      (when (pos? project-count)
+        [:span {:class (stl/css :dashboard-subtitle)}
          (str project-count
-              (if (= 1 project-count) " project" " projects")
-              " · stored on this device")
-         "Stored on this device")]]
+              (if (= 1 project-count) " project" " projects"))])]
      (when can-edit
        [:button {:class (stl/css :btn-secondary :btn-small)
                  :on-click on-click

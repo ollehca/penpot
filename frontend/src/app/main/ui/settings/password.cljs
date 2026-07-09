@@ -13,6 +13,8 @@
 ;;   prop, which renders in the same slot as validation errors and is
 ;;   mutually exclusive with them (same pattern as auth/register).
 ;; Date: 2026-07-07
+;; Copy review (2026-07-09): hint trimmed to "At least 12 characters." —
+;;   dropped the repetitive "stored only on this device" tail.
 ;; ============================================================================
 
 (ns app.main.ui.settings.password
@@ -93,7 +95,7 @@
         :name :password-1
         :show-success? true
         :label (tr "labels.new-password")
-        :hint "At least 12 characters. Stored only on this device."}]]
+        :hint "At least 12 characters."}]]
 
      [:div {:class (stl/css :fields-row)}
       [:& fm/input

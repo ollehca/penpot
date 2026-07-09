@@ -4,6 +4,17 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Removed the language section (h3 + locale select) — Kizuku
+;;   ships English only; the other locales still carry PenPot branding. The
+;;   form keeps the theme select and now pins :lang to "en" on save so a
+;;   previously stored locale cannot persist.
+;; Date: 2026-07-09
+;; ============================================================================
+
 (ns app.main.ui.settings.options
   (:require-macros [app.main.style :as stl])
   (:require
@@ -13,13 +24,12 @@
    [app.main.store :as st]
    [app.main.ui.components.forms :as fm]
    [app.util.dom :as dom]
-   [app.util.i18n :as i18n :refer [tr]]
+   [app.util.i18n :refer [tr]]
    [app.util.theme :as theme]
    [rumext.v2 :as mf]))
 
 (def ^:private schema:options-form
   [:map {:title "OptionsForm"}
-   [:lang {:optional true} [:string {:max 20}]]
    [:theme {:optional true} [:string {:max 250}]]])
 
 (defn- on-success
@@ -28,7 +38,8 @@
 
 (defn- on-submit
   [form _event]
-  (let [data  (:clean-data @form)]
+  ;; Kizuku ships English only: pin :lang so a stored locale cannot persist
+  (let [data  (assoc (:clean-data @form) :lang "en")]
     (st/emit! (du/update-profile data)
               (du/persist-profile {:on-success on-success}))))
 
@@ -37,11 +48,9 @@
   []
   (let [profile (mf/deref refs/profile)
         initial (mf/with-memo [profile]
-                  (-> profile
-                      (update :lang #(or % ""))
-                      (update :theme #(if (= % "default")
-                                        "dark"
-                                        (or % "dark")))))
+                  (update profile :theme #(if (= % "default")
+                                            "dark"
+                                            (or % "dark"))))
 
         form    (fm/use-form :schema schema:options-form
                              :initial initial)]
@@ -49,16 +58,6 @@
     [:& fm/form {:class (stl/css :options-form)
                  :on-submit on-submit
                  :form form}
-
-     [:h3 (tr "labels.language")]
-
-     [:div {:class (stl/css :fields-row)}
-      [:& fm/select {:options (into [{:label "Auto (browser)" :value ""}]
-                                    i18n/supported-locales)
-                     :label (tr "dashboard.select-ui-language")
-                     :default ""
-                     :name :lang
-                     :data-testid "setting-lang"}]]
 
      [:h3 (tr "dashboard.theme-change")]
      [:div {:class (stl/css :fields-row)}

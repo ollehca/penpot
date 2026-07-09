@@ -12,6 +12,9 @@
 ;;   subtitle under the title, using the shared-files list already computed
 ;;   in this component (no new subscriptions).
 ;; Date: 2026-07-07
+;; Copy review (2026-07-09): subtitle is now the file count only; the
+;;   "stored on this device" tail was repetitive. No subtitle when the count
+;;   is zero.
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.libraries
@@ -75,11 +78,10 @@
       [:div#dashboard-libraries-title {:class (stl/css :dashboard-title)}
        [:h1 (tr "dashboard.libraries-title")]
        ;; Kizuku: static subtitle (hardcoded English per fork precedent)
-       [:span {:class (stl/css :dashboard-subtitle)}
-        (let [n (count files)]
-          (if (pos? n)
-            (str n (if (= 1 n) " file" " files") " · stored on this device")
-            "Stored on this device"))]]]
+       (let [n (count files)]
+         (when (pos? n)
+           [:span {:class (stl/css :dashboard-subtitle)}
+            (str n (if (= 1 n) " file" " files"))]))]]
 
      [:section {:class (stl/css :dashboard-container :no-bg :dashboard-shared)
                 :ref rowref}

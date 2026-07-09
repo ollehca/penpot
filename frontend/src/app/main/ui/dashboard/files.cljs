@@ -14,6 +14,9 @@
 ;; Kata polish: header renders a "stored on this device" subtitle under the
 ;;   title (drafts + project views; skipped while renaming), using the file
 ;;   count already computed in the section component. Date: 2026-07-07
+;; Copy review (2026-07-09): subtitle is now the file count only; the
+;;   "stored on this device" tail was repetitive. No subtitle when the count
+;;   is zero.
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.files
@@ -48,13 +51,12 @@
   [{:keys [project create-fn can-edit file-count]}]
   (let [project-id (:id project)
 
-        ;; Kizuku: static subtitle (hardcoded English per fork precedent)
+        ;; Kizuku: static subtitle (hardcoded English per fork precedent);
+        ;; nil when there are no files, which renders no subtitle element
         subtitle
-        (if (pos? file-count)
+        (when (pos? file-count)
           (str file-count
-               (if (= 1 file-count) " file" " files")
-               " · stored on this device")
-          "Stored on this device")
+               (if (= 1 file-count) " file" " files")))
 
         local
         (mf/use-state
@@ -102,7 +104,8 @@
      (if (:is-default project)
        [:div#dashboard-drafts-title {:class (stl/css :dashboard-title)}
         [:h1 (tr "labels.drafts")]
-        [:span {:class (stl/css :dashboard-subtitle)} subtitle]]
+        (when subtitle
+          [:span {:class (stl/css :dashboard-subtitle)} subtitle])]
 
        (if (and (:edition @local) can-edit)
          [:& inline-edition
@@ -119,7 +122,8 @@
                 :data-testid "project-title"
                 :id (:id project)}
            (:name project)]
-          [:span {:class (stl/css :dashboard-subtitle)} subtitle]]))
+          (when subtitle
+            [:span {:class (stl/css :dashboard-subtitle)} subtitle])]))
 
      [:div {:class (stl/css :dashboard-header-actions)}
       (when ^boolean can-edit

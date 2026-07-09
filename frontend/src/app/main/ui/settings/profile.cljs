@@ -15,6 +15,9 @@
 ;; Beta hide pass (2026-07-08): removed the "Change email" link and the
 ;;   remove-account section (cloud account concepts); name + avatar stay, the
 ;;   email field remains display-only.
+;; Copy review (2026-07-09): removed the local-first notice and "own your
+;;   work" card again — repetitive messaging; the page is just the profile
+;;   form now.
 ;; ============================================================================
 
 (ns app.main.ui.settings.profile
@@ -119,18 +122,5 @@
    [:div {:class (stl/css :form-container)}
     [:h2 (tr "labels.profile")]
     [:& profile-photo-form]
-    [:& profile-form]
-
-    ;; KIZUKU: static local-first notice (Kata info tint)
-    [:div {:class (stl/css :local-notice)}
-     "Your files stay on this device. Kizuku never syncs to the cloud."]
-
-    ;; KIZUKU: static ownership card (Kata raised surface)
-    [:div {:class (stl/css :own-work-card)}
-     [:span {:class (stl/css :own-work-title)}
-      "Own your work locally"]
-     [:span {:class (stl/css :own-work-body)}
-      "No subscriptions, no lock-in. Export any time to open formats."]
-     [:span {:class (stl/css :own-work-url)}
-      "getkizuku.app"]]]])
+    [:& profile-form]]])
 

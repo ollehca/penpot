@@ -16,6 +16,8 @@
 // Date: 2026-07-06
 // 2026-07-07: Kata polish pass 2 — local-first info notice + "own your work"
 //   CTA card below the profile form.
+// 2026-07-09: Copy review — removed the local-first notice and CTA card
+//   styles again (repetitive messaging; the markup is gone from profile.cljs).
 // ============================================================================
 
 @use "common/refactor/common-refactor" as *;
@@ -361,46 +363,6 @@ form.avatar-form {
   .links {
     grid-column: 1 / -1;
   }
-}
-
-// Kizuku: local-first info notice (Kata info tint)
-.local-notice {
-  margin-top: $s-20;
-  padding: 10px 12px; // Kata alert padding (no $s-10/$s-14 tokens)
-  border: $s-1 solid rgb(14 155 233 / 30%); // Kata info #0e9be9 at 30%
-  border-radius: $br-5;
-  background-color: rgb(14 155 233 / 14%); // Kata info tint
-  font-size: $fs-12;
-  color: var(--color-foreground-primary);
-}
-
-// Kizuku: ownership CTA card (Kata raised surface + accent border)
-.own-work-card {
-  display: flex;
-  flex-direction: column;
-  gap: $s-4;
-  margin-top: $s-12;
-  padding: 14px 16px; // Kata card padding (no $s-14 token)
-  border: $s-1 solid rgb(124 58 237 / 25%); // Kata border-accent (violet-500 at 25%)
-  border-radius: $br-8;
-  background-color: var(--color-background-default); // Kata raised #16213e (dark)
-}
-
-.own-work-title {
-  font-size: 13px; // Kata card title (no $fs-13 token)
-  font-weight: 600;
-  color: var(--color-foreground-primary);
-}
-
-.own-work-body {
-  font-size: $fs-12;
-  color: var(--color-foreground-secondary);
-}
-
-.own-work-url {
-  font-family: "jetbrainsmono", monospace;
-  font-size: $fs-11;
-  color: #27bdb1; // Kata teal-500 — teal reserved for the brand URL
 }
 
 .newsletter-subs {
