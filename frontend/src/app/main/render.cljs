@@ -3,6 +3,17 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: page-svg paints its background as a real <rect> in
+;;   addition to the CSS style — CSS backgrounds on the svg root are not
+;;   rasterized by canvas drawImage, so file thumbnails lost page
+;;   backgrounds (incl. Kata placeholder colours for empty files).
+;; Date: 2026-07-12
+;; ============================================================================
 
 (ns app.main.render
   "Rendering utilities and components for penpot SVG.
@@ -232,6 +243,13 @@
                       :height "100%"
                       :background bgcolor}
               :fill "none"}
+
+        ;; KIZUKU: also paint the background as a real <rect> — the CSS
+        ;; :background style above is ignored when this SVG is rasterized
+        ;; through canvas drawImage (the thumbnail pipeline), which left
+        ;; page backgrounds (and the mock backend's Kata placeholder
+        ;; colours for empty files) out of every file preview.
+        [:& background {:vbox dim :color bgcolor}]
 
         (when include-metadata
           [:& export/export-page {:page data}])
