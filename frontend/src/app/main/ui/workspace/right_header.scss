@@ -12,6 +12,10 @@
 //   play icon carries the teal-300 run accent (teal is reserved for
 //   run/preview affordances and the brand mark).
 // Date: 2026-07-06
+// Modifications: Removed the comments/history button rules and the viewer
+//   teal accent — the Play, comments and history buttons were deleted from
+//   the header markup (dead offline).
+// Date: 2026-07-11
 // ============================================================================
 
 @import "refactor/common-refactor.scss";
@@ -124,64 +128,6 @@
   }
 }
 
-.comments-btn {
-  @extend .button-tertiary;
-  border-radius: $br-8;
-  margin: 0;
-  height: $s-28;
-  width: $s-28;
-  border: none;
-
-  svg {
-    @extend .button-icon;
-    stroke: var(--icon-foreground);
-    height: $s-16;
-    width: $s-16;
-  }
-
-  &:hover {
-    background-color: transparent;
-    border: none;
-  }
-
-  &.selected {
-    background-color: var(--button-tertiary-background-color-selected);
-
-    svg {
-      stroke: var(--button-tertiary-foreground-color-active);
-    }
-  }
-}
-
-.history-button {
-  @extend .button-tertiary;
-  border-radius: $br-8;
-  margin: 0;
-  height: $s-28;
-  width: $s-28;
-  border: none;
-
-  svg {
-    @extend .button-icon;
-    stroke: var(--icon-foreground);
-    height: $s-16;
-    width: $s-16;
-  }
-
-  &:hover {
-    background-color: transparent;
-    border: none;
-  }
-
-  &.selected {
-    background-color: var(--button-tertiary-background-color-selected);
-
-    svg {
-      stroke: var(--button-tertiary-foreground-color-active);
-    }
-  }
-}
-
 .persistence-status-widget {
   @include flexCenter;
   width: $s-28;
@@ -244,36 +190,3 @@
   }
 }
 
-.viewer-btn {
-  // Kata run/preview accent: teal-300 (no semantic var; teal ramp is
-  // reserved for run/preview + brand mark only)
-  svg {
-    stroke: #35f6e6;
-  }
-
-  &:hover svg {
-    stroke: #35f6e6;
-  }
-
-  // Light theme: teal-300 is illegible on light surfaces; use teal-700
-  :global(.light) & {
-    svg {
-      stroke: #11605a;
-    }
-
-    &:hover svg {
-      stroke: #11605a;
-    }
-  }
-}
-
-.unread {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border: 2px solid var(--color-background-tertiary);
-  border-radius: 50%;
-  background: red;
-  top: 6px;
-  right: 6px;
-}

@@ -4,12 +4,21 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Default text fill changed from black (#000000) to the Kata
+;;   text-primary token #f0f2f5 — black text is invisible on the #0a0a14
+;;   canvas that Kizuku ships as the default theme.
+;; Date: 2026-07-11
+;; ============================================================================
+
  (ns app.common.types.text
    (:require
     [app.common.data :as d]
     [app.common.data.macros :as dm]
     [app.common.flags :as flags]
-    [app.common.types.color :as clr]
     [app.common.types.fills :as types.fills]
     [clojure.set :as set]
     [clojure.walk :as walk]
@@ -86,8 +95,10 @@
 (def default-root-attrs
   {:vertical-align "top"})
 
+;; KIZUKU: Kata text-primary (#f0f2f5) instead of black — the default
+;; canvas is #0a0a14, where black text is invisible.
 (def default-text-fills
-  [{:fill-color clr/black
+  [{:fill-color "#f0f2f5"
     :fill-opacity 1}])
 
 (def default-text-attrs

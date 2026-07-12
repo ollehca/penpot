@@ -18,6 +18,9 @@
 ;;   profile row, the "Templates" sidebar nav entry, and cloud/external
 ;;   profile-menu items (Community, Tutorials, Github repository, Terms of
 ;;   service, Libraries & Templates, Logout) — dead offline.
+;; Removed "Release notes" profile-menu entry and its handler (incl. the
+;;   alt+mod onboarding easter egg) — the modal only renders PenPot 2.9
+;;   content. Date: 2026-07-11
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.sidebar
@@ -806,15 +809,6 @@
              (st/emit! (rt/nav section))
              (st/emit! section))))
 
-        show-release-notes
-        (mf/use-fn
-         (fn [event]
-           (let [version (:main cf/version)]
-             (st/emit! (ptk/event ::ev/event {::ev/name "show-release-notes" :version version}))
-             (if (and (kbd/alt? event) (kbd/mod? event))
-               (st/emit! (modal/show {:type :onboarding}))
-               (st/emit! (modal/show {:type :release-notes :version version}))))))
-
         handle-click
         (mf/use-fn
          (fn [event]
@@ -892,11 +886,6 @@
                                 :on-click handle-click-url
                                 :data-testid "help-center-profile-opt"}
         (tr "labels.help-center")]
-
-       [:> dropdown-menu-item* {:tab-index "0"
-                                :class (stl/css :profile-dropdown-item)
-                                :on-click show-release-notes}
-        (tr "labels.release-notes")]
 
        (when (contains? cf/flags :user-feedback)
          [:*

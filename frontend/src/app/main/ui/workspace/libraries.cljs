@@ -4,6 +4,16 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Shared-libraries empty state — removed the Penpot
+;;   sample-library install rows (template cloning needs the cloud backend)
+;;   and repointed the templates link from penpot.app to getkizuku.app.
+;; Date: 2026-07-11
+;; ============================================================================
+
 (ns app.main.ui.workspace.libraries
   (:require-macros [app.main.style :as stl])
   (:require
@@ -14,9 +24,7 @@
    [app.common.types.library :as ctl]
    [app.common.types.typographies-list :as ctyl]
    [app.common.uuid :as uuid]
-   [app.main.data.dashboard :as dd]
    [app.main.data.modal :as modal]
-   [app.main.data.notifications :as ntf]
    [app.main.data.profile :as du]
    [app.main.data.team :as dtm]
    [app.main.data.workspace.colors :as mdc]
@@ -36,7 +44,6 @@
    [app.util.dom :as dom]
    [app.util.i18n :as i18n :refer [tr]]
    [app.util.strings :refer [matches-search]]
-   [beicon.v2.core :as rx]
    [cuerdas.core :as str]
    [rumext.v2 :as mf]))
 
@@ -135,47 +142,6 @@
        [:li {:class (stl/css :element-count)}
         (tr "workspace.libraries.typography" typography-count)])]))
 
-(mf/defc sample-library-entry*
-  {::mf/props :obj
-   ::mf/private true}
-  [{:keys [library importing]}]
-  (let [id         (:id library)
-        importing? (deref importing)
-
-        team-id    (mf/use-ctx ctx/current-team-id)
-
-        on-error
-        (mf/use-fn
-         (fn [_]
-           (reset! importing nil)
-           (rx/of (ntf/error (tr "dashboard.libraries-and-templates.import-error")))))
-
-        on-success
-        (mf/use-fn
-         (mf/deps team-id)
-         (fn [_]
-           (st/emit! (dtm/fetch-shared-files team-id))))
-
-        import-library
-        (mf/use-fn
-         (mf/deps on-success on-error)
-         (fn [_]
-           (reset! importing id)
-           (st/emit! (dd/clone-template
-                      (with-meta {:template-id id}
-                        {:on-success on-success
-                         :on-error on-error})))))]
-
-    [:div {:class (stl/css :sample-library-item)
-           :key (dm/str id)}
-     [:div {:class (stl/css :sample-library-item-name)} (:name library)]
-     [:input {:class (stl/css-case :sample-library-button true
-                                   :sample-library-add (nil? importing?)
-                                   :sample-library-adding (some? importing?))
-              :type "button"
-              :value (if (= importing? id) (tr "labels.adding") (tr "labels.add"))
-              :on-click import-library}]]))
-
 (defn- empty-library?
   "Check if currentt library summary has elements or not"
   [summary]
@@ -211,11 +177,6 @@
         (mf/with-memo [linked-libraries]
           (->> (vals linked-libraries)
                (sort-by (comp str/lower :name))))
-
-        importing*       (mf/use-state nil)
-        sample-libraries [{:id "penpot-design-system", :name "Design system example"}
-                          {:id "wireframing-kit", :name "Wireframe library"}
-                          {:id "whiteboarding-kit", :name "Whiteboarding Kit"}]
 
         change-search-term
         (mf/use-fn
@@ -360,19 +321,12 @@
              (tr "workspace.libraries.loading")
 
              (str/empty? search-term)
-             [:*
-              [:div {:class (stl/css :sample-libraries-info)}
-               (tr "workspace.libraries.empty.no-libraries")
-               [:a {:target "_blank"
-                    :class (stl/css :sample-libraries-link)
-                    :href "https://penpot.app/libraries-templates"}
-                (tr "workspace.libraries.empty.some-templates")]]
-              [:div {:class (stl/css :sample-libraries-container)}
-               (tr "workspace.libraries.empty.add-some")
-               (for [library sample-libraries]
-                 [:> sample-library-entry*
-                  {:library library
-                   :importing importing*}])]]
+             [:div {:class (stl/css :sample-libraries-info)}
+              (tr "workspace.libraries.empty.no-libraries")
+              [:a {:target "_blank"
+                   :class (stl/css :sample-libraries-link)
+                   :href "https://getkizuku.app"}
+               (tr "workspace.libraries.empty.some-templates")]]
 
              :else
              (tr "workspace.libraries.no-matches-for" search-term))]))]]))

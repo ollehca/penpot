@@ -14,6 +14,10 @@
 ;;   finalize-team state cleanup that were accidentally removed in 46faa952b;
 ;;   they are still referenced by dashboard/workspace libraries UI
 ;; Date: 2026-07-08
+;; Modifications: Re-add the team-management public vars removed in 46faa952b
+;;   as safe no-op events (see the stub section at the end of this file);
+;;   restores a zero-warning release build
+;; Date: 2026-07-11
 ;; ============================================================================
 
 (ns app.main.data.team
@@ -202,3 +206,105 @@
        (when-let [team-id (or team-id (:current-team-id state))]
          (->> (rp/cmd! :get-team-shared-files {:team-id team-id})
               (rx/map shared-files-fetched)))))))
+
+;; ============================================================================
+;; KIZUKU: no-op stubs for team-management events
+;;
+;; The team-management UI (members, invitations, webhooks, team CRUD) is
+;; hidden in Kizuku's single-user mode, but the components that reference
+;; these events are still compiled into the release bundle. The original
+;; implementations were removed in 46faa952b, which left dangling references
+;; and ~20 "use of undeclared var" release warnings, and turned every hidden
+;; crash site into a runtime error if it were ever reached.
+;;
+;; These stubs accept the original argument shapes and emit nothing (an
+;; event with no Watch/Update implementation is inert in potok), so the
+;; release build compiles with ZERO warnings again — keeping the warning
+;; gate meaningful as a regression signal — and any stray call becomes a
+;; safe no-op instead of a crash.
+;; ============================================================================
+
+(defn create-team
+  "KIZUKU no-op stub. Original: [{:keys [name] :as params}]"
+  [_params]
+  (ptk/reify ::create-team))
+
+(defn create-team-with-invitations
+  "KIZUKU no-op stub. Original: [{:keys [name emails role] :as params}]"
+  [_params]
+  (ptk/reify ::create-team-with-invitations))
+
+(defn update-team
+  "KIZUKU no-op stub. Original: [{:keys [id name] :as params}]"
+  [_params]
+  (ptk/reify ::update-team))
+
+(defn leave-current-team
+  "KIZUKU no-op stub. Original: [{:keys [reassign-to] :as params}]"
+  [_params]
+  (ptk/reify ::leave-current-team))
+
+(defn delete-team
+  "KIZUKU no-op stub. Original: [{:keys [id] :as params}]"
+  [_params]
+  (ptk/reify ::delete-team))
+
+(defn create-invitations
+  "KIZUKU no-op stub. Original: [{:keys [emails role team-id resend?] :as params}]"
+  [_params]
+  (ptk/reify ::create-invitations))
+
+(defn delete-invitation
+  "KIZUKU no-op stub. Original: [{:keys [email team-id] :as params}]"
+  [_params]
+  (ptk/reify ::delete-invitation))
+
+(defn copy-invitation-link
+  "KIZUKU no-op stub. Original: [{:keys [email team-id] :as params}]"
+  [_params]
+  (ptk/reify ::copy-invitation-link))
+
+(defn update-invitation-role
+  "KIZUKU no-op stub. Original: [{:keys [email team-id role] :as params}]"
+  [_params]
+  (ptk/reify ::update-invitation-role))
+
+(defn update-member-role
+  "KIZUKU no-op stub. Original: [{:keys [role member-id] :as params}]"
+  [_params]
+  (ptk/reify ::update-member-role))
+
+(defn delete-member
+  "KIZUKU no-op stub. Original: [{:keys [member-id] :as params}]"
+  [_params]
+  (ptk/reify ::delete-member))
+
+(defn create-webhook
+  "KIZUKU no-op stub. Original: [{:keys [uri mtype is-active] :as params}]"
+  [_params]
+  (ptk/reify ::create-webhook))
+
+(defn update-webhook
+  "KIZUKU no-op stub. Original: [{:keys [id uri mtype is-active] :as params}]"
+  [_params]
+  (ptk/reify ::update-webhook))
+
+(defn delete-webhook
+  "KIZUKU no-op stub. Original: [{:keys [id] :as params}]"
+  [_params]
+  (ptk/reify ::delete-webhook))
+
+(defn fetch-webhooks
+  "KIZUKU no-op stub. Original: []"
+  []
+  (ptk/reify ::fetch-webhooks))
+
+(defn update-team-photo
+  "KIZUKU no-op stub. Original: [file]"
+  [_file]
+  (ptk/reify ::update-team-photo))
+
+(defn fetch-stats
+  "KIZUKU no-op stub. Original: []"
+  []
+  (ptk/reify ::fetch-stats))

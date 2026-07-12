@@ -4,21 +4,27 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Removed dead-offline header affordances — the viewer Play
+;;   button (viewer routes are unreachable in the packaged app), the comments
+;;   tool button (every comment RPC is unmocked) and the version-history
+;;   button (history RPCs are unmocked).
+;; Date: 2026-07-11
+;; ============================================================================
+
 (ns app.main.ui.workspace.right-header
   (:require-macros [app.main.style :as stl])
   (:require
-   [app.main.data.common :as dcm]
-   [app.main.data.event :as ev]
    [app.main.data.modal :as modal]
    [app.main.data.shortcuts :as scd]
    [app.main.data.workspace :as dw]
-   [app.main.data.workspace.drawing.common :as dwc]
-   [app.main.data.workspace.history :as dwh]
    [app.main.data.workspace.shortcuts :as sc]
    [app.main.refs :as refs]
    [app.main.store :as st]
    [app.main.ui.components.dropdown :refer [dropdown]]
-   [app.main.ui.context :as ctx]
    [app.main.ui.dashboard.team]
    [app.main.ui.ds.buttons.icon-button :refer [icon-button*]]
    [app.main.ui.exports.assets :refer [export-progress-widget]]
@@ -110,14 +116,10 @@
 ;; --- Header Component
 
 (mf/defc right-header*
-  [{:keys [file layout page-id]}]
+  [{:keys [file]}]
   (let [file-id           (:id file)
 
-        threads-map       (mf/deref refs/comment-threads)
-
         zoom              (mf/deref refs/selected-zoom)
-        read-only?        (mf/use-ctx ctx/workspace-read-only?)
-        selected-drawtool (mf/deref refs/selected-drawing-tool)
 
         on-increase       (mf/use-fn #(st/emit! (dw/increase-zoom nil)))
         on-decrease       (mf/use-fn #(st/emit! (dw/decrease-zoom nil)))
@@ -133,55 +135,10 @@
         team              (mf/deref refs/team)
         permissions       (get team :permissions)
 
-        has-unread-comments?
-        (mf/with-memo [threads-map file-id]
-          (->> (vals threads-map)
-               (some #(and (= (:file-id %) file-id)
-                           (pos? (:count-unread-comments %))))
-               (boolean)))
-
         display-share-button?
         (and (not (:is-default team))
              (or (:is-admin permissions)
                  (:is-owner permissions)))
-
-        nav-to-viewer
-        (mf/use-fn
-         (mf/deps file-id page-id)
-         (fn []
-           (let [params {:page-id page-id
-                         :file-id file-id
-                         :section "interactions"}]
-             (st/emit! (dcm/go-to-viewer params)))))
-
-        active-comments
-        (mf/use-fn
-         (mf/deps layout)
-         (fn []
-           (st/emit! :interrupt
-                     (dw/clear-edition-mode)
-                     (-> (dw/remove-layout-flag :document-history)
-                         (vary-meta assoc ::ev/origin "workspace-header"))
-                     (dw/select-for-drawing :comments))))
-
-        toggle-comments
-        (mf/use-fn
-         (mf/deps selected-drawtool)
-         (fn [_]
-           (if (= selected-drawtool :comments)
-             (st/emit! (dwc/clear-drawing))
-             (active-comments))))
-
-        toggle-history
-        (mf/use-fn
-         (mf/deps selected-drawtool)
-         (fn []
-           (when (= :comments selected-drawtool)
-             (st/emit! :interrupt
-                       (dw/clear-edition-mode)))
-
-           (st/emit! (-> (dwh/initialize-history)
-                         (vary-meta assoc ::ev/origin "workspace-header")))))
 
         open-share-dialog
         (mf/use-fn
@@ -212,36 +169,9 @@
         :on-zoom-fit on-zoom-fit
         :on-zoom-selected on-zoom-selected}]]
 
-     [:div {:class (stl/css :comments-section)}
-      [:button {:title (tr "workspace.toolbar.comments" (sc/get-tooltip :add-comment))
-                :aria-label (tr "workspace.toolbar.comments" (sc/get-tooltip :add-comment))
-                :class (stl/css-case :comments-btn true
-                                     :selected (= selected-drawtool :comments))
-                :on-click toggle-comments
-                :data-tool "comments"
-                :style {:position "relative"}}
-       i/comments
-       (when ^boolean has-unread-comments?
-         [:div {:class (stl/css :unread)}])]]
-
-     (when-not ^boolean read-only?
-       [:div {:class (stl/css :history-section)}
-        [:button
-         {:title (tr "workspace.sidebar.history")
-          :aria-label (tr "workspace.sidebar.history")
-          :class (stl/css-case :selected (contains? layout :document-history)
-                               :history-button true)
-          :on-click toggle-history}
-         i/history]])
-
      (when display-share-button?
        [:a {:class (stl/css :viewer-btn)
             :title (tr "workspace.header.share")
             :on-click open-share-dialog}
-        i/share])
-
-     [:a {:class (stl/css :viewer-btn)
-          :title (tr "workspace.header.viewer" (sc/get-tooltip :open-viewer))
-          :on-click nav-to-viewer}
-      i/play]]))
+        i/share])]))
 

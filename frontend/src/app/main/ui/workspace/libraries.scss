@@ -4,6 +4,15 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Dropped the sample-library row rules — the sample-library
+//   install rows were removed from the shared-libraries empty state.
+// Date: 2026-07-11
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 // Library modal
@@ -342,47 +351,3 @@
   }
 }
 
-.sample-libraries-container {
-  display: flex;
-  flex-direction: column;
-  font-size: $fs-12;
-  width: 100%;
-  align-items: start;
-  color: var(--color-foreground-secondary);
-}
-
-.sample-library-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: $s-8;
-}
-
-.sample-library-item-name {
-  font-size: $fs-14;
-  color: var(--color-foreground-primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: $s-232;
-}
-
-.sample-library-add {
-  @extend .button-secondary;
-}
-
-.sample-library-adding {
-  @extend .button-disabled;
-}
-
-.sample-library-button {
-  @include uppercaseTitleTipography;
-  height: $s-32;
-  width: $s-80;
-  margin: 0;
-  border-radius: $br-8;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}

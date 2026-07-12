@@ -4,6 +4,16 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Removed the :add-comment ("C") and :open-comments ("G C")
+;;   shortcuts — the comments tool was removed from the workspace UI because
+;;   every comment RPC is unmocked in the offline packaged app.
+;; Date: 2026-07-11
+;; ============================================================================
+
 (ns app.main.data.workspace.shortcuts
   (:require
    [app.common.data.macros :as dm]
@@ -308,11 +318,6 @@
                           :subsections [:tools]
                           :fn #(emit-when-no-readonly (dwd/select-for-drawing :curve))}
 
-   :add-comment          {:tooltip "C"
-                          :command "c"
-                          :subsections [:tools]
-                          :fn #(st/emit! (dwd/select-for-drawing :comments))}
-
    :insert-image         {:tooltip (ds/shift "K")
                           :command "shift+k"
                           :subsections [:tools]
@@ -540,11 +545,6 @@
                           :command "g i"
                           :subsections [:navigation-workspace]
                           :fn #(st/emit! (dcm/go-to-viewer :section :inspect))}
-
-   :open-comments        {:tooltip "G C"
-                          :command "g c"
-                          :subsections [:navigation-workspace]
-                          :fn #(st/emit! (dcm/go-to-viewer :section :comments))}
 
    :open-dashboard       {:tooltip "G D"
                           :command "g d"

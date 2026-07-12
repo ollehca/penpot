@@ -4,6 +4,16 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: Dropped the .plugins and .help-info submenu offset rules —
+//   the Plugins menu was removed and the Help submenu always uses the
+//   .help-info-old offset now that no Plugins entry shifts it down.
+// Date: 2026-07-11
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .menu {
@@ -102,17 +112,6 @@
 
   &.preferences {
     top: $s-148;
-  }
-
-  &.plugins {
-    top: $s-180;
-    max-height: calc(100vh - $s-180);
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
-  &.help-info {
-    top: $s-232;
   }
 
   &.help-info-old {
