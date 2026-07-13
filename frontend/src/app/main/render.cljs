@@ -248,8 +248,24 @@
         ;; :background style above is ignored when this SVG is rasterized
         ;; through canvas drawImage (the thumbnail pipeline), which left
         ;; page backgrounds (and the mock backend's Kata placeholder
-        ;; colours for empty files) out of every file preview.
-        [:& background {:vbox dim :color bgcolor}]
+        ;; colours for empty files) out of every file preview. When the
+        ;; backend attaches :kizuku-background-gradient {:from :to} to the
+        ;; page (Kata placeholder cards for empty files), paint a 135°
+        ;; gradient instead of the flat colour.
+        (let [gradient (get data :kizuku-background-gradient)]
+          (if (and (map? gradient) (:from gradient) (:to gradient))
+            [:*
+             [:defs
+              [:linearGradient {:id "kizuku-page-background"
+                                :x1 "0" :y1 "0" :x2 "1" :y2 "1"}
+               [:stop {:offset "0%" :stop-color (:from gradient)}]
+               [:stop {:offset "100%" :stop-color (:to gradient)}]]]
+             [:rect {:x (:x dim)
+                     :y (:y dim)
+                     :width (:width dim)
+                     :height (:height dim)
+                     :fill "url(#kizuku-page-background)"}]]
+            [:& background {:vbox dim :color bgcolor}]))
 
         (when include-metadata
           [:& export/export-page {:page data}])
