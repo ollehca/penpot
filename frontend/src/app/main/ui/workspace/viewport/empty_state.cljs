@@ -44,9 +44,13 @@
   "Non-blocking helper shown when the current page has no shapes.
   Rendered inside the viewport-overlays layer (pointer-events: none);
   only the card itself accepts pointer events. Disappears reactively
-  as soon as the page has any shape, while a drawing tool is active,
-  or when dismissed for the current page/session."
-  [{:keys [page-id objects drawing-tool]}]
+  as soon as the page has any shape, while a draw is in progress, in
+  comment-placement mode, or when dismissed for the current
+  page/session. A merely ARMED drawing tool does not hide it: PenPot
+  auto-arms the board tool on every empty page (pages.cljs
+  select-frame-tool), which would otherwise suppress the card on
+  exactly the fresh files it exists for."
+  [{:keys [page-id objects drawing-tool drawing-obj]}]
   (let [dismissed   (mf/use-state #{})
         empty-page? (empty? (get-in objects [uuid/zero :shapes]))
 
@@ -56,7 +60,8 @@
          #(swap! dismissed conj page-id))]
 
     (when (and ^boolean empty-page?
-               (nil? drawing-tool)
+               (nil? drawing-obj)
+               (not= :comments drawing-tool)
                (not (contains? @dismissed page-id)))
       [:div {:class (stl/css :empty-state)}
        [:div {:class (stl/css :card)}

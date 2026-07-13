@@ -351,7 +351,8 @@
       (when (and (:can-edit permissions) (not read-only?))
         [:> empty-state/empty-state* {:page-id page-id
                                       :objects objects
-                                      :drawing-tool drawing-tool}])
+                                      :drawing-tool drawing-tool
+                                      :drawing-obj drawing-obj}])
 
       (when show-comments?
         [:> comments/comments-layer* {:vbox vbox
