@@ -6,7 +6,7 @@
 
 ;; ============================================================================
 ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
-;; Original file from PenPot (https://getkizuku.app)
+;; Original file from PenPot (https://github.com/penpot/penpot)
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Project list items now render an inline folder icon, pinned
 ;;   indicator, and Kizuku-specific row layout. Team switcher hidden via
