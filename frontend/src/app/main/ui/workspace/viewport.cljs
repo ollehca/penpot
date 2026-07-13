@@ -4,6 +4,16 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Render the Kizuku empty-page overlay (board shortcut hint +
+;;   size presets, see viewport/empty_state.cljs) inside the viewport-overlays
+;;   layer when the current page has no shapes.
+;; Date: 2026-07-13
+;; ============================================================================
+
 (ns app.main.ui.workspace.viewport
   (:require-macros [app.main.style :as stl])
   (:require
@@ -37,6 +47,7 @@
    [app.main.ui.workspace.viewport.comments :as comments]
    [app.main.ui.workspace.viewport.debug :as wvd]
    [app.main.ui.workspace.viewport.drawarea :as drawarea]
+   [app.main.ui.workspace.viewport.empty-state :as empty-state]
    [app.main.ui.workspace.viewport.frame-grid :as frame-grid]
    [app.main.ui.workspace.viewport.gradients :as gradients]
    [app.main.ui.workspace.viewport.grid-layout-editor :as grid-layout]
@@ -333,6 +344,14 @@
              :objects objects
              :modifiers modifiers
              :edition edition}])]]]
+
+      ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+      ;; Empty-page overlay: board shortcut hint + size presets
+      ;; (see viewport/empty_state.cljs)
+      (when (and (:can-edit permissions) (not read-only?))
+        [:> empty-state/empty-state* {:page-id page-id
+                                      :objects objects
+                                      :drawing-tool drawing-tool}])
 
       (when show-comments?
         [:> comments/comments-layer* {:vbox vbox
