@@ -18,6 +18,12 @@
 //   CTA card below the profile form.
 // 2026-07-09: Copy review — removed the local-first notice and CTA card
 //   styles again (repetitive messaging; the markup is gone from profile.cljs).
+// 2026-07-13: Plan section styles — the entitlements-driven block below the
+//   profile form. A tier pill (.plan-badge, muted for private; violet accent
+//   fill for paid; Kata teal mark for founder), an upgrade action
+//   (.plan-upgrade-btn: Kata primary violet + glow) with one supporting line,
+//   and an always-visible "Change license" input + "Validate" button
+//   (5px controls, violet focus ring, inline error). Sentence case throughout.
 // ============================================================================
 
 @use "common/refactor/common-refactor" as *;
@@ -410,4 +416,140 @@ form.avatar-form {
   align-self: flex-end;
   justify-self: end;
   @include kataPrimaryButton;
+}
+
+// --- Plan section (entitlements-driven; below the profile form)
+.plan-section {
+  margin-top: $s-32;
+  padding-top: $s-24;
+  border-top: $s-1 solid var(--panel-border-color);
+
+  h2 {
+    // Match the Kata section title used by .form-container h2
+    font-size: $fs-20;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--color-foreground-primary);
+    margin: 0 0 $s-16;
+  }
+}
+
+.plan-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: $s-16;
+}
+
+// Tier pill: muted by default (private). Violet accent fill when paid; the
+// founder mark swaps the fill to Kata teal.
+.plan-badge {
+  display: inline-flex;
+  align-items: center;
+  height: $s-24;
+  padding: 0 $s-12;
+  border-radius: $br-5;
+  border: $s-1 solid var(--color-background-quaternary);
+  background-color: var(--color-background-primary);
+  color: var(--color-foreground-secondary);
+  font-size: $fs-12;
+  font-weight: $fw500;
+  letter-spacing: normal;
+  text-transform: none;
+
+  &.is-paid {
+    border-color: transparent;
+    background-color: #7c3aed; // Kata violet-500
+    color: #fff;
+    box-shadow: 0 4px 16px rgb(124 58 237 / 30%); // Kata --glow-accent
+  }
+
+  // Founder overrides the paid fill with the Kata teal mark.
+  &.is-founder {
+    border-color: transparent;
+    background-color: #2d9f8f; // Kata teal (success ramp)
+    color: #fff;
+    box-shadow: 0 4px 16px rgb(45 159 143 / 30%);
+  }
+}
+
+.plan-upgrade {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $s-16;
+  margin-bottom: $s-24;
+}
+
+.plan-upgrade-text {
+  color: var(--color-foreground-secondary);
+  font-size: $fs-12;
+  margin: 0;
+}
+
+.plan-upgrade-btn {
+  flex-shrink: 0;
+  height: $s-32;
+  padding: 0 $s-24;
+  @include kataPrimaryButton;
+}
+
+.plan-change {
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-change-label {
+  font-size: $fs-12;
+  font-weight: $fw500;
+  color: var(--color-foreground-secondary);
+  text-transform: none;
+  margin-bottom: $s-8;
+}
+
+.plan-change-controls {
+  display: flex;
+  align-items: center;
+  gap: $s-8;
+}
+
+.plan-change-input {
+  flex: 1 1 auto;
+  height: $s-32;
+  padding: 0 $s-12;
+  border-radius: $br-5; // Kata controls: 5px
+  border: $s-1 solid var(--color-background-quaternary);
+  background-color: var(--color-background-primary);
+  color: var(--color-foreground-primary);
+  font-size: $fs-12;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &::placeholder {
+    color: var(--color-foreground-secondary);
+  }
+
+  &:focus {
+    @include kataControlFocus;
+    border-radius: $br-5;
+  }
+}
+
+.plan-validate-btn {
+  flex-shrink: 0;
+  height: $s-32;
+  padding: 0 $s-16;
+  @include kataSecondaryButton;
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.plan-change-error {
+  color: var(--status-color-error-500); // Kata error
+  font-size: $fs-12;
+  margin: $s-8 0 0;
 }
