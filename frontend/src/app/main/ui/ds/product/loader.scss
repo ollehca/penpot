@@ -13,16 +13,25 @@
 // MODIFIED BY KIZUKU (2026-07-18): full-mark draw — the ring and the
 // three inner facet lines all animate TOGETHER (each path carries
 // pathLength=1 so every line draws its full length over the same
-// window), the completed mark holds a blink at 90%, then the loop
-// restarts. 1.5s cycle.
+// window). Continuous cycle with no visible restart: each stroke draws
+// in (offset 1 -> 0), the complete mark holds a beat, then the stroke
+// sweeps out the far end in the same direction of travel (0 -> -1);
+// both loop endpoints render nothing, so the repeat is seamless. 1s.
 @keyframes kizuku-draw {
   0% {
     stroke-dashoffset: 1;
   }
 
-  90%,
-  100% {
+  45% {
     stroke-dashoffset: 0;
+  }
+
+  55% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -1;
   }
 }
 
@@ -124,7 +133,7 @@
   vector-effect: non-scaling-stroke;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: kizuku-draw 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation: kizuku-draw 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
 .loader-draw-ring,
