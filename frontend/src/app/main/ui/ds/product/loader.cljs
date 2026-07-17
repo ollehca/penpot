@@ -12,10 +12,10 @@
 ;; (class/width/height/title/overlay/file-loading/children) unchanged;
 ;; only the icon internals and the width:height ratio (pencil 100:27 ->
 ;; mark 1220:1044) differ.
-;; MODIFIED BY KIZUKU (2026-07-18): the whole mark now draws — ring
-;; first, then each inner facet line in sequence (separate paths, each
-;; pathLength-normalised so dash math is per-line), ~4.8s cycle with a
-;; hold on the complete mark and a fade-out before the loop restarts.
+;; MODIFIED BY KIZUKU (2026-07-18): the whole mark now draws — ring and
+;; the three inner facet lines animate together (separate paths, each
+;; pathLength-normalised so every line draws its full length over the
+;; same window), 3.2s cycle looping as soon as the mark completes.
 
 (ns app.main.ui.ds.product.loader
   (:require-macros
