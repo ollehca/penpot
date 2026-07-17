@@ -3,19 +3,49 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 // Copyright (c) KALEIDOS INC
+//
+// MODIFIED BY KIZUKU (2026-07-17): pencil line animation replaced with
+// the Kizuku triangle mark drawing itself: the outer ring animates
+// stroke-dashoffset in teal over a faint ghost of the full mark.
+// CSS-only, ~1.2s cycle; prefers-reduced-motion falls back to a gentle
+// opacity pulse. Strokes are non-scaling so the loader stays crisp at
+// every size variant (16px inline up to the 200px catalog demo).
 
-@keyframes line-pencil {
+// Draw the ring in, hold a beat, then sweep it out in the same
+// direction of travel (pathLength is normalised to 1 in the markup).
+@keyframes kizuku-draw {
   0% {
-    transform: translateY(0);
+    stroke-dashoffset: 1;
+  }
+
+  45% {
+    stroke-dashoffset: 0;
+  }
+
+  55% {
+    stroke-dashoffset: 0;
   }
 
   100% {
-    transform: translateY(-150px);
+    stroke-dashoffset: -1;
+  }
+}
+
+// Reduced-motion fallback: gentle opacity pulse on the full ring.
+@keyframes kizuku-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
   }
 }
 
 .wrapper {
   --loader-color-foreground: var(--color-foreground-secondary);
+  --loader-color-accent: #35f6e6;
   --loader-icon-width: unset;
 
   display: inline-flex;
@@ -76,10 +106,35 @@
 }
 
 .loader {
-  fill: currentColor;
+  fill: none;
   width: var(--icon-width);
 }
 
-.loader-line {
-  animation: line-pencil 0.8s infinite linear;
+// Static ghost of the full mark (ring + inner facets).
+.loader-ghost {
+  stroke: currentColor;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.18;
+}
+
+// Animated ring drawing itself in teal.
+.loader-draw {
+  stroke: var(--loader-color-accent, #35f6e6);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: kizuku-draw 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-draw {
+    stroke-dashoffset: 0;
+    animation: kizuku-pulse 2.4s ease-in-out infinite;
+  }
 }

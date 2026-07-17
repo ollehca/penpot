@@ -4,6 +4,19 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: Inline url(...) resources for any URI scheme, not only
+;;   http(s). The packaged app serves the frontend from kizuku-app://, so
+;;   @font-face URLs in thumbnail styles use that scheme; the previous
+;;   https?-only regex skipped them and, because an SVG rendered as an
+;;   image cannot fetch external resources, frame thumbnails were always
+;;   rasterized with fallback fonts.
+;; Date: 2026-07-17
+;; ============================================================================
+
 (ns app.rasterizer
   "A main entry point for the rasterizer process that is
   executed on a separated iframe."
@@ -158,7 +171,10 @@
 (defn- svg-resolve-external-resources
   "Resolves all external resources in an SVG to Data URIs."
   [styles]
-  (->> (rx/from (re-seq #"url\((https?://[^)]+)\)" styles))
+  ;; MODIFIED BY KIZUKU: match any scheme (kizuku-app:// in the packaged
+  ;; app), not only http(s). data:/blob: URIs are excluded because their
+  ;; scheme is not followed by "//".
+  (->> (rx/from (re-seq #"url\(([A-Za-z][\w.+-]*://[^)]+)\)" styles))
        (rx/map second)
        (rx/mapcat (fn [url]
                     (->> (fetch-as-data-uri url)

@@ -1,1 +1,7 @@
-<svg height="182" viewBox="0 0 677.34762 182.15429" width="667" xmlns="http://www.w3.org/2000/svg"><path d="m128.273 0-3.9 2.77-124.373 88.308 128.273 91.076 549.075-.006v-182.14zm20.852 30 498.223.006v122.144l-498.223.007zm-25 9.74v102.678l-49.033-34.813-.578-32.64 49.61-35.225z"/><path d="m134.482 157.147v25l518.57.008.002-25z"/></svg>
+<!-- MODIFIED BY KIZUKU (2026-07-17): PenPot pencil loader asset replaced
+     with the Kizuku triangle mark (canonical geometry from
+     src/frontend-integration/kizuku-svg-logo.js), stroked in currentColor. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 1044" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke-width="45" d="M606.5 692.6L610 42M606.5 692.6L55 1010M606.5 692.6L1165 1010"/>
+  <path stroke-width="57" d="M610 42L1165 1010L55 1010Z"/>
+</svg>

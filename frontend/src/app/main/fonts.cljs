@@ -10,6 +10,12 @@
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Added Inter and JetBrains Mono as builtin fonts
 ;; Date: 2026-03-15
+;; Modifications: Force browser download of @font-face binaries when a font
+;;   is loaded (injecting the CSS alone leaves the faces "unloaded" until
+;;   visible DOM text uses them; at file open frames render as thumbnail
+;;   bitmaps, so imported-file fonts never started downloading until a zoom
+;;   mounted real text nodes)
+;; Date: 2026-07-17
 ;; ============================================================================
 
 (ns app.main.fonts
@@ -142,6 +148,39 @@
     (when-let [head (unchecked-get globals/document "head")]
       (dom/append-child! head node))))
 
+;; MODIFIED BY KIZUKU: injecting @font-face CSS does not download the font
+;; binaries; browsers fetch a face only when rendered DOM text uses it. At
+;; workspace open the viewport shows frame thumbnail bitmaps, so no DOM text
+;; references imported-file families and every face stays "unloaded" until
+;; zooming in mounts real text nodes. These helpers ask the CSS Font Loading
+;; API to start the downloads right away (fire-and-forget); the browser
+;; repaints any fallback-rendered text automatically as each face resolves.
+
+(defn- variant->font-spec
+  "Builds a CSS font shorthand (e.g. \"italic 700 16px 'Nunito'\") for
+  FontFaceSet.load matching."
+  [family {:keys [weight style]}]
+  (dm/str (if (= style "italic") "italic " "")
+          (or weight "400")
+          " 16px '" family "'"))
+
+(defn- force-browser-font-load!
+  "Fire-and-forget: start the browser download of every variant of the
+  font. Scheduled on a macrotask so the just-appended <style> node is in
+  the CSSOM before FontFaceSet.load matches against it. Safe to call
+  repeatedly (the browser dedupes) and failures are ignored (offline
+  keeps the previous fallback behavior)."
+  [{:keys [family variants]}]
+  (when (exists? js/window)
+    (js/setTimeout
+     (fn []
+       (let [fonts (obj/get js/document "fonts")]
+         (run! (fn [variant]
+                 (-> (.load ^js fonts (variant->font-spec family variant))
+                     (.catch (constantly nil))))
+               variants)))
+     0)))
+
 ;; --- LOADER: BUILTIN
 
 (defmulti ^:private load-font :backend)
@@ -189,7 +228,11 @@
       (->> (fetch-gfont-css url)
            (rx/map process-gfont-css)
            (rx/tap #(on-loaded id))
-           (rx/subs! (partial add-font-css! id)))
+           ;; MODIFIED BY KIZUKU: also start the binary downloads once the
+           ;; @font-face CSS is in place (see force-browser-font-load!).
+           (rx/subs! (fn [css]
+                       (add-font-css! id css)
+                       (force-browser-font-load! font))))
       nil)))
 
 ;; --- LOADER: CUSTOM
@@ -227,6 +270,8 @@
     (log/info :hint "load-font" :font-id id :backend "custom")
     (let [css (generate-custom-font-css font)]
       (add-font-css! id css)
+      ;; MODIFIED BY KIZUKU: same eager download as the :google backend.
+      (force-browser-font-load! font)
       (when (fn? on-loaded)
         (on-loaded)))))
 

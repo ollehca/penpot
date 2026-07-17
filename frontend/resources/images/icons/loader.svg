@@ -1,1 +1,7 @@
-<svg height="182" viewBox="0 0 677.34762 182.15429" width="667" xmlns="http://www.w3.org/2000/svg"><path d="m128.273 0-3.9 2.77-124.373 88.308 128.273 91.076 549.075-.006v-182.14zm20.852 30 498.223.006v122.144l-498.223.007zm-25 9.74v102.678l-49.033-34.813-.578-32.64 49.61-35.225z"/><path d="m134.482 157.147v25l518.57.008.002-25z"/></svg>
+<!-- MODIFIED BY KIZUKU (2026-07-17): PenPot pencil loader icon replaced
+     with the Kizuku triangle mark (outer ring + inner facets), following
+     the icon-set convention: 16px grid, colours come from CSS. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M8 1.7L15.28 14.39L0.72 14.39Z"/>
+  <path d="M7.95 10.23L8 1.7M7.95 10.23L0.72 14.39M7.95 10.23L15.28 14.39"/>
+</svg>

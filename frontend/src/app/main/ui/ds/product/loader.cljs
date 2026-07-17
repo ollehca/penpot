@@ -3,6 +3,15 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-07-17): PenPot's spinning-pencil loader
+;; replaced with the Kizuku triangle mark (canonical geometry from
+;; src/frontend-integration/kizuku-svg-logo.js): a faint ghost of the
+;; full mark with the outer ring drawing itself in teal via a CSS
+;; stroke-dashoffset animation (see loader.scss). Public API of loader*
+;; (class/width/height/title/overlay/file-loading/children) unchanged;
+;; only the icon internals and the width:height ratio (pencil 100:27 ->
+;; mark 1220:1044) differ.
 
 (ns app.main.ui.ds.product.loader
   (:require-macros
@@ -38,29 +47,36 @@
    {:title (tr "loader.tips.10.title")
     :message (tr "loader.tips.10.message")}])
 
+;; Kizuku triangle mark: outer ring (animated draw) + inner facet
+;; strokes meeting at the centre vertex (static ghost).
 (def ^:private
-  svg:loader-path-1
-  "M128.273 0l-3.9 2.77L0 91.078l128.273 91.076 549.075-.006V.008L128.273 0zm20.852 30l498.223.006V152.15l-498.223.007V30zm-25 9.74v102.678l-49.033-34.813-.578-32.64 49.61-35.225z")
+  svg:loader-ring
+  "M610 42L1165 1010L55 1010Z")
 
 (def ^:private
-  svg:loader-path-2
-  "M134.482 157.147v25l518.57.008.002-25-518.572-.008z")
+  svg:loader-facets
+  "M606.5 692.6L610 42M606.5 692.6L55 1010M606.5 692.6L1165 1010")
 
 (mf/defc loader-icon*
   {::mf/private true}
   [{:keys [width height title] :rest props}]
   (let [class (stl/css :loader)
-        props (mf/spread-props props {:viewBox "0 0 677.34762 182.15429"
+        props (mf/spread-props props {:viewBox "0 0 1220 1044"
                                       :role "status"
+                                      :fill "none"
                                       :width width
                                       :height height
                                       :class class})]
     [:> :svg props
      [:title title]
      [:g
-      [:path {:d svg:loader-path-1}]
-      [:path {:class (stl/css :loader-line)
-              :d svg:loader-path-2}]]]))
+      [:path {:class (stl/css :loader-ghost)
+              :d svg:loader-facets}]
+      [:path {:class (stl/css :loader-ghost)
+              :d svg:loader-ring}]
+      [:path {:class (stl/css :loader-draw)
+              :d svg:loader-ring
+              :pathLength 1}]]]))
 
 (def ^:private schema:loader
   [:map
@@ -74,8 +90,8 @@
 (mf/defc loader*
   {::mf/schema schema:loader}
   [{:keys [class width height title overlay children file-loading] :rest props}]
-  (let [width  (or width (when (some? height) (mth/ceil (* height (/ 100 27)))) 100)
-        height (or height (when (some? width) (mth/ceil (* width (/ 27 100)))) 27)
+  (let [width  (or width (when (some? height) (mth/ceil (* height (/ 1220 1044)))) 100)
+        height (or height (when (some? width) (mth/ceil (* width (/ 1044 1220)))) 86)
 
         class  (dm/str (d/nilv class "") " "
                        (stl/css-case :wrapper true

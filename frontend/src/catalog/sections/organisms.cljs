@@ -22,11 +22,12 @@
   []
   [:> showcase* {:title "Loader"
                  :description "Loading indicator — shown during file operations and page loads"}
+   ;; Containers match the triangle mark's 1220:1044 aspect ratio.
    [:> variant-group* {:label "Default"}
-    [:div {:style {:position "relative" :width "200px" :height "80px"}}
+    [:div {:style {:position "relative" :width "200px" :height "172px"}}
      [:> loader* {:width 200}]]]
    [:> variant-group* {:label "Small"}
-    [:div {:style {:position "relative" :width "100px" :height "40px"}}
+    [:div {:style {:position "relative" :width "100px" :height "86px"}}
      [:> loader* {:width 100}]]]])
 
 ;; ---------------------------------------------------------------------------
