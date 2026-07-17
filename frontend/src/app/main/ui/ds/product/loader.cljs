@@ -12,6 +12,10 @@
 ;; (class/width/height/title/overlay/file-loading/children) unchanged;
 ;; only the icon internals and the width:height ratio (pencil 100:27 ->
 ;; mark 1220:1044) differ.
+;; MODIFIED BY KIZUKU (2026-07-18): the whole mark now draws — ring
+;; first, then each inner facet line in sequence (separate paths, each
+;; pathLength-normalised so dash math is per-line), ~4.8s cycle with a
+;; hold on the complete mark and a fade-out before the loop restarts.
 
 (ns app.main.ui.ds.product.loader
   (:require-macros
@@ -47,8 +51,9 @@
    {:title (tr "loader.tips.10.title")
     :message (tr "loader.tips.10.message")}])
 
-;; Kizuku triangle mark: outer ring (animated draw) + inner facet
-;; strokes meeting at the centre vertex (static ghost).
+;; Kizuku triangle mark: outer ring + three inner facet strokes meeting
+;; at the centre vertex. All four draw in sequence; the combined-facets
+;; path remains as the static ghost underlay.
 (def ^:private
   svg:loader-ring
   "M610 42L1165 1010L55 1010Z")
@@ -56,6 +61,18 @@
 (def ^:private
   svg:loader-facets
   "M606.5 692.6L610 42M606.5 692.6L55 1010M606.5 692.6L1165 1010")
+
+(def ^:private
+  svg:loader-facet-top
+  "M606.5 692.6L610 42")
+
+(def ^:private
+  svg:loader-facet-left
+  "M606.5 692.6L55 1010")
+
+(def ^:private
+  svg:loader-facet-right
+  "M606.5 692.6L1165 1010")
 
 (mf/defc loader-icon*
   {::mf/private true}
@@ -74,8 +91,17 @@
               :d svg:loader-facets}]
       [:path {:class (stl/css :loader-ghost)
               :d svg:loader-ring}]
-      [:path {:class (stl/css :loader-draw)
+      [:path {:class (stl/css :loader-draw :loader-draw-ring)
               :d svg:loader-ring
+              :pathLength 1}]
+      [:path {:class (stl/css :loader-draw :loader-draw-facet-1)
+              :d svg:loader-facet-top
+              :pathLength 1}]
+      [:path {:class (stl/css :loader-draw :loader-draw-facet-2)
+              :d svg:loader-facet-left
+              :pathLength 1}]
+      [:path {:class (stl/css :loader-draw :loader-draw-facet-3)
+              :d svg:loader-facet-right
               :pathLength 1}]]]))
 
 (def ^:private schema:loader

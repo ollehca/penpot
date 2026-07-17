@@ -7,27 +7,108 @@
 // MODIFIED BY KIZUKU (2026-07-17): pencil line animation replaced with
 // the Kizuku triangle mark drawing itself: the outer ring animates
 // stroke-dashoffset in teal over a faint ghost of the full mark.
-// CSS-only, ~1.2s cycle; prefers-reduced-motion falls back to a gentle
-// opacity pulse. Strokes are non-scaling so the loader stays crisp at
-// every size variant (16px inline up to the 200px catalog demo).
+// CSS-only; prefers-reduced-motion falls back to a gentle opacity
+// pulse. Strokes are non-scaling so the loader stays crisp at every
+// size variant (16px inline up to the 200px catalog demo).
+// MODIFIED BY KIZUKU (2026-07-18): full-mark draw, slowed to a 4.8s
+// cycle: ring 0-40%, then the three facet lines in sequence (42-78%),
+// hold the complete mark, fade out 88-96%, invisible reset. Each path
+// carries pathLength=1 so every window below draws exactly one line.
 
-// Draw the ring in, hold a beat, then sweep it out in the same
-// direction of travel (pathLength is normalised to 1 in the markup).
-@keyframes kizuku-draw {
+// Timeline windows (all share the 4.8s duration so phases stay locked):
+//   ring     0% -> 40%
+//   facet 1 42% -> 54%   (centre -> apex)
+//   facet 2 54% -> 66%   (centre -> bottom left)
+//   facet 3 66% -> 78%   (centre -> bottom right)
+//   hold    78% -> 88%, fade 88% -> 96%, reset while invisible
+@keyframes kizuku-draw-ring {
   0% {
     stroke-dashoffset: 1;
+    opacity: 1;
   }
 
-  45% {
+  40% {
     stroke-dashoffset: 0;
   }
 
-  55% {
+  88% {
     stroke-dashoffset: 0;
+    opacity: 1;
   }
 
+  96%,
   100% {
-    stroke-dashoffset: -1;
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes kizuku-draw-facet-1 {
+  0%,
+  42% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+
+  54% {
+    stroke-dashoffset: 0;
+  }
+
+  88% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  96%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes kizuku-draw-facet-2 {
+  0%,
+  54% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+
+  66% {
+    stroke-dashoffset: 0;
+  }
+
+  88% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  96%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes kizuku-draw-facet-3 {
+  0%,
+  66% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+
+  78% {
+    stroke-dashoffset: 0;
+  }
+
+  88% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  96%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
   }
 }
 
@@ -120,7 +201,7 @@
   opacity: 0.18;
 }
 
-// Animated ring drawing itself in teal.
+// Animated mark drawing itself in teal, one line per timeline window.
 .loader-draw {
   stroke: var(--loader-color-accent, #35f6e6);
   stroke-width: 2px;
@@ -129,12 +210,32 @@
   vector-effect: non-scaling-stroke;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: kizuku-draw 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation-duration: 4.8s;
+  animation-timing-function: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  animation-iteration-count: infinite;
+}
+
+.loader-draw-ring {
+  animation-name: kizuku-draw-ring;
+}
+
+.loader-draw-facet-1 {
+  animation-name: kizuku-draw-facet-1;
+}
+
+.loader-draw-facet-2 {
+  animation-name: kizuku-draw-facet-2;
+}
+
+.loader-draw-facet-3 {
+  animation-name: kizuku-draw-facet-3;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .loader-draw {
     stroke-dashoffset: 0;
-    animation: kizuku-pulse 2.4s ease-in-out infinite;
+    animation-name: kizuku-pulse;
+    animation-duration: 2.4s;
+    animation-timing-function: ease-in-out;
   }
 }
