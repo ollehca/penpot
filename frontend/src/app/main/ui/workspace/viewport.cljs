@@ -349,8 +349,7 @@
       ;; Empty-page overlay: board shortcut hint + size presets
       ;; (see viewport/empty_state.cljs)
       (when (and (:can-edit permissions) (not read-only?))
-        [:> empty-state/empty-state* {:page-id page-id
-                                      :objects objects
+        [:> empty-state/empty-state* {:objects objects
                                       :drawing-tool drawing-tool
                                       :drawing-obj drawing-obj}])
 

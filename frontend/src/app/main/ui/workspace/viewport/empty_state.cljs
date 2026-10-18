@@ -13,6 +13,14 @@
 ;;   non-blocking Kata card with the board shortcut hint and size preset
 ;;   buttons that create a board via dwsh/create-and-add-shape.
 ;; Date: 2026-07-13
+;; Modifications (2): Removed the dismiss (×) affordance and its per-page
+;;   dismissed-state tracking. This is meant to read as ambient signage (like
+;;   an EXIT sign) — always present while the page is genuinely empty, gone
+;;   the instant a board exists, with no user action able to suppress it
+;;   while still empty. A closable card contradicts that: a user could
+;;   dismiss it and then have no indicator at all on a file that still has
+;;   no boards.
+;; Date: 2026-10-12
 ;; ============================================================================
 
 (ns app.main.ui.workspace.viewport.empty-state
@@ -41,35 +49,23 @@
                                                    :height height})))
 
 (mf/defc empty-state*
-  "Non-blocking helper shown when the current page has no shapes.
-  Rendered inside the viewport-overlays layer (pointer-events: none);
-  only the card itself accepts pointer events. Disappears reactively
-  as soon as the page has any shape, while a draw is in progress, in
-  comment-placement mode, or when dismissed for the current
-  page/session. A merely ARMED drawing tool does not hide it: PenPot
-  auto-arms the board tool on every empty page (pages.cljs
-  select-frame-tool), which would otherwise suppress the card on
-  exactly the fresh files it exists for."
-  [{:keys [page-id objects drawing-tool drawing-obj]}]
-  (let [dismissed   (mf/use-state #{})
-        empty-page? (empty? (get-in objects [uuid/zero :shapes]))
-
-        on-dismiss
-        (mf/use-fn
-         (mf/deps page-id)
-         #(swap! dismissed conj page-id))]
-
+  "Ambient signage shown when the current page has no shapes — like an EXIT
+  sign: always present while true (the page is genuinely empty), never
+  present once it isn't, and not something the user can dismiss away.
+  Rendered inside the viewport-overlays layer (pointer-events: none); only
+  the card itself accepts pointer events, so it never blocks canvas
+  interaction underneath. Disappears reactively as soon as the page has any
+  shape, while a draw is in progress, or in comment-placement mode. A merely
+  ARMED drawing tool does not hide it: PenPot auto-arms the board tool on
+  every empty page (pages.cljs select-frame-tool), which would otherwise
+  suppress the card on exactly the fresh files it exists for."
+  [{:keys [objects drawing-tool drawing-obj]}]
+  (let [empty-page? (empty? (get-in objects [uuid/zero :shapes]))]
     (when (and ^boolean empty-page?
                (nil? drawing-obj)
-               (not= :comments drawing-tool)
-               (not (contains? @dismissed page-id)))
+               (not= :comments drawing-tool))
       [:div {:class (stl/css :empty-state)}
        [:div {:class (stl/css :card)}
-        [:button {:class (stl/css :dismiss)
-                  :type "button"
-                  :aria-label "Dismiss"
-                  :on-click on-dismiss}
-         "×"]
         [:div {:class (stl/css :hint)}
          "Press "
          [:kbd {:class (stl/css :kbd)} "B"]

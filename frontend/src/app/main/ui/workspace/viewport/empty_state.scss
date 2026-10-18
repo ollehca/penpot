@@ -12,6 +12,9 @@
 //   overlay (surface #1e1e3a, hairline border, radius 8, secondary preset
 //   buttons with 5px radius, kbd chip for the board shortcut).
 // Date: 2026-07-13
+// Modifications (2): Removed .dismiss button styling — the card no longer
+//   has a close affordance (see empty_state.cljs for why).
+// Date: 2026-10-12
 // ============================================================================
 
 @import "refactor/common-refactor.scss";
@@ -36,33 +39,8 @@
   box-shadow: 0 $s-8 $s-24 rgb(0 0 0 / 35%);
 }
 
-.dismiss {
-  position: absolute;
-  top: $s-8;
-  right: $s-8;
-  display: grid;
-  place-items: center;
-  width: $s-24;
-  height: $s-24;
-  padding: 0;
-  border: none;
-  border-radius: 5px;
-  background-color: transparent;
-  color: var(--color-foreground-secondary);
-  font-size: $fs-16;
-  line-height: 1;
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
-
-  &:hover {
-    background-color: rgb(255 255 255 / 8%);
-    color: var(--color-foreground-primary);
-  }
-}
-
 .hint {
   margin-block-end: $s-12;
-  padding-inline-end: $s-24; // keep clear of the dismiss button
   color: var(--color-foreground-secondary);
   font-size: $fs-12;
   line-height: 1.5;
