@@ -13,6 +13,7 @@
    [app.main.data.persistence :as dps]
    [app.main.data.plugins :as dpl]
    [app.main.data.workspace :as dw]
+   [app.main.data.workspace.ai-tools :as ai-tools]
    [app.main.features :as features]
    [app.main.refs :as refs]
    [app.main.router :as-alias rt]
@@ -226,7 +227,8 @@
 
     (mf/with-effect []
       (st/emit! (dps/initialize-persistence)
-                (dpl/update-plugins-permissions-peek)))
+                (dpl/update-plugins-permissions-peek))
+      (ai-tools/init!))
 
     ;; Setting the layout preset by its name
     (mf/with-effect [layout-name]
