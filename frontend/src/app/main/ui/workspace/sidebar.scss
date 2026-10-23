@@ -78,6 +78,7 @@ $width-settings-bar-max: $sz-500;
   width: $width-settings-bar;
   background-color: var(--panel-background-color);
   z-index: $z-index-1;
+  transition: width var(--motion-duration-base) var(--motion-ease-standard);
   &.not-expand {
     max-width: $width-settings-bar;
   }
@@ -166,6 +167,7 @@ $width-settings-bar-max: $sz-500;
   border-radius: $br-5;
   color: var(--collapse-icon-color);
   transform: rotate(180deg);
+  transition: color var(--motion-duration-fast) var(--motion-ease-standard);
   &:hover {
     --collapse-icon-color: var(--color-foreground-primary);
   }

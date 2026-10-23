@@ -68,7 +68,7 @@
   border-radius: $s-8;
   background-color: var(--entry-background-color);
   cursor: pointer;
-  transition: border 0.2s;
+  transition: border var(--motion-duration-base) var(--motion-ease-standard);
 
   .history-entry-summary {
     display: flex;

@@ -1,0 +1,57 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// Copyright (c) KALEIDOS INC
+
+// ============================================================================
+// ADDED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// A shared motion system: duration/easing custom properties, consumed by
+// transition/animation declarations across the app instead of each one
+// hardcoding its own magic-number timing. Not theme-scoped (unlike
+// design-tokens.scss) — duration and easing don't change between light and
+// dark, so this is a plain :root block.
+//
+// Zeroing the duration tokens under prefers-reduced-motion, rather than
+// stripping every consumer's transition/animation declaration individually,
+// means any component that references var(--motion-duration-*) gets
+// reduced motion for free. loader.scss and dashboard/grid.scss predate this
+// file and still carry their own one-off prefers-reduced-motion overrides;
+// new motion should prefer these shared tokens instead.
+// Date: 2026-10-22
+// ============================================================================
+
+:root {
+  --motion-duration-fast: 120ms;
+  --motion-duration-base: 200ms;
+  --motion-duration-slow: 320ms;
+
+  --motion-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration-fast: 0ms;
+    --motion-duration-base: 0ms;
+    --motion-duration-slow: 0ms;
+  }
+}
+
+// Shared entrance animation for small floating/overlay panels that mount
+// fresh on open (no persistent DOM node to transition in place) — e.g. the
+// AI chat bar's prompt panel. Apply as a :class alongside an inline :style.
+@keyframes kizuku-panel-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.kizuku-panel-fade-in {
+  animation: kizuku-panel-fade-in var(--motion-duration-base) var(--motion-ease-emphasized);
+}

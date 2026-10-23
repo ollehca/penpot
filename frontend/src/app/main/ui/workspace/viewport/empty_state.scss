@@ -15,6 +15,13 @@
 // Modifications (2): Removed .dismiss button styling — the card no longer
 //   has a close affordance (see empty_state.cljs for why).
 // Date: 2026-10-12
+// Modifications (3): Dashed, translucent border replacing the solid one —
+//   the card is meant to read as temporary/ambient signage (per its own
+//   doc comment), and a solid-bordered opaque card read as a permanent UI
+//   element instead. Background dropped to a translucent tint of the real
+//   panel-background token (not a hardcoded hex) so it also reads
+//   correctly in light mode.
+// Date: 2026-10-22
 // ============================================================================
 
 @import "refactor/common-refactor.scss";
@@ -33,10 +40,11 @@
   width: $s-360;
   max-width: calc(100% - #{$s-32});
   padding: $s-20;
-  background-color: #1e1e3a;
-  border: $s-1 solid rgb(255 255 255 / 8%);
+  background-color: color-mix(in srgb, var(--panel-background-color) 70%, transparent);
+  border: $s-1 dashed var(--panel-border-color);
   border-radius: $s-8;
-  box-shadow: 0 $s-8 $s-24 rgb(0 0 0 / 35%);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 $s-8 $s-24 rgb(0 0 0 / 20%);
 }
 
 .hint {
@@ -49,10 +57,10 @@
 .kbd {
   display: inline-block;
   padding: 0 $s-6;
-  border: $s-1 solid rgb(255 255 255 / 16%);
+  border: $s-1 solid var(--panel-border-color);
   border-block-end-width: $s-2;
   border-radius: $s-4;
-  background-color: rgb(255 255 255 / 6%);
+  background-color: var(--color-background-quaternary);
   color: var(--color-foreground-primary);
   font-family: inherit;
   font-size: $fs-11;
@@ -67,16 +75,18 @@
 
 .preset-btn {
   padding: $s-8;
-  border: $s-1 solid rgb(255 255 255 / 10%);
+  border: $s-1 solid var(--panel-border-color);
   border-radius: 5px;
-  background-color: rgb(255 255 255 / 4%);
+  background-color: var(--color-background-tertiary);
   color: var(--color-foreground-primary);
   font-size: $fs-11;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-ease-standard),
+    border-color var(--motion-duration-fast) var(--motion-ease-standard);
 
   &:hover {
-    background-color: rgb(255 255 255 / 10%);
-    border-color: rgb(255 255 255 / 20%);
+    background-color: var(--color-background-quaternary);
+    border-color: var(--color-accent-primary-muted);
   }
 }
