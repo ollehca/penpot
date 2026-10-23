@@ -55,15 +55,17 @@
     (into #{} (keep parse-uuid-safe) shape_ids)
     (into #{} (dsh/lookup-selected @st/state))))
 
-(defn- first-fill-color
+(defn first-fill-color
   "The hex color of a shape's first fill slot, or nil if it has none —
   :fills is seqable whether it's a plain vector or the packed binary
   representation (app.common.types.fills.impl's Fills type implements
-  ISeqable), so plain first/map works on it regardless."
+  ISeqable), so plain first/map works on it regardless. Public (not
+  defn-), along with text-fill-color and describe-shape below, so this
+  pure logic is independently unit-testable — see ai_tools_test.cljs."
   [fills]
   (some-> fills first types.fills/fill->color :color))
 
-(defn- text-fill-color
+(defn text-fill-color
   "A text shape's own :fills (if any) is a leftover/default, not what's
   actually rendered — real text color lives per-run, inside :content's
   paragraph tree (see app.common.types.text/text-fills). Read the first
@@ -73,7 +75,7 @@
            first :fills first-fill-color)
       (first-fill-color (:fills shape))))
 
-(defn- describe-shape
+(defn describe-shape
   [[id shape]]
   (let [parent-id (:parent-id shape)]
     (cond-> {:id (str id)
@@ -297,24 +299,26 @@
       (st/emit! (dwt/update-dimensions ids :height height)))
     #js {:resized (count ids)}))
 
-(defn- srgb-channel->linear
+(defn srgb-channel->linear
   "One sRGB 0-255 channel to its linear-light value, per the WCAG 2.x
   relative luminance definition (the standard gamma-correction piecewise
-  formula, not a perceptual-brightness approximation)."
+  formula, not a perceptual-brightness approximation). Public (not
+  defn-) so it and its two callers below are independently unit-testable
+  — see ai_tools_test.cljs."
   [v]
   (let [c (/ v 255)]
     (if (<= c 0.03928)
       (/ c 12.92)
       (mth/pow (/ (+ c 0.055) 1.055) 2.4))))
 
-(defn- relative-luminance
+(defn relative-luminance
   [hex]
   (let [[r g b] (ctc/hex->rgb hex)]
     (+ (* 0.2126 (srgb-channel->linear r))
        (* 0.7152 (srgb-channel->linear g))
        (* 0.0722 (srgb-channel->linear b)))))
 
-(defn- contrast-ratio
+(defn contrast-ratio
   "WCAG 2.x contrast ratio between two colors, 1 (no contrast) to 21
   (black on white) — (L1 + 0.05) / (L2 + 0.05) with L1 the lighter of
   the two relative luminances."
