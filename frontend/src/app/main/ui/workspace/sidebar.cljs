@@ -24,7 +24,6 @@
    [app.main.ui.workspace.comments :refer [comments-sidebar*]]
    [app.main.ui.workspace.left-header :refer [left-header*]]
    [app.main.ui.workspace.right-header :refer [right-header*]]
-   [app.main.ui.workspace.sidebar.ai-chat-bar :refer [ai-chat-bar*]]
    [app.main.ui.workspace.sidebar.assets :refer [assets-toolbox*]]
    [app.main.ui.workspace.sidebar.debug :refer [debug-panel*]]
    [app.main.ui.workspace.sidebar.debug-shape-info :refer [debug-shape-info*]]
@@ -331,9 +330,4 @@
          (let [props (mf/spread-props props
                                       {:on-change-section on-change-section
                                        :on-expand on-expand})]
-           [:> options-toolbox* props]))]
-
-      ;; Phase 1 proof-of-pipeline only — superseded by a real ai-chat
-      ;; section in the tab switcher once the full panel (history,
-      ;; turn-status, key management) lands.
-      [:> ai-chat-bar*]]]))
+           [:> options-toolbox* props]))]]]))

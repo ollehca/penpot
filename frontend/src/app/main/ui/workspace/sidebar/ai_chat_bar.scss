@@ -1,0 +1,378 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// Copyright (c) KALEIDOS INC
+//
+// ADDED BY KIZUKU (2026-10-22): theme-aware styles for the AI chat panel,
+// replacing the previous version's hardcoded dark-only inline hex colors
+// (the known light-mode bug flagged in the theme workstream's own QA
+// checklist) with the same --color-*/--button-*/--status-* custom
+// properties every other panel in the app uses.
+
+@import "refactor/common-refactor.scss";
+
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: $z-index-5;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--button-primary-background-color-rest);
+  color: var(--button-primary-foreground-color-rest);
+  font-size: $fs-18;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 40%);
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-ease-standard),
+    transform var(--motion-duration-fast) var(--motion-ease-standard);
+
+  &:hover {
+    background-color: var(--button-primary-background-color-hover);
+  }
+
+  &:focus-visible {
+    outline: $s-2 solid var(--button-primary-border-color-rest);
+    outline-offset: 2px;
+  }
+}
+
+.fab-open {
+  // NOT --button-primary-background-color-active: that token is
+  // background-secondary, identical to --button-primary-foreground-color-rest
+  // (the icon's own color) — using it here made the open-state icon
+  // genuinely invisible against its own background outside of a hover
+  // state. A ring instead keeps the same readable rest-state colors while
+  // still reading as "open/engaged".
+  box-shadow:
+    0 0 0 2px var(--panel-background-color),
+    0 0 0 4px var(--button-primary-background-color-rest),
+    0 4px 12px rgb(0 0 0 / 40%);
+}
+
+.panel {
+  position: fixed;
+  right: 24px;
+  bottom: 84px;
+  z-index: $z-index-5;
+  // Base/default width — only takes effect while panel-size is nil (not
+  // yet manually resized); once the user drags the resize handle, an
+  // inline style width overrides this.
+  width: 360px;
+  min-width: 300px;
+  min-height: 280px;
+  max-width: 640px;
+  // 90% of the app window's height, not a fixed px cap — so the panel can
+  // grow with a longer conversation on any window size, not just up to an
+  // arbitrary number that's wrong on both a laptop and an ultrawide.
+  max-height: 90vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: var(--panel-background-color);
+  border: $s-1 solid var(--panel-border-color);
+  border-radius: $br-8;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 40%);
+  overflow: hidden;
+}
+
+.panel-fade-in {
+  animation: panel-fade-in var(--motion-duration-base) var(--motion-ease-emphasized);
+}
+
+@keyframes panel-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-fade-in {
+    animation: none;
+  }
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: $s-8;
+  padding: $s-8 $s-12;
+  border-bottom: $s-1 solid var(--panel-border-color);
+  background-color: var(--panel-title-background-color);
+}
+
+.panel-title {
+  font-size: $fs-12;
+  font-weight: $fw700;
+  color: var(--title-foreground-color);
+  flex: 1;
+}
+
+.provider-picker {
+  position: relative;
+}
+
+.provider-badge {
+  display: flex;
+  align-items: center;
+  gap: $s-4;
+  border: none;
+  font-size: $fs-11;
+  padding: $s-2 $s-8;
+  border-radius: $br-circle;
+  background-color: var(--color-background-tertiary);
+  color: var(--color-foreground-secondary);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-background-quaternary);
+  }
+
+  &:focus-visible {
+    outline: $s-2 solid var(--button-primary-border-color-rest);
+    outline-offset: 2px;
+  }
+}
+
+.provider-badge-caret {
+  font-size: $fs-10;
+  opacity: 0.7;
+}
+
+.provider-menu {
+  position: absolute;
+  top: calc(100% + #{$s-4});
+  left: 0;
+  z-index: 1;
+  min-width: 160px;
+  list-style: none;
+  margin: 0;
+  padding: $s-4;
+  background-color: var(--menu-background-color);
+  border: $s-1 solid var(--panel-border-color);
+  border-radius: $br-8;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 35%);
+}
+
+.provider-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $s-8;
+  padding: $s-4 $s-8;
+  border-radius: $br-6;
+  font-size: $fs-12;
+  color: var(--menu-foreground-color);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--menu-background-color-hover);
+  }
+}
+
+.provider-menu-item-active {
+  color: var(--color-accent-primary);
+}
+
+.provider-menu-item-label {
+  text-transform: none;
+}
+
+.provider-menu-item-status {
+  font-size: $fs-10;
+  color: var(--color-foreground-secondary);
+}
+
+.provider-menu-item-status.has-key {
+  color: var(--status-color-success-500);
+}
+
+.header-button {
+  border: none;
+  background: transparent;
+  color: var(--color-foreground-secondary);
+  font-size: $fs-12;
+  padding: $s-4 $s-8;
+  border-radius: $br-6;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-background-quaternary);
+    color: var(--color-foreground-primary);
+  }
+
+  &:focus-visible {
+    outline: $s-2 solid var(--button-primary-border-color-rest);
+    outline-offset: -2px;
+  }
+}
+
+.message-log {
+  overflow-y: auto;
+  padding: $s-12;
+  display: flex;
+  flex-direction: column;
+  gap: $s-8;
+}
+
+.message-log-empty {
+  color: var(--color-foreground-secondary);
+  font-size: $fs-12;
+  text-align: center;
+  padding: $s-16;
+}
+
+.message-row {
+  display: flex;
+}
+
+.message-row-user {
+  justify-content: flex-end;
+}
+
+.message-row-assistant {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: 85%;
+  padding: $s-8 $s-12;
+  border-radius: $br-10;
+  font-size: $fs-12;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.message-bubble-user {
+  background-color: var(--button-primary-background-color-rest);
+  color: var(--button-primary-foreground-color-rest);
+}
+
+.message-bubble-assistant {
+  background-color: var(--color-background-tertiary);
+  color: var(--color-foreground-primary);
+}
+
+.message-bubble-error {
+  background-color: var(--alert-background-color-error);
+  color: var(--alert-text-foreground-color-error);
+  border: $s-1 solid var(--alert-border-color-error);
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: $s-8;
+  font-size: $fs-12;
+  color: var(--color-foreground-secondary);
+  padding: $s-4 $s-4;
+}
+
+.status-spinner {
+  width: $s-12;
+  height: $s-12;
+  border-radius: 50%;
+  border: $s-2 solid var(--color-background-quaternary);
+  border-top-color: var(--button-primary-background-color-rest);
+  animation: status-spin 0.8s linear infinite;
+}
+
+@keyframes status-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-spinner {
+    animation-duration: 2.4s;
+  }
+}
+
+.composer {
+  display: flex;
+  gap: $s-8;
+  padding: $s-8 $s-12;
+  border-top: $s-1 solid var(--panel-border-color);
+}
+
+.composer-input {
+  flex: 1;
+  resize: none;
+  background-color: var(--input-background-color-rest);
+  color: var(--input-foreground-color-rest);
+  border: $s-1 solid var(--input-border-color-rest);
+  border-radius: $br-6;
+  padding: $s-8;
+  font-size: $fs-12;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: var(--input-border-color-focus);
+  }
+
+  &::placeholder {
+    color: var(--input-placeholder-color);
+  }
+
+  &:disabled {
+    background-color: var(--input-background-color-disabled);
+    color: var(--input-foreground-color-disabled);
+  }
+}
+
+.send-button {
+  border: none;
+  border-radius: $br-6;
+  padding: 0 $s-16;
+  background-color: var(--button-primary-background-color-rest);
+  color: var(--button-primary-foreground-color-rest);
+  font-size: $fs-12;
+  font-weight: $fw700;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: var(--button-primary-background-color-hover);
+  }
+
+  &:disabled {
+    background-color: var(--button-disabled-background-color-rest);
+    color: var(--button-disabled-foreground-color-rest);
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: $s-2 solid var(--button-primary-border-color-rest);
+    outline-offset: 2px;
+  }
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: $s-16;
+  height: $s-16;
+  cursor: nwse-resize;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: $s-8;
+    height: $s-8;
+    border-right: $s-2 solid var(--color-foreground-secondary);
+    border-bottom: $s-2 solid var(--color-foreground-secondary);
+    opacity: 0.5;
+  }
+}

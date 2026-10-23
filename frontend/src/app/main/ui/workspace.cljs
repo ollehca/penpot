@@ -31,6 +31,7 @@
    [app.main.ui.workspace.palette :refer [palette]]
    [app.main.ui.workspace.plugins]
    [app.main.ui.workspace.sidebar :refer [left-sidebar* right-sidebar*]]
+   [app.main.ui.workspace.sidebar.ai-chat-bar :refer [ai-chat-bar*]]
    [app.main.ui.workspace.sidebar.collapsable-button :refer [collapsed-button]]
    [app.main.ui.workspace.sidebar.history :refer [history-toolbox*]]
    [app.main.ui.workspace.tokens.export]
@@ -254,6 +255,7 @@
        [:> (mf/provider ctx/design-tokens) {:value design-tokens?}
         [:> (mf/provider ctx/workspace-read-only?) {:value read-only?}
          [:> modal-container*]
+         [:> ai-chat-bar*]
          [:section {:class (stl/css :workspace)
                     :style {:background-color background-color
                             :touch-action "none"}}
