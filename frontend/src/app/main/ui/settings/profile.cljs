@@ -203,15 +203,15 @@
                                 (reset! ents (entitlements->clj snap)))
                               (st/emit! (ntf/success (tr "notifications.profile-saved"))))
                             (reset! error (or (unchecked-get res "error")
-                                              "That license could not be validated.")))))
+                                              "That licence could not be validated.")))))
                        (.catch
                         (fn [_]
                           (reset! pending false)
-                          (reset! error "That license could not be validated."))))
+                          (reset! error "That licence could not be validated."))))
                    (do (reset! pending false)
-                       (reset! error "License changes are only available in the app.")))
+                       (reset! error "Licence changes are only available in the app.")))
                  (do (reset! pending false)
-                     (reset! error "License changes are only available in the app.")))))))]
+                     (reset! error "Licence changes are only available in the app.")))))))]
 
     ;; Load on mount and subscribe to live changes (broadcast on activation).
     (mf/with-effect []
@@ -246,11 +246,11 @@
 
        [:div {:class (stl/css :plan-change)}
         [:label {:class (stl/css :plan-change-label)}
-         "Change license"]
+         "Change licence"]
         [:div {:class (stl/css :plan-change-controls)}
          [:input {:class (stl/css :plan-change-input)
                   :type "text"
-                  :placeholder "Paste license"
+                  :placeholder "Paste licence"
                   :value @token
                   :on-change on-token-change}]
          [:button {:class (stl/css :plan-validate-btn)

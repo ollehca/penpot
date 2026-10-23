@@ -558,7 +558,7 @@ msgstr "Download %s standard files (.svg + .json)"
 
 #: src/app/main/ui/exports/files.cljs:156
 msgid "dashboard.export.detail"
-msgstr "* Might include components, graphics, colors and/or typographies."
+msgstr "* Might include components, graphics, colours and/or typographies."
 
 #: src/app/main/ui/exports/files.cljs:155
 msgid "dashboard.export.explain"
@@ -712,7 +712,7 @@ msgstr "You don’t have permission to import to this team"
 
 #: src/app/main/ui/dashboard/import.cljs:128
 msgid "dashboard.import.progress.process-colors"
-msgstr "Processing colors"
+msgstr "Processing colours"
 
 #: src/app/main/ui/dashboard/import.cljs:137, src/app/main/ui/dashboard/import.cljs:140
 msgid "dashboard.import.progress.process-components"
@@ -1300,7 +1300,7 @@ msgstr "Something wrong has happened with the web worker."
 
 #: src/app/main/ui/components/color_input.cljs:58
 msgid "errors.invalid-color"
-msgstr "Invalid color"
+msgstr "Invalid colour"
 
 #: src/app/util/forms.cljs:35, src/app/util/forms.cljs:84
 msgid "errors.invalid-data"
@@ -1330,7 +1330,7 @@ msgstr "Invite invalid"
 
 #: src/app/main/ui/static.cljs:70
 msgid "errors.invite-invalid.info"
-msgstr "This invite might be canceled or may be expired."
+msgstr "This invite might be cancelled or may be expired."
 
 #: src/app/main/ui/auth/login.cljs:107
 msgid "errors.ldap-disabled"
@@ -1553,7 +1553,7 @@ msgstr "Value"
 
 #: src/app/main/ui/components/color_input.cljs:36
 msgid "inspect.attributes.color"
-msgstr "Color"
+msgstr "Colour"
 
 #: src/app/main/ui/inspect/attributes/common.cljs:110
 msgid "inspect.attributes.color.hex"
@@ -1632,7 +1632,7 @@ msgstr "Stroke"
 
 #, permanent, unused
 msgid "inspect.attributes.stroke.alignment.center"
-msgstr "Center"
+msgstr "Centre"
 
 #, permanent, unused
 msgid "inspect.attributes.stroke.alignment.inner"
@@ -1740,7 +1740,7 @@ msgstr "Variants properties"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:163
 msgid "inspect.empty.help"
-msgstr "If you want to know more about design inspect visit Kizuku's help center"
+msgstr "If you want to know more about design inspect visit Kizuku's help centre"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:166
 msgid "inspect.empty.more-info"
@@ -1935,7 +1935,7 @@ msgstr "Copy"
 
 #: src/app/main/ui/inspect/attributes/common.cljs:118
 msgid "labels.copy-color"
-msgstr "Copy color"
+msgstr "Copy colour"
 
 #: src/app/main/ui/dashboard/team.cljs:700
 msgid "labels.copy-invitation-link"
@@ -3599,7 +3599,7 @@ msgstr "Mixed"
 
 #: src/app/main/ui/workspace/sidebar/options/rows/color_row.cljs:274
 msgid "settings.remove-color"
-msgstr "Remove color"
+msgstr "Remove colour"
 
 #: src/app/main/ui/workspace/sidebar/options/rows/color_row.cljs:279
 msgid "settings.select-this-color"
@@ -3701,11 +3701,11 @@ msgstr "Align bottom"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:75
 msgid "shortcuts.align-center"
-msgstr "Align center"
+msgstr "Align centre"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:76
 msgid "shortcuts.align-hcenter"
-msgstr "Align center horizontally"
+msgstr "Align centre horizontally"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:77
 msgid "shortcuts.align-justify"
@@ -3725,7 +3725,7 @@ msgstr "Align top"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:81
 msgid "shortcuts.align-vcenter"
-msgstr "Align center vertically"
+msgstr "Align centre vertically"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:82
 msgid "shortcuts.artboard-selection"
@@ -4038,7 +4038,7 @@ msgstr "Set opacity to 90%"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:157
 msgid "shortcuts.open-color-picker"
-msgstr "Color picker"
+msgstr "Colour picker"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:158
 msgid "shortcuts.open-comments"
@@ -4156,7 +4156,7 @@ msgstr "Stop measurement"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:183
 msgid "shortcuts.text-align-center"
-msgstr "Align center"
+msgstr "Align centre"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:184
 msgid "shortcuts.text-align-justify"
@@ -4188,7 +4188,7 @@ msgstr "Toggle assets"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:190
 msgid "shortcuts.toggle-colorpalette"
-msgstr "Toggle color palette"
+msgstr "Toggle colour palette"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:191
 msgid "shortcuts.toggle-focus-mode"
@@ -4483,7 +4483,7 @@ msgstr "editor per month"
 
 #: src/app/main/ui/settings/subscription.cljs:316
 msgid "subscription.settings.price-organization-month"
-msgstr "organization per month"
+msgstr "organisation per month"
 
 #: src/app/main/ui/dashboard/subscription.cljs:105, src/app/main/ui/settings/subscription.cljs:55, src/app/main/ui/settings/subscription.cljs:238, src/app/main/ui/settings/subscription.cljs:287
 msgid "subscription.settings.professional"
@@ -4705,7 +4705,7 @@ msgstr "Last delivery was successful."
 
 #: src/app/main/ui/workspace/sidebar/options/menus/align.cljs:58
 msgid "workspace.align.hcenter"
-msgstr "Align horizontal center (%s)"
+msgstr "Align horizontal centre (%s)"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/align.cljs:74
 msgid "workspace.align.hdistribute"
@@ -4725,7 +4725,7 @@ msgstr "Align bottom (%s)"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/align.cljs:91
 msgid "workspace.align.vcenter"
-msgstr "Align vertical center (%s)"
+msgstr "Align vertical centre (%s)"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/align.cljs:104
 msgid "workspace.align.vdistribute"
@@ -4750,11 +4750,11 @@ msgstr "All assets"
 
 #: src/app/main/ui/dashboard/grid.cljs:148, src/app/main/ui/dashboard/grid.cljs:180, src/app/main/ui/workspace/sidebar/assets/colors.cljs:485, src/app/main/ui/workspace/sidebar/assets.cljs:150
 msgid "workspace.assets.colors"
-msgstr "Colors"
+msgstr "Colours"
 
 #: src/app/main/ui/workspace/sidebar/assets/colors.cljs:493
 msgid "workspace.assets.colors.add-color"
-msgstr "Add color"
+msgstr "Add colour"
 
 #: src/app/main/ui/dashboard/grid.cljs:144, src/app/main/ui/dashboard/grid.cljs:159, src/app/main/ui/workspace/sidebar/assets/components.cljs:503, src/app/main/ui/workspace/sidebar/assets.cljs:146
 msgid "workspace.assets.components"
@@ -5052,7 +5052,7 @@ msgstr "Hide guides"
 
 #: src/app/main/ui/workspace/main_menu.cljs:362
 msgid "workspace.header.menu.hide-palette"
-msgstr "Hide color palette"
+msgstr "Hide colour palette"
 
 #: src/app/main/ui/workspace/main_menu.cljs:403
 msgid "workspace.header.menu.hide-pixel-grid"
@@ -5109,7 +5109,7 @@ msgstr "Show guides"
 
 #: src/app/main/ui/workspace/main_menu.cljs:363
 msgid "workspace.header.menu.show-palette"
-msgstr "Show color palette"
+msgstr "Show colour palette"
 
 #: src/app/main/ui/workspace/main_menu.cljs:404
 msgid "workspace.header.menu.show-pixel-grid"
@@ -5251,11 +5251,11 @@ msgstr "Add"
 
 #: src/app/main/ui/workspace/libraries.cljs:106, src/app/main/ui/workspace/libraries.cljs:132
 msgid "workspace.libraries.colors"
-msgstr "%s colors"
+msgstr "%s colours"
 
 #: src/app/main/ui/workspace/color_palette.cljs:146
 msgid "workspace.libraries.colors.empty-palette"
-msgstr "There are no color styles in your library yet"
+msgstr "There are no colour styles in your library yet"
 
 #: src/app/main/ui/workspace/text_palette.cljs:161
 msgid "workspace.libraries.colors.empty-typography-palette"
@@ -5272,7 +5272,7 @@ msgstr "HSV"
 
 #: src/app/main/ui/workspace/color_palette_ctx_menu.cljs:111, src/app/main/ui/workspace/colorpicker/libraries.cljs:48
 msgid "workspace.libraries.colors.recent-colors"
-msgstr "Recent colors"
+msgstr "Recent colours"
 
 #: src/app/main/ui/workspace/colorpicker.cljs
 #, unused
@@ -5285,7 +5285,7 @@ msgstr "RGBA"
 
 #: src/app/main/ui/workspace/colorpicker.cljs:516
 msgid "workspace.libraries.colors.save-color"
-msgstr "Save color style"
+msgstr "Save colour style"
 
 #: src/app/main/ui/workspace/libraries.cljs:100, src/app/main/ui/workspace/libraries.cljs:124
 msgid "workspace.libraries.components"
@@ -5559,7 +5559,7 @@ msgstr "Bottom"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/constraints.cljs:141, src/app/main/ui/workspace/sidebar/options/menus/constraints.cljs:152
 msgid "workspace.options.constraints.center"
-msgstr "Center"
+msgstr "Centre"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/constraints.cljs:229
 msgid "workspace.options.constraints.fix-when-scrolling"
@@ -5688,7 +5688,7 @@ msgstr "Grid"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/frame_grid.cljs:200, src/app/main/ui/workspace/sidebar/options/menus/frame_grid.cljs:241
 msgid "workspace.options.grid.params.color"
-msgstr "Color"
+msgstr "Colour"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/frame_grid.cljs
 #, unused
@@ -5732,7 +5732,7 @@ msgstr "Bottom"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/frame_grid.cljs:233
 msgid "workspace.options.grid.params.type.center"
-msgstr "Center"
+msgstr "Centre"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/frame_grid.cljs:232
 msgid "workspace.options.grid.params.type.left"
@@ -5938,7 +5938,7 @@ msgstr "Out"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/interactions.cljs:409
 msgid "workspace.options.interaction-pos-bottom-center"
-msgstr "Bottom center"
+msgstr "Bottom centre"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/interactions.cljs:407
 msgid "workspace.options.interaction-pos-bottom-left"
@@ -5950,7 +5950,7 @@ msgstr "Bottom right"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/interactions.cljs:403
 msgid "workspace.options.interaction-pos-center"
-msgstr "Center"
+msgstr "Centre"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/interactions.cljs:402
 msgid "workspace.options.interaction-pos-manual"
@@ -5958,7 +5958,7 @@ msgstr "Manual"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/interactions.cljs:406
 msgid "workspace.options.interaction-pos-top-center"
-msgstr "Top center"
+msgstr "Top centre"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/interactions.cljs:404
 msgid "workspace.options.interaction-pos-top-left"
@@ -6027,15 +6027,15 @@ msgstr "Remove interaction"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/layer.cljs:152
 msgid "workspace.options.layer-options.blend-mode.color"
-msgstr "Color"
+msgstr "Colour"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/layer.cljs:141
 msgid "workspace.options.layer-options.blend-mode.color-burn"
-msgstr "Color burn"
+msgstr "Colour burn"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/layer.cljs:144
 msgid "workspace.options.layer-options.blend-mode.color-dodge"
-msgstr "Color dodge"
+msgstr "Colour dodge"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/layer.cljs:139
 msgid "workspace.options.layer-options.blend-mode.darken"
@@ -6241,11 +6241,11 @@ msgstr "Top"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/color_selection.cljs:157
 msgid "workspace.options.more-colors"
-msgstr "More colors"
+msgstr "More colours"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/color_selection.cljs:141
 msgid "workspace.options.more-lib-colors"
-msgstr "More library colors"
+msgstr "More library colours"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/layer.cljs:175
 msgid "workspace.options.opacity"
@@ -6310,7 +6310,7 @@ msgstr "Select a shape, board or group to drag a connection to other board."
 
 #: src/app/main/ui/workspace/sidebar/options/menus/color_selection.cljs:114
 msgid "workspace.options.selection-color"
-msgstr "Selected colors"
+msgstr "Selected colours"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/fill.cljs:52
 msgid "workspace.options.selection-fill"
@@ -6330,7 +6330,7 @@ msgstr "Blur"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/shadow.cljs:205
 msgid "workspace.options.shadow-options.color"
-msgstr "Shadow color"
+msgstr "Shadow colour"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/shadow.cljs:116
 msgid "workspace.options.shadow-options.drop-shadow"
@@ -6459,7 +6459,7 @@ msgstr "Triangle"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/stroke.cljs:192
 msgid "workspace.options.stroke-color"
-msgstr "Stroke color"
+msgstr "Stroke colour"
 
 #: src/app/main/ui/workspace/sidebar/options/rows/stroke_row.cljs:166
 msgid "workspace.options.stroke-width"
@@ -6467,11 +6467,11 @@ msgstr "Stroke width"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/stroke.cljs:171
 msgid "workspace.options.stroke.add-stroke"
-msgstr "Add stroke color"
+msgstr "Add stroke colour"
 
 #: src/app/main/ui/workspace/sidebar/options/rows/stroke_row.cljs:89
 msgid "workspace.options.stroke.center"
-msgstr "Center"
+msgstr "Centre"
 
 #: src/app/main/ui/workspace/sidebar/options/rows/stroke_row.cljs:107
 msgid "workspace.options.stroke.dashed"
@@ -6557,7 +6557,7 @@ msgstr "Strikethrough (%s)"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/text.cljs:54
 msgid "workspace.options.text-options.text-align-center"
-msgstr "Align center (%s)"
+msgstr "Align centre (%s)"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/text.cljs:62
 msgid "workspace.options.text-options.text-align-justify"
@@ -7192,7 +7192,7 @@ msgstr "Folder"
 
 #: src/app/main/ui/workspace/tokens/context_menu.cljs:245
 msgid "workspace.tokens.color"
-msgstr "Color"
+msgstr "Colour"
 
 #: src/app/main/ui/workspace/tokens/modals/themes.cljs:53
 msgid "workspace.tokens.create-new-theme"
@@ -7357,7 +7357,7 @@ msgstr ""
 
 #: src/app/main/data/workspace/tokens/errors.cljs:45
 msgid "workspace.tokens.invalid-color"
-msgstr "Invalid color value: %s"
+msgstr "Invalid colour value: %s"
 
 #: src/app/main/data/workspace/tokens/errors.cljs:19
 msgid "workspace.tokens.invalid-json"
@@ -7619,7 +7619,7 @@ msgstr "Assets"
 
 #: src/app/main/ui/workspace/palette.cljs:167, src/app/main/ui/workspace/palette.cljs:168
 msgid "workspace.toolbar.color-palette"
-msgstr "Color Palette (%s)"
+msgstr "Colour Palette (%s)"
 
 #: src/app/main/ui/workspace/right_header.cljs:207, src/app/main/ui/workspace/right_header.cljs:208
 msgid "workspace.toolbar.comments"
@@ -7709,7 +7709,7 @@ msgstr "circles"
 
 #: src/app/main/ui/workspace/sidebar/history.cljs:110
 msgid "workspace.undo.entry.multiple.color"
-msgstr "color assets"
+msgstr "colour assets"
 
 #: src/app/main/ui/workspace/sidebar/history.cljs:111
 msgid "workspace.undo.entry.multiple.component"
@@ -7769,7 +7769,7 @@ msgstr "circle"
 
 #: src/app/main/ui/workspace/sidebar/history.cljs:124
 msgid "workspace.undo.entry.single.color"
-msgstr "color asset"
+msgstr "colour asset"
 
 #: src/app/main/ui/workspace/sidebar/history.cljs:125
 msgid "workspace.undo.entry.single.component"
