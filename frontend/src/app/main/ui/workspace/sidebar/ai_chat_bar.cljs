@@ -116,7 +116,7 @@
 
 (mf/defc message-log*
   {::mf/private true}
-  [{:keys [display-log status]}]
+  [{:keys [display-log status has-key? provider-id on-open-settings]}]
   (let [log-ref (mf/use-ref nil)
         ;; Tool-call entries (create_rectangle, delete_shape, etc.) are
         ;; kept in display-log for a future detail view, but aren't shown
@@ -135,11 +135,27 @@
            :role "log"
            :aria-live "polite"
            :aria-label "AI conversation"}
-     (if (empty? visible-entries)
-       [:div {:class (stl/css :message-log-empty)}
-        "Ask the AI to create, recolor, or delete shapes on this page."]
+     (cond
+       (not (empty? visible-entries))
        (for [[idx entry] (map-indexed vector visible-entries)]
-         [:> message-entry* {:key idx :entry entry}]))
+         [:> message-entry* {:key idx :entry entry}])
+
+       ;; A brand-new user otherwise only learns a key is missing by
+       ;; sending a prompt and getting an error bubble back — this nudge
+       ;; catches that before they have to fail once to discover it. Only
+       ;; shown once has-key? has actually resolved (not nil, i.e. not
+       ;; still loading) and come back false, so this never flashes
+       ;; incorrectly while the real status is still in flight.
+       (false? has-key?)
+       [:div {:class (stl/css :message-log-empty :message-log-onboarding)}
+        [:p "Add an API key to start using the AI assistant."]
+        [:button {:class (stl/css :onboarding-settings-btn)
+                  :on-click on-open-settings}
+         (str "Add a key for " (or (provider-label provider-id) "your provider") " in Settings")]]
+
+       :else
+       [:div {:class (stl/css :message-log-empty)}
+        "Ask the AI to create, recolor, or delete shapes on this page."])
      (when-let [label (status-label status)]
        [:div {:class (stl/css :status-row) :aria-label label}
         [:div {:class (stl/css :status-spinner)}]
@@ -196,6 +212,12 @@
            (st/emit! (ai-chat/close-panel))
            (when-let [node (mf/ref-val fab-ref)]
              (.focus node))))
+
+        on-open-settings
+        (mf/use-fn
+         (fn [_]
+           (when-let [api (electron-api)]
+             (.open ^js (.-settings api)))))
 
         on-change
         (mf/use-fn
@@ -527,7 +549,12 @@
                    :title "Close"}
           "✕"]]
 
-        [:> message-log* {:display-log (or display-log []) :status status}]
+        [:> message-log* {:display-log (or display-log [])
+                           :status status
+                           :has-key? (when (and @provider @key-status)
+                                       (boolean (get @key-status (keyword @provider))))
+                           :provider-id @provider
+                           :on-open-settings on-open-settings}]
 
         [:div {:class (stl/css :composer)}
          [:textarea

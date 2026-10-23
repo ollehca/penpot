@@ -229,6 +229,37 @@
   padding: $s-16;
 }
 
+.message-log-onboarding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $s-12;
+
+  p {
+    margin: 0;
+  }
+}
+
+.onboarding-settings-btn {
+  border: none;
+  border-radius: $br-6;
+  padding: $s-8 $s-16;
+  background-color: var(--button-primary-background-color-rest);
+  color: var(--button-primary-foreground-color-rest);
+  font-size: $fs-12;
+  font-weight: $fw700;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--button-primary-background-color-hover);
+  }
+
+  &:focus-visible {
+    outline: $s-2 solid var(--button-primary-border-color-rest);
+    outline-offset: 2px;
+  }
+}
+
 .message-row {
   display: flex;
 }
