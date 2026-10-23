@@ -30,6 +30,7 @@
    [app.main.data.workspace.colors :as dwc]
    [app.main.data.workspace.groups :as dwg]
    [app.main.data.workspace.shapes :as dwsh]
+   [app.main.data.workspace.transforms :as dwt]
    [app.main.data.workspace.undo :as dwu]
    [app.main.store :as st]
    [clojure.string :as str]))
@@ -143,6 +144,12 @@
        "edit things afterward in a larger file. Before grouping, check parentId: don't "
        "re-group shapes that already share a sensible parent, and don't break apart an "
        "existing group unless asked to.\n\n"
+       "move_shape and resize_shape operate on EXISTING shapes already on the canvas — use "
+       "them for requests like \"move this left\", \"make these the same width\", or "
+       "\"align these\" (read each target's current x/y from this snapshot and compute "
+       "matching positions). move_shape is relative (dx/dy from current position), not "
+       "absolute — for an exact placement, compute the offset from the shape's current x/y "
+       "first.\n\n"
        "Canvas state:\n"
        (.stringify js/JSON (describe-canvas-state))))
 
@@ -254,6 +261,42 @@
         (st/emit! (dwsh/update-shapes [group-id] #(assoc % :name name))))
       #js {:groupId (str group-id) :grouped (count ids)})))
 
+(defn- tool-move-shape
+  "Relative move only (dx/dy applied to each shape's own current
+  position), not an absolute target — moving several shapes at once to
+  the same {:x :y} would stack them on top of each other instead of
+  shifting them together, which is never what \"move these right 20px\"
+  means. update-position itself is absolute (it takes a target, not a
+  delta), so each shape's current x/y has to be read first and the
+  offset added before calling it."
+  [{:keys [dx dy] :as args}]
+  (when-not (or (number? dx) (number? dy))
+    (throw (js/Error. "At least one of dx or dy is required.")))
+  (let [ids     (resolve-target-ids args)
+        objects (dsh/lookup-page-objects @st/state)]
+    (when (empty? ids)
+      (throw (js/Error. "No shapes selected and no shape_ids given.")))
+    (doseq [id ids]
+      (when-let [shape (get objects id)]
+        (st/emit! (dwt/update-position
+                    id
+                    {:x (+ (:x shape) (or dx 0))
+                     :y (+ (:y shape) (or dy 0))}))))
+    #js {:moved (count ids)}))
+
+(defn- tool-resize-shape
+  [{:keys [width height] :as args}]
+  (when-not (or (number? width) (number? height))
+    (throw (js/Error. "At least one of width or height is required.")))
+  (let [ids (resolve-target-ids args)]
+    (when (empty? ids)
+      (throw (js/Error. "No shapes selected and no shape_ids given.")))
+    (when (number? width)
+      (st/emit! (dwt/update-dimensions ids :width width)))
+    (when (number? height)
+      (st/emit! (dwt/update-dimensions ids :height height)))
+    #js {:resized (count ids)}))
+
 (defn- srgb-channel->linear
   "One sRGB 0-255 channel to its linear-light value, per the WCAG 2.x
   relative luminance definition (the standard gamma-correction piecewise
@@ -299,7 +342,9 @@
    "change_fill_color" tool-change-fill-color
    "delete_shape" tool-delete-shape
    "check_contrast" tool-check-contrast
-   "group_shapes" tool-group-shapes})
+   "group_shapes" tool-group-shapes
+   "move_shape" tool-move-shape
+   "resize_shape" tool-resize-shape})
 
 ;; Human-readable labels for display-log tool-call entries (not shown as
 ;; chips in the chat panel UI anymore, but kept in the data model for a
@@ -312,7 +357,9 @@
    "change_fill_color" "Changed fill colour"
    "delete_shape" "Deleted shape"
    "check_contrast" "Checked contrast"
-   "group_shapes" "Grouped layers"})
+   "group_shapes" "Grouped layers"
+   "move_shape" "Moved shape"
+   "resize_shape" "Resized shape"})
 
 (defn dispatch-tool-call
   "Run one tool call (as pushed by the Electron main process) against the
