@@ -93,6 +93,17 @@ $grayish-red: #bfbfbf;        // canvas FILL default (document background) — d
 :global(.light) {
   --color-accent-primary: #{$purple-700};
   --color-accent-primary-muted: #{$purple-200};
+  // KIZUKU (2026-10-23): the true brand violet, for solid-fill surfaces
+  // (button backgrounds, filled badges/bullets) — distinct from
+  // --color-accent-primary, which was deliberately lightened to
+  // violet-300 in the dark theme below for text/icon readability on
+  // Kata's dark surfaces. That readability fix was never meant to apply
+  // to solid fills, which don't have a text-on-background contrast
+  // problem — reusing one token for both made buttons look washed out
+  // against the brand purple. Equal to --color-accent-primary here in
+  // the light theme (unaffected by that fix); see the .default block for
+  // where the two values actually diverge.
+  --color-accent-primary-solid: #{$purple-700};
   --color-accent-secondary: #{$cobalt-700};
   --color-accent-tertiary: #{$purple-600};
   --color-accent-quaternary: #{$pink-400};
@@ -137,6 +148,11 @@ $grayish-red: #bfbfbf;        // canvas FILL default (document background) — d
 :global(.default) {
   --color-accent-primary: #{$mint-150};
   --color-accent-primary-muted: #{$mint-700};
+  // KIZUKU (2026-10-23): see the matching comment in the .light block
+  // above — this is where it actually diverges from --color-accent-
+  // primary (violet-300, #a678f5) to the true brand violet-500 for
+  // solid-fill surfaces only.
+  --color-accent-primary-solid: #{$purple-700};
   --color-accent-secondary: #{$purple-400};
   --color-accent-tertiary: #{$mint-250};
   --color-accent-quaternary: #{$pink-400};

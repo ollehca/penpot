@@ -43,8 +43,8 @@
   --button-background-color-disabled: var(--color-background-quaternary);
   --button-border-color-disabled: var(--color-background-quaternary);
 
-  --button-primary-background-color-rest: var(--color-accent-primary);
-  --button-primary-border-color-rest: var(--color-accent-primary);
+  --button-primary-background-color-rest: var(--color-accent-primary-solid);
+  --button-primary-border-color-rest: var(--color-accent-primary-solid);
   --button-primary-foreground-color-rest: var(--color-background-secondary);
   --button-primary-background-color-hover: var(--color-accent-tertiary);
   --button-primary-border-color-hover: var(--color-accent-tertiary);
@@ -112,7 +112,7 @@
   --button-constraint-background-color-rest: var(--color-foreground-secondary);
   --button-constraint-border-color-rest: var(--color-background-tertiary);
   --button-constraint-border-color-hover: var(--color-accent-primary-muted);
-  --button-constraint-background-color-hover: var(--color-accent-primary);
+  --button-constraint-background-color-hover: var(--color-accent-primary-solid);
 
   --constraint-widget-background-color: var(--color-background-tertiary);
   --constraint-center-area-background-color: var(--color-background-primary);

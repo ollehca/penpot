@@ -5555,6 +5555,7 @@ __metadata:
     rxjs: "npm:8.0.0-alpha.14"
     sass: "npm:^1.89.0"
     sass-embedded: "npm:^1.89.0"
+    sass-embedded-darwin-arm64: "npm:^1.106.1"
     sax: "npm:^1.4.1"
     source-map-support: "npm:^0.5.21"
     storybook: "npm:^8.6.14"
@@ -9925,6 +9926,14 @@ __metadata:
 "sass-embedded-darwin-arm64@npm:1.89.2":
   version: 1.89.2
   resolution: "sass-embedded-darwin-arm64@npm:1.89.2"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"sass-embedded-darwin-arm64@npm:^1.106.1":
+  version: 1.106.1
+  resolution: "sass-embedded-darwin-arm64@npm:1.106.1"
+  checksum: 10c0/11f11f70753a4f1800be2fc05b731765efd2758e17ca16aefe8cb0a419bfc151fde656d7e730751b0044cb565dea7233e3369a7825ebb26b4decb6204c4d482b
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
