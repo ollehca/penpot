@@ -3,14 +3,28 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications (2026-10-23):
+;; - Removed the binary/standard file export entries ("Download Kizuku
+;;   file (.kizuku)", "Download standard file (.svg + .json)", and their
+;;   multi-file equivalents) from both the single-file and multi-select
+;;   context menus — same reasoning as the earlier main_menu.cljs cleanup
+;;   (see that file's own header): every backing RPC (has-file-libraries,
+;;   export-files) is unmocked offline, so these silently did nothing.
+;;   This file's copy of the same upstream feature was missed during that
+;;   pass. Kizuku's own Save As .kiz (Electron File menu) is the
+;;   supported save/export path.
+;; ============================================================================
 
 (ns app.main.ui.dashboard.file-menu
   (:require
    [app.config :as cf]
    [app.main.data.common :as dcm]
    [app.main.data.dashboard :as dd]
-   [app.main.data.event :as-alias ev]
-   [app.main.data.exports.files :as fexp]
    [app.main.data.modal :as modal]
    [app.main.data.notifications :as ntf]
    [app.main.repo :as rp]
@@ -183,21 +197,7 @@
                       :origin :unpublish
                       :ids (into #{} (map :id) files)
                       :on-accept del-shared
-                      :count-libraries file-count})))
-
-        on-export-files
-        (fn [format]
-          (st/emit! (with-meta (fexp/export-files files format)
-                      {::ev/origin "dashboard"})))
-
-        on-export-binary-files
-        (partial on-export-files :binfile-v1)
-
-        on-export-binary-files-v3
-        (partial on-export-files :binfile-v3)
-
-        on-export-standard-files
-        (partial on-export-files :legacy-zip)]
+                      :count-libraries file-count})))]
 
     (mf/with-effect []
       (->> (rp/cmd! :get-all-projects)
@@ -248,20 +248,9 @@
                 :id      "file-move-multi"
                 :options    sub-options})
 
-             (when-not (contains? cf/flags :export-file-v3)
-               {:name    (tr "dashboard.export-binary-multi" file-count)
-                :id      "file-binary-export-multi"
-                :handler on-export-binary-files})
-
-             (when (contains? cf/flags :export-file-v3)
-               {:name    (tr "dashboard.export-binary-multi" file-count)
-                :id      "file-binary-export-multi"
-                :handler on-export-binary-files-v3})
-
-             (when-not (contains? cf/flags :export-file-v3)
-               {:name    (tr "dashboard.export-standard-multi" file-count)
-                :id      "file-standard-export-multi"
-                :handler on-export-standard-files})
+             ;; REMOVED BY KIZUKU: see the matching comment in the
+             ;; single-file menu below — same dead upstream PenPot
+             ;; cloud-export feature, never wired up on the mock backend.
 
              (when (and (:is-shared file) can-edit)
                {:name    (tr "labels.unpublish-multi-files" file-count)
@@ -305,22 +294,17 @@
                   :id      "file-add-shared"
                   :handler on-add-shared}))
 
-             {:name   :separator}
-
-             (when-not (contains? cf/flags :export-file-v3)
-               {:name    (tr "dashboard.download-binary-file")
-                :id      "download-binary-file"
-                :handler on-export-binary-files})
-
-             (when (contains? cf/flags :export-file-v3)
-               {:name    (tr "dashboard.download-binary-file")
-                :id      "download-binary-file"
-                :handler on-export-binary-files-v3})
-
-             (when-not (contains? cf/flags :export-file-v3)
-               {:name    (tr "dashboard.download-standard-file")
-                :id      "download-standard-file"
-                :handler on-export-standard-files})
+             ;; REMOVED BY KIZUKU: "Download Kizuku file (.kizuku)" and
+             ;; "Download standard file (.svg + .json)" were upstream
+             ;; PenPot's cloud binary/standard export, rebranded with a
+             ;; wrong extension (.kizuku instead of the real .kiz) and
+             ;; never actually wired up on Kizuku's mock backend —
+             ;; on-export-binary-files/-v3/on-export-standard-files all
+             ;; depend on a has-file-libraries RPC command the mock
+             ;; backend never implements, so these silently did nothing
+             ;; (or errored) regardless of their label. Kizuku's own
+             ;; working save flow is the Save As .kiz menu item
+             ;; (save-kiz-handler.js), unrelated to this upstream feature.
 
              (when (and (not is-lib-page?) (not is-search-page?) can-edit)
                {:name   :separator})
