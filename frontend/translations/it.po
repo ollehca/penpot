@@ -7820,3 +7820,139 @@ msgstr "Valore non valido: le unità non sono consentite."
 #: src/app/main/ui/workspace/sidebar/options/menus/component.cljs:985
 msgid "workspace.options.component.variant.malformed.group.title"
 msgstr "Alcune varianti hanno nomi non validi"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.title"
+msgstr "Assistente IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.panel-label"
+msgstr "Assistente IA per la tela"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.fab-open"
+msgstr "Apri l’assistente IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.fab-close"
+msgstr "Chiudi l’assistente IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.conversation"
+msgstr "Conversazione con l’IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.status.thinking"
+msgstr "Sto pensando…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.status.editing"
+msgstr "Modifica della tela…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.status.sending"
+msgstr "Invio…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.onboarding.title"
+msgstr "Aggiungi una chiave API per iniziare a usare l’assistente IA."
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.onboarding.add-key"
+msgstr "Aggiungi una chiave per %s nelle Impostazioni"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.onboarding.your-provider"
+msgstr "il tuo provider"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.empty"
+msgstr "Chiedi all’IA di creare, ricolorare o eliminare forme in questa pagina."
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.error.no-key"
+msgstr "Nessuna chiave API salvata per %s. Aggiungine una nelle Impostazioni per usare questo provider."
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.provider-aria"
+msgstr "Provider IA attivo: %s. Fai clic per cambiarlo."
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.model-aria"
+msgstr "Modello: %s. Fai clic per cambiarlo; altri modelli in Impostazioni > IA."
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.key-set"
+msgstr "Chiave impostata"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.no-key"
+msgstr "Nessuna chiave"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.clear"
+msgstr "Svuota"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.clear-title"
+msgstr "Svuota la chat"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.clear-aria"
+msgstr "Cancella la cronologia della chat"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.close"
+msgstr "Chiudi"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.close-aria"
+msgstr "Chiudi l’assistente IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.placeholder"
+msgstr "Chiedi all’IA di modificare questo file… (⌘/Ctrl+Invio per inviare)"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.prompt-aria"
+msgstr "Richiesta per l’assistente IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.send"
+msgstr "Invia"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.sending"
+msgstr "Invio…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.send-aria"
+msgstr "Invia la richiesta"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.sending-aria"
+msgstr "Invio della richiesta"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.press"
+msgstr "Premi"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.hint"
+msgstr "per disegnare una tavola, oppure parti da:"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.desktop"
+msgstr "Desktop"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.phone"
+msgstr "Telefono"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.a4"
+msgstr "A4"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.square"
+msgstr "Quadrato"

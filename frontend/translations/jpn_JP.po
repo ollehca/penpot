@@ -987,3 +987,139 @@ msgstr "招待を再送"
 #: src/app/main/ui/static.cljs:341, src/app/main/ui/static.cljs:350, src/app/main/ui/static.cljs:424
 msgid "labels.retry"
 msgstr "リトライ"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.title"
+msgstr "AI アシスタント"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.panel-label"
+msgstr "キャンバス AI アシスタント"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.fab-open"
+msgstr "AI アシスタントを開く"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.fab-close"
+msgstr "AI アシスタントを閉じる"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.conversation"
+msgstr "AI との会話"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.status.thinking"
+msgstr "考えています…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.status.editing"
+msgstr "キャンバスを編集しています…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.status.sending"
+msgstr "送信中…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.onboarding.title"
+msgstr "AI アシスタントを使うには API キーを追加してください。"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.onboarding.add-key"
+msgstr "設定で %s のキーを追加"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.onboarding.your-provider"
+msgstr "ご利用のプロバイダー"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.empty"
+msgstr "このページの図形の作成・色変更・削除を AI に頼めます。"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.error.no-key"
+msgstr "%s の API キーが保存されていません。設定で追加してください。"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.provider-aria"
+msgstr "現在の AI プロバイダー: %s。クリックで変更。"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.model-aria"
+msgstr "モデル: %s。クリックで変更。他のモデルは設定 > AI にあります。"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.key-set"
+msgstr "キー設定済み"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.no-key"
+msgstr "キーなし"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.clear"
+msgstr "クリア"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.clear-title"
+msgstr "チャットをクリア"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.clear-aria"
+msgstr "チャット履歴をクリア"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.close"
+msgstr "閉じる"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.close-aria"
+msgstr "AI アシスタントを閉じる"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.placeholder"
+msgstr "このファイルの編集を AI に依頼…（⌘/Ctrl+Enter で送信）"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.prompt-aria"
+msgstr "AI アシスタントへの指示"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.send"
+msgstr "送信"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.sending"
+msgstr "送信中…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.send-aria"
+msgstr "指示を送信"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.sending-aria"
+msgstr "指示を送信中"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.press"
+msgstr " "
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.hint"
+msgstr "キーを押してボードを描くか、次から始める："
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.desktop"
+msgstr "デスクトップ"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.phone"
+msgstr "スマートフォン"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.a4"
+msgstr "A4"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.square"
+msgstr "正方形"

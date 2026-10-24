@@ -21,6 +21,9 @@
 ;;   dismiss it and then have no indicator at all on a file that still has
 ;;   no boards.
 ;; Date: 2026-10-12
+;; Modifications (3): copy and preset names go through tr (kizuku.empty-state.*)
+;;   so the card follows the UI language.
+;; Date: 2026-10-24
 ;; ============================================================================
 
 (ns app.main.ui.workspace.viewport.empty-state
@@ -29,13 +32,19 @@
    [app.common.uuid :as uuid]
    [app.main.data.workspace.shapes :as dwsh]
    [app.main.store :as st]
+   [app.util.i18n :refer [tr]]
    [rumext.v2 :as mf]))
 
 (def ^:private presets
-  [{:label "Desktop 1440×900" :name "Desktop" :width 1440 :height 900}
-   {:label "Phone 393×852" :name "Phone" :width 393 :height 852}
-   {:label "A4 595×842" :name "A4" :width 595 :height 842}
-   {:label "Square 1080×1080" :name "Square" :width 1080 :height 1080}])
+  [{:key "kizuku.empty-state.preset.desktop" :width 1440 :height 900}
+   {:key "kizuku.empty-state.preset.phone" :width 393 :height 852}
+   {:key "kizuku.empty-state.preset.a4" :width 595 :height 842}
+   {:key "kizuku.empty-state.preset.square" :width 1080 :height 1080}])
+
+(defn- preset-name
+  "Localised preset name — also used as the created board's layer name."
+  [{:keys [key]}]
+  (tr key))
 
 (defn- create-board
   "Creates a root-level board centered in the current viewport and
@@ -67,13 +76,13 @@
       [:div {:class (stl/css :empty-state)}
        [:div {:class (stl/css :card)}
         [:div {:class (stl/css :hint)}
-         "Press "
+         (str (tr "kizuku.empty-state.press") " ")
          [:kbd {:class (stl/css :kbd)} "B"]
-         " to draw a board, or start from:"]
+         (str " " (tr "kizuku.empty-state.hint"))]
         [:div {:class (stl/css :presets)}
-         (for [{:keys [label] :as preset} presets]
-           [:button {:key label
+         (for [{:keys [key width height] :as preset} presets]
+           [:button {:key key
                      :class (stl/css :preset-btn)
                      :type "button"
-                     :on-click (partial create-board preset)}
-            label])]]])))
+                     :on-click (partial create-board (assoc preset :name (preset-name preset)))}
+            (str (preset-name preset) " " width "×" height)])]]])))

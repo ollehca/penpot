@@ -7845,3 +7845,139 @@ msgstr "Recursos"
 
 msgid "labels.pinned-projects"
 msgstr "Proyectos fijados"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.title"
+msgstr "Asistente de IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.panel-label"
+msgstr "Asistente de IA para el lienzo"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.fab-open"
+msgstr "Abrir el asistente de IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.fab-close"
+msgstr "Cerrar el asistente de IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.conversation"
+msgstr "Conversación con la IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.status.thinking"
+msgstr "Pensando…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.status.editing"
+msgstr "Editando el lienzo…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.status.sending"
+msgstr "Enviando…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.onboarding.title"
+msgstr "Añade una clave de API para empezar a usar el asistente de IA."
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.onboarding.add-key"
+msgstr "Añadir una clave de %s en Ajustes"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.onboarding.your-provider"
+msgstr "tu proveedor"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.empty"
+msgstr "Pide a la IA que cree, recoloree o elimine formas en esta página."
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.error.no-key"
+msgstr "No hay ninguna clave de API guardada para %s. Añade una en Ajustes para usar este proveedor."
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.provider-aria"
+msgstr "Proveedor de IA activo: %s. Haz clic para cambiarlo."
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.model-aria"
+msgstr "Modelo: %s. Haz clic para cambiarlo; hay más modelos en Ajustes > IA."
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.key-set"
+msgstr "Clave guardada"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.no-key"
+msgstr "Sin clave"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.clear"
+msgstr "Limpiar"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.clear-title"
+msgstr "Limpiar el chat"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.clear-aria"
+msgstr "Borrar el historial del chat"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.close"
+msgstr "Cerrar"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.close-aria"
+msgstr "Cerrar el asistente de IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.placeholder"
+msgstr "Pide a la IA que edite este archivo… (⌘/Ctrl+Intro para enviar)"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.prompt-aria"
+msgstr "Instrucción para el asistente de IA"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.send"
+msgstr "Enviar"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.sending"
+msgstr "Enviando…"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.send-aria"
+msgstr "Enviar instrucción"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.ai.sending-aria"
+msgstr "Enviando la instrucción"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.press"
+msgstr "Pulsa"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.hint"
+msgstr "para dibujar un tablero, o empieza con:"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.desktop"
+msgstr "Escritorio"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.phone"
+msgstr "Móvil"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.a4"
+msgstr "A4"
+
+#: src/app/main/ui/workspace (Kizuku)
+msgid "kizuku.empty-state.preset.square"
+msgstr "Cuadrado"

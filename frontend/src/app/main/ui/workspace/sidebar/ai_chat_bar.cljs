@@ -17,6 +17,9 @@
 ;; time — see ai-tools.cljs's own header comment — so this component
 ;; never registers its own; it only reads the shared reactive lens).
 ;;
+;; All user-facing copy goes through tr (kizuku.ai.* keys in the .po
+;; catalogues) so the panel follows the UI language like the rest of the app.
+;;
 ;; Mounted as a fixed-position overlay (sibling to modal-container* in
 ;; workspace.cljs) so it's independent of any sidebar's box model — the
 ;; original docked-in-sidebar attempt got clipped by the sidebar's own
@@ -29,6 +32,7 @@
    [app.main.data.workspace.ai-tools :as ai-tools]
    [app.main.store :as st]
    [app.util.dom :as dom]
+   [app.util.i18n :refer [tr]]
    [app.util.keyboard :as kbd]
    [clojure.string :as str]
    [okulary.core :as l]
@@ -95,10 +99,10 @@
 (defn- status-label
   [status]
   (case status
-    "started" "Thinking…"
-    "tool-executing" "Editing the canvas…"
-    "text" "Thinking…"
-    "sending" "Sending…"
+    "started" (tr "kizuku.ai.status.thinking")
+    "tool-executing" (tr "kizuku.ai.status.editing")
+    "text" (tr "kizuku.ai.status.thinking")
+    "sending" (tr "kizuku.ai.status.sending")
     nil))
 
 (mf/defc message-entry*
@@ -134,7 +138,7 @@
            :class (stl/css :message-log)
            :role "log"
            :aria-live "polite"
-           :aria-label "AI conversation"}
+           :aria-label (tr "kizuku.ai.conversation")}
      (cond
        (not (empty? visible-entries))
        (for [[idx entry] (map-indexed vector visible-entries)]
@@ -148,14 +152,15 @@
        ;; incorrectly while the real status is still in flight.
        (false? has-key?)
        [:div {:class (stl/css :message-log-empty :message-log-onboarding)}
-        [:p "Add an API key to start using the AI assistant."]
+        [:p (tr "kizuku.ai.onboarding.title")]
         [:button {:class (stl/css :onboarding-settings-btn)
                   :on-click on-open-settings}
-         (str "Add a key for " (or (provider-label provider-id) "your provider") " in Settings")]]
+         (tr "kizuku.ai.onboarding.add-key"
+             (or (provider-label provider-id) (tr "kizuku.ai.onboarding.your-provider")))]]
 
        :else
        [:div {:class (stl/css :message-log-empty)}
-        "Ask the AI to create, recolor, or delete shapes on this page."])
+        (tr "kizuku.ai.empty")])
      (when-let [label (status-label status)]
        [:div {:class (stl/css :status-row) :aria-label label}
         [:div {:class (stl/css :status-spinner)}]
@@ -357,8 +362,8 @@
                                  (st/emit!
                                   (ai-chat/set-status
                                    {:phase "error"
-                                    :message (str "No API key stored for " (provider-label provider-id)
-                                                   " — add one in Settings to use this provider.")}))))))))))))))
+                                    :message (tr "kizuku.ai.error.no-key"
+                                                 (provider-label provider-id))}))))))))))))))
 
         on-composer-keydown
         (mf/use-fn
@@ -484,7 +489,7 @@
         {:ref panel-ref
          :class (stl/css :panel :panel-fade-in)
          :role "dialog"
-         :aria-label "AI canvas assistant"
+         :aria-label (tr "kizuku.ai.panel-label")
          :on-key-down on-panel-keydown
          ;; nil panel-size (not yet manually resized) means no inline
          ;; width/height at all — the panel's own CSS (grid-template-rows:
@@ -494,13 +499,13 @@
                    :height (str (:height @panel-size) "px")})}
 
         [:div {:class (stl/css :panel-header)}
-         [:span {:class (stl/css :panel-title)} "AI Assistant"]
+         [:span {:class (stl/css :panel-title)} (tr "kizuku.ai.title")]
          [:div {:class (stl/css :provider-picker)}
           [:button {:class (stl/css :provider-badge)
                     :on-click on-toggle-provider-menu
                     :aria-haspopup "listbox"
                     :aria-expanded @provider-menu-open?
-                    :aria-label (str "Active AI provider: " (provider-label @provider) ". Click to change.")}
+                    :aria-label (tr "kizuku.ai.provider-aria" (provider-label @provider))}
            (or (provider-label @provider) "…")
            [:span {:class (stl/css :provider-badge-caret)} "▾"]]
           (when @provider-menu-open?
@@ -517,14 +522,13 @@
                   [:span {:class (stl/css :provider-menu-item-label)} label]
                   [:span {:class (stl/css-case :provider-menu-item-status true
                                                 :has-key has-key?)}
-                   (if has-key? "Key set" "No key")]]))])]
+                   (if has-key? (tr "kizuku.ai.key-set") (tr "kizuku.ai.no-key"))]]))])]
          [:div {:class (stl/css :provider-picker)}
           [:button {:class (stl/css :provider-badge)
                     :on-click on-toggle-model-menu
                     :aria-haspopup "listbox"
                     :aria-expanded @model-menu-open?
-                    :aria-label (str "Model: " (model-label @model-tiers @model)
-                                      ". Click to change — for more model options, see Settings > AI.")}
+                    :aria-label (tr "kizuku.ai.model-aria" (model-label @model-tiers @model))}
            (short-model-label (model-label @model-tiers @model))
            [:span {:class (stl/css :provider-badge-caret)} "▾"]]
           (when @model-menu-open?
@@ -540,13 +544,13 @@
                 [:span {:class (stl/css :provider-menu-item-label)} label]])])]
          [:button {:class (stl/css :header-button)
                    :on-click on-clear
-                   :aria-label "Clear chat history"
-                   :title "Clear chat"}
-          "Clear"]
+                   :aria-label (tr "kizuku.ai.clear-aria")
+                   :title (tr "kizuku.ai.clear-title")}
+          (tr "kizuku.ai.clear")]
          [:button {:class (stl/css :header-button)
                    :on-click on-close
-                   :aria-label "Close AI assistant"
-                   :title "Close"}
+                   :aria-label (tr "kizuku.ai.close-aria")
+                   :title (tr "kizuku.ai.close")}
           "✕"]]
 
         [:> message-log* {:display-log (or display-log [])
@@ -560,19 +564,19 @@
          [:textarea
           {:ref composer-ref
            :class (stl/css :composer-input)
-           :placeholder "Ask the AI to edit this file… (⌘/Ctrl+Enter to send)"
+           :placeholder (tr "kizuku.ai.placeholder")
            :value @prompt
            :disabled sending?
            :on-change on-change
            :on-key-down on-composer-keydown
-           :aria-label "Prompt for the AI assistant"
+           :aria-label (tr "kizuku.ai.prompt-aria")
            :rows 2}]
          [:button
           {:class (stl/css :send-button)
            :on-click on-send
            :disabled (or sending? (empty? (str/trim (or @prompt ""))))
-           :aria-label (if sending? "Sending prompt" "Send prompt")}
-          (if sending? "Sending…" "Send")]]
+           :aria-label (if sending? (tr "kizuku.ai.sending-aria") (tr "kizuku.ai.send-aria"))}
+          (if sending? (tr "kizuku.ai.sending") (tr "kizuku.ai.send"))]]
 
         [:div {:class (stl/css :resize-handle)
                :on-pointer-down on-resize-pointer-down
@@ -582,7 +586,7 @@
       {:ref fab-ref
        :class (stl/css-case :fab true :fab-open open?)
        :on-click on-toggle
-       :aria-label (if open? "Close AI canvas assistant" "Open AI canvas assistant")
+       :aria-label (if open? (tr "kizuku.ai.fab-close") (tr "kizuku.ai.fab-open"))
        :aria-expanded open?
-       :title "AI canvas assistant"}
+       :title (tr "kizuku.ai.panel-label")}
       (if open? "✕" "✨")]]))

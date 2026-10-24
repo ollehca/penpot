@@ -29,6 +29,7 @@
   workspace-only items and tick the checkbox toggles."
   (:require
    [app.common.logging :as log]
+   [app.main.data.profile :as du]
    [app.main.data.workspace :as dw]
    [app.main.data.workspace.ai-chat :as ai-chat]
    [app.main.store :as st]))
@@ -79,10 +80,20 @@
             (get-in new [:route :data :name]))
       (not= (:workspace-layout old) (:workspace-layout new))))
 
+(defn- i18n-api
+  []
+  (when (exists? js/window)
+    (some-> (unchecked-get js/window "electronAPI")
+            (unchecked-get "i18n"))))
+
 (defn init!
   "Register the command listener and start publishing context. No-op
   outside the Electron shell."
   []
+  ;; The shell changed the UI language (its own Settings window, or the OS
+  ;; default) — re-fetch the profile so set-profile re-applies the locale.
+  (when-let [api (i18n-api)]
+    (.onLocaleChange ^js api (fn [_] (st/emit! (du/refresh-profile)))))
   (when-let [api (menu-api)]
     (.onCommand ^js api (fn [command] (dispatch! command)))
     (.setContext ^js api (context-snapshot @st/state))
