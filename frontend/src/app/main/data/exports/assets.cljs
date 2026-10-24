@@ -271,9 +271,10 @@
 
 (defn request-multiple-export
   [{:keys [cmd] :or {cmd :export-shapes} :as params}]
-  (if (and (local/enabled?) (= cmd :export-shapes))
-    (local/request-multiple-export params)
-    (request-multiple-export-remote params)))
+  (cond
+    (not (local/enabled?)) (request-multiple-export-remote params)
+    (= cmd :export-frames) (local/request-frames-pdf params)
+    :else                  (local/request-multiple-export params)))
 
 (defn request-export
   [{:keys [exports] :as params}]

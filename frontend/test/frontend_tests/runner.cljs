@@ -4,6 +4,7 @@
    [frontend-tests.basic-shapes-test]
    [frontend-tests.data.ai-markdown-test]
    [frontend-tests.data.ai-tools-test]
+   [frontend-tests.data.table-import-test]
    [frontend-tests.data.workspace-colors-test]
    [frontend-tests.helpers-shapes-test]
    [frontend-tests.logic.comp-remove-swap-slots-test]
@@ -44,6 +45,7 @@
    'frontend-tests.basic-shapes-test
    'frontend-tests.data.ai-markdown-test
    'frontend-tests.data.ai-tools-test
+   'frontend-tests.data.table-import-test
    'frontend-tests.data.workspace-colors-test
    'frontend-tests.tokens.logic.token-actions-test
    'frontend-tests.tokens.logic.token-data-test

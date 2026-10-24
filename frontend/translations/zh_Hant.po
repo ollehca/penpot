@@ -6824,3 +6824,39 @@ msgstr "A4"
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.empty-state.preset.square"
 msgstr "方形"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.name"
+msgstr "表格"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.pasted"
+msgstr "貼上的表格"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.header"
+msgstr "表頭"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.row"
+msgstr "第 %s 列"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.column"
+msgstr "欄"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.created"
+msgstr "已建立表格：%s 列 × %s 欄（第一列為表頭）"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.truncated"
+msgstr "僅匯入前 %s 列和 %s 欄"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.failed"
+msgstr "無法用這些資料建立表格"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.no-file"
+msgstr "請先開啟設計檔案，再匯入表格"

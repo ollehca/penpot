@@ -7427,3 +7427,39 @@ msgstr "A4"
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.empty-state.preset.square"
 msgstr "Quadrat"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.name"
+msgstr "Tabelle"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.pasted"
+msgstr "Eingefügte Tabelle"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.header"
+msgstr "Kopfzeile"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.row"
+msgstr "Zeile %s"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.column"
+msgstr "Spalte"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.created"
+msgstr "Tabelle erstellt: %s Zeilen × %s Spalten (erste Zeile als Kopfzeile)"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.truncated"
+msgstr "Nur die ersten %s Zeilen und %s Spalten wurden importiert"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.failed"
+msgstr "Aus diesen Daten konnte keine Tabelle erstellt werden"
+
+#: src/app/main/data/workspace/table_import.cljs (Kizuku)
+msgid "kizuku.table.no-file"
+msgstr "Öffne zuerst eine Designdatei und importiere dann die Tabelle"

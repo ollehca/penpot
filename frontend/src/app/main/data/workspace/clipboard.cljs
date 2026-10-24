@@ -3,6 +3,9 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-10-25): paste-from-event turns spreadsheet cells /
+;; HTML tables into a table of boards (app.main.data.workspace.table-import).
 
 (ns app.main.data.workspace.clipboard
   (:require
@@ -38,6 +41,7 @@
    [app.main.data.persistence :as-alias dps]
    [app.main.data.workspace.media :as dwm]
    [app.main.data.workspace.selection :as dws]
+   [app.main.data.workspace.table-import :as table-import]
    [app.main.data.workspace.shapes :as dwsh]
    [app.main.data.workspace.texts :as dwtxt]
    [app.main.data.workspace.undo :as dwu]
@@ -321,6 +325,11 @@
 
               (coll? transit-data)
               (rx/of (paste-transit-shapes (assoc transit-data :in-viewport in-viewport?)))
+
+              ;; KIZUKU: cells copied from a spreadsheet (TSV text and/or an
+              ;; HTML <table>) become a real table instead of a text blob.
+              (table-import/table-paste? html-data text-data)
+              (rx/of (table-import/paste-table html-data text-data))
 
               (and (string? html-data) (d/not-empty? html-data))
               (rx/of (paste-html-text html-data text-data))

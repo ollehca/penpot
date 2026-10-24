@@ -3,11 +3,17 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-10-25): the edit link, share button and comments
+;; tab are gated behind flags (:viewer-edit-link, :viewer-share,
+;; :viewer-comments) — all need the cloud backend; the preview opens in its
+;; own desktop window instead.
 
 (ns app.main.ui.viewer.header
   (:require-macros [app.main.style :as stl])
   (:require
    [app.common.data.macros :as dm]
+   [app.config :as cf]
    [app.main.data.modal :as modal]
    [app.main.data.shortcuts :as scd]
    [app.main.data.viewer :as dv]
@@ -187,7 +193,10 @@
        :on-zoom-fit  handle-zoom-fit
        :on-fullscreen toggle-fullscreen}]
 
-     (when (:in-team permissions)
+     ;; KIZUKU: the preview runs in its own window next to the workspace, so
+     ;; "edit" (navigate this window to the workspace) is hidden; share links
+     ;; need the cloud backend. Both stay wire-ready behind flags.
+     (when (and (:in-team permissions) (contains? cf/flags :viewer-edit-link))
        [:span {:on-click go-to-workspace
                :class (stl/css :edit-btn)}
         i/curve])
@@ -198,7 +207,7 @@
              :on-click toggle-fullscreen}
       i/expand]
 
-     (when (:in-team permissions)
+     (when (and (:in-team permissions) (contains? cf/flags :viewer-share))
        [:button {:on-click open-share-dialog
                  :class (stl/css :share-btn)}
         (tr "labels.share")])
@@ -332,8 +341,10 @@
                 :title (tr "viewer.header.interactions-section" (sc/get-tooltip :open-interactions))}
        i/play]
 
-      (when (or (:in-team permissions)
-                (= (:who-comment permissions) "all"))
+      ;; KIZUKU: comments need the cloud backend (create-comment-thread…).
+      (when (and (contains? cf/flags :viewer-comments)
+                 (or (:in-team permissions)
+                     (= (:who-comment permissions) "all")))
         [:button {:on-click navigate
                   :data-value "comments"
                   :class (stl/css-case :mode-zone-btn true

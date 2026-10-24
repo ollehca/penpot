@@ -9,7 +9,8 @@
 ;; Original file from PenPot (https://github.com/penpot/penpot)
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Removed dead-offline header affordances — the viewer Play
-;;   button (viewer routes are unreachable in the packaged app), the comments
+;;   button (restored 2026-10-25: the viewer now opens in its own Electron
+;;   window and the local backend serves get-view-only-bundle), the comments
 ;;   tool button (every comment RPC is unmocked) and the version-history
 ;;   button (history RPCs are unmocked).
 ;; Date: 2026-07-11
@@ -19,6 +20,7 @@
   (:require-macros [app.main.style :as stl])
   (:require
    [app.main.data.modal :as modal]
+   [app.main.data.common :as dcm]
    [app.main.data.shortcuts :as scd]
    [app.main.data.workspace :as dw]
    [app.main.data.workspace.shortcuts :as sc]
@@ -146,7 +148,16 @@
          (fn []
            (st/emit! (modal/show {:type :invite-members
                                   :team team
-                                  :origin :workspace}))))]
+                                  :origin :workspace}))))
+
+        ;; KIZUKU: the viewer (prototype preview) opens in its own desktop
+        ;; window — see src/services/viewer-window.js — now that the local
+        ;; backend serves get-view-only-bundle.
+        nav-to-viewer
+        (mf/use-fn
+         (mf/deps file-id)
+         (fn []
+           (st/emit! (dcm/go-to-viewer :file-id file-id :section :interactions))))]
 
     (mf/with-effect [editing?]
       (when ^boolean editing?
@@ -173,5 +184,10 @@
        [:a {:class (stl/css :viewer-btn)
             :title (tr "workspace.header.share")
             :on-click open-share-dialog}
-        i/share])]))
+        i/share])
+
+     [:a {:class (stl/css :viewer-btn)
+          :title (tr "workspace.header.viewer" (sc/get-tooltip :open-viewer))
+          :on-click nav-to-viewer}
+      i/play]]))
 

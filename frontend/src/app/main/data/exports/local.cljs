@@ -29,7 +29,8 @@
                       (app.main.rasterizer) at the export scale; jpeg and
                       webp are re-encoded through an OffscreenCanvas
     :pdf              printed by the Electron main process
-                      (window.electronAPI.export.svgToPdf)
+                      (window.electronAPI.export.svgToPdf); \"Export boards
+                      as PDF\" sends every board as one page of one PDF
 
   Several exports are zipped client-side (app.util.zip) like the
   exporter's multi-export, and progress is published through the same
@@ -197,14 +198,19 @@
             (.close ^js bitmap)
             (rx/from (.convertToBlob ^js canvas #js {:type mtype :quality 0.92})))))))
 
-(defn- svg->pdf
-  [svg width height]
+(defn- pages->pdf
+  "One PDF from a vector of #js {:svg :width :height} pages, printed by the
+  Electron main process (one page per entry, each sized to its board)."
+  [pages]
   (if-let [api (electron-api)]
-    (->> (rx/from (.svgToPdf ^js (.-export ^js api)
-                             #js {:pages #js [#js {:svg svg :width width :height height}]}))
+    (->> (rx/from (.svgToPdf ^js (.-export ^js api) #js {:pages (into-array pages)}))
          (rx/map (fn [bytes]
                    (js/Blob. #js [bytes] #js {:type "application/pdf"}))))
     (rx/throw (ex-info "PDF export requires the desktop app" {:type :internal}))))
+
+(defn- svg->pdf
+  [svg width height]
+  (pages->pdf [#js {:svg svg :width width :height height}]))
 
 (defn- encode
   "Observable of the finished Blob for an already-rendered SVG."
@@ -338,6 +344,52 @@
                           (rx/map (fn [blob] [(:filename export) blob]))))
                    exports))
        (rx/scan conj [])))
+
+(defn- frame-page
+  "Observable of one PDF page (#js {:svg :width :height}) for a board."
+  [state {:keys [page-id object-id]}]
+  (let [objects (dsh/lookup-page-objects state page-id)
+        object  (get objects object-id)]
+    (if (nil? object)
+      (rx/throw (ex-info "export: board not found" {:type :internal :object-id object-id}))
+      (let [{:keys [width height]} (gsb/get-object-bounds objects object {:ignore-margin? false})]
+        (->> (render-svg objects object-id)
+             (rx/take 1)
+             (rx/map (fn [svg] #js {:svg svg :width width :height height})))))))
+
+(defn request-frames-pdf
+  "\"Export boards as PDF\": every chosen board becomes one page of a single
+  PDF named after the file. Drives the same :export widget state as the
+  zip path, one tick per rendered board."
+  [{:keys [exports]}]
+  (ptk/reify ::request-frames-pdf
+    ptk/WatchEvent
+    (watch [_ state _]
+      (let [id       (uuid/next)
+            total    (count exports)
+            file-name (or (some-> (dsh/lookup-file state) :name) (:name (first exports)))
+            pdf-name (str (sanitize-name file-name) ".pdf")]
+        (swap! st/ongoing-tasks conj :export)
+        (rx/concat
+         (rx/of (initialize-export-status id exports))
+         (->> (apply rx/concat (map #(frame-page state %) exports))
+              (rx/scan conj [])
+              (rx/mapcat
+               (fn [pages]
+                 (if (< (count pages) total)
+                   (rx/of (update-export-progress (count pages)))
+                   (rx/concat
+                    (rx/of (update-export-progress total))
+                    (->> (pages->pdf pages)
+                         (rx/map (fn [blob]
+                                   (dom/trigger-download pdf-name blob)
+                                   (finish-export-status))))
+                    (->> (rx/of (clear-export-state id))
+                         (rx/delay default-timeout))))))
+              (rx/catch (fn [cause]
+                          (rx/of (fail-export-status cause)
+                                 (notify-failure cause))))
+              (rx/finalize #(swap! st/ongoing-tasks disj :export))))))))
 
 (defn request-multiple-export
   "Several exports → one zip, with live progress in the export widget."

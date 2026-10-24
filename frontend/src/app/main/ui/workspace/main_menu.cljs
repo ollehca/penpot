@@ -28,8 +28,11 @@
   (:require-macros [app.main.style :as stl])
   (:require
    [app.config :as cf]
+   [app.common.files.helpers :as cfh]
+   [app.common.uuid :as uuid]
    [app.main.data.common :as dcm]
    [app.main.data.event :as ev]
+   [app.main.data.exports.assets :as de]
    [app.main.data.modal :as modal]
    [app.main.data.profile :as du]
    [app.main.data.shortcuts :as scd]
@@ -37,6 +40,7 @@
    [app.main.data.workspace.libraries :as dwl]
    [app.main.data.workspace.shortcuts :as sc]
    [app.main.data.workspace.undo :as dwu]
+   [app.main.refs :as refs]
    [app.main.store :as st]
    [app.main.ui.components.dropdown-menu :refer [dropdown-menu* dropdown-menu-item*]]
    [app.main.ui.context :as ctx]
@@ -427,6 +431,39 @@
         perms        (mf/use-ctx ctx/permissions)
         can-edit     (:can-edit perms)
 
+        ;; KIZUKU: export items restored on top of the offline exporter
+        ;; (app.main.data.exports.local) — the boards of the current page
+        ;; feed "Export boards as PDF".
+        objects      (mf/deref refs/workspace-page-objects)
+        frames       (mf/with-memo [objects]
+                       (->> (cfh/get-immediate-children objects uuid/zero)
+                            (filter cfh/frame-shape?)
+                            (remove :hidden)
+                            (vec)))
+
+        on-export-shapes
+        (mf/use-fn #(st/emit! (de/show-workspace-export-dialog {:origin "workspace:menu"})))
+
+        on-export-shapes-key-down
+        (mf/use-fn
+         (mf/deps on-export-shapes)
+         (fn [event]
+           (when (kbd/enter? event)
+             (on-export-shapes event))))
+
+        on-export-frames
+        (mf/use-fn
+         (mf/deps frames)
+         (fn [_]
+           (st/emit! (de/show-workspace-export-frames-dialog (reverse frames)))))
+
+        on-export-frames-key-down
+        (mf/use-fn
+         (mf/deps on-export-frames)
+         (fn [event]
+           (when (kbd/enter? event)
+             (on-export-frames event))))
+
         on-remove-shared
         (mf/use-fn
          (mf/deps file-id)
@@ -482,7 +519,26 @@
                                   :on-key-down on-add-shared-key-down
                                   :id          "file-menu-add-shared"}
           [:span {:class (stl/css :item-name)}
-           (tr "dashboard.add-shared")]]))]))
+           (tr "dashboard.add-shared")]]))
+
+     [:div {:class (stl/css :separator)}]
+
+     [:> dropdown-menu-item* {:class (stl/css :submenu-item)
+                              :on-click    on-export-shapes
+                              :on-key-down on-export-shapes-key-down
+                              :id          "file-menu-export-shapes"}
+      [:span {:class (stl/css :item-name)} (tr "dashboard.export-shapes")]
+      [:span  {:class (stl/css :shortcut)}
+       (for [sc (scd/split-sc (sc/get-tooltip :export-shapes))]
+         [:span {:class (stl/css :shortcut-key) :key sc} sc])]]
+
+     (when (seq frames)
+       [:> dropdown-menu-item* {:class (stl/css :submenu-item)
+                                :on-click    on-export-frames
+                                :on-key-down on-export-frames-key-down
+                                :id          "file-menu-export-frames"}
+        [:span {:class (stl/css :item-name)}
+         (tr "dashboard.export-frames")]])]))
 
 (mf/defc menu
   {::mf/props :obj}

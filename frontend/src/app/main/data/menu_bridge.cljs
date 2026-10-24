@@ -28,10 +28,15 @@
   (current route + workspace layout flags) so the native menu can enable
   workspace-only items and tick the checkbox toggles."
   (:require
+   [app.common.files.helpers :as cfh]
    [app.common.logging :as log]
+   [app.common.uuid :as uuid]
+   [app.main.data.exports.assets :as de]
+   [app.main.data.helpers :as dsh]
    [app.main.data.profile :as du]
    [app.main.data.workspace :as dw]
    [app.main.data.workspace.ai-chat :as ai-chat]
+   [app.main.data.workspace.table-import :as table-import]
    [app.main.store :as st]))
 
 (log/set-level! :warn)
@@ -42,9 +47,20 @@
     (some-> (unchecked-get js/window "electronAPI")
             (unchecked-get "menu"))))
 
+(defn- root-frames
+  "The boards of the current page, top layer first."
+  []
+  (let [objects (dsh/lookup-page-objects @st/state)]
+    (->> (cfh/get-immediate-children objects uuid/zero)
+         (filter cfh/frame-shape?)
+         (remove :hidden)
+         (reverse)
+         (vec))))
+
 (def ^:private extra-commands
   "Menu-only actions that have no keyboard shortcut of their own."
-  {:toggle-ai-chat         #(st/emit! (ai-chat/toggle-panel))
+  {:export-frames-pdf      #(st/emit! (de/show-workspace-export-frames-dialog (root-frames)))
+   :toggle-ai-chat         #(st/emit! (ai-chat/toggle-panel))
    :scale-text             #(st/emit! (dw/toggle-layout-flag :scale-text))
    :display-artboard-names #(st/emit! (dw/toggle-layout-flag :display-artboard-names))})
 
@@ -94,6 +110,8 @@
   ;; default) — re-fetch the profile so set-profile re-applies the locale.
   (when-let [api (i18n-api)]
     (.onLocaleChange ^js api (fn [_] (st/emit! (du/refresh-profile)))))
+  ;; Tables pushed by the shell (File → Import table from CSV, dropped files).
+  (table-import/init!)
   (when-let [api (menu-api)]
     (.onCommand ^js api (fn [command] (dispatch! command)))
     (.setContext ^js api (context-snapshot @st/state))
