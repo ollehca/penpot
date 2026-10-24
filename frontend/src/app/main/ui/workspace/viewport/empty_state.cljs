@@ -29,6 +29,7 @@
 (ns app.main.ui.workspace.viewport.empty-state
   (:require-macros [app.main.style :as stl])
   (:require
+   [app.common.data.macros :as dm]
    [app.common.uuid :as uuid]
    [app.main.data.workspace.shapes :as dwsh]
    [app.main.store :as st]
@@ -74,7 +75,9 @@
                (nil? drawing-obj)
                (not= :comments drawing-tool))
       [:div {:class (stl/css :empty-state)}
-       [:div {:class (stl/css :card)}
+       ;; kizuku-panel-fade-in is the shared entrance animation from
+       ;; motion-tokens.scss (a global class, not a module one).
+       [:div {:class (dm/str (stl/css :card) " kizuku-panel-fade-in")}
         [:div {:class (stl/css :hint)}
          (str (tr "kizuku.empty-state.press") " ")
          [:kbd {:class (stl/css :kbd)} "B"]

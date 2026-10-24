@@ -28,10 +28,17 @@
   box-shadow: 0 4px 12px rgb(0 0 0 / 40%);
   transition:
     background-color var(--motion-duration-fast) var(--motion-ease-standard),
-    transform var(--motion-duration-fast) var(--motion-ease-standard);
+    transform var(--motion-duration-fast) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
 
   &:hover {
     background-color: var(--button-primary-background-color-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgb(0 0 0 / 45%);
+  }
+
+  &:active {
+    transform: scale(0.96);
   }
 
   &:focus-visible {
@@ -94,8 +101,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .panel-fade-in {
+  .panel-fade-in,
+  .provider-menu,
+  .message-row {
     animation: none;
+  }
+
+  .fab:hover,
+  .fab:active {
+    transform: none;
   }
 }
 
@@ -159,6 +173,7 @@
   border: $s-1 solid var(--panel-border-color);
   border-radius: $br-8;
   box-shadow: 0 8px 20px rgb(0 0 0 / 35%);
+  animation: panel-fade-in var(--motion-duration-fast) var(--motion-ease-emphasized);
 }
 
 .provider-menu-item {
@@ -171,6 +186,8 @@
   font-size: $fs-12;
   color: var(--menu-foreground-color);
   cursor: pointer;
+
+  transition: background-color var(--motion-duration-fast) var(--motion-ease-standard);
 
   &:hover {
     background-color: var(--menu-background-color-hover);
@@ -202,6 +219,9 @@
   padding: $s-4 $s-8;
   border-radius: $br-6;
   cursor: pointer;
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-ease-standard),
+    color var(--motion-duration-fast) var(--motion-ease-standard);
 
   &:hover {
     background-color: var(--color-background-quaternary);
@@ -262,6 +282,18 @@
 
 .message-row {
   display: flex;
+  animation: message-in var(--motion-duration-base) var(--motion-ease-emphasized);
+}
+
+@keyframes message-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .message-row-user {
@@ -290,6 +322,81 @@
 .message-bubble-assistant {
   background-color: var(--color-background-tertiary);
   color: var(--color-foreground-primary);
+}
+
+// Assistant replies render a Markdown subset (ai_markdown.cljs): normal
+// white-space, with compact paragraph/list/code rhythm inside the bubble.
+.message-bubble-markdown {
+  white-space: normal;
+
+  p,
+  ul,
+  ol,
+  pre,
+  h4 {
+    margin: 0 0 $s-8;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  h4 {
+    font-size: $fs-12;
+    font-weight: $fw700;
+  }
+
+  // PenPot's reset strips list markers and bold weight — restore both.
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  ul,
+  ol {
+    padding-left: $s-16;
+  }
+
+  li {
+    margin: $s-2 0;
+    display: list-item;
+  }
+
+  strong {
+    font-weight: $fw700;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  li::marker {
+    color: var(--color-foreground-secondary);
+  }
+
+  code {
+    font-family: monospace;
+    font-size: $fs-11;
+    padding: 0 $s-4;
+    border-radius: $br-4;
+    background-color: var(--color-background-quaternary);
+  }
+
+  pre {
+    padding: $s-8;
+    border-radius: $br-6;
+    background-color: var(--color-background-quaternary);
+    overflow-x: auto;
+    white-space: pre;
+
+    code {
+      padding: 0;
+      background: none;
+    }
+  }
 }
 
 .message-bubble-error {
@@ -375,9 +482,14 @@
     background-color: var(--button-primary-background-color-hover);
   }
 
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-ease-standard),
+    opacity var(--motion-duration-fast) var(--motion-ease-standard);
+
+  // Keep the label readable when disabled: the disabled token pair blends
+  // text into background in the dark theme, so dim the whole button instead.
   &:disabled {
-    background-color: var(--button-disabled-background-color-rest);
-    color: var(--button-disabled-foreground-color-rest);
+    opacity: 0.45;
     cursor: default;
   }
 

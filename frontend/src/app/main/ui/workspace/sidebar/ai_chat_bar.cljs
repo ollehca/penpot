@@ -31,6 +31,7 @@
    [app.main.data.workspace.ai-chat :as ai-chat]
    [app.main.data.workspace.ai-tools :as ai-tools]
    [app.main.store :as st]
+   [app.main.ui.workspace.sidebar.ai-markdown :refer [markdown*]]
    [app.util.dom :as dom]
    [app.util.i18n :refer [tr]]
    [app.util.keyboard :as kbd]
@@ -111,8 +112,11 @@
   (case (:role entry)
     :user [:div {:class (stl/css :message-row :message-row-user)}
            [:div {:class (stl/css :message-bubble :message-bubble-user)} (:text entry)]]
+    ;; Assistant replies are Markdown (lists, bold, code) — rendered as
+    ;; hiccup, never as raw HTML, so the model can't inject markup.
     :assistant [:div {:class (stl/css :message-row :message-row-assistant)}
-                [:div {:class (stl/css :message-bubble :message-bubble-assistant)} (:text entry)]]
+                [:> markdown* {:text (:text entry)
+                               :class (stl/css :message-bubble :message-bubble-assistant :message-bubble-markdown)}]]
     :error [:div {:class (stl/css :message-row :message-row-assistant)}
             [:div {:class (stl/css :message-bubble :message-bubble-error) :role "alert"}
              (:text entry)]]
