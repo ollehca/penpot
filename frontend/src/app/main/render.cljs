@@ -13,6 +13,9 @@
 ;;   rasterized by canvas drawImage, so file thumbnails lost page
 ;;   backgrounds (incl. Kata placeholder colours for empty files).
 ;; Date: 2026-07-12
+;; Modifications (2): populate-images-cache made public for the offline
+;;   exporter (app.main.data.exports.local).
+;; Date: 2026-10-24
 ;; ============================================================================
 
 (ns app.main.render
@@ -604,7 +607,9 @@
     :else
     []))
 
-(defn- populate-images-cache
+;; KIZUKU: public (was defn-) — app.main.data.exports.local warms the same
+;; cache before its static export render.
+(defn populate-images-cache
   [objects]
   (let [images (->> objects
                     (vals)

@@ -3,9 +3,22 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: request-simple-export / request-multiple-export now route
+;;   to app.main.data.exports.local inside the desktop app — the cloud
+;;   exporter service behind the upstream (-remote) implementations does not
+;;   exist there, so every export silently 404'd. The upstream code is kept
+;;   verbatim under the -remote names for the plain web build.
+;; Date: 2026-10-24
+;; ============================================================================
 
 (ns app.main.data.exports.assets
   (:require
+   [app.main.data.exports.local :as local]
    [app.common.time :as ct]
    [app.common.uuid :as uuid]
    [app.main.data.event :as ev]
@@ -150,7 +163,7 @@
              (rx/delay 500)
              (rx/map #(dom/trigger-download filename %)))))))
 
-(defn request-simple-export
+(defn- request-simple-export-remote
   [{:keys [export]}]
   (ptk/reify ::request-simple-export
     ptk/UpdateEvent
@@ -185,7 +198,7 @@
                            (rx/throw cause))))))))))
 
 
-(defn request-multiple-export
+(defn- request-multiple-export-remote
   [{:keys [exports cmd]
     :or {cmd :export-shapes}
     :as params}]
@@ -246,6 +259,21 @@
               (rx/delay default-timeout)
               (rx/map #(clear-export-state @resource-id))
               (rx/take-until (rx/delay 6000 stopper))))))))
+
+;; KIZUKU: inside the desktop app there is no exporter service, so shape
+;; exports are produced locally (see app.main.data.exports.local). The
+;; -remote variants above are the untouched upstream implementations.
+(defn request-simple-export
+  [params]
+  (if (local/enabled?)
+    (local/request-simple-export params)
+    (request-simple-export-remote params)))
+
+(defn request-multiple-export
+  [{:keys [cmd] :or {cmd :export-shapes} :as params}]
+  (if (and (local/enabled?) (= cmd :export-shapes))
+    (local/request-multiple-export params)
+    (request-multiple-export-remote params)))
 
 (defn request-export
   [{:keys [exports] :as params}]
