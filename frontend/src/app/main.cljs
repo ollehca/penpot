@@ -3,6 +3,9 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-10-24): initialise app.main.data.menu-bridge at
+;; startup so the native Electron menu can drive the app.
 
 (ns app.main
   (:require
@@ -12,6 +15,7 @@
    [app.config :as cf]
    [app.main.data.auth :as da]
    [app.main.data.event :as ev]
+   [app.main.data.menu-bridge :as menu-bridge]
    [app.main.data.profile :as dp]
    [app.main.data.websocket :as ws]
    [app.main.errors]
@@ -94,6 +98,8 @@
   (i18n/init! cf/translations)
   (cur/init-styles)
   (thr/init!)
+  ;; KIZUKU: native Electron menu ↔ app actions (no-op in the browser).
+  (menu-bridge/init!)
   (init-ui)
   (st/emit! (plugins/initialize)
             (initialize)))
