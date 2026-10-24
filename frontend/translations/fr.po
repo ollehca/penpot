@@ -7998,3 +7998,23 @@ msgstr "Impossible de créer un tableau à partir de ces données"
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.no-file"
 msgstr "Ouvrez d’abord un fichier de design, puis importez le tableau"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted"
+msgstr "%s calques collés depuis Figma"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted-missing-images"
+msgstr "%s calques collés depuis Figma · %s remplissages d'image remplacés par des espaces réservés (le presse-papiers de Figma ne contient pas les images ; importez le fichier .fig pour les conserver)"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.nothing"
+msgstr "Rien à coller : aucun calque dans le presse-papiers Figma"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-failed"
+msgstr "Impossible de coller depuis Figma. Copiez à nouveau les calques ou importez le fichier .fig."
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-unavailable"
+msgstr "Coller depuis Figma nécessite l'application de bureau Kizuku"

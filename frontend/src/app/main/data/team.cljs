@@ -124,7 +124,6 @@
         ;; KIZUKU: If single-user mode + no team + valid team-id, create synthetic team
         (if (and kizuku-mode? (not team) (some? team-id))
           (do
-            (.log js/console "[KIZUKU] Single-user mode: creating synthetic team for ID:" (str team-id))
             (let [default-permissions {:can-edit true
                                       :can-read true
                                       :is-owner true
@@ -135,10 +134,13 @@
                                  :permissions default-permissions
                                  :is-owner true}]
               (rx/of
-               #(do (.log js/console "[KIZUKU] Adding synthetic team to state.teams")
-                    (assoc-in % [:teams team-id] synthetic-team))
-               #(do (.log js/console "[KIZUKU] Setting permissions")
-                    (assoc % :permissions default-permissions)))))
+               #(assoc-in % [:teams team-id] synthetic-team)
+               #(assoc % :permissions default-permissions)
+               ;; KIZUKU (2026-10-25): the enabled feature set must exist
+               ;; even without a backend team — copy/paste validates the
+               ;; clipboard payload against it (nil made every paste fail
+               ;; with "invalid paste data").
+               (features/initialize #{}))))
           
           ;; Original PenPot logic
           (if (not team)

@@ -41,6 +41,7 @@
    [app.main.data.persistence :as-alias dps]
    [app.main.data.workspace.media :as dwm]
    [app.main.data.workspace.selection :as dws]
+   [app.main.data.workspace.figma-paste :as figma-paste]
    [app.main.data.workspace.table-import :as table-import]
    [app.main.data.workspace.shapes :as dwsh]
    [app.main.data.workspace.texts :as dwtxt]
@@ -325,6 +326,12 @@
 
               (coll? transit-data)
               (rx/of (paste-transit-shapes (assoc transit-data :in-viewport in-viewport?)))
+
+              ;; KIZUKU: layers copied in Figma — its clipboard HTML carries
+              ;; the design as a fig-kiwi buffer the desktop app converts.
+              (figma-paste/figma-html? html-data)
+              (figma-paste/paste-figma html-data (set (get state :features))
+                                       in-viewport? paste-transit-shapes)
 
               ;; KIZUKU: cells copied from a spreadsheet (TSV text and/or an
               ;; HTML <table>) become a real table instead of a text blob.

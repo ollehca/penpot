@@ -7463,3 +7463,23 @@ msgstr "Aus diesen Daten konnte keine Tabelle erstellt werden"
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.no-file"
 msgstr "Öffne zuerst eine Designdatei und importiere dann die Tabelle"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted"
+msgstr "%s Ebenen aus Figma eingefügt"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted-missing-images"
+msgstr "%s Ebenen aus Figma eingefügt · %s Bildfüllungen durch Platzhalter ersetzt (Figmas Zwischenablage enthält keine Bilddaten – importiere die .fig-Datei, um Bilder zu behalten)"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.nothing"
+msgstr "Nichts einzufügen: keine Ebenen in der Figma-Zwischenablage"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-failed"
+msgstr "Einfügen aus Figma fehlgeschlagen. Kopiere die Ebenen erneut oder importiere die .fig-Datei."
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-unavailable"
+msgstr "Einfügen aus Figma erfordert die Kizuku-Desktop-App"

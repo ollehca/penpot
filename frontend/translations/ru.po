@@ -6251,3 +6251,23 @@ msgstr "Не удалось создать таблицу из этих данн
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.no-file"
 msgstr "Сначала откройте файл дизайна, затем импортируйте таблицу"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted"
+msgstr "Вставлено слоёв из Figma: %s"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted-missing-images"
+msgstr "Вставлено слоёв из Figma: %s · заливок-изображений заменено заглушками: %s (буфер обмена Figma не содержит изображений — импортируйте .fig, чтобы сохранить их)"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.nothing"
+msgstr "Нечего вставлять: в буфере обмена Figma нет слоёв"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-failed"
+msgstr "Не удалось вставить из Figma. Скопируйте слои ещё раз или импортируйте файл .fig."
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-unavailable"
+msgstr "Для вставки из Figma нужно настольное приложение Kizuku"

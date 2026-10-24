@@ -1159,3 +1159,23 @@ msgstr "このデータから表を作成できませんでした"
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.no-file"
 msgstr "先にデザインファイルを開いてから表を読み込んでください"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted"
+msgstr "Figma から %s 個のレイヤーを貼り付けました"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted-missing-images"
+msgstr "Figma から %s 個のレイヤーを貼り付けました · %s 個の画像塗りをプレースホルダーに置き換えました（Figma のクリップボードには画像データが含まれないため、画像を保持するには .fig を読み込んでください）"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.nothing"
+msgstr "貼り付けるものがありません：Figma のクリップボードにレイヤーがありません"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-failed"
+msgstr "Figma から貼り付けできませんでした。レイヤーをもう一度コピーするか、.fig ファイルを読み込んでください。"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-unavailable"
+msgstr "Figma からの貼り付けには Kizuku デスクトップアプリが必要です"

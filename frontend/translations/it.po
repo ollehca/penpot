@@ -7992,3 +7992,23 @@ msgstr "Impossibile creare una tabella da questi dati"
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.no-file"
 msgstr "Apri prima un file di design, poi importa la tabella"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted"
+msgstr "Incollati %s livelli da Figma"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted-missing-images"
+msgstr "Incollati %s livelli da Figma · %s riempimenti immagine sostituiti con segnaposto (gli appunti di Figma non contengono le immagini: importa il file .fig per mantenerle)"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.nothing"
+msgstr "Niente da incollare: nessun livello negli appunti di Figma"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-failed"
+msgstr "Impossibile incollare da Figma. Copia di nuovo i livelli oppure importa il file .fig."
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-unavailable"
+msgstr "Incollare da Figma richiede l'app desktop di Kizuku"

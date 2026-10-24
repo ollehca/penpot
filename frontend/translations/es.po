@@ -8017,3 +8017,23 @@ msgstr "No se pudo crear una tabla con esos datos"
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.no-file"
 msgstr "Abre primero un archivo de diseño y luego importa la tabla"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted"
+msgstr "Se pegaron %s capas desde Figma"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted-missing-images"
+msgstr "Se pegaron %s capas desde Figma · %s rellenos de imagen sustituidos por marcadores (el portapapeles de Figma no incluye las imágenes; importa el .fig para conservarlas)"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.nothing"
+msgstr "Nada que pegar: el portapapeles de Figma no contiene capas"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-failed"
+msgstr "No se pudo pegar desde Figma. Copia las capas de nuevo o importa el archivo .fig."
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-unavailable"
+msgstr "Pegar desde Figma requiere la aplicación de escritorio de Kizuku"

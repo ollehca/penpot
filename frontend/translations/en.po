@@ -8133,3 +8133,23 @@ msgstr "Couldn't build a table from that data"
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.no-file"
 msgstr "Open a design file first, then import the table"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted"
+msgstr "Pasted %s layers from Figma"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted-missing-images"
+msgstr "Pasted %s layers from Figma · %s image fills replaced with placeholders (Figma's clipboard doesn't carry image data — import the .fig to keep images)"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.nothing"
+msgstr "Nothing to paste: no layers in the Figma clipboard"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-failed"
+msgstr "Couldn't paste from Figma. Copy the layers again, or import the .fig file instead."
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-unavailable"
+msgstr "Paste from Figma needs the Kizuku desktop app"

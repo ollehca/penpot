@@ -5559,3 +5559,23 @@ msgstr "Não foi possível criar uma tabela com esses dados"
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.no-file"
 msgstr "Abra um arquivo de design primeiro e depois importe a tabela"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted"
+msgstr "%s camadas coladas do Figma"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted-missing-images"
+msgstr "%s camadas coladas do Figma · %s preenchimentos de imagem substituídos por marcadores (a área de transferência do Figma não inclui as imagens; importe o .fig para mantê-las)"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.nothing"
+msgstr "Nada para colar: nenhuma camada na área de transferência do Figma"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-failed"
+msgstr "Não foi possível colar do Figma. Copie as camadas novamente ou importe o arquivo .fig."
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-unavailable"
+msgstr "Colar do Figma requer o aplicativo Kizuku para desktop"

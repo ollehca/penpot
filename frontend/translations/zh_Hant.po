@@ -6860,3 +6860,23 @@ msgstr "無法用這些資料建立表格"
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.no-file"
 msgstr "請先開啟設計檔案，再匯入表格"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted"
+msgstr "已從 Figma 貼上 %s 個圖層"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.pasted-missing-images"
+msgstr "已從 Figma 貼上 %s 個圖層 · %s 個圖片填色已以預留位置取代（Figma 剪貼簿不含圖片資料，匯入 .fig 檔案可保留圖片）"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.nothing"
+msgstr "沒有可貼上的內容：Figma 剪貼簿中沒有圖層"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-failed"
+msgstr "無法從 Figma 貼上。請重新複製圖層，或改為匯入 .fig 檔案。"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.figma.paste-unavailable"
+msgstr "從 Figma 貼上需要 Kizuku 桌面應用程式"

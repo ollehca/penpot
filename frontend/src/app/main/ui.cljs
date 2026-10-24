@@ -155,15 +155,7 @@
                                          :is-owner true
                                          :is-admin true)
                                permissions)
-        should-render? (or kizuku-auth? team-matches?)
-        _debug (do
-                 (.log js/console "[KIZUKU-UI] team-container* render check:")
-                 (.log js/console "  team-id:" (str team-id))
-                 (.log js/console "  team:" (js/JSON.stringify (clj->js team)))
-                 (.log js/console "  kizuku-auth?:" kizuku-auth?)
-                 (.log js/console "  team-matches?:" team-matches?)
-                 (.log js/console "  should-render?:" should-render?)
-                 (.log js/console "  effective-permissions:" (js/JSON.stringify (clj->js effective-permissions))))]
+        should-render? (or kizuku-auth? team-matches?)]
     (when should-render?
       [:> (mf/provider ctx/current-team-id) {:value team-id}
        [:> (mf/provider ctx/permissions) {:value effective-permissions}
