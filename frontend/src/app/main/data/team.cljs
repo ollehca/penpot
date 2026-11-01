@@ -128,10 +128,18 @@
                                       :can-read true
                                       :is-owner true
                                       :is-admin true}
+                  ;; KIZUKU (2026-11-02): features a backend team would
+                  ;; carry. "variants/v1" is not a default feature upstream
+                  ;; (it needs a file migration), so it has to be granted at
+                  ;; team level for variants to be enabled; the shell injects
+                  ;; the matching enable-feature-variants flag and the mock
+                  ;; backend stamps every file with the marker.
+                  team-features #{"variants/v1"}
                   synthetic-team {:id team-id
                                  :name "Kizuku Workspace"
                                  :is-default true
                                  :permissions default-permissions
+                                 :features team-features
                                  :is-owner true}]
               (rx/of
                #(assoc-in % [:teams team-id] synthetic-team)
@@ -140,7 +148,7 @@
                ;; even without a backend team — copy/paste validates the
                ;; clipboard payload against it (nil made every paste fail
                ;; with "invalid paste data").
-               (features/initialize #{}))))
+               (features/initialize team-features))))
           
           ;; Original PenPot logic
           (if (not team)
