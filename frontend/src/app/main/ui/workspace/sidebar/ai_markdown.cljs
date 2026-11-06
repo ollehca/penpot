@@ -150,7 +150,9 @@
     (fn [idx {:keys [depth text]}]
       (mf/html
        [:li {:key idx
-             :style (when (pos? depth) {:margin-left (str (* 12 depth) "px")})}
+             ;; JS object (camelCase): a runtime-built map is not converted
+             ;; for React, so nested lists never indented.
+             :style (when (pos? depth) #js {:marginLeft (str (* 12 depth) "px")})}
         (render-inline (parse-inline text))]))
     items)))
 

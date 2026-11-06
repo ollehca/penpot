@@ -499,10 +499,37 @@
   }
 }
 
-.resize-handle {
+// Resize zones on the two free edges. The panel is pinned to its
+// bottom-right corner next to the FAB, so only the top and left edges can
+// move; the old grip sat on the pinned corner and could not do anything.
+// The zones are invisible: the cursor change is the affordance, plus a
+// small corner mark.
+.resize-left,
+.resize-top,
+.resize-corner {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  z-index: 1;
+}
+
+.resize-left {
+  top: $s-16;
+  bottom: $s-16;
+  left: 0;
+  width: $s-8;
+  cursor: ew-resize;
+}
+
+.resize-top {
+  top: 0;
+  right: $s-16;
+  left: $s-16;
+  height: $s-8;
+  cursor: ns-resize;
+}
+
+.resize-corner {
+  top: 0;
+  left: 0;
   width: $s-16;
   height: $s-16;
   cursor: nwse-resize;
@@ -510,12 +537,12 @@
   &::after {
     content: "";
     position: absolute;
-    right: 3px;
-    bottom: 3px;
+    top: 3px;
+    left: 3px;
     width: $s-8;
     height: $s-8;
-    border-right: $s-2 solid var(--color-foreground-secondary);
-    border-bottom: $s-2 solid var(--color-foreground-secondary);
+    border-top: $s-2 solid var(--color-foreground-secondary);
+    border-left: $s-2 solid var(--color-foreground-secondary);
     opacity: 0.5;
   }
 }

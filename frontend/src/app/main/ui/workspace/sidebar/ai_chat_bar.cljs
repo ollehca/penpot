@@ -58,6 +58,27 @@
 
 (def ^:private min-panel-size {:width 300 :height 280})
 (def ^:private max-panel-width 640)
+(def ^:private panel-size-storage-key "kizuku.ai.panel-size")
+
+(defn- read-saved-panel-size
+  "The {:width :height} the user last dragged the panel to, or nil. Kept in
+  localStorage so the panel keeps its size across files and restarts."
+  []
+  (try
+    (when-let [raw (.getItem js/localStorage panel-size-storage-key)]
+      (let [parsed (js/JSON.parse raw)
+            width  (unchecked-get parsed "width")
+            height (unchecked-get parsed "height")]
+        (when (and (number? width) (number? height))
+          {:width width :height height})))
+    (catch :default _ nil)))
+
+(defn- save-panel-size!
+  [{:keys [width height]}]
+  (try
+    (.setItem js/localStorage panel-size-storage-key
+              (js/JSON.stringify #js {:width width :height height}))
+    (catch :default _ nil)))
 
 (defn- max-panel-height
   "90% of the real app window height — mirrors .panel's own CSS max-height
@@ -190,7 +211,7 @@
         ;; Dragging the resize handle sets an explicit {:width :height}
         ;; here, which from then on overrides the auto behavior — standard
         ;; "auto until the user takes control" sizing.
-        panel-size   (mf/use-state nil)
+        panel-size   (mf/use-state (read-saved-panel-size))
         resizing?    (mf/use-ref false)
         resize-start (mf/use-ref nil)
         fab-ref      (mf/use-ref nil)
@@ -400,23 +421,33 @@
                @model-menu-open? (reset! model-menu-open? false)
                :else (on-close event)))))
 
+        ;; The panel is pinned to its bottom-right corner (next to the FAB),
+        ;; so only the top and left edges can move: the drag zones sit on
+        ;; those edges and their corner, and pulling them outward (up/left)
+        ;; grows the panel. data-axes says which dimensions a zone drives.
+        ;; The pointer is captured so the drag keeps reporting even when it
+        ;; crosses the canvas, which has pointer handlers of its own.
         on-resize-pointer-down
         (mf/use-fn
          (mf/deps @panel-size)
          (fn [event]
            (dom/prevent-default event)
+           (dom/stop-propagation event)
+           (dom/capture-pointer event)
            (mf/set-ref-val! resizing? true)
            ;; In auto mode (panel-size nil, size driven purely by CSS) there's
            ;; no stored {:width :height} to drag from — read the panel's real
            ;; rendered box instead, so the drag starts from wherever it
            ;; actually is on screen rather than snapping to some default.
-           (let [{:keys [width height]}
+           (let [axes (or (dom/get-data (dom/get-current-target event) "axes") "xy")
+                 {:keys [width height]}
                  (or @panel-size
                      (when-let [node (mf/ref-val panel-ref)]
                        (let [rect (.getBoundingClientRect ^js node)]
                          {:width (.-width rect) :height (.-height rect)})))]
              (mf/set-ref-val! resize-start
                                {:x (.-clientX ^js event) :y (.-clientY ^js event)
+                                :axes axes
                                 :width width :height height}))))]
 
     ;; Load persisted history once per file, on mount / file switch.
@@ -482,13 +513,19 @@
     (mf/with-effect []
       (let [on-move (fn [event]
                       (when (mf/ref-val resizing?)
-                        (let [{:keys [x y width height]} (mf/ref-val resize-start)
-                              dx (- (.-clientX ^js event) x)
-                              dy (- (.-clientY ^js event) y)]
+                        (let [{:keys [x y axes width height]} (mf/ref-val resize-start)
+                              ;; pointer moving left/up pulls the free edges
+                              ;; outward, so the deltas are inverted
+                              dx (if (str/includes? axes "x") (- x (.-clientX ^js event)) 0)
+                              dy (if (str/includes? axes "y") (- y (.-clientY ^js event)) 0)]
                           (reset! panel-size
                                   {:width (clamp (+ width dx) (:width min-panel-size) max-panel-width)
                                    :height (clamp (+ height dy) (:height min-panel-size) (max-panel-height))}))))
-            on-up (fn [_] (mf/set-ref-val! resizing? false))]
+            on-up (fn [_]
+                    (when (mf/ref-val resizing?)
+                      (mf/set-ref-val! resizing? false)
+                      (when-let [size @panel-size]
+                        (save-panel-size! size))))]
         (.addEventListener js/window "pointermove" on-move)
         (.addEventListener js/window "pointerup" on-up)
         (fn []
@@ -506,9 +543,12 @@
          ;; nil panel-size (not yet manually resized) means no inline
          ;; width/height at all — the panel's own CSS (grid-template-rows:
          ;; auto 1fr auto, max-height: 90vh) sizes it to its content.
-         :style (when @panel-size
-                  {:width (str (:width @panel-size) "px")
-                   :height (str (:height @panel-size) "px")})}
+         ;; A JS object, not a map: rumext only converts style maps it can
+         ;; see at compile time, and a map built at runtime reaches React
+         ;; as an opaque object that sets nothing — which is why the drag
+         ;; changed the state but never the panel.
+         :style (when-let [{:keys [width height]} @panel-size]
+                  #js {:width (str width "px") :height (str height "px")})}
 
         [:div {:class (stl/css :panel-header)}
          [:span {:class (stl/css :panel-title)} (tr "kizuku.ai.title")]
@@ -590,7 +630,16 @@
            :aria-label (if sending? (tr "kizuku.ai.sending-aria") (tr "kizuku.ai.send-aria"))}
           (if sending? (tr "kizuku.ai.sending") (tr "kizuku.ai.send"))]]
 
-        [:div {:class (stl/css :resize-handle)
+        [:div {:class (stl/css :resize-left)
+               :data-axes "x"
+               :on-pointer-down on-resize-pointer-down
+               :aria-hidden true}]
+        [:div {:class (stl/css :resize-top)
+               :data-axes "y"
+               :on-pointer-down on-resize-pointer-down
+               :aria-hidden true}]
+        [:div {:class (stl/css :resize-corner)
+               :data-axes "xy"
                :on-pointer-down on-resize-pointer-down
                :aria-hidden true}]])
 
