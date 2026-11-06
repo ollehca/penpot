@@ -8014,6 +8014,10 @@ msgstr "Ask the AI to create, recolour, or delete shapes on this page."
 msgid "kizuku.ai.error.no-key"
 msgstr "No API key stored for %s — add one in Settings to use this provider."
 
+#: src/app/main/ui/workspace/sidebar/ai_chat_bar.cljs
+msgid "kizuku.ai.error.generic"
+msgstr "The AI request failed before a reply came back."
+
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.provider-aria"
 msgstr "Active AI provider: %s. Click to change."

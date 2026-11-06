@@ -113,6 +113,17 @@
     (update [_ state]
       (update-in state [:ai-chat :display-log] (fnil conj []) (assoc entry :ts (ct/now))))))
 
+(defn- append-error-entry
+  "Append an :error bubble unless the log already ends with that same
+  error. One failed turn is reported twice — the main process pushes the
+  ai:turn-status error first, then the IPC reply carries the same
+  message — and must show a single bubble."
+  [log message]
+  (let [last-entry (peek log)]
+    (if (and (= :error (:role last-entry)) (= message (:text last-entry)))
+      log
+      (conj log {:role :error :text message :ts (ct/now)}))))
+
 (defn set-status
   "Update the panel's turn-lifecycle status. phase mirrors
   ai-provider-client.js's onStatus pushes: started | tool-executing |
@@ -129,5 +140,5 @@
         :always (assoc-in [:ai-chat :status] phase)
         (= phase "error") (assoc-in [:ai-chat :error] message)
         (not= phase "error") (assoc-in [:ai-chat :error] nil)
-        (= phase "error") (update-in [:ai-chat :display-log] (fnil conj [])
-                                     {:role :error :text message :ts (ct/now)})))))
+        (= phase "error") (update-in [:ai-chat :display-log]
+                                     (fnil append-error-entry []) message)))))

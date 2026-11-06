@@ -318,32 +318,40 @@
                                  :prompt text
                                  :systemPrompt (ai-tools/build-system-prompt)
                                  :history (clj->js provider-history)})
+               ;; The IPC reply is the one signal that always arrives, so
+               ;; it always settles the panel. The real-time ai:turn-status
+               ;; pushes normally get there first ("done" with the reply
+               ;; text, "error" with its bubble); repeating the phase here
+               ;; is harmless, and set-status drops a duplicate error bubble
+               ;; (ai_chat.cljs). What only this reply can report: a failure
+               ;; before the turn's first push (no key, unknown provider, a
+               ;; renderer the main process could no longer reach) and a
+               ;; push that never arrived — both used to leave "Sending…"
+               ;; on screen for good.
                (.then
                 (fn [res]
                   (if (unchecked-get res "success")
                     (let [new-history (js->clj (unchecked-get res "history") :keywordize-keys true)]
+                      (st/emit! (ai-chat/set-status {:phase "done"}))
                       (st/emit! (ai-chat/set-provider-history new-history))
                       (persist-history! new-history))
-                    ;; Do NOT emit set-status here too — ai_tools.cljs's
-                    ;; handle-turn-status already received this same error
-                    ;; via the real-time ai:turn-status push (which fires
-                    ;; synchronously inside runTurn, before this IPC
-                    ;; response resolves) and has already appended the
-                    ;; error bubble. Doing it again here produced two
-                    ;; identical error bubbles for one failure. A failed
-                    ;; turn still needs persisting (the user message +
-                    ;; error bubble ai_tools.cljs just added) — provider-
-                    ;; history is unchanged, the turn never produced a new
-                    ;; one to resume from.
-                    (persist-history! provider-history))))
+                    (do
+                      (st/emit! (ai-chat/set-status
+                                 {:phase "error"
+                                  :message (or (not-empty (unchecked-get res "error"))
+                                               (tr "kizuku.ai.error.generic"))}))
+                      ;; provider-history is unchanged: the turn produced
+                      ;; nothing to resume from.
+                      (persist-history! provider-history)))))
                (.catch
-                (fn [_err]
-                  ;; Same reasoning as above: a request that reaches the
-                  ;; provider and then fails already goes through
-                  ;; ai:turn-status's error phase. This catch only exists
-                  ;; for a failure before any status push could fire (e.g.
-                  ;; the IPC call itself rejecting) — still worth
-                  ;; persisting whatever display-log already has.
+                (fn [err]
+                  ;; The IPC call itself failed (no handler registered, a
+                  ;; payload that could not be cloned): nothing else will
+                  ;; ever unlock the panel.
+                  (st/emit! (ai-chat/set-status
+                             {:phase "error"
+                              :message (or (some-> err .-message not-empty)
+                                           (tr "kizuku.ai.error.generic"))}))
                   (persist-history! provider-history))))))
 
         on-send
