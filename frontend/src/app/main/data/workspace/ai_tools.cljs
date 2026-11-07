@@ -265,7 +265,10 @@
                                extra-attrs)
                   (number? x) (assoc :x x)
                   (number? y) (assoc :y y))]
-    (st/emit! (dwsh/create-and-add-shape type frame-x frame-y attrs))
+    ;; A text arrives with its content, so it never opens the editor: the
+    ;; editor would commit that content again as its own undo entry when
+    ;; it closes at the end of the turn, and one ⌘Z would only pop that.
+    (st/emit! (dwsh/create-and-add-shape type frame-x frame-y attrs {:no-edition? true}))
     #js {:created true
          :id (str id)
          :type (name type)
@@ -713,6 +716,18 @@
    "select_shapes" "Selected shapes"
    "delete_shape" "Deleted shape"})
 
+;; The file the running turn belongs to. A turn outlives a tab switch (one
+;; provider round alone can take a minute) and every tool call runs against
+;; whatever page is current: without this a turn started in one file would
+;; carry on editing the next one, and its reply would be appended to, and
+;; saved with, that file's conversation.
+(defonce ^:private turn-file-id (atom nil))
+
+(defn- turn-file-open?
+  "True while the file the current turn started in is the one on screen."
+  []
+  (= @turn-file-id (:current-file-id @st/state)))
+
 (defn dispatch-tool-call
   "Run one tool call (as pushed by the Electron main process) against the
   real canvas, then report the result back over the per-call reply
@@ -724,11 +739,20 @@
         impl      (get tool-impls tool-name)
         ai-api    ^js (.-ai (electron-api))
         label     (get tool-labels tool-name tool-name)]
-    (if (nil? impl)
+    (cond
+      (nil? impl)
       (do
         (st/emit! (ai-chat/append-display-entry
                     {:role :tool-call :tool-name tool-name :label label :failed? true}))
         (.reportToolCallResult ai-api id #js {:error (str "Unknown AI tool: " tool-name)}))
+
+      ;; The page on screen is another file's: refuse, so the model stops.
+      (not (turn-file-open?))
+      (.reportToolCallResult
+       ai-api id
+       #js {:error "The file this turn started in is no longer open. Stop; do not retry."})
+
+      :else
       (try
         (let [output (impl args)]
           (st/emit! (ai-chat/append-display-entry
@@ -759,14 +783,24 @@
          (nil? (:app.main.data.workspace.texts/resize-text-debounce-props state))
          (nil? (:app.main.data.workspace.texts/update-position-data state)))))
 
+(defonce ^:private commit-pending? (atom false))
+
+(defn turn-commit-pending?
+  "True between a turn's final status push and the commit of its undo
+  entry. The panel must not report the turn settled before then: PenPot's
+  undo ignores an open transaction and pops the previous entry, so a ⌘Z in
+  that window undid the user's last action and left the turn in place."
+  []
+  @commit-pending?)
+
 (defn- commit-turn-transaction!
   "Commit the turn's undo transaction once any text created or edited
-  this turn has been laid out. PenPot measures a text layer after it
-  renders and writes the size and position data back on a debounce,
-  through an undo transaction of its own; committing ours before that
-  lands left a second undo entry behind the turn's, so the first ⌘Z
-  appeared to do nothing."
-  [tx-id]
+  this turn has been laid out, then call on-committed. PenPot measures a
+  text layer after it renders and writes the size and position data back
+  on a debounce, through an undo transaction of its own; committing ours
+  before that lands left a second undo entry behind the turn's, so the
+  first ⌘Z appeared to do nothing."
+  [tx-id on-committed]
   (let [ids   @turn-text-ids
         t0    (js/Date.now)
         done! (fn []
@@ -775,7 +809,10 @@
                 ;; added, so clear it again now that the turn is over
                 (when (seq ids)
                   (st/emit! (dwe/clear-edition-mode)))
-                (st/emit! (dwu/commit-undo-transaction tx-id)))]
+                (st/emit! (dwu/commit-undo-transaction tx-id))
+                (reset! commit-pending? false)
+                (on-committed))]
+    (reset! commit-pending? true)
     (if (empty? ids)
       (done!)
       (letfn [(poll []
@@ -797,6 +834,7 @@
       "started"
       (let [tx-id (js/Symbol)]
         (reset! current-turn-tx tx-id)
+        (reset! turn-file-id (:current-file-id @st/state))
         (reset! turn-text-ids #{})
         (st/emit! (dwu/start-undo-transaction tx-id :timeout turn-undo-timeout-ms))
         (st/emit! (ai-chat/set-status {:phase phase})))
@@ -807,29 +845,40 @@
       "done"
       (let [final-text (unchecked-get status "finalText")
             tool-calls (or (unchecked-get status "toolCalls") 0)
-            truncated? (true? (unchecked-get status "truncated"))]
-        (when-let [tx-id @current-turn-tx]
-          (reset! current-turn-tx nil)
-          (commit-turn-transaction! tx-id))
-        (cond
-          (and (string? final-text) (seq final-text))
-          (st/emit! (ai-chat/append-display-entry {:role :assistant :text final-text}))
+            truncated? (true? (unchecked-get status "truncated"))
+            settle!    #(st/emit! (ai-chat/set-status {:phase phase}))]
+        ;; The reply belongs to the file the turn started in; another
+        ;; file's conversation must not receive it.
+        (when (turn-file-open?)
+          (cond
+            (and (string? final-text) (seq final-text))
+            (st/emit! (ai-chat/append-display-entry {:role :assistant :text final-text}))
 
-          ;; Neither text nor edits: say so, a silent turn reads as a hang.
-          (zero? tool-calls)
-          (st/emit! (ai-chat/append-display-entry
-                     {:role :assistant :text (tr "kizuku.ai.empty-reply")})))
-        (when truncated?
-          (st/emit! (ai-chat/append-display-entry
-                     {:role :error :text (tr "kizuku.ai.truncated")})))
-        (st/emit! (ai-chat/set-status {:phase phase})))
+            ;; Neither text nor edits: say so, a silent turn reads as a hang.
+            (zero? tool-calls)
+            (st/emit! (ai-chat/append-display-entry
+                       {:role :assistant :text (tr "kizuku.ai.empty-reply")})))
+          (when truncated?
+            (st/emit! (ai-chat/append-display-entry
+                       {:role :error :text (tr "kizuku.ai.truncated")}))))
+        ;; Settled only once the turn's undo entry exists.
+        (if-let [tx-id @current-turn-tx]
+          (do (reset! current-turn-tx nil)
+              (commit-turn-transaction! tx-id settle!))
+          (settle!)))
 
       "error"
-      (let [message (unchecked-get status "message")]
-        (when-let [tx-id @current-turn-tx]
-          (reset! current-turn-tx nil)
-          (commit-turn-transaction! tx-id))
-        (st/emit! (ai-chat/set-status {:phase phase :message message})))
+      (let [message (unchecked-get status "message")
+            settle! #(st/emit! (ai-chat/set-status
+                                (if (turn-file-open?)
+                                  {:phase phase :message message}
+                                  ;; unlock the panel, no error bubble in
+                                  ;; another file's conversation
+                                  {:phase "done"})))]
+        (if-let [tx-id @current-turn-tx]
+          (do (reset! current-turn-tx nil)
+              (commit-turn-transaction! tx-id settle!))
+          (settle!)))
 
       nil)))
 

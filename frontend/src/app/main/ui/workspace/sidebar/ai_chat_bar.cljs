@@ -56,6 +56,13 @@
   []
   (unchecked-get js/window "electronAPI"))
 
+(defn- file-still-open?
+  "True while the file a turn was sent from is the one on screen. A turn
+  outlives a tab switch, and the conversation in state is then the other
+  file's: its result must neither be shown there nor saved under it."
+  [file-id]
+  (= file-id (some-> (:current-file-id @st/state) str)))
+
 (def ^:private min-panel-size {:width 300 :height 280})
 (def ^:private max-panel-width 640)
 (def ^:private panel-size-storage-key "kizuku.ai.panel-size")
@@ -313,16 +320,19 @@
          (mf/deps file-id)
          (fn [provider-history]
            (when (and file-id (electron-api))
-             ;; Read display-log fresh at persist time, not from any
-             ;; closure — ai-tools.cljs's dispatch-tool-call may have
-             ;; appended tool-call entries mid-turn, after on-send's own
-             ;; closure captured its view of the log.
-             (let [fresh-log (get-in @st/state [:ai-chat :display-log])]
-               (.command ^js (.-mockBackend (electron-api))
-                         "save-ai-chat-history"
-                         #js {:fileId file-id
-                              :displayLog (clj->js fresh-log)
-                              :providerHistory (clj->js provider-history)})))))
+             (if (file-still-open? file-id)
+               ;; Read display-log fresh at persist time, not from any
+               ;; closure — ai-tools.cljs's dispatch-tool-call may have
+               ;; appended tool-call entries mid-turn, after on-send's own
+               ;; closure captured its view of the log.
+               (let [fresh-log (get-in @st/state [:ai-chat :display-log])]
+                 (.command ^js (.-mockBackend (electron-api))
+                           "save-ai-chat-history"
+                           #js {:fileId file-id
+                                :displayLog (clj->js fresh-log)
+                                :providerHistory (clj->js provider-history)}))
+               (js/console.warn "AI chat: the file this turn was sent from is no longer open;"
+                                "nothing saved for" file-id)))))
 
         ;; Actually dispatch a prompt once we know the active provider has a
         ;; stored key. Split out of on-send so the key-status gate above it
@@ -353,14 +363,24 @@
                 (fn [res]
                   (if (unchecked-get res "success")
                     (let [new-history (js->clj (unchecked-get res "history") :keywordize-keys true)]
-                      (st/emit! (ai-chat/set-status {:phase "done"}))
-                      (st/emit! (ai-chat/set-provider-history new-history))
+                      ;; While the turn's undo entry is still being
+                      ;; committed (text layout settling) the status push
+                      ;; settles the panel itself, once that is done.
+                      (when-not (ai-tools/turn-commit-pending?)
+                        (st/emit! (ai-chat/set-status {:phase "done"})))
+                      ;; After a tab switch the state holds the other
+                      ;; file's conversation: leave it alone.
+                      (when (file-still-open? file-id)
+                        (st/emit! (ai-chat/set-provider-history new-history)))
                       (persist-history! new-history))
                     (do
-                      (st/emit! (ai-chat/set-status
-                                 {:phase "error"
-                                  :message (or (not-empty (unchecked-get res "error"))
-                                               (tr "kizuku.ai.error.generic"))}))
+                      (when-not (ai-tools/turn-commit-pending?)
+                        (st/emit! (ai-chat/set-status
+                                   (if (file-still-open? file-id)
+                                     {:phase "error"
+                                      :message (or (not-empty (unchecked-get res "error"))
+                                                   (tr "kizuku.ai.error.generic"))}
+                                     {:phase "done"}))))
                       ;; provider-history is unchanged: the turn produced
                       ;; nothing to resume from.
                       (persist-history! provider-history)))))
@@ -370,9 +390,11 @@
                   ;; payload that could not be cloned): nothing else will
                   ;; ever unlock the panel.
                   (st/emit! (ai-chat/set-status
-                             {:phase "error"
-                              :message (or (some-> err .-message not-empty)
-                                           (tr "kizuku.ai.error.generic"))}))
+                             (if (file-still-open? file-id)
+                               {:phase "error"
+                                :message (or (some-> err .-message not-empty)
+                                             (tr "kizuku.ai.error.generic"))}
+                               {:phase "done"})))
                   (persist-history! provider-history))))))
 
         on-send

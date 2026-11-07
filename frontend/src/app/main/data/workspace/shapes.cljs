@@ -109,7 +109,7 @@
 (defn add-shape
   ([shape]
    (add-shape shape {}))
-  ([shape {:keys [no-select? no-update-layout?]}]
+  ([shape {:keys [no-select? no-update-layout? no-edition?]}]
 
    (cts/check-shape shape)
 
@@ -143,7 +143,11 @@
                  (when-not no-select?
                    (dws/select-shapes (d/ordered-set (:id shape))))
                  (dwu/commit-undo-transaction undo-id))
-          (when (cfh/text-shape? shape)
+          ;; KIZUKU: no-edition? keeps a text created with its content (the
+          ;; AI bridge) out of the editor. Opening the editor, then closing
+          ;; it when the turn ends, had the editor commit the content as a
+          ;; second undo entry on top of the turn's.
+          (when (and (cfh/text-shape? shape) (not no-edition?))
             (->> (rx/of (dwe/start-edition-mode (:id shape)))
                  (rx/observe-on :async)))
 
@@ -210,7 +214,9 @@
                 (dwu/commit-undo-transaction undo-id)))))))
 
 (defn create-and-add-shape
-  [type frame-x frame-y {:keys [width height] :as attrs}]
+  ([type frame-x frame-y attrs]
+   (create-and-add-shape type frame-x frame-y attrs {}))
+  ([type frame-x frame-y {:keys [width height] :as attrs} options]
   (ptk/reify ::create-and-add-shape
     ptk/WatchEvent
     (watch [_ state _]
@@ -244,7 +250,7 @@
                            (assoc :frame-id frame-id)
                            (assoc :parent-id parent-id)))]
 
-        (rx/of (add-shape shape))))))
+        (rx/of (add-shape shape options)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Artboard
