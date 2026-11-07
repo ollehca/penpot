@@ -363,6 +363,9 @@
     {:type "root"
      :children [{:type "paragraph-set" :children paragraphs}]}))
 
+
+;; Text layers created or edited this turn. The turn's undo entry is
+;; committed only once their layout has settled (commit-turn-transaction!).
 (defonce ^:private turn-text-ids (atom #{}))
 
 (defn- tool-create-text
@@ -379,14 +382,14 @@
         attrs     {:width est-w
                    :height est-h
                    :grow-type (if (number? width) :auto-height :auto-width)
-                   :content (text->content text run-attrs)}]
-    (let [result (create-shape! :text (merge args {:width est-w :height est-h}) attrs)]
-      (swap! turn-text-ids conj (uuid/parse (unchecked-get result "id")))
-      ;; add-shape starts text-edit mode on every new text layer (so a
-      ;; person can type into it). Here nobody is typing, and an editor
-      ;; left open swallows the next undo and the menu commands.
-      (st/emit! (dwe/clear-edition-mode))
-      result)))
+                   :content (text->content text run-attrs)}
+        result    (create-shape! :text (merge args {:width est-w :height est-h}) attrs)]
+    (swap! turn-text-ids conj (uuid/parse (unchecked-get result "id")))
+    ;; add-shape starts text-edit mode on every new text layer (so a
+    ;; person can type into it). Here nobody is typing, and an editor
+    ;; left open swallows the next undo and the menu commands.
+    (st/emit! (dwe/clear-edition-mode))
+    result))
 
 (defn- tool-update-text
   [{:keys [text] :as args}]
@@ -407,8 +410,8 @@
                          (txt/transform-nodes txt/is-paragraph-node?
                                               #(assoc % :text-align (:text-align style)))))]
         (st/emit! (dwsh/update-shapes [id] #(-> %
-                                                 (assoc :content content)
-                                                 (dissoc :position-data))))))
+                                                (assoc :content content)
+                                                (dissoc :position-data))))))
     (swap! turn-text-ids into text-ids)
     #js {:updated (count text-ids) :ids (ids->js text-ids)}))
 
@@ -455,20 +458,28 @@
         (when-not (string? stroke_color)
           (throw (js/Error. "stroke_color is required for a stroke width above 0.")))
         (update-shapes! ids #(merge % (stroke-attrs stroke_color stroke_width stroke_opacity
-                                                     stroke_alignment stroke_style))))
+                                                    stroke_alignment stroke_style))))
       (update-shapes! ids #(assoc % :strokes [])))))
+
+(defn- corner-radius
+  "The radius one corner ends up with: its own value when given, else the
+  uniform radius when given, else what the shape already had."
+  [own uniform current]
+  (cond
+    (number? own) own
+    (number? uniform) uniform
+    :else (or current 0)))
 
 (defn- tool-set-corner-radius
   [{:keys [radius top_left top_right bottom_right bottom_left] :as args}]
   (let [ids (require-ids args)]
     (update-shapes! ids (fn [shape]
                           (if (contains? #{:rect :frame :image} (:type shape))
-                            (let [r (if (number? radius) radius 0)]
-                              (assoc shape
-                                     :r1 (if (number? top_left) top_left (if (number? radius) r (:r1 shape 0)))
-                                     :r2 (if (number? top_right) top_right (if (number? radius) r (:r2 shape 0)))
-                                     :r3 (if (number? bottom_right) bottom_right (if (number? radius) r (:r3 shape 0)))
-                                     :r4 (if (number? bottom_left) bottom_left (if (number? radius) r (:r4 shape 0)))))
+                            (assoc shape
+                                   :r1 (corner-radius top_left radius (:r1 shape))
+                                   :r2 (corner-radius top_right radius (:r2 shape))
+                                   :r3 (corner-radius bottom_right radius (:r3 shape))
+                                   :r4 (corner-radius bottom_left radius (:r4 shape)))
                             shape)))))
 
 (defn- tool-set-opacity
@@ -750,7 +761,7 @@
       (nil? impl)
       (do
         (st/emit! (ai-chat/append-display-entry
-                    {:role :tool-call :tool-name tool-name :label label :failed? true}))
+                   {:role :tool-call :tool-name tool-name :label label :failed? true}))
         (.reportToolCallResult ai-api id #js {:error (str "Unknown AI tool: " tool-name)}))
 
       ;; The page on screen is another file's: refuse, so the model stops.
@@ -763,11 +774,11 @@
       (try
         (let [output (impl args)]
           (st/emit! (ai-chat/append-display-entry
-                      {:role :tool-call :tool-name tool-name :label label}))
+                     {:role :tool-call :tool-name tool-name :label label}))
           (.reportToolCallResult ai-api id #js {:output output}))
         (catch :default e
           (st/emit! (ai-chat/append-display-entry
-                      {:role :tool-call :tool-name tool-name :label label :failed? true}))
+                     {:role :tool-call :tool-name tool-name :label label :failed? true}))
           (.reportToolCallResult ai-api id #js {:error (or (.-message e) (str e))}))))))
 
 ;; --- Turn-level undo wrapping -------------------------------------------
@@ -835,70 +846,83 @@
 ;; force-commit splits the turn into several undo entries.
 (def ^:private turn-undo-timeout-ms (* 30 60 1000))
 
+(defn- start-turn!
+  "Open the turn: remember its file, forget the last turn's text layers,
+  start the undo transaction that will hold every edit, show the status."
+  []
+  (let [tx-id (js/Symbol)]
+    (reset! current-turn-tx tx-id)
+    (reset! turn-file-id (:current-file-id @st/state))
+    (reset! turn-text-ids #{})
+    (st/emit! (dwu/start-undo-transaction tx-id :timeout turn-undo-timeout-ms))
+    (st/emit! (ai-chat/set-status {:phase "started"}))))
+
+(defn- finish-turn!
+  "Close the turn: commit its undo entry (once text layout has settled)
+  and only then run settle!, which reports the final status to the panel."
+  [settle!]
+  (if-let [tx-id @current-turn-tx]
+    (do (reset! current-turn-tx nil)
+        (commit-turn-transaction! tx-id settle!))
+    (settle!)))
+
+(defn- outcome-entry
+  "The bubble a finished turn leaves after its reply text, if any: one for
+  a reply the output limit cut (never \"empty reply\" next to \"cut
+  short\"), one for a pause at the round ceiling (everything built is
+  kept and the conversation can be continued), a note when the turn
+  produced neither text nor edits (a silent turn reads as a hang)."
+  [{:keys [truncated? paused? tool-calls final-text]}]
+  (let [nothing-done? (and (zero? tool-calls) (empty? final-text))]
+    (cond
+      truncated?    {:role :error
+                     :text (tr (if nothing-done?
+                                 "kizuku.ai.truncated-nothing-done"
+                                 "kizuku.ai.truncated"))}
+      paused?       {:role :error :text (tr "kizuku.ai.round-limit")}
+      nothing-done? {:role :assistant :text (tr "kizuku.ai.empty-reply")})))
+
+(defn- show-turn-result!
+  "Append the reply and its outcome bubble to the conversation of the
+  file the turn started in; another file's conversation must not receive
+  them."
+  [status]
+  (when (turn-file-open?)
+    (let [final-text (unchecked-get status "finalText")]
+      (when (and (string? final-text) (seq final-text))
+        (st/emit! (ai-chat/append-display-entry {:role :assistant :text final-text})))
+      (when-let [entry (outcome-entry {:truncated? (true? (unchecked-get status "truncated"))
+                                       :paused? (true? (unchecked-get status "roundLimit"))
+                                       :tool-calls (or (unchecked-get status "toolCalls") 0)
+                                       :final-text final-text})]
+        (st/emit! (ai-chat/append-display-entry entry))))))
+
 (defn- handle-turn-status
+  "One ai:turn-status push from the main process (ai-provider-client.js's
+  onStatus). started opens the turn's undo transaction, done and error
+  close it; the panel is told the turn settled only once its undo entry
+  exists."
   [status]
   (let [phase (unchecked-get status "phase")]
     (case phase
       "started"
-      (let [tx-id (js/Symbol)]
-        (reset! current-turn-tx tx-id)
-        (reset! turn-file-id (:current-file-id @st/state))
-        (reset! turn-text-ids #{})
-        (st/emit! (dwu/start-undo-transaction tx-id :timeout turn-undo-timeout-ms))
-        (st/emit! (ai-chat/set-status {:phase phase})))
+      (start-turn!)
 
       "tool-executing"
       (st/emit! (ai-chat/set-status {:phase phase}))
 
       "done"
-      (let [final-text (unchecked-get status "finalText")
-            tool-calls (or (unchecked-get status "toolCalls") 0)
-            truncated? (true? (unchecked-get status "truncated"))
-            paused?    (true? (unchecked-get status "roundLimit"))
-            settle!    #(st/emit! (ai-chat/set-status {:phase phase}))]
-        ;; The reply belongs to the file the turn started in; another
-        ;; file's conversation must not receive it.
-        (when (turn-file-open?)
-          (when (and (string? final-text) (seq final-text))
-            (st/emit! (ai-chat/append-display-entry {:role :assistant :text final-text})))
-          (cond
-            ;; Cut off by the output limit: one bubble that says what the
-            ;; cut left behind, never "empty reply" next to "cut short".
-            truncated?
-            (st/emit! (ai-chat/append-display-entry
-                       {:role :error
-                        :text (tr (if (and (zero? tool-calls) (empty? final-text))
-                                    "kizuku.ai.truncated-nothing-done"
-                                    "kizuku.ai.truncated"))}))
-
-            ;; Still editing at the round ceiling: everything built is
-            ;; kept, and the conversation can be continued.
-            paused?
-            (st/emit! (ai-chat/append-display-entry
-                       {:role :error :text (tr "kizuku.ai.round-limit")}))
-
-            ;; Neither text nor edits: say so, a silent turn reads as a hang.
-            (and (zero? tool-calls) (empty? final-text))
-            (st/emit! (ai-chat/append-display-entry
-                       {:role :assistant :text (tr "kizuku.ai.empty-reply")}))))
-        ;; Settled only once the turn's undo entry exists.
-        (if-let [tx-id @current-turn-tx]
-          (do (reset! current-turn-tx nil)
-              (commit-turn-transaction! tx-id settle!))
-          (settle!)))
+      (do (show-turn-result! status)
+          (finish-turn! #(st/emit! (ai-chat/set-status {:phase phase}))))
 
       "error"
-      (let [message (unchecked-get status "message")
-            settle! #(st/emit! (ai-chat/set-status
-                                (if (turn-file-open?)
-                                  {:phase phase :message message}
-                                  ;; unlock the panel, no error bubble in
-                                  ;; another file's conversation
-                                  {:phase "done"})))]
-        (if-let [tx-id @current-turn-tx]
-          (do (reset! current-turn-tx nil)
-              (commit-turn-transaction! tx-id settle!))
-          (settle!)))
+      (let [message (unchecked-get status "message")]
+        (finish-turn! #(st/emit! (ai-chat/set-status
+                                  (if (turn-file-open?)
+                                    {:phase phase :message message}
+                                    ;; unlock the panel, no error bubble in
+                                    ;; another file's conversation
+                                    {:phase "done"})))))
 
       nil)))
 

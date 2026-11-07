@@ -217,40 +217,40 @@
   ([type frame-x frame-y attrs]
    (create-and-add-shape type frame-x frame-y attrs {}))
   ([type frame-x frame-y {:keys [width height] :as attrs} options]
-  (ptk/reify ::create-and-add-shape
-    ptk/WatchEvent
-    (watch [_ state _]
-      (let [vbc       (dsh/get-viewport-center state)
-            x         (:x attrs (- (:x vbc) (/ width 2)))
-            y         (:y attrs (- (:y vbc) (/ height 2)))
-            page-id   (:current-page-id state)
-            objects   (dsh/lookup-page-objects state page-id)
-            frame-id  (-> (dsh/lookup-page-objects state page-id)
-                          (ctst/top-nested-frame {:x frame-x :y frame-y}))
+   (ptk/reify ::create-and-add-shape
+     ptk/WatchEvent
+     (watch [_ state _]
+       (let [vbc       (dsh/get-viewport-center state)
+             x         (:x attrs (- (:x vbc) (/ width 2)))
+             y         (:y attrs (- (:y vbc) (/ height 2)))
+             page-id   (:current-page-id state)
+             objects   (dsh/lookup-page-objects state page-id)
+             frame-id  (-> (dsh/lookup-page-objects state page-id)
+                           (ctst/top-nested-frame {:x frame-x :y frame-y}))
 
-            selected  (dsh/lookup-selected state)
-            base      (cfh/get-base-shape objects selected)
+             selected  (dsh/lookup-selected state)
+             base      (cfh/get-base-shape objects selected)
 
-            parent-id (if (or (and (= 1 (count selected))
-                                   (cfh/frame-shape? (get objects (first selected))))
-                              (empty? selected))
-                        frame-id
-                        (:parent-id base))
+             parent-id (if (or (and (= 1 (count selected))
+                                    (cfh/frame-shape? (get objects (first selected))))
+                               (empty? selected))
+                         frame-id
+                         (:parent-id base))
 
             ;; If the parent-id or the frame-id are component-copies, we need to get the first not copy parent
-            parent-id (:id (ctn/get-first-not-copy-parent objects parent-id))   ;; We don't want to change the structure of component copies
-            frame-id  (:id (ctn/get-first-not-copy-parent objects frame-id))
+             parent-id (:id (ctn/get-first-not-copy-parent objects parent-id))   ;; We don't want to change the structure of component copies
+             frame-id  (:id (ctn/get-first-not-copy-parent objects frame-id))
 
 
-            shape     (cts/setup-shape
-                       (-> attrs
-                           (assoc :type type)
-                           (assoc :x x)
-                           (assoc :y y)
-                           (assoc :frame-id frame-id)
-                           (assoc :parent-id parent-id)))]
+             shape     (cts/setup-shape
+                        (-> attrs
+                            (assoc :type type)
+                            (assoc :x x)
+                            (assoc :y y)
+                            (assoc :frame-id frame-id)
+                            (assoc :parent-id parent-id)))]
 
-        (rx/of (add-shape shape options)))))))
+         (rx/of (add-shape shape options)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Artboard

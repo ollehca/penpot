@@ -12,9 +12,9 @@
    [app.main.ui.ds.controls.input :refer [input*]]
    [app.main.ui.ds.controls.select :refer [select*]]
    [app.main.ui.ds.foundations.assets.icon :as icon]
+   [app.main.ui.ds.foundations.typography :as typo]
    [app.main.ui.ds.foundations.typography.heading :refer [heading*]]
    [app.main.ui.ds.foundations.typography.text :refer [text*]]
-   [app.main.ui.ds.foundations.typography :as typo]
    [app.main.ui.ds.tooltip.tooltip :refer [tooltip*]]
    [catalog.helpers.showcase :refer [showcase* variant-group*]]
    [rumext.v2 :as mf]))

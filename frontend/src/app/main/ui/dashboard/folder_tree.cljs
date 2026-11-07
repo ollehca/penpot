@@ -264,7 +264,7 @@
 ;; ---------------------------------------------------------------
 
 (mf/defc folder-tree-panel*
-  [{:keys [project-id project on-folder-change on-assigned-files]}]
+  [{:keys [project-id project on-assigned-files]}]
   (let [tree*      (mf/use-state nil)
         tree       (deref tree*)
         expanded*  (mf/use-state #{})

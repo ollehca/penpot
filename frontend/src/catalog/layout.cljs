@@ -7,11 +7,11 @@
 
 (ns catalog.layout
   (:require
-   [catalog.sections.tokens :as tokens]
    [catalog.sections.atoms :as atoms]
    [catalog.sections.molecules :as molecules]
    [catalog.sections.organisms :as organisms]
    [catalog.sections.templates :as templates]
+   [catalog.sections.tokens :as tokens]
    [rumext.v2 :as mf]))
 
 (def ^:private nav-items

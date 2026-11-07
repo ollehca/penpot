@@ -79,9 +79,6 @@
 (def ^:private menu-icon
   (icon-xref :menu (stl/css :menu-icon)))
 
-(def ^:private pin-icon
-  (icon-xref :pin (stl/css :pin-icon)))
-
 (mf/defc sidebar-project*
   {::mf/private true}
   [{:keys [item is-selected]}]

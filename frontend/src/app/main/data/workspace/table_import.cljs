@@ -32,7 +32,6 @@
   The first row is always the header — predictable beats clever here."
   (:require
    [app.common.data :as d]
-   [app.common.data.macros :as dm]
    [app.common.files.changes-builder :as pcb]
    [app.common.files.shapes-helpers :as cfsh]
    [app.common.math :as mth]

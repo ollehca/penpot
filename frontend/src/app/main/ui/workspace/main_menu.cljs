@@ -27,9 +27,9 @@
 (ns app.main.ui.workspace.main-menu
   (:require-macros [app.main.style :as stl])
   (:require
-   [app.config :as cf]
    [app.common.files.helpers :as cfh]
    [app.common.uuid :as uuid]
+   [app.config :as cf]
    [app.main.data.common :as dcm]
    [app.main.data.event :as ev]
    [app.main.data.exports.assets :as de]

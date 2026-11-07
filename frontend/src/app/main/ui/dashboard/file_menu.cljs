@@ -22,7 +22,6 @@
 
 (ns app.main.ui.dashboard.file-menu
   (:require
-   [app.config :as cf]
    [app.main.data.common :as dcm]
    [app.main.data.dashboard :as dd]
    [app.main.data.modal :as modal]

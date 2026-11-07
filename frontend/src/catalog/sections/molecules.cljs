@@ -7,9 +7,9 @@
 (ns catalog.sections.molecules
   (:require
    [app.main.ui.ds.layout.tab-switcher :refer [tab-switcher*]]
-   [app.main.ui.ds.notifications.toast :refer [toast*]]
    [app.main.ui.ds.notifications.context-notification
     :refer [context-notification*]]
+   [app.main.ui.ds.notifications.toast :refer [toast*]]
    [app.main.ui.ds.product.avatar :refer [avatar*]]
    [app.main.ui.ds.product.cta :refer [cta*]]
    [catalog.helpers.showcase :refer [showcase* variant-group*]]

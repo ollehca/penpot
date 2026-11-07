@@ -6,16 +6,20 @@
 ;;
 ;; ADDED BY KIZUKU (2026-10-21, rebuilt 2026-10-22): the real AI chat
 ;; panel — a floating FAB + resizable overlay with a scrollable
-;; conversation (not a single-shot input), live turn-status, a provider
-;; badge, per-file persistence, and keyboard/ARIA support. Supersedes the
-;; Phase 1 proof-of-pipeline version (single input, no history, no
-;; accessibility, hardcoded dark-only colors).
+;; conversation (not a single-shot input), live turn-status, provider and
+;; model pickers, per-file persistence, and keyboard/ARIA support.
 ;;
 ;; State lives in app.main.data.workspace.ai-chat, fed by
-;; app.main.data.workspace.ai-tools's existing onToolCall/onTurnStatus
-;; handlers (the IPC bridge only supports one registered listener at a
-;; time — see ai-tools.cljs's own header comment — so this component
-;; never registers its own; it only reads the shared reactive lens).
+;; app.main.data.workspace.ai-tools's onToolCall/onTurnStatus handlers
+;; (the IPC bridge only supports one registered listener at a time — see
+;; ai-tools.cljs's own header comment — so this component never registers
+;; its own; it only reads the shared reactive lens).
+;;
+;; The file reads top to bottom: the desktop bridge and labels, the panel
+;; size hook, the provider-settings hook, persisted history, the turn's
+;; send/reply plumbing, the sub-components (messages, header with its two
+;; pickers, composer, resize handles) and finally ai-chat-bar*, which only
+;; wires them together.
 ;;
 ;; All user-facing copy goes through tr (kizuku.ai.* keys in the .po
 ;; catalogues) so the panel follows the UI language like the rest of the app.
@@ -37,7 +41,25 @@
    [app.util.keyboard :as kbd]
    [clojure.string :as str]
    [okulary.core :as l]
+   [promesa.core :as p]
    [rumext.v2 :as mf]))
+
+;; --- The desktop bridge -----------------------------------------------------
+
+(defn- electron-api
+  []
+  (unchecked-get js/window "electronAPI"))
+
+(defn- ai-api
+  "The AI side of the desktop bridge (window.electronAPI.ai), nil outside
+  the desktop app."
+  []
+  (some-> (electron-api) (unchecked-get "ai")))
+
+(defn- mock-backend
+  "The file-store side of the desktop bridge, where chat history is kept."
+  []
+  (some-> (electron-api) (unchecked-get "mockBackend")))
 
 ;; A plain (:current-file-id @st/state) read at render time is NOT
 ;; reactive — it only reflects whatever the value was on whichever render
@@ -52,10 +74,6 @@
 (def ^:private file-id-ref
   (l/derived :current-file-id st/state))
 
-(defn- electron-api
-  []
-  (unchecked-get js/window "electronAPI"))
-
 (defn- file-still-open?
   "True while the file a turn was sent from is the one on screen. A turn
   outlives a tab switch, and the conversation in state is then the other
@@ -63,38 +81,7 @@
   [file-id]
   (= file-id (some-> (:current-file-id @st/state) str)))
 
-(def ^:private min-panel-size {:width 300 :height 280})
-(def ^:private max-panel-width 640)
-(def ^:private panel-size-storage-key "kizuku.ai.panel-size")
-
-(defn- read-saved-panel-size
-  "The {:width :height} the user last dragged the panel to, or nil. Kept in
-  localStorage so the panel keeps its size across files and restarts."
-  []
-  (try
-    (when-let [raw (.getItem js/localStorage panel-size-storage-key)]
-      (let [parsed (js/JSON.parse raw)
-            width  (unchecked-get parsed "width")
-            height (unchecked-get parsed "height")]
-        (when (and (number? width) (number? height))
-          {:width width :height height})))
-    (catch :default _ nil)))
-
-(defn- save-panel-size!
-  [{:keys [width height]}]
-  (try
-    (.setItem js/localStorage panel-size-storage-key
-              (js/JSON.stringify #js {:width width :height height}))
-    (catch :default _ nil)))
-
-(defn- max-panel-height
-  "90% of the real app window height — mirrors .panel's own CSS max-height
-  (90vh), since the resize drag's clamp runs in JS and can't read a CSS
-  custom property. Computed fresh each call rather than cached once, so a
-  window resize while the panel happens to be open doesn't leave a stale
-  ceiling from whatever size the window was at mount."
-  []
-  (* (.-innerHeight js/window) 0.9))
+;; --- Labels -----------------------------------------------------------------
 
 (def ^:private known-providers
   [{:id "anthropic" :label "Anthropic"}
@@ -121,10 +108,6 @@
     qualifier
     label))
 
-(defn- clamp
-  [v lo hi]
-  (max lo (min hi v)))
-
 (defn- status-label
   [status]
   (case status
@@ -133,6 +116,287 @@
     "text" (tr "kizuku.ai.status.thinking")
     "sending" (tr "kizuku.ai.status.sending")
     nil))
+
+;; --- Panel size -------------------------------------------------------------
+;; nil means "auto": the panel sizes itself to its content via CSS
+;; (grid-template-rows: auto 1fr auto, capped at max-height: 90vh), so a
+;; short conversation stays compact and a long one grows to show more
+;; context, without the user having to drag anything. Dragging a resize
+;; zone sets an explicit {:width :height}, which from then on overrides
+;; the auto behaviour and is remembered in localStorage across files and
+;; restarts — standard "auto until the user takes control" sizing.
+
+(def ^:private min-panel-size {:width 300 :height 280})
+(def ^:private max-panel-width 640)
+(def ^:private panel-size-storage-key "kizuku.ai.panel-size")
+
+(defn- read-saved-panel-size
+  "The {:width :height} the user last dragged the panel to, or nil."
+  []
+  (try
+    (when-let [raw (.getItem js/localStorage panel-size-storage-key)]
+      (let [parsed (js/JSON.parse raw)
+            width  (unchecked-get parsed "width")
+            height (unchecked-get parsed "height")]
+        (when (and (number? width) (number? height))
+          {:width width :height height})))
+    (catch :default _ nil)))
+
+(defn- save-panel-size!
+  [{:keys [width height]}]
+  (try
+    (.setItem js/localStorage panel-size-storage-key
+              (js/JSON.stringify #js {:width width :height height}))
+    (catch :default _ nil)))
+
+(defn- max-panel-height
+  "90% of the real app window height — mirrors .panel's own CSS max-height
+  (90vh), since the resize drag's clamp runs in JS and can't read a CSS
+  custom property. Computed fresh each call rather than cached once, so a
+  window resize while the panel happens to be open doesn't leave a stale
+  ceiling from whatever size the window was at mount."
+  []
+  (* (.-innerHeight js/window) 0.9))
+
+(defn- clamp
+  [v lo hi]
+  (max lo (min hi v)))
+
+(defn- drag-start
+  "Where a resize drag begins: the pointer, the axes the grabbed zone
+  drives (its data-axes) and the panel's current box — the stored size,
+  or in auto mode the box actually rendered, so the drag starts from
+  wherever the panel is on screen rather than snapping to a default."
+  [event panel-node size]
+  (let [axes (or (dom/get-data (dom/get-current-target event) "axes") "xy")
+        {:keys [width height]}
+        (or size
+            (when panel-node
+              (let [rect (.getBoundingClientRect ^js panel-node)]
+                {:width (.-width rect) :height (.-height rect)})))]
+    {:x (.-clientX ^js event)
+     :y (.-clientY ^js event)
+     :axes axes
+     :width width
+     :height height}))
+
+(defn- dragged-size
+  "The panel size for the pointer's position during a drag. The panel is
+  pinned to its bottom-right corner (next to the FAB), so only the top and
+  left edges move: pulling the pointer up or left grows the panel, which
+  is why the deltas are inverted."
+  [{:keys [x y axes width height]} event]
+  (let [dx (if (str/includes? axes "x") (- x (.-clientX ^js event)) 0)
+        dy (if (str/includes? axes "y") (- y (.-clientY ^js event)) 0)]
+    {:width (clamp (+ width dx) (:width min-panel-size) max-panel-width)
+     :height (clamp (+ height dy) (:height min-panel-size) (max-panel-height))}))
+
+(defn- use-panel-resize
+  "Hook: the panel's size (nil until the user drags) and the pointer-down
+  handler shared by the three drag zones. The pointer is captured so the
+  drag keeps reporting even when it crosses the canvas, which has pointer
+  handlers of its own; the window-level move/up listeners live for the
+  component's lifetime and act only while a drag is on."
+  [panel-ref]
+  (let [size* (mf/use-state (read-saved-panel-size))
+        ;; the drag-start map while a drag is on, nil otherwise
+        drag* (mf/use-ref nil)
+        on-pointer-down
+        (mf/use-fn
+         (mf/deps @size*)
+         (fn [event]
+           (dom/prevent-default event)
+           (dom/stop-propagation event)
+           (dom/capture-pointer event)
+           (mf/set-ref-val! drag* (drag-start event (mf/ref-val panel-ref) @size*))))]
+    (mf/with-effect []
+      (let [on-move (fn [event]
+                      (when-let [drag (mf/ref-val drag*)]
+                        (reset! size* (dragged-size drag event))))
+            on-up   (fn [_]
+                      (when (mf/ref-val drag*)
+                        (mf/set-ref-val! drag* nil)
+                        (some-> @size* save-panel-size!)))]
+        (.addEventListener js/window "pointermove" on-move)
+        (.addEventListener js/window "pointerup" on-up)
+        (fn []
+          (.removeEventListener js/window "pointermove" on-move)
+          (.removeEventListener js/window "pointerup" on-up))))
+    {:size @size*
+     :on-pointer-down on-pointer-down}))
+
+;; --- Provider settings ------------------------------------------------------
+
+(defn- fetch-model!
+  "Read a provider's current model and its tier list into the two states.
+  Model tiers are per provider, so both follow a provider switch."
+  [api provider-id model* model-tiers*]
+  (-> (.getModel ^js api provider-id)
+      (.then (fn [model-id] (reset! model* model-id))))
+  (-> (.getModelTiers ^js api provider-id)
+      (.then (fn [tiers] (reset! model-tiers* (js->clj tiers :keywordize-keys true))))))
+
+(defn- use-provider-settings
+  "Hook: the active provider and model, the model tiers and the key status
+  per provider, read from the main process whenever the panel opens (so a
+  change made in Settings meanwhile shows), with the handlers of the two
+  pickers and a setter for a key status read elsewhere."
+  [open?]
+  (let [provider*    (mf/use-state nil)
+        model*       (mf/use-state nil)
+        model-tiers* (mf/use-state [])
+        key-status*  (mf/use-state nil)
+        set-key-status!
+        (mf/use-fn
+         (fn [status] (reset! key-status* status)))
+        on-select-provider
+        (mf/use-fn
+         (fn [event]
+           (when-let [api (ai-api)]
+             (let [provider-id (dom/get-data (dom/get-current-target event) "option-id")]
+               (-> (.setActiveProvider ^js api provider-id)
+                   (.then (fn [_] (reset! provider* provider-id))))
+               (fetch-model! api provider-id model* model-tiers*)
+               ;; A provider switch starts a fresh resumption thread — the
+               ;; old provider-history is shaped for the old provider
+               ;; (Anthropic content blocks / OpenAI tool_calls messages /
+               ;; Google's stateful interaction markers) and replaying it
+               ;; against a different provider's API would be meaningless.
+               ;; display-log (the visible transcript) is left untouched.
+               (st/emit! (ai-chat/set-provider-history []))))))
+        on-select-model
+        (mf/use-fn
+         (mf/deps @provider*)
+         (fn [event]
+           (when-let [api (ai-api)]
+             (when-let [provider-id @provider*]
+               (let [model-id (dom/get-data (dom/get-current-target event) "option-id")]
+                 (-> (.setModel ^js api provider-id model-id)
+                     (.then (fn [_] (reset! model* model-id)))))))))]
+    (mf/with-effect [open?]
+      (when-let [api (and open? (ai-api))]
+        (p/let [provider-id (.getActiveProvider ^js api)]
+          (reset! provider* provider-id)
+          (fetch-model! api provider-id model* model-tiers*))
+        (p/let [status (.getKeyStatus ^js api)]
+          (reset! key-status* (js->clj status :keywordize-keys true)))))
+    {:provider @provider*
+     :model @model*
+     :model-tiers @model-tiers*
+     :key-status @key-status*
+     :set-key-status! set-key-status!
+     :on-select-provider on-select-provider
+     :on-select-model on-select-model}))
+
+;; --- Persisted history ------------------------------------------------------
+
+(defn- load-persisted-history!
+  "Put the conversation saved for a file into the panel's state."
+  [file-id]
+  (when-let [backend (mock-backend)]
+    (-> (.command ^js backend "get-ai-chat-history" #js {:fileId file-id})
+        (.then
+         (fn [res]
+           (let [raw (unchecked-get res "raw")
+                 ;; js->clj :keywordize-keys only keywordizes map KEYS,
+                 ;; never string VALUES — a round-tripped entry's :role
+                 ;; lands as the string "user", not the keyword :user that
+                 ;; freshly appended entries use, and message-log*'s role
+                 ;; filter would drop it. Re-keywordize :role explicitly.
+                 display-log      (->> (js->clj (unchecked-get raw "displayLog") :keywordize-keys true)
+                                       (mapv #(update % :role keyword)))
+                 provider-history (js->clj (unchecked-get raw "providerHistory") :keywordize-keys true)]
+             (st/emit! (ai-chat/set-history {:display-log display-log
+                                             :provider-history provider-history})))))
+        (.catch (fn [err] (js/console.error "Failed to load AI chat history" err))))))
+
+(defn- persist-history!
+  "Save the conversation under its file: the display log as it is in state
+  right now (ai-tools.cljs appends tool-call entries mid-turn, after the
+  sender's closure captured its view of it) and the given provider
+  history. Nothing is saved once the file has left the screen: the state
+  then holds another file's conversation."
+  [file-id provider-history]
+  (when-let [backend (and file-id (mock-backend))]
+    (if (file-still-open? file-id)
+      (.command ^js backend "save-ai-chat-history"
+                #js {:fileId file-id
+                     :displayLog (clj->js (get-in @st/state [:ai-chat :display-log]))
+                     :providerHistory (clj->js provider-history)})
+      (js/console.warn "AI chat: the file this turn was sent from is no longer open;"
+                       "nothing saved for" file-id))))
+
+(defn- clear-history!
+  "Empty the conversation on screen and on disk."
+  [file-id]
+  (st/emit! (ai-chat/reset-history))
+  (when-let [backend (and file-id (mock-backend))]
+    (.command ^js backend "save-ai-chat-history"
+              #js {:fileId file-id :displayLog #js [] :providerHistory #js []})))
+
+;; --- Sending a prompt -------------------------------------------------------
+
+(defn- settle!
+  "Set the panel's status for a finished turn. While the turn's undo entry
+  is still being committed (text layout settling) the status push from
+  ai-tools.cljs settles the panel itself, once that is done; and a bubble
+  for a turn whose file has left the screen would land in another file's
+  conversation, so that case only unlocks the panel."
+  [file-id status]
+  (when-not (ai-tools/turn-commit-pending?)
+    (st/emit! (ai-chat/set-status (if (file-still-open? file-id) status {:phase "done"})))))
+
+(defn- on-turn-reply!
+  "The IPC reply to a prompt. It is the one signal that always arrives, so
+  it always settles the panel: the real-time ai:turn-status pushes normally
+  get there first (\"done\" with the reply text, \"error\" with its bubble),
+  repeating the phase here is harmless, and set-status drops a duplicate
+  error bubble (ai_chat.cljs). What only this reply can report: a failure
+  before the turn's first push (no key, unknown provider, a renderer the
+  main process could no longer reach) and a push that never arrived — both
+  used to leave \"Sending…\" on screen for good."
+  [file-id provider-history res]
+  (if (unchecked-get res "success")
+    (let [new-history (js->clj (unchecked-get res "history") :keywordize-keys true)]
+      (settle! file-id {:phase "done"})
+      ;; After a tab switch the state holds the other file's conversation:
+      ;; leave it alone.
+      (when (file-still-open? file-id)
+        (st/emit! (ai-chat/set-provider-history new-history)))
+      (persist-history! file-id new-history))
+    (do
+      (settle! file-id {:phase "error"
+                        :message (or (not-empty (unchecked-get res "error"))
+                                     (tr "kizuku.ai.error.generic"))})
+      ;; provider-history is unchanged: the turn produced nothing to resume from.
+      (persist-history! file-id provider-history))))
+
+(defn- on-turn-failure!
+  "The IPC call itself failed (no handler registered, a payload that could
+  not be cloned): nothing else will ever unlock the panel."
+  [file-id provider-history err]
+  (st/emit! (ai-chat/set-status
+             (if (file-still-open? file-id)
+               {:phase "error"
+                :message (or (some-> err .-message not-empty)
+                             (tr "kizuku.ai.error.generic"))}
+               {:phase "done"})))
+  (persist-history! file-id provider-history))
+
+(defn- send-prompt!
+  "Show the prompt, lock the panel and hand the turn to the main process."
+  [api file-id provider-id text provider-history]
+  (st/emit! (ai-chat/append-display-entry {:role :user :text text}))
+  (st/emit! (ai-chat/set-status {:phase "sending"}))
+  (-> (.sendPrompt ^js api
+                   #js {:provider provider-id
+                        :prompt text
+                        :systemPrompt (ai-tools/build-system-prompt)
+                        :history (clj->js provider-history)})
+      (.then (fn [res] (on-turn-reply! file-id provider-history res)))
+      (.catch (fn [err] (on-turn-failure! file-id provider-history err)))))
+
+;; --- Sub-components ---------------------------------------------------------
 
 (mf/defc message-entry*
   {::mf/private true}
@@ -172,7 +436,7 @@
            :aria-live "polite"
            :aria-label (tr "kizuku.ai.conversation")}
      (cond
-       (not (empty? visible-entries))
+       (seq visible-entries)
        (for [[idx entry] (map-indexed vector visible-entries)]
          [:> message-entry* {:key idx :entry entry}])
 
@@ -198,57 +462,166 @@
         [:div {:class (stl/css :status-spinner)}]
         [:span label]])]))
 
+;; A badge button that opens a listbox. The option clicked reaches
+;; on-select through its data-option-id attribute; an option may carry a
+;; status (the provider menu shows whether a key is stored).
+(mf/defc option-menu*
+  {::mf/private true}
+  [{:keys [badge aria-label options selected-id open? on-toggle on-select]}]
+  [:div {:class (stl/css :provider-picker)}
+   [:button {:class (stl/css :provider-badge)
+             :on-click on-toggle
+             :aria-haspopup "listbox"
+             :aria-expanded open?
+             :aria-label aria-label}
+    badge
+    [:span {:class (stl/css :provider-badge-caret)} "▾"]]
+   (when open?
+     [:ul {:class (stl/css :provider-menu) :role "listbox"}
+      (for [{:keys [id label status]} options]
+        [:li {:key id
+              :role "option"
+              :aria-selected (= id selected-id)
+              :class (stl/css-case :provider-menu-item true
+                                   :provider-menu-item-active (= id selected-id))
+              :data-option-id id
+              :on-click on-select}
+         [:span {:class (stl/css :provider-menu-item-label)} label]
+         (when status
+           [:span {:class (stl/css-case :provider-menu-item-status true
+                                        :has-key (:has-key? status))}
+            (:text status)])])])])
+
+(defn- provider-options
+  "The provider menu's options, each with its key status."
+  [key-status]
+  (mapv (fn [{:keys [id label]}]
+          (let [has-key? (boolean (get key-status (keyword id)))]
+            {:id id
+             :label label
+             :status {:has-key? has-key?
+                      :text (tr (if has-key? "kizuku.ai.key-set" "kizuku.ai.no-key"))}}))
+        known-providers))
+
+(mf/defc panel-header*
+  {::mf/private true}
+  [{:keys [settings open-menu on-toggle-provider-menu on-toggle-model-menu
+           on-select-provider on-select-model on-clear on-close]}]
+  (let [{:keys [provider model model-tiers key-status]} settings
+        model-name (model-label model-tiers model)]
+    [:div {:class (stl/css :panel-header)}
+     [:span {:class (stl/css :panel-title)} (tr "kizuku.ai.title")]
+     [:> option-menu* {:badge (or (provider-label provider) "…")
+                       :aria-label (tr "kizuku.ai.provider-aria" (provider-label provider))
+                       :options (provider-options key-status)
+                       :selected-id provider
+                       :open? (= open-menu :provider)
+                       :on-toggle on-toggle-provider-menu
+                       :on-select on-select-provider}]
+     [:> option-menu* {:badge (short-model-label model-name)
+                       :aria-label (tr "kizuku.ai.model-aria" model-name)
+                       :options model-tiers
+                       :selected-id model
+                       :open? (= open-menu :model)
+                       :on-toggle on-toggle-model-menu
+                       :on-select on-select-model}]
+     [:button {:class (stl/css :header-button)
+               :on-click on-clear
+               :aria-label (tr "kizuku.ai.clear-aria")
+               :title (tr "kizuku.ai.clear-title")}
+      (tr "kizuku.ai.clear")]
+     [:button {:class (stl/css :header-button)
+               :on-click on-close
+               :aria-label (tr "kizuku.ai.close-aria")
+               :title (tr "kizuku.ai.close")}
+      "✕"]]))
+
+(mf/defc composer*
+  {::mf/private true}
+  [{:keys [prompt sending? composer-ref on-change on-key-down on-send]}]
+  [:div {:class (stl/css :composer)}
+   [:textarea
+    {:ref composer-ref
+     :class (stl/css :composer-input)
+     :placeholder (tr "kizuku.ai.placeholder")
+     :value prompt
+     :disabled sending?
+     :on-change on-change
+     :on-key-down on-key-down
+     :aria-label (tr "kizuku.ai.prompt-aria")
+     :rows 2}]
+   [:button
+    {:class (stl/css :send-button)
+     :on-click on-send
+     :disabled (or sending? (str/blank? prompt))
+     :aria-label (if sending? (tr "kizuku.ai.sending-aria") (tr "kizuku.ai.send-aria"))}
+    (if sending? (tr "kizuku.ai.sending") (tr "kizuku.ai.send"))]])
+
+;; The three drag zones: the free edges and their corner. data-axes says
+;; which dimensions a zone drives (see dragged-size).
+(mf/defc resize-handles*
+  {::mf/private true}
+  [{:keys [on-pointer-down]}]
+  [:*
+   [:div {:class (stl/css :resize-left)
+          :data-axes "x"
+          :on-pointer-down on-pointer-down
+          :aria-hidden true}]
+   [:div {:class (stl/css :resize-top)
+          :data-axes "y"
+          :on-pointer-down on-pointer-down
+          :aria-hidden true}]
+   [:div {:class (stl/css :resize-corner)
+          :data-axes "xy"
+          :on-pointer-down on-pointer-down
+          :aria-hidden true}]])
+
+;; --- The panel --------------------------------------------------------------
+
+(defn- toggle-menu!
+  "Open one of the two header pickers, or close it when it is the open one."
+  [open-menu* menu]
+  (swap! open-menu* #(if (= % menu) nil menu)))
+
 (mf/defc ai-chat-bar*
   {::mf/private true}
   []
   (let [{:keys [open? display-log provider-history status]}
         (mf/deref ai-chat/chat-lens)
 
-        prompt       (mf/use-state "")
-        provider     (mf/use-state nil)
-        key-status   (mf/use-state nil)
-        provider-menu-open? (mf/use-state false)
-        model        (mf/use-state nil)
-        model-tiers  (mf/use-state [])
-        model-menu-open? (mf/use-state false)
-        ;; nil means "auto" — the panel sizes itself to its content via CSS
-        ;; (grid-template-rows: auto 1fr auto, capped at max-height: 90vh),
-        ;; so a short conversation stays compact and a long one grows to
-        ;; show more context, without the user having to drag anything.
-        ;; Dragging the resize handle sets an explicit {:width :height}
-        ;; here, which from then on overrides the auto behavior — standard
-        ;; "auto until the user takes control" sizing.
-        panel-size   (mf/use-state (read-saved-panel-size))
-        resizing?    (mf/use-ref false)
-        resize-start (mf/use-ref nil)
-        fab-ref      (mf/use-ref nil)
-        composer-ref (mf/use-ref nil)
-        panel-ref    (mf/use-ref nil)
-
         ;; :current-file-id is a real uuid record (app.common.uuid), not a
         ;; plain string — embedding it directly in a #js {...} literal
         ;; doesn't coerce it, so it reached the main process as a CLJS
         ;; object, which JSON.stringify then rendered as the literal
         ;; string "[object Object]" as the persisted-history file's top-
-        ;; level key. Every save and load landed under that same wrong
-        ;; key, so history never actually round-tripped. (str uuid) here,
-        ;; once, makes every downstream :fileId already a plain string.
-        file-id (some-> (mf/deref file-id-ref) str)
+        ;; level key. (str uuid) here, once, makes every downstream :fileId
+        ;; already a plain string.
+        file-id      (some-> (mf/deref file-id-ref) str)
+        sending?     (= status "sending")
 
-        sending? (= status "sending")
+        prompt*      (mf/use-state "")
+        ;; nil, :provider or :model — which header picker is open
+        open-menu*   (mf/use-state nil)
+        fab-ref      (mf/use-ref nil)
+        composer-ref (mf/use-ref nil)
+        panel-ref    (mf/use-ref nil)
+
+        settings     (use-provider-settings open?)
+        resize       (use-panel-resize panel-ref)
+        {:keys [provider key-status set-key-status!]} settings
+        has-key?     (when (and provider key-status)
+                       (boolean (get key-status (keyword provider))))
 
         on-toggle
         (mf/use-fn
-         (mf/deps open?)
-         (fn [_]
-           (st/emit! (ai-chat/toggle-panel))))
+         (fn [_] (st/emit! (ai-chat/toggle-panel))))
 
         on-close
         (mf/use-fn
          (fn [_]
            (st/emit! (ai-chat/close-panel))
            (when-let [node (mf/ref-val fab-ref)]
-             (.focus node))))
+             (.focus ^js node))))
 
         on-open-settings
         (mf/use-fn
@@ -259,166 +632,54 @@
         on-change
         (mf/use-fn
          (fn [event]
-           (reset! prompt (dom/get-value (dom/get-target event)))))
+           (reset! prompt* (dom/get-value (dom/get-target event)))))
 
         on-clear
         (mf/use-fn
          (mf/deps file-id)
-         (fn [_]
-           (st/emit! (ai-chat/reset-history))
-           (when (and file-id (electron-api))
-             (.command ^js (.-mockBackend (electron-api))
-                       "save-ai-chat-history"
-                       #js {:fileId file-id :displayLog #js [] :providerHistory #js []}))))
+         (fn [_] (clear-history! file-id)))
 
         on-toggle-provider-menu
         (mf/use-fn
-         (fn [_]
-           (swap! provider-menu-open? not)))
-
-        on-select-provider
-        (mf/use-fn
-         (fn [event]
-           (let [provider-id (dom/get-data (dom/get-current-target event) "provider-id")
-                 api (electron-api)]
-             (reset! provider-menu-open? false)
-             (when api
-               (-> (.setActiveProvider ^js (.-ai api) provider-id)
-                   (.then (fn [_] (reset! provider provider-id))))
-               ;; Model tiers are per-provider — refresh both the current
-               ;; selection and the tier list for the newly active one.
-               (-> (.getModel ^js (.-ai api) provider-id)
-                   (.then (fn [m] (reset! model m))))
-               (-> (.getModelTiers ^js (.-ai api) provider-id)
-                   (.then (fn [tiers] (reset! model-tiers (js->clj tiers :keywordize-keys true)))))
-               ;; A provider switch starts a fresh resumption thread — the
-               ;; old provider-history is shaped for the old provider
-               ;; (Anthropic content blocks / OpenAI tool_calls messages /
-               ;; Google's stateful interaction markers) and replaying it
-               ;; against a different provider's API would be meaningless.
-               ;; display-log (the visible transcript) is left untouched.
-               (st/emit! (ai-chat/set-provider-history []))))))
+         (fn [_] (toggle-menu! open-menu* :provider)))
 
         on-toggle-model-menu
         (mf/use-fn
-         (fn [_]
-           (swap! model-menu-open? not)))
+         (fn [_] (toggle-menu! open-menu* :model)))
+
+        on-select-provider
+        (mf/use-fn
+         (mf/deps (:on-select-provider settings))
+         (fn [event]
+           (reset! open-menu* nil)
+           ((:on-select-provider settings) event)))
 
         on-select-model
         (mf/use-fn
-         (mf/deps @provider)
+         (mf/deps (:on-select-model settings))
          (fn [event]
-           (let [model-id (dom/get-data (dom/get-current-target event) "model-id")
-                 api (electron-api)]
-             (reset! model-menu-open? false)
-             (when (and api @provider)
-               (-> (.setModel ^js (.-ai api) @provider model-id)
-                   (.then (fn [_] (reset! model model-id))))))))
+           (reset! open-menu* nil)
+           ((:on-select-model settings) event)))
 
-        persist-history!
-        (mf/use-fn
-         (mf/deps file-id)
-         (fn [provider-history]
-           (when (and file-id (electron-api))
-             (if (file-still-open? file-id)
-               ;; Read display-log fresh at persist time, not from any
-               ;; closure — ai-tools.cljs's dispatch-tool-call may have
-               ;; appended tool-call entries mid-turn, after on-send's own
-               ;; closure captured its view of the log.
-               (let [fresh-log (get-in @st/state [:ai-chat :display-log])]
-                 (.command ^js (.-mockBackend (electron-api))
-                           "save-ai-chat-history"
-                           #js {:fileId file-id
-                                :displayLog (clj->js fresh-log)
-                                :providerHistory (clj->js provider-history)}))
-               (js/console.warn "AI chat: the file this turn was sent from is no longer open;"
-                                "nothing saved for" file-id)))))
-
-        ;; Actually dispatch a prompt once we know the active provider has a
-        ;; stored key. Split out of on-send so the key-status gate above it
-        ;; stays flat and easy to read.
-        dispatch-prompt!
-        (mf/use-fn
-         (mf/deps provider-history file-id)
-         (fn [api provider-id text]
-           (st/emit! (ai-chat/append-display-entry {:role :user :text text}))
-           (st/emit! (ai-chat/set-status {:phase "sending"}))
-           (reset! prompt "")
-           (-> (.sendPrompt ^js (.-ai api)
-                            #js {:provider provider-id
-                                 :prompt text
-                                 :systemPrompt (ai-tools/build-system-prompt)
-                                 :history (clj->js provider-history)})
-               ;; The IPC reply is the one signal that always arrives, so
-               ;; it always settles the panel. The real-time ai:turn-status
-               ;; pushes normally get there first ("done" with the reply
-               ;; text, "error" with its bubble); repeating the phase here
-               ;; is harmless, and set-status drops a duplicate error bubble
-               ;; (ai_chat.cljs). What only this reply can report: a failure
-               ;; before the turn's first push (no key, unknown provider, a
-               ;; renderer the main process could no longer reach) and a
-               ;; push that never arrived — both used to leave "Sending…"
-               ;; on screen for good.
-               (.then
-                (fn [res]
-                  (if (unchecked-get res "success")
-                    (let [new-history (js->clj (unchecked-get res "history") :keywordize-keys true)]
-                      ;; While the turn's undo entry is still being
-                      ;; committed (text layout settling) the status push
-                      ;; settles the panel itself, once that is done.
-                      (when-not (ai-tools/turn-commit-pending?)
-                        (st/emit! (ai-chat/set-status {:phase "done"})))
-                      ;; After a tab switch the state holds the other
-                      ;; file's conversation: leave it alone.
-                      (when (file-still-open? file-id)
-                        (st/emit! (ai-chat/set-provider-history new-history)))
-                      (persist-history! new-history))
-                    (do
-                      (when-not (ai-tools/turn-commit-pending?)
-                        (st/emit! (ai-chat/set-status
-                                   (if (file-still-open? file-id)
-                                     {:phase "error"
-                                      :message (or (not-empty (unchecked-get res "error"))
-                                                   (tr "kizuku.ai.error.generic"))}
-                                     {:phase "done"}))))
-                      ;; provider-history is unchanged: the turn produced
-                      ;; nothing to resume from.
-                      (persist-history! provider-history)))))
-               (.catch
-                (fn [err]
-                  ;; The IPC call itself failed (no handler registered, a
-                  ;; payload that could not be cloned): nothing else will
-                  ;; ever unlock the panel.
-                  (st/emit! (ai-chat/set-status
-                             (if (file-still-open? file-id)
-                               {:phase "error"
-                                :message (or (some-> err .-message not-empty)
-                                             (tr "kizuku.ai.error.generic"))}
-                               {:phase "done"})))
-                  (persist-history! provider-history))))))
-
+        ;; The composer keeps its text when the active provider has no key,
+        ;; so the user can add one and send again.
         on-send
         (mf/use-fn
-         (mf/deps @prompt sending? dispatch-prompt!)
+         (mf/deps @prompt* sending? provider-history file-id set-key-status!)
          (fn [_]
-           (let [text (str/trim (or @prompt ""))
-                 api  (electron-api)]
-             (when (and (seq text) (not sending?) api)
-               (-> (.getActiveProvider ^js (.-ai api))
-                   (.then
-                    (fn [provider-id]
-                      (-> (.getKeyStatus ^js (.-ai api))
-                          (.then
-                           (fn [raw-status]
-                             (let [status (js->clj raw-status :keywordize-keys true)]
-                               (reset! key-status status)
-                               (if (get status (keyword provider-id))
-                                 (dispatch-prompt! api provider-id text)
-                                 (st/emit!
-                                  (ai-chat/set-status
-                                   {:phase "error"
-                                    :message (tr "kizuku.ai.error.no-key"
-                                                 (provider-label provider-id))}))))))))))))))
+           (let [text (str/trim (or @prompt* ""))]
+             (when-let [api (and (seq text) (not sending?) (ai-api))]
+               (p/let [provider-id (.getActiveProvider ^js api)
+                       raw-status  (.getKeyStatus ^js api)]
+                 (let [key-status (js->clj raw-status :keywordize-keys true)]
+                   (set-key-status! key-status)
+                   (if (get key-status (keyword provider-id))
+                     (do (reset! prompt* "")
+                         (send-prompt! api file-id provider-id text provider-history))
+                     (st/emit! (ai-chat/set-status
+                                {:phase "error"
+                                 :message (tr "kizuku.ai.error.no-key"
+                                              (provider-label provider-id))})))))))))
 
         on-composer-keydown
         (mf/use-fn
@@ -432,127 +693,38 @@
                (= (.-key native) "Escape")
                (do (dom/stop-propagation event) (on-close event))))))
 
+        ;; Escape closes an open picker first, then the panel.
         on-panel-keydown
         (mf/use-fn
-         (mf/deps @provider-menu-open? @model-menu-open?)
+         (mf/deps @open-menu*)
          (fn [event]
            (when (= (.-key (.-nativeEvent ^js event)) "Escape")
              (dom/stop-propagation event)
-             (cond
-               @provider-menu-open? (reset! provider-menu-open? false)
-               @model-menu-open? (reset! model-menu-open? false)
-               :else (on-close event)))))
-
-        ;; The panel is pinned to its bottom-right corner (next to the FAB),
-        ;; so only the top and left edges can move: the drag zones sit on
-        ;; those edges and their corner, and pulling them outward (up/left)
-        ;; grows the panel. data-axes says which dimensions a zone drives.
-        ;; The pointer is captured so the drag keeps reporting even when it
-        ;; crosses the canvas, which has pointer handlers of its own.
-        on-resize-pointer-down
-        (mf/use-fn
-         (mf/deps @panel-size)
-         (fn [event]
-           (dom/prevent-default event)
-           (dom/stop-propagation event)
-           (dom/capture-pointer event)
-           (mf/set-ref-val! resizing? true)
-           ;; In auto mode (panel-size nil, size driven purely by CSS) there's
-           ;; no stored {:width :height} to drag from — read the panel's real
-           ;; rendered box instead, so the drag starts from wherever it
-           ;; actually is on screen rather than snapping to some default.
-           (let [axes (or (dom/get-data (dom/get-current-target event) "axes") "xy")
-                 {:keys [width height]}
-                 (or @panel-size
-                     (when-let [node (mf/ref-val panel-ref)]
-                       (let [rect (.getBoundingClientRect ^js node)]
-                         {:width (.-width rect) :height (.-height rect)})))]
-             (mf/set-ref-val! resize-start
-                               {:x (.-clientX ^js event) :y (.-clientY ^js event)
-                                :axes axes
-                                :width width :height height}))))]
+             (if @open-menu*
+               (reset! open-menu* nil)
+               (on-close event)))))]
 
     ;; Load persisted history once per file, on mount / file switch.
     (mf/with-effect [file-id]
-      (when (and file-id (electron-api))
-        (-> (.command ^js (.-mockBackend (electron-api)) "get-ai-chat-history" #js {:fileId file-id})
-            (.then (fn [res]
-                     (let [raw (unchecked-get res "raw")
-                           ;; js->clj :keywordize-keys only keywordizes map
-                           ;; KEYS, never string VALUES — a round-tripped
-                           ;; entry's :role lands as the string "user", not
-                           ;; the keyword :user that freshly-appended
-                           ;; entries use (ai_tools.cljs/ai_chat_bar.cljs
-                           ;; construct those directly as CLJS maps). The
-                           ;; message-log*'s role filter checks against a
-                           ;; keyword set, so every loaded entry silently
-                           ;; failed it — the data was correctly loaded
-                           ;; into state the whole time, just invisible to
-                           ;; that filter. Re-keywordize :role explicitly.
-                           dl  (->> (js->clj (unchecked-get raw "displayLog") :keywordize-keys true)
-                                    (mapv #(update % :role keyword)))
-                           ph  (js->clj (unchecked-get raw "providerHistory") :keywordize-keys true)]
-                       (st/emit! (ai-chat/set-history
-                                   {:display-log dl :provider-history ph})))))
-            (.catch (fn [err] (js/console.error "Failed to load AI chat history" err))))))
-
-    ;; Resolve the active provider + each provider's key status + the
-    ;; active provider's model/tiers once on mount and whenever the panel
-    ;; opens, so the badges/pickers reflect a change made in Settings
-    ;; meanwhile.
-    (mf/with-effect [open?]
-      (when (and open? (electron-api))
-        (-> (.getActiveProvider ^js (.-ai (electron-api)))
-            (.then (fn [p]
-                     (reset! provider p)
-                     (-> (.getModel ^js (.-ai (electron-api)) p)
-                         (.then (fn [m] (reset! model m))))
-                     (-> (.getModelTiers ^js (.-ai (electron-api)) p)
-                         (.then (fn [tiers] (reset! model-tiers (js->clj tiers :keywordize-keys true))))))))
-        (-> (.getKeyStatus ^js (.-ai (electron-api)))
-            (.then (fn [s] (reset! key-status (js->clj s :keywordize-keys true)))))))
+      (when file-id
+        (load-persisted-history! file-id)))
 
     ;; Focus the composer on open.
     (mf/with-effect [open?]
-      (when (and open? (mf/ref-val composer-ref))
-        (.focus (mf/ref-val composer-ref))))
+      (when open?
+        (when-let [node (mf/ref-val composer-ref)]
+          (.focus ^js node))))
 
-    ;; Close the provider/model menus on any outside click, standard
-    ;; dropdown behavior — only attached while a menu is actually open.
-    (mf/with-effect [@provider-menu-open? @model-menu-open?]
-      (when (or @provider-menu-open? @model-menu-open?)
+    ;; Close an open picker on any click outside the panel, standard
+    ;; dropdown behaviour — only attached while a picker is open.
+    (mf/with-effect [@open-menu*]
+      (when @open-menu*
         (let [on-doc-click (fn [event]
-                              (let [target (dom/get-target event)]
-                                (when-not (and (mf/ref-val panel-ref)
-                                               (.contains ^js (mf/ref-val panel-ref) target))
-                                  (reset! provider-menu-open? false)
-                                  (reset! model-menu-open? false))))]
+                             (let [panel (mf/ref-val panel-ref)]
+                               (when-not (and panel (.contains ^js panel (dom/get-target event)))
+                                 (reset! open-menu* nil))))]
           (.addEventListener js/document "pointerdown" on-doc-click)
           (fn [] (.removeEventListener js/document "pointerdown" on-doc-click)))))
-
-    ;; Window-level pointer listeners for the resize drag — only attached
-    ;; while a resize is in progress.
-    (mf/with-effect []
-      (let [on-move (fn [event]
-                      (when (mf/ref-val resizing?)
-                        (let [{:keys [x y axes width height]} (mf/ref-val resize-start)
-                              ;; pointer moving left/up pulls the free edges
-                              ;; outward, so the deltas are inverted
-                              dx (if (str/includes? axes "x") (- x (.-clientX ^js event)) 0)
-                              dy (if (str/includes? axes "y") (- y (.-clientY ^js event)) 0)]
-                          (reset! panel-size
-                                  {:width (clamp (+ width dx) (:width min-panel-size) max-panel-width)
-                                   :height (clamp (+ height dy) (:height min-panel-size) (max-panel-height))}))))
-            on-up (fn [_]
-                    (when (mf/ref-val resizing?)
-                      (mf/set-ref-val! resizing? false)
-                      (when-let [size @panel-size]
-                        (save-panel-size! size))))]
-        (.addEventListener js/window "pointermove" on-move)
-        (.addEventListener js/window "pointerup" on-up)
-        (fn []
-          (.removeEventListener js/window "pointermove" on-move)
-          (.removeEventListener js/window "pointerup" on-up))))
 
     [:*
      (when open?
@@ -562,108 +734,38 @@
          :role "dialog"
          :aria-label (tr "kizuku.ai.panel-label")
          :on-key-down on-panel-keydown
-         ;; nil panel-size (not yet manually resized) means no inline
-         ;; width/height at all — the panel's own CSS (grid-template-rows:
-         ;; auto 1fr auto, max-height: 90vh) sizes it to its content.
-         ;; A JS object, not a map: rumext only converts style maps it can
-         ;; see at compile time, and a map built at runtime reaches React
-         ;; as an opaque object that sets nothing — which is why the drag
+         ;; No size yet (never resized) means no inline width/height at
+         ;; all; the panel's own CSS sizes it to its content. A JS object,
+         ;; not a map: rumext only converts style maps it can see at
+         ;; compile time, and a map built at runtime reaches React as an
+         ;; opaque object that sets nothing — which is why the drag once
          ;; changed the state but never the panel.
-         :style (when-let [{:keys [width height]} @panel-size]
+         :style (when-let [{:keys [width height]} (:size resize)]
                   #js {:width (str width "px") :height (str height "px")})}
 
-        [:div {:class (stl/css :panel-header)}
-         [:span {:class (stl/css :panel-title)} (tr "kizuku.ai.title")]
-         [:div {:class (stl/css :provider-picker)}
-          [:button {:class (stl/css :provider-badge)
-                    :on-click on-toggle-provider-menu
-                    :aria-haspopup "listbox"
-                    :aria-expanded @provider-menu-open?
-                    :aria-label (tr "kizuku.ai.provider-aria" (provider-label @provider))}
-           (or (provider-label @provider) "…")
-           [:span {:class (stl/css :provider-badge-caret)} "▾"]]
-          (when @provider-menu-open?
-            [:ul {:class (stl/css :provider-menu) :role "listbox"}
-             (for [{:keys [id label]} known-providers]
-               (let [has-key? (get @key-status (keyword id))]
-                 [:li {:key id
-                       :role "option"
-                       :aria-selected (= id @provider)
-                       :class (stl/css-case :provider-menu-item true
-                                             :provider-menu-item-active (= id @provider))
-                       :data-provider-id id
-                       :on-click on-select-provider}
-                  [:span {:class (stl/css :provider-menu-item-label)} label]
-                  [:span {:class (stl/css-case :provider-menu-item-status true
-                                                :has-key has-key?)}
-                   (if has-key? (tr "kizuku.ai.key-set") (tr "kizuku.ai.no-key"))]]))])]
-         [:div {:class (stl/css :provider-picker)}
-          [:button {:class (stl/css :provider-badge)
-                    :on-click on-toggle-model-menu
-                    :aria-haspopup "listbox"
-                    :aria-expanded @model-menu-open?
-                    :aria-label (tr "kizuku.ai.model-aria" (model-label @model-tiers @model))}
-           (short-model-label (model-label @model-tiers @model))
-           [:span {:class (stl/css :provider-badge-caret)} "▾"]]
-          (when @model-menu-open?
-            [:ul {:class (stl/css :provider-menu) :role "listbox"}
-             (for [{:keys [id label]} @model-tiers]
-               [:li {:key id
-                     :role "option"
-                     :aria-selected (= id @model)
-                     :class (stl/css-case :provider-menu-item true
-                                           :provider-menu-item-active (= id @model))
-                     :data-model-id id
-                     :on-click on-select-model}
-                [:span {:class (stl/css :provider-menu-item-label)} label]])])]
-         [:button {:class (stl/css :header-button)
-                   :on-click on-clear
-                   :aria-label (tr "kizuku.ai.clear-aria")
-                   :title (tr "kizuku.ai.clear-title")}
-          (tr "kizuku.ai.clear")]
-         [:button {:class (stl/css :header-button)
-                   :on-click on-close
-                   :aria-label (tr "kizuku.ai.close-aria")
-                   :title (tr "kizuku.ai.close")}
-          "✕"]]
+        [:> panel-header* {:settings settings
+                           :open-menu @open-menu*
+                           :on-toggle-provider-menu on-toggle-provider-menu
+                           :on-toggle-model-menu on-toggle-model-menu
+                           :on-select-provider on-select-provider
+                           :on-select-model on-select-model
+                           :on-clear on-clear
+                           :on-close on-close}]
 
         [:> message-log* {:display-log (or display-log [])
-                           :status status
-                           :has-key? (when (and @provider @key-status)
-                                       (boolean (get @key-status (keyword @provider))))
-                           :provider-id @provider
-                           :on-open-settings on-open-settings}]
+                          :status status
+                          :has-key? has-key?
+                          :provider-id provider
+                          :on-open-settings on-open-settings}]
 
-        [:div {:class (stl/css :composer)}
-         [:textarea
-          {:ref composer-ref
-           :class (stl/css :composer-input)
-           :placeholder (tr "kizuku.ai.placeholder")
-           :value @prompt
-           :disabled sending?
-           :on-change on-change
-           :on-key-down on-composer-keydown
-           :aria-label (tr "kizuku.ai.prompt-aria")
-           :rows 2}]
-         [:button
-          {:class (stl/css :send-button)
-           :on-click on-send
-           :disabled (or sending? (empty? (str/trim (or @prompt ""))))
-           :aria-label (if sending? (tr "kizuku.ai.sending-aria") (tr "kizuku.ai.send-aria"))}
-          (if sending? (tr "kizuku.ai.sending") (tr "kizuku.ai.send"))]]
+        [:> composer* {:prompt @prompt*
+                       :sending? sending?
+                       :composer-ref composer-ref
+                       :on-change on-change
+                       :on-key-down on-composer-keydown
+                       :on-send on-send}]
 
-        [:div {:class (stl/css :resize-left)
-               :data-axes "x"
-               :on-pointer-down on-resize-pointer-down
-               :aria-hidden true}]
-        [:div {:class (stl/css :resize-top)
-               :data-axes "y"
-               :on-pointer-down on-resize-pointer-down
-               :aria-hidden true}]
-        [:div {:class (stl/css :resize-corner)
-               :data-axes "xy"
-               :on-pointer-down on-resize-pointer-down
-               :aria-hidden true}]])
+        [:> resize-handles* {:on-pointer-down (:on-pointer-down resize)}]])
 
      [:button
       {:ref fab-ref

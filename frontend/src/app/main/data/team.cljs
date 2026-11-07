@@ -23,20 +23,11 @@
 (ns app.main.data.team
   (:require
    [app.common.data :as d]
-   [app.common.data.macros :as dm]
    [app.common.exceptions :as ex]
    [app.common.logging :as log]
-   [app.common.schema :as sm]
-   [app.common.types.team :as ctt]
-   [app.common.uri :as u]
-   [app.config :as cf]
-   [app.main.data.event :as ev]
-   [app.main.data.media :as di]
    [app.main.features :as features]
    [app.main.repo :as rp]
-   [app.main.router :as rt]
    [app.util.storage :as storage]
-   [app.util.webapi :as wapi]
    [beicon.v2.core :as rx]
    [potok.v2.core :as ptk]))
 
@@ -125,9 +116,9 @@
         (if (and kizuku-mode? (not team) (some? team-id))
           (do
             (let [default-permissions {:can-edit true
-                                      :can-read true
-                                      :is-owner true
-                                      :is-admin true}
+                                       :can-read true
+                                       :is-owner true
+                                       :is-admin true}
                   ;; KIZUKU (2026-11-02): features a backend team would
                   ;; carry. "variants/v1" is not a default feature upstream
                   ;; (it needs a file migration), so it has to be granted at
@@ -136,11 +127,11 @@
                   ;; backend stamps every file with the marker.
                   team-features #{"variants/v1"}
                   synthetic-team {:id team-id
-                                 :name "Kizuku Workspace"
-                                 :is-default true
-                                 :permissions default-permissions
-                                 :features team-features
-                                 :is-owner true}]
+                                  :name "Kizuku Workspace"
+                                  :is-default true
+                                  :permissions default-permissions
+                                  :features team-features
+                                  :is-owner true}]
               (rx/of
                #(assoc-in % [:teams team-id] synthetic-team)
                #(assoc % :permissions default-permissions)
@@ -149,7 +140,7 @@
                ;; clipboard payload against it (nil made every paste fail
                ;; with "invalid paste data").
                (features/initialize team-features))))
-          
+
           ;; Original PenPot logic
           (if (not team)
             (rx/throw (ex/error :type :authentication))

@@ -167,8 +167,6 @@
   [{:keys [project team]}]
   (let [files            (mf/deref refs/files)
         project-id       (get project :id)
-        active-folder*    (mf/use-state nil)
-        active-folder     (deref active-folder*)
         assigned-ids*     (mf/use-state #{})
         assigned-ids      (deref assigned-ids*)
 
@@ -213,10 +211,6 @@
              (st/emit! (-> (dd/create-file (with-meta params mdata))
                            (with-meta {::ev/origin origin :has-files (> file-count 0)}))))))
 
-        on-folder-change
-        (mf/use-fn
-         (fn [fid] (reset! active-folder* fid)))
-
         on-assigned-files
         (mf/use-fn
          (fn [ids] (reset! assigned-ids* ids)))]
@@ -244,8 +238,7 @@
        [:> folder-tree-panel*
         {:project-id project-id
          :project project
-         :on-assigned-files on-assigned-files
-         :on-folder-change on-folder-change}])
+         :on-assigned-files on-assigned-files}])
 
      [:section {:class (stl/css :dashboard-container :no-bg)
                 :ref rowref}

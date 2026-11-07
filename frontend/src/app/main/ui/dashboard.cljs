@@ -61,14 +61,6 @@
   (let [container       (mf/use-ref)
         content-width   (mf/use-state 0)
 
-        project-id      (:id project)
-        team-id         (:id team)
-
-        permissions     (:permissions team)
-
-        default-project-id
-        (get default-project :id)
-
         on-resize
         (mf/use-fn
          (fn [_]
@@ -78,9 +70,7 @@
 
         clear-selected-fn
         (mf/use-fn
-         #(st/emit! (dd/clear-selected-files)))
-
-]
+         #(st/emit! (dd/clear-selected-files)))]
 
     (mf/with-effect []
       (let [key1 (events/listen js/window "resize" on-resize)]

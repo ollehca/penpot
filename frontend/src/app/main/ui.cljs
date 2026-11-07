@@ -15,7 +15,6 @@
   (:require
    [app.common.data :as d]
    [app.common.uuid :as uuid]
-   [app.config :as cf]
    [app.main.data.common :as dcm]
    [app.main.data.team :as dtm]
    [app.main.errors :as errors]
@@ -30,7 +29,6 @@
    [app.main.ui.exports.files]
    [app.main.ui.frame-preview :as frame-preview]
    [app.main.ui.notifications :as notifications]
-   [app.main.ui.releases :refer [release-notes-modal]]
    [app.main.ui.static :as static]
    [app.util.dom :as dom]
    [app.util.i18n :refer [tr]]
@@ -150,11 +148,11 @@
         team-matches? (= team-id (:id team))
         ;; For Kizuku auth, provide default permissions if team not loaded
         effective-permissions (if (and kizuku-auth? (not team-matches?))
-                               (hash-map :can-edit true
-                                         :can-read true
-                                         :is-owner true
-                                         :is-admin true)
-                               permissions)
+                                (hash-map :can-edit true
+                                          :can-read true
+                                          :is-owner true
+                                          :is-admin true)
+                                permissions)
         should-render? (or kizuku-auth? team-matches?)]
     (when should-render?
       [:> (mf/provider ctx/current-team-id) {:value team-id}
@@ -168,22 +166,11 @@
   {::mf/props :obj
    ::mf/private true}
   [{:keys [route profile]}]
+  ;; MODIFIED BY KIZUKU (2025-09-30): the onboarding modal flows (newsletter,
+  ;; questions, team choice, release notes) are not part of the desktop app;
+  ;; upstream gates them here on the profile's props.
   (let [{:keys [data params]} route
-        props   (get profile :props)
-        section (get data :name)
-        team    (mf/deref refs/team)
-
-        ;; ============================================================================
-        ;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
-        ;; Original file from PenPot (https://github.com/penpot/penpot)
-        ;; Licensed under Mozilla Public License Version 2.0
-        ;; Modifications: Disabled all onboarding modal flows (newsletter, questions, team-choice)
-        ;; Date: 2025-09-30
-        ;; ============================================================================
-        show-question-modal? false
-        show-newsletter-modal? false
-        show-team-modal? false
-        show-release-modal? false]
+        section (get data :name)]
 
     [:& (mf/provider ctx/current-route) {:value route}
      (case section

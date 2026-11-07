@@ -18,10 +18,10 @@
 
 (ns app.main.data.exports.assets
   (:require
-   [app.main.data.exports.local :as local]
    [app.common.time :as ct]
    [app.common.uuid :as uuid]
    [app.main.data.event :as ev]
+   [app.main.data.exports.local :as local]
    [app.main.data.helpers :as dsh]
    [app.main.data.modal :as modal]
    [app.main.data.persistence :as dwp]

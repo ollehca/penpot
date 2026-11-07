@@ -8,8 +8,8 @@
 
 (ns catalog.sections.organisms
   (:require
-   [app.main.ui.ds.product.loader :refer [loader*]]
    [app.main.ui.ds.product.empty-placeholder :refer [empty-placeholder*]]
+   [app.main.ui.ds.product.loader :refer [loader*]]
    [catalog.helpers.showcase :refer [showcase* variant-group*]]
    [rumext.v2 :as mf]))
 
