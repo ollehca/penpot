@@ -169,7 +169,11 @@
           (nil? current-tx)  (assoc-in [:workspace-undo :transaction] empty-tx)
           (nil? pending-tx)  (assoc-in [:workspace-undo :transactions-pending] #{id})
           (some? pending-tx) (update-in [:workspace-undo :transactions-pending] conj id)
-          :always            (update-in [:workspace-undo :transactions-pending-ts] assoc id (ct/now)))))
+          :always            (update-in [:workspace-undo :transactions-pending-ts] assoc id (ct/now))
+          ;; KIZUKU: each transaction keeps its own deadline. The timer of a
+          ;; short nested one (group-shapes, 20 s) used to force-commit a
+          ;; long outer one (an AI turn) and split it into several entries.
+          :always            (update-in [:workspace-undo :transactions-pending-timeout] assoc id timeout))))
 
     ptk/WatchEvent
     (watch [_ _ _]
@@ -186,7 +190,8 @@
     ptk/UpdateEvent
     (update [_ state]
       (log/info :hint "discard-undo-transaction")
-      (update state :workspace-undo dissoc :transaction :transactions-pending :transactions-pending-ts))))
+      (update state :workspace-undo dissoc :transaction :transactions-pending :transactions-pending-ts
+              :transactions-pending-timeout))))
 
 (defn commit-undo-transaction [id]
   (ptk/reify ::commit-undo-transaction
@@ -195,7 +200,8 @@
       (log/info :hint "commit-undo-transaction")
       (let [state (-> state
                       (update-in [:workspace-undo :transactions-pending] disj id)
-                      (update-in [:workspace-undo :transactions-pending-ts] dissoc id))]
+                      (update-in [:workspace-undo :transactions-pending-ts] dissoc id)
+                      (update-in [:workspace-undo :transactions-pending-timeout] dissoc id))]
         (if (empty? (get-in state [:workspace-undo :transactions-pending]))
           (-> state
               (add-undo-entry (get-in state [:workspace-undo :transaction]))
@@ -215,10 +221,14 @@
     ptk/WatchEvent
     (watch [_ state _]
       (log/info :hint "check-open-transactions" :timeout timeout)
-      (let [pending-ts (-> (dm/get-in state [:workspace-undo :transactions-pending-ts])
+      (let [timeouts   (dm/get-in state [:workspace-undo :transactions-pending-timeout])
+            pending-ts (-> (dm/get-in state [:workspace-undo :transactions-pending-ts])
                            (update-vals #(ct/diff-ms % (ct/now))))]
         (->> pending-ts
-             (filter (fn [[_ ts]] (>= ts timeout)))
+             ;; KIZUKU: a transaction's own deadline, not the caller's
+             (filter (fn [[id ts]]
+                       (let [limit (or (get timeouts id) timeout)]
+                         (and (number? limit) (>= ts limit)))))
              (rx/from)
              (rx/tap #(js/console.warn (dm/str "FORCE COMMIT TRANSACTION AFTER " (second %) "MS")))
              (rx/map first)

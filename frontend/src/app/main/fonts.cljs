@@ -58,24 +58,27 @@
      {:id "black" :name "900" :weight "900" :style "normal" :ttf-url "sourcesanspro-black.ttf"}
      {:id "blackitalic" :name "900 Italic" :weight "900" :style "italic" :ttf-url "sourcesanspro-blackitalic.ttf"}]}
 
-   ;; Kizuku design system fonts (variable font — @font-face in fonts.scss)
+   ;; Kizuku design system fonts (variable font — @font-face in fonts.scss).
+   ;; :file names the shipped file for the font-face CSS that text
+   ;; rendering embeds (fetch-font-css); without it the builtin default
+   ;; <family>-<variant>.woff was requested, which these fonts do not ship.
    {:id "inter"
     :name "Inter"
     :family "inter"
     :variants
-    [{:id "regular" :name "400" :weight "400" :style "normal"}
-     {:id "italic" :name "400 Italic" :weight "400" :style "italic"}
-     {:id "500" :name "500" :weight "500" :style "normal"}
-     {:id "600" :name "600" :weight "600" :style "normal"}
-     {:id "bold" :name "700" :weight "700" :style "normal"}]}
+    [{:id "regular" :name "400" :weight "400" :style "normal" :file "Inter-VariableFont.woff2"}
+     {:id "italic" :name "400 Italic" :weight "400" :style "italic" :file "Inter-VariableFont.woff2"}
+     {:id "500" :name "500" :weight "500" :style "normal" :file "Inter-VariableFont.woff2"}
+     {:id "600" :name "600" :weight "600" :style "normal" :file "Inter-VariableFont.woff2"}
+     {:id "bold" :name "700" :weight "700" :style "normal" :file "Inter-VariableFont.woff2"}]}
 
    {:id "jetbrainsmono"
     :name "JetBrains Mono"
     :family "jetbrainsmono"
     :variants
-    [{:id "regular" :name "400" :weight "400" :style "normal" :ttf-url "jetbrainsmono-regular.ttf"}
-     {:id "500" :name "500" :weight "500" :style "normal" :ttf-url "jetbrainsmono-medium.ttf"}
-     {:id "bold" :name "700" :weight "700" :style "normal" :ttf-url "jetbrainsmono-bold.ttf"}]}])
+    [{:id "regular" :name "400" :weight "400" :style "normal" :ttf-url "jetbrainsmono-regular.ttf" :file "jetbrainsmono-regular.woff2"}
+     {:id "500" :name "500" :weight "500" :style "normal" :ttf-url "jetbrainsmono-medium.ttf" :file "jetbrainsmono-medium.woff2"}
+     {:id "bold" :name "700" :weight "700" :style "normal" :ttf-url "jetbrainsmono-bold.ttf" :file "jetbrainsmono-bold.woff2"}]}])
 
 (defonce fontsdb (l/atom {}))
 (defonce fonts (l/atom []))
@@ -246,6 +249,17 @@
     src: url(%(uri)s) format('woff');
   }")
 
+;; KIZUKU: builtin faces name their format (Inter and JetBrains Mono ship
+;; as woff2).
+(def ^:private builtin-font-face-template
+  "@font-face {
+    font-family: '%(family)s';
+    font-style: %(style)s;
+    font-weight: %(weight)s;
+    font-display: block;
+    src: url(%(uri)s) format('%(format)s');
+  }")
+
 (defn- asset-id->uri
   [asset-id]
   (str (u/join cf/public-uri "assets/by-id/" asset-id)))
@@ -401,13 +415,19 @@
         (rx/of result))
 
       :else
-      (let [{:keys [weight style suffix]} (get-variant font font-variant-id)
+      (let [{:keys [weight style suffix file]} (get-variant font font-variant-id)
             suffix (or suffix font-variant-id)
-            params {:uri (dm/str cf/public-uri "fonts/" family "-" suffix ".woff")
+            ;; KIZUKU: a variant may name its shipped file; the default is
+            ;; the <family>-<suffix>.woff that Source Sans Pro ships.
+            uri    (if file
+                     (dm/str cf/public-uri "fonts/" file)
+                     (dm/str cf/public-uri "fonts/" family "-" suffix ".woff"))
+            params {:uri uri
                     :family family
                     :style style
-                    :weight weight}]
-        (rx/of (str/fmt font-face-template params))))))
+                    :weight weight
+                    :format (if (and file (str/ends-with? file ".woff2")) "woff2" "woff")}]
+        (rx/of (str/fmt builtin-font-face-template params))))))
 
 (defn extract-fontface-urls
   "Parses the CSS and retrieves the font urls"

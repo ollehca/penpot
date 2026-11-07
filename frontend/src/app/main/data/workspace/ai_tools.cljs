@@ -195,7 +195,14 @@
        "The whole request is one undo step for the user.\n"
        "8. When you finish, reply with a short plain-language summary of what you built and "
        "anything the user should check. If the tools cannot do something, say so plainly "
-       "instead of improvising.\n\n"
+       "instead of improvising.\n"
+       "9. Work in rounds, and make each round count: one reply has a fixed output budget and "
+       "a whole page does not fit in it, but every create_* call is independent of the others, "
+       "so put a whole section's shapes into one reply (10–20 tool calls), wait for their "
+       "results, then continue with the next section in your next reply. Never create one or "
+       "two shapes per reply. Plan the page as sections (navigation, hero, gallery, about, "
+       "contact, footer); a page should take well under 30 replies. Build a decorative pattern "
+       "from a modest number of shapes (a dozen or two, grouped), not hundreds.\n\n"
        "Canvas state (selectedIds and every shape on the current page; parentId is the "
        "board or group a shape sits in, null at the page root):\n"
        (.stringify js/JSON (describe-canvas-state))))
@@ -824,8 +831,9 @@
 
 ;; PenPot force-commits an undo transaction left open for 20 s. A turn with
 ;; a real page of edits takes longer than that (one provider round alone
-;; can), and a force-commit splits the turn into several undo entries.
-(def ^:private turn-undo-timeout-ms (* 10 60 1000))
+;; can, and a page built section by section runs to many rounds), and a
+;; force-commit splits the turn into several undo entries.
+(def ^:private turn-undo-timeout-ms (* 30 60 1000))
 
 (defn- handle-turn-status
   [status]
@@ -846,21 +854,33 @@
       (let [final-text (unchecked-get status "finalText")
             tool-calls (or (unchecked-get status "toolCalls") 0)
             truncated? (true? (unchecked-get status "truncated"))
+            paused?    (true? (unchecked-get status "roundLimit"))
             settle!    #(st/emit! (ai-chat/set-status {:phase phase}))]
         ;; The reply belongs to the file the turn started in; another
         ;; file's conversation must not receive it.
         (when (turn-file-open?)
+          (when (and (string? final-text) (seq final-text))
+            (st/emit! (ai-chat/append-display-entry {:role :assistant :text final-text})))
           (cond
-            (and (string? final-text) (seq final-text))
-            (st/emit! (ai-chat/append-display-entry {:role :assistant :text final-text}))
+            ;; Cut off by the output limit: one bubble that says what the
+            ;; cut left behind, never "empty reply" next to "cut short".
+            truncated?
+            (st/emit! (ai-chat/append-display-entry
+                       {:role :error
+                        :text (tr (if (and (zero? tool-calls) (empty? final-text))
+                                    "kizuku.ai.truncated-nothing-done"
+                                    "kizuku.ai.truncated"))}))
+
+            ;; Still editing at the round ceiling: everything built is
+            ;; kept, and the conversation can be continued.
+            paused?
+            (st/emit! (ai-chat/append-display-entry
+                       {:role :error :text (tr "kizuku.ai.round-limit")}))
 
             ;; Neither text nor edits: say so, a silent turn reads as a hang.
-            (zero? tool-calls)
+            (and (zero? tool-calls) (empty? final-text))
             (st/emit! (ai-chat/append-display-entry
-                       {:role :assistant :text (tr "kizuku.ai.empty-reply")})))
-          (when truncated?
-            (st/emit! (ai-chat/append-display-entry
-                       {:role :error :text (tr "kizuku.ai.truncated")}))))
+                       {:role :assistant :text (tr "kizuku.ai.empty-reply")}))))
         ;; Settled only once the turn's undo entry exists.
         (if-let [tx-id @current-turn-tx]
           (do (reset! current-turn-tx nil)

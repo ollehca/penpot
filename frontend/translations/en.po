@@ -8026,6 +8026,14 @@ msgstr "The model sent an empty reply and made no changes. Try rephrasing, or as
 msgid "kizuku.ai.truncated"
 msgstr "The reply hit the output limit and was cut short. Ask it to continue with the rest."
 
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.truncated-nothing-done"
+msgstr "The reply hit the output limit before any edit was made, even after asking for smaller steps. Ask for one section at a time."
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.round-limit"
+msgstr "The assistant paused after many rounds of edits; everything it built is kept. Ask it to continue with the rest."
+
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.provider-aria"
 msgstr "Active AI provider: %s. Click to change."
