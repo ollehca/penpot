@@ -8018,6 +8018,14 @@ msgstr "No API key stored for %s — add one in Settings to use this provider."
 msgid "kizuku.ai.error.generic"
 msgstr "The AI request failed before a reply came back."
 
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.empty-reply"
+msgstr "The model sent an empty reply and made no changes. Try rephrasing, or ask for a smaller step."
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.truncated"
+msgstr "The reply hit the output limit and was cut short. Ask it to continue with the rest."
+
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.provider-aria"
 msgstr "Active AI provider: %s. Click to change."

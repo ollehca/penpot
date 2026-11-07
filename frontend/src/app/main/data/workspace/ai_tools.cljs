@@ -33,6 +33,7 @@
    [app.main.data.workspace.transforms :as dwt]
    [app.main.data.workspace.undo :as dwu]
    [app.main.store :as st]
+   [app.util.i18n :refer [tr]]
    [clojure.string :as str]))
 
 (defn- electron-api
@@ -402,6 +403,11 @@
 ;; identity explicitly.
 (defonce ^:private current-turn-tx (atom nil))
 
+;; PenPot force-commits an undo transaction left open for 20 s. A turn with
+;; a real page of edits takes longer than that (one provider round alone
+;; can), and a force-commit splits the turn into several undo entries.
+(def ^:private turn-undo-timeout-ms (* 10 60 1000))
+
 (defn- handle-turn-status
   [status]
   (let [phase (unchecked-get status "phase")]
@@ -409,19 +415,30 @@
       "started"
       (let [tx-id (js/Symbol)]
         (reset! current-turn-tx tx-id)
-        (st/emit! (dwu/start-undo-transaction tx-id))
+        (st/emit! (dwu/start-undo-transaction tx-id :timeout turn-undo-timeout-ms))
         (st/emit! (ai-chat/set-status {:phase phase})))
 
       "tool-executing"
       (st/emit! (ai-chat/set-status {:phase phase}))
 
       "done"
-      (let [final-text (unchecked-get status "finalText")]
+      (let [final-text (unchecked-get status "finalText")
+            tool-calls (or (unchecked-get status "toolCalls") 0)
+            truncated? (true? (unchecked-get status "truncated"))]
         (when-let [tx-id @current-turn-tx]
           (reset! current-turn-tx nil)
           (st/emit! (dwu/commit-undo-transaction tx-id)))
-        (when (and (string? final-text) (seq final-text))
-          (st/emit! (ai-chat/append-display-entry {:role :assistant :text final-text})))
+        (cond
+          (and (string? final-text) (seq final-text))
+          (st/emit! (ai-chat/append-display-entry {:role :assistant :text final-text}))
+
+          ;; Neither text nor edits: say so, a silent turn reads as a hang.
+          (zero? tool-calls)
+          (st/emit! (ai-chat/append-display-entry
+                     {:role :assistant :text (tr "kizuku.ai.empty-reply")})))
+        (when truncated?
+          (st/emit! (ai-chat/append-display-entry
+                     {:role :error :text (tr "kizuku.ai.truncated")})))
         (st/emit! (ai-chat/set-status {:phase phase})))
 
       "error"
