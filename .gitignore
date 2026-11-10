@@ -79,3 +79,9 @@ node_modules
 /playwright/.cache/
 /render-wasm/target/
 /**/.yarn/*
+
+# Kizuku: stray dev logs at the repo root (four were committed by mistake in 2025)
+/*.log
+
+# Kizuku: Finder metadata (four copies were committed by mistake in 2025)
+.DS_Store
