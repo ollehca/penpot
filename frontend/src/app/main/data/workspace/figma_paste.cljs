@@ -20,7 +20,9 @@
    [beicon.v2.core :as rx]))
 
 (def ^:private buffer-re
-  #"data-buffer=\"<!--\(figma\)([A-Za-z0-9+/=]+)-->\"")
+  ;; Figma closes the payload with "(/figma)" before the comment end; the
+  ;; closing marker is optional so both spellings are read.
+  #"data-buffer=\"<!--\(figma\)([A-Za-z0-9+/=]+)(?:\(/figma\))?-->\"")
 
 (defn figma-html?
   "Did Figma put this text/html on the clipboard?"

@@ -33,6 +33,7 @@
    [app.common.uuid :as uuid]
    [app.main.data.exports.assets :as de]
    [app.main.data.helpers :as dsh]
+   [app.main.data.persistence :as dps]
    [app.main.data.profile :as du]
    [app.main.data.workspace :as dw]
    [app.main.data.workspace.ai-chat :as ai-chat]
@@ -102,6 +103,63 @@
     (some-> (unchecked-get js/window "electronAPI")
             (unchecked-get "i18n"))))
 
+(def ^:private flush-settle
+  "How long flush-persistence! waits for an edit that is still on its way,
+  in ms. A shape is committed about 120 ms after the mouse is released, so
+  a flush asked for right at mouse-up would otherwise find nothing to send."
+  300)
+
+(def ^:private flush-timeout
+  "How long flush-persistence! waits for the queue to drain, in ms."
+  4000)
+
+(defn- persistence-idle?
+  "True when no edit is queued for, or on its way to, the backend."
+  [state]
+  (let [pstate (:persistence state)]
+    (and (empty? (:queue pstate))
+         (not= :saving (:status pstate)))))
+
+(defn- commit-text-being-edited!
+  "Text that is still being typed lives in the text editor and only
+  becomes part of the file when the editor loses focus. Take the focus
+  away so it is committed, as clicking outside the text would."
+  []
+  (when-let [el (some-> js/document .-activeElement)]
+    (when (.-isContentEditable ^js el)
+      (.blur ^js el))))
+
+(defn flush-persistence!
+  "Send the edits the editor is still holding to the backend now. Returns
+  a promise of true once none are queued or in flight, or of false when
+  they have not drained in time.
+
+  The editor batches edits and only sends them after three idle seconds
+  (app.main.data.persistence). The shell reads the backend's copy when it
+  saves a .kiz and tears the page down on quit, close and reload, so it
+  calls this first (src/services/editor-flush.js); without it the last
+  seconds of work were missing from the saved file."
+  []
+  (js/Promise.
+   (fn [resolve _]
+     (let [deadline (+ (js/Date.now) flush-settle flush-timeout)
+           ;; The held edits reach the queue over the next turns of the
+           ;; event loop, so the queue has to be seen empty twice in a row.
+           check    (fn check [idle-before?]
+                      (let [idle? (persistence-idle? @st/state)]
+                        (cond
+                          (and idle? idle-before?)    (resolve true)
+                          (> (js/Date.now) deadline) (resolve false)
+                          :else (js/setTimeout #(check idle?) 30))))]
+       ;; Once for what is already held, and once more after the settle
+       ;; time for an edit that had not been committed yet.
+       (commit-text-being-edited!)
+       (st/emit! ::dps/force-persist)
+       (js/setTimeout (fn []
+                        (st/emit! ::dps/force-persist)
+                        (js/setTimeout #(check false) 30))
+                      flush-settle)))))
+
 (defn init!
   "Register the command listener and start publishing context. No-op
   outside the Electron shell."
@@ -112,6 +170,9 @@
     (.onLocaleChange ^js api (fn [_] (st/emit! (du/refresh-profile)))))
   ;; Tables pushed by the shell (File → Import table from CSV, dropped files).
   (table-import/init!)
+  ;; Called by the shell before it saves, quits, closes or reloads.
+  (when (exists? js/window)
+    (unchecked-set js/window "kizukuFlushPersistence" flush-persistence!))
   (when-let [api (menu-api)]
     (.onCommand ^js api (fn [command] (dispatch! command)))
     (.setContext ^js api (context-snapshot @st/state))
