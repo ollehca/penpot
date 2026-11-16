@@ -61,8 +61,17 @@
 }
 
 .projects-container {
-  display: grid;
-  grid-auto-rows: min-content;
+  // MODIFIED BY KIZUKU (2026-11-16): a column that takes the height of its
+  // grid row, so that the list in it scrolls inside the window. As a grid of
+  // min-content rows it grew to the list's own height, calc(100vh - 64px),
+  // which assumes a 64px header at the top of the window: under the desktop
+  // app's title bar and the taller header the list ended 72px below the
+  // window and the last project could not be scrolled fully into view. The
+  // list is a flex item with a basis of 0 (.dashboard-container), so its
+  // height below no longer decides its size.
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .project {
