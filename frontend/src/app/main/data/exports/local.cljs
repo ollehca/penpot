@@ -24,7 +24,7 @@
   (app.main.render/object-svg with embedded images and fonts), then turns
   it into the requested format without leaving the app:
 
-    :svg              the markup itself
+    :svg              the markup, with every picture written into it
     :png :jpeg :webp  rasterised by the thumbnail rasterizer iframe
                       (app.main.rasterizer) at the export scale; jpeg and
                       webp are re-encoded through an OffscreenCanvas
@@ -179,6 +179,29 @@
 
 ;; --- Encoding -------------------------------------------------------------
 
+;; A picture in the rendered SVG: named by the address the app serves it at.
+(def ^:private picture-href-regex
+  #"href=\"([^\"]*assets/by-file-media-id/[^\"]+)\"")
+
+(defn- with-pictures-inside
+  "Observable of the SVG with every picture written into it as a data: URI.
+  The static render names a picture by the app's own address (the hooks
+  that would inline it only run in a worker), and no other program can
+  follow that address: an exported SVG showed none of its pictures anywhere
+  but in Kizuku. A picture that cannot be fetched keeps its address."
+  [svg]
+  (let [urls (into #{} (map second) (re-seq picture-href-regex svg))]
+    (if (empty? urls)
+      (rx/of svg)
+      (->> (rx/from urls)
+           (rx/merge-map http/fetch-data-uri)
+           (rx/reduce (fn [svg mapping]
+                        (reduce-kv (fn [svg url data-uri]
+                                     (str/replace svg url data-uri))
+                                   svg
+                                   mapping))
+                      svg)))))
+
 (defn- transcode-bitmap
   "Re-encode a PNG blob as jpeg/webp. JPEG has no alpha channel, so it is
   composited onto white first — the exporter does the same (omit-background?
@@ -216,7 +239,9 @@
   "Observable of the finished Blob for an already-rendered SVG."
   [svg {:keys [type scale] :or {scale 1}} width height]
   (case type
-    :svg (rx/of (js/Blob. #js [svg] #js {:type "image/svg+xml"}))
+    :svg (->> (with-pictures-inside svg)
+              (rx/map (fn [svg]
+                        (js/Blob. #js [svg] #js {:type "image/svg+xml"}))))
     :pdf (svg->pdf svg width height)
     (:png :jpeg :webp)
     (->> (thr/render {:data svg
