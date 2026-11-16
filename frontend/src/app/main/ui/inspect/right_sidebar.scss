@@ -9,7 +9,10 @@
 .settings-bar-right {
   min-width: $s-252;
   width: 100%;
-  height: 100vh;
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: var(--kizuku-app-height, 100vh);
   position: relative;
   left: unset;
   right: unset;
@@ -17,7 +20,7 @@
   overflow: hidden;
 
   &.viewer-code {
-    height: calc(100vh - $s-48);
+    height: calc(var(--kizuku-app-height, 100vh) - $s-48);
   }
 }
 

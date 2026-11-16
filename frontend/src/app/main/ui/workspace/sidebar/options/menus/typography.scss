@@ -418,7 +418,10 @@
 }
 
 .font-selector-dropdown-full-size {
-  height: calc(100vh - 48px); // TODO: ugly hack :( Find a workaround for this.
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: calc(var(--kizuku-app-height, 100vh) - 48px); // TODO: ugly hack :( Find a workaround for this.
   display: grid;
   grid-template-rows: auto 1fr;
   padding: $s-2 $s-12 $s-12 $s-12;

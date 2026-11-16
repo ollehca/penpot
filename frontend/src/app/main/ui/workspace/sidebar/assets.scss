@@ -11,7 +11,10 @@
   height: 100%;
   grid-auto-rows: max-content;
   // TODO: ugly hack :( Fix this! we shouldn't be hardcoding this height
-  height: calc(100vh - $s-92);
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: calc(var(--kizuku-app-height, 100vh) - $s-92);
   scrollbar-gutter: stable;
   overflow-y: auto;
   padding-top: $s-8;

@@ -12,7 +12,10 @@
   flex-direction: column;
   gap: $s-16;
   width: 100%;
-  height: calc(100vh - #{$s-128}); // TODO: Fix this hardcoded value
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: calc(var(--kizuku-app-height, 100vh) - #{$s-128}); // TODO: Fix this hardcoded value
   padding-top: $s-8;
   overflow-y: auto;
   overflow-x: hidden;
@@ -20,5 +23,5 @@
 }
 
 .workspace-element-options {
-  height: calc(100vh - #{$sz-200}); // TODO: Fix this hardcoded value
+  height: calc(var(--kizuku-app-height, 100vh) - #{$sz-200}); // TODO: Fix this hardcoded value
 }

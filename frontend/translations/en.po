@@ -3300,7 +3300,7 @@ msgstr "Send me product updates (new features, releases, fixes...)."
 
 #, unused
 msgid "onboarding-v2.welcome.desc1"
-msgstr "Welcome to Kizuku — a powerful design tool for creating beautiful interfaces."
+msgstr "Welcome to Kizuku, a powerful design tool for creating beautiful interfaces."
 
 #, unused
 msgid "onboarding-v2.welcome.desc2"
@@ -8012,7 +8012,7 @@ msgstr "Ask the AI to create, recolour, or delete shapes on this page."
 
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.error.no-key"
-msgstr "No API key stored for %s — add one in Settings to use this provider."
+msgstr "No API key stored for %s. Add one in Settings to use this provider."
 
 #: src/app/main/ui/workspace/sidebar/ai_chat_bar.cljs
 msgid "kizuku.ai.error.generic"
@@ -8040,7 +8040,7 @@ msgstr "Active AI provider: %s. Click to change."
 
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.model-aria"
-msgstr "Model: %s. Click to change — for more model options, see Settings > AI."
+msgstr "Model: %s. Click to change. For more model options, see Settings > AI."
 
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.key-set"
@@ -8160,7 +8160,7 @@ msgstr "Pasted %s layers from Figma"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.figma.pasted-missing-images"
-msgstr "Pasted %s layers from Figma · %s image fills replaced with placeholders (Figma's clipboard doesn't carry image data — import the .fig to keep images)"
+msgstr "Pasted %s layers from Figma · %s image fills replaced with placeholders (Figma's clipboard doesn't carry image data; import the .fig to keep images)"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.figma.nothing"

@@ -3709,7 +3709,7 @@ msgstr "Общие библиотеки - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "Kizuku — свобода в дизайне для команд"
+msgstr "Kizuku: свобода в дизайне для команд"
 
 #: src/app/main/ui/settings/access_tokens.cljs:280
 msgid "title.settings.access-tokens"
@@ -6152,7 +6152,7 @@ msgstr "Текущий провайдер ИИ: %s. Нажмите, чтобы �
 
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.model-aria"
-msgstr "Модель: %s. Нажмите, чтобы изменить; другие модели — в Настройках > ИИ."
+msgstr "Модель: %s. Нажмите, чтобы изменить; другие модели есть в Настройках > ИИ."
 
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.key-set"
@@ -6184,7 +6184,7 @@ msgstr "Закрыть ИИ-ассистента"
 
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.placeholder"
-msgstr "Попросите ИИ изменить этот файл… (⌘/Ctrl+Enter — отправить)"
+msgstr "Попросите ИИ изменить этот файл… (отправить: ⌘/Ctrl+Enter)"
 
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.prompt-aria"
@@ -6252,7 +6252,7 @@ msgstr "Столбец"
 
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.created"
-msgstr "Таблица создана: %s строк × %s столбцов (первая строка — заголовок)"
+msgstr "Таблица создана: %s строк × %s столбцов (первая строка служит заголовком)"
 
 #: src/app/main/data/workspace/table_import.cljs (Kizuku)
 msgid "kizuku.table.truncated"
@@ -6272,7 +6272,7 @@ msgstr "Вставлено слоёв из Figma: %s"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.figma.pasted-missing-images"
-msgstr "Вставлено слоёв из Figma: %s · заливок-изображений заменено заглушками: %s (буфер обмена Figma не содержит изображений — импортируйте .fig, чтобы сохранить их)"
+msgstr "Вставлено слоёв из Figma: %s · заливок-изображений заменено заглушками: %s (буфер обмена Figma не содержит изображений; импортируйте .fig, чтобы сохранить их)"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.figma.nothing"

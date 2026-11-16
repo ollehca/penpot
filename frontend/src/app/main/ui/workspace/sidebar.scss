@@ -33,8 +33,11 @@ $width-settings-bar-max: $sz-500;
   max-width: $width-settings-bar-max;
   width: var(--width, $width-settings-bar);
   background-color: var(--panel-background-color);
-  height: 100vh;
-  max-height: 100vh;
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: var(--kizuku-app-height, 100vh);
+  max-height: var(--kizuku-app-height, 100vh);
   z-index: $z-index-1;
 
   .resize-area {
@@ -74,7 +77,10 @@ $width-settings-bar-max: $sz-500;
   grid-area: right-sidebar;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  height: 100vh;
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: var(--kizuku-app-height, 100vh);
   width: $width-settings-bar;
   background-color: var(--panel-background-color);
   z-index: $z-index-1;
@@ -91,7 +97,10 @@ $width-settings-bar-max: $sz-500;
     grid-template-columns: 100%;
     grid-template-rows: 100%;
 
-    height: calc(100vh - $s-52);
+    // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+    // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+    // without it). With 100vh the panel ended 40px below the window.
+    height: calc(var(--kizuku-app-height, 100vh) - $s-52);
     overflow: hidden;
   }
 }
@@ -176,5 +185,8 @@ $width-settings-bar-max: $sz-500;
 .versions-tab {
   width: 100%;
   overflow: hidden;
-  height: calc(100vh - $s-88);
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: calc(var(--kizuku-app-height, 100vh) - $s-88);
 }

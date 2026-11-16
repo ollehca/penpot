@@ -32,7 +32,10 @@
 .content-class {
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - $s-96);
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: calc(var(--kizuku-app-height, 100vh) - $s-96);
   scrollbar-gutter: stable;
 }
 
@@ -41,7 +44,10 @@
   flex-direction: column;
   gap: $s-8;
   width: 100%;
-  height: calc(100vh - $sz-88);
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: calc(var(--kizuku-app-height, 100vh) - $sz-88);
   padding-top: $s-8;
 
   // Kata property fields: bg-base fill with a strong hairline border.

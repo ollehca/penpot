@@ -9,7 +9,10 @@
 .element-options {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - #{$s-160}); // TODO: Fix this hardcoded value
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: calc(var(--kizuku-app-height, 100vh) - #{$s-160}); // TODO: Fix this hardcoded value
   overflow: hidden;
   padding-bottom: $s-16;
   overflow-y: auto;
@@ -18,7 +21,7 @@
 }
 
 .viewer-code-block {
-  height: calc(100vh - #{$s-108}); // TODO: Fix this hardcoded value
+  height: calc(var(--kizuku-app-height, 100vh) - #{$s-108}); // TODO: Fix this hardcoded value
 }
 
 .download-button {

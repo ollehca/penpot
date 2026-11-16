@@ -11,7 +11,10 @@
   grid-template-rows: auto auto 1fr;
   // TODO: Fix this once we start implementing the DS.
   //       We should not be doign these hardcoded calc's.
-  height: calc(100vh - #{$s-60});
+  // MODIFIED BY KIZUKU (2026-11-16): the height is the window's less the
+  // desktop app's title bar (--kizuku-app-height, set by the shell; 100vh
+  // without it). With 100vh the panel ended 40px below the window.
+  height: calc(var(--kizuku-app-height, 100vh) - #{$s-60});
 }
 
 .search-field {
