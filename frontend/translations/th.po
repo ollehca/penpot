@@ -348,7 +348,7 @@ msgstr "สร้างทีมใหม่"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Kizuku ของคุณ"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -381,18 +381,12 @@ msgstr "ยังไม่มีไฟล์"
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"ไลบรารีที่เพิ่มให้กับโปรเจกต์จะปรากฏที่นี่ "
-"ลองแชร์ไฟล์ของคุณหรือเพิ่มจาก[ไลบรารีและเทมเพลต](https://getkizuku.app"
-"libraries-templates)ของเรา"
+msgstr "ไลบรารีที่เพิ่มลงในโปรเจกต์จะปรากฏที่นี่"
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
-msgstr ""
-"ไลบรารีที่เพิ่มให้กับโปรเจกต์จะปรากฏที่นี่ "
-"ลองแชร์ไฟล์ของคุณหรือเพิ่มจาก[ไลบรารีและเทมเพลต](https://getkizuku.app"
-"libraries-templates)ของเรา"
+msgstr "ไลบรารีที่เพิ่มลงในโปรเจกต์จะปรากฏที่นี่"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"

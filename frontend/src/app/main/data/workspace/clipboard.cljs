@@ -6,6 +6,11 @@
 ;;
 ;; MODIFIED BY KIZUKU (2026-10-25): paste-from-event turns spreadsheet cells /
 ;; HTML tables into a table of boards (app.main.data.workspace.table-import).
+;; MODIFIED BY KIZUKU (2026-11-15): the Figma and table branches of
+;; paste-from-event are tried before the image branch; pasted plain text
+;; takes a colour that reads on the board it lands in.
+;; MODIFIED BY KIZUKU (2026-11-16): pasted SVG text shows the app's busy
+;; pill (app.util.kizuku-busy) while it is parsed and its shapes are made.
 
 (ns app.main.data.workspace.clipboard
   (:require
@@ -56,6 +61,7 @@
    [app.util.globals :as ug]
    [app.util.http :as http]
    [app.util.i18n :as i18n :refer [tr]]
+   [app.util.kizuku-busy :as busy]
    [app.util.text.content :as tc]
    [app.util.webapi :as wapi]
    [beicon.v2.core :as rx]
@@ -320,13 +326,6 @@
               (and (string? text-data) (re-find #"<svg\s" text-data))
               (rx/of (paste-svg-text text-data))
 
-              (seq image-data)
-              (->> (rx/from image-data)
-                   (rx/map paste-image))
-
-              (coll? transit-data)
-              (rx/of (paste-transit-shapes (assoc transit-data :in-viewport in-viewport?)))
-
               ;; KIZUKU: layers copied in Figma — its clipboard HTML carries
               ;; the design as a fig-kiwi buffer the desktop app converts.
               (figma-paste/figma-html? html-data)
@@ -335,8 +334,19 @@
 
               ;; KIZUKU: cells copied from a spreadsheet (TSV text and/or an
               ;; HTML <table>) become a real table instead of a text blob.
+              ;; Both KIZUKU branches come before the image one: desktop
+              ;; spreadsheet apps (Excel, Numbers, LibreOffice) also put a
+              ;; picture of the copied cells on the clipboard, and with the
+              ;; image branch first the paste was that picture.
               (table-import/table-paste? html-data text-data)
               (rx/of (table-import/paste-table html-data text-data))
+
+              (seq image-data)
+              (->> (rx/from image-data)
+                   (rx/map paste-image))
+
+              (coll? transit-data)
+              (rx/of (paste-transit-shapes (assoc transit-data :in-viewport in-viewport?)))
 
               (and (string? html-data) (d/not-empty? html-data))
               (rx/of (paste-html-text html-data text-data))
@@ -938,11 +948,15 @@
                   (ptk/data-event :layout/update {:ids [frame-id]})
                   (dwu/commit-undo-transaction undo-id))))))))
 
-(defn- as-content [text]
-  (let [paragraphs (->> (str/lines text)
+(defn- as-content
+  "KIZUKU: `fills` is the colour for the place the text is pasted to (the
+  one default colour was near-white, unreadable on a white board)."
+  [text fills]
+  (let [attrs      (assoc (txt/get-default-text-attrs) :fills fills)
+        paragraphs (->> (str/lines text)
                         (map str/trim)
                         (mapv #(hash-map :type "paragraph"
-                                         :children [(merge (txt/get-default-text-attrs) {:text %})])))]
+                                         :children [(assoc attrs :text %)])))]
     ;; if text is composed only by line breaks paragraphs is an empty list and should be nil
     (when (d/not-empty? paragraphs)
       {:type "root"
@@ -1001,6 +1015,11 @@
             height 16
             {:keys [x y]} (calculate-paste-position state)
 
+            ;; KIZUKU: the board the new text lands in decides its colour.
+            frame-id (ctst/top-nested-frame (dsh/lookup-page-objects state)
+                                            (gpt/point x y))
+            fills    (dwtxt/default-text-fills-in state frame-id)
+
             shape {:id id
                    :type :text
                    :name (txt/generate-shape-name text)
@@ -1009,7 +1028,7 @@
                    :width width
                    :height height
                    :grow-type (if (> (count text) 100) :auto-height :auto-width)
-                   :content (as-content text)}
+                   :content (as-content text fills)}
             undo-id (js/Symbol)]
 
         (rx/of (dwu/start-undo-transaction undo-id)
@@ -1025,8 +1044,13 @@
     (watch [_ state _]
       (let [position (calculate-paste-position state)
             file-id  (:current-file-id state)]
-        (->> (dwm/svg->clj ["svg" text])
-             (rx/map #(dwm/svg-uploaded % file-id position)))))))
+        ;; KIZUKU: parsing and the upload of the images inside the SVG
+        ;; run with the busy pill (svg-uploaded keeps it until the shapes
+        ;; are created).
+        (->> (rx/of nil)
+             (rx/mapcat (fn [_] (dwm/svg->clj ["svg" text])))
+             (rx/map #(dwm/svg-uploaded % file-id position))
+             (busy/with-busy "media" {:title (tr "media.loading")}))))))
 
 (defn- paste-image
   [image]

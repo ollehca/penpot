@@ -421,7 +421,7 @@ msgstr "Sematkan versi ini"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Kizuku Anda"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -462,18 +462,12 @@ msgstr "Belum ada berkas."
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"Pustaka yang ditambahkan ke proyek akan muncul di sini. Coba membagikan "
-"berkas Anda atau tambahkan dari [Pustaka dan tempat] "
-"(https://getkizuku.app) kami."
+msgstr "Pustaka yang ditambahkan ke proyek akan muncul di sini."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
-msgstr ""
-"Pustaka yang ditambahkan ke proyek akan muncul di sini. Coba membagikan "
-"berkas Anda atau tambahkan dari [Pustaka dan tempat] "
-"(https://getkizuku.app) kami."
+msgstr "Pustaka yang ditambahkan ke proyek akan muncul di sini."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -505,7 +499,7 @@ msgstr "Impor berkas"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Impor berkas .kizuku"
+msgstr ""
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"

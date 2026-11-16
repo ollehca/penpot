@@ -4,7 +4,8 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 ;;
-;; ADDED BY KIZUKU (2026-10-21, rebuilt 2026-10-22): the real AI chat
+;; ADDED BY KIZUKU (2026-10-21, rebuilt 2026-10-22, turn lock, provider-tagged
+;; history and off-screen saves 2026-11-15): the real AI chat
 ;; panel — a floating FAB + resizable overlay with a scrollable
 ;; conversation (not a single-shot input), live turn-status, provider and
 ;; model pickers, per-file persistence, and keyboard/ARIA support.
@@ -119,7 +120,7 @@
 
 ;; --- Panel size -------------------------------------------------------------
 ;; nil means "auto": the panel sizes itself to its content via CSS
-;; (grid-template-rows: auto 1fr auto, capped at max-height: 90vh), so a
+;; (grid-template-rows: auto 1fr auto, capped at the window height less the panel's offsets), so a
 ;; short conversation stays compact and a long one grows to show more
 ;; context, without the user having to drag anything. Dragging a resize
 ;; zone sets an explicit {:width :height}, which from then on overrides
@@ -150,13 +151,14 @@
     (catch :default _ nil)))
 
 (defn- max-panel-height
-  "90% of the real app window height — mirrors .panel's own CSS max-height
-  (90vh), since the resize drag's clamp runs in JS and can't read a CSS
+  "The window height less what the panel must leave free: its 84px offset
+  from the bottom, the 40px tab bar and a margin. Mirrors .panel's own CSS
+  max-height, since the resize drag's clamp runs in JS and can't read a CSS
   custom property. Computed fresh each call rather than cached once, so a
   window resize while the panel happens to be open doesn't leave a stale
   ceiling from whatever size the window was at mount."
   []
-  (* (.-innerHeight js/window) 0.9))
+  (- (.-innerHeight js/window) 132))
 
 (defn- clamp
   [v lo hi]
@@ -238,9 +240,10 @@
 
 (defn- use-provider-settings
   "Hook: the active provider and model, the model tiers and the key status
-  per provider, read from the main process whenever the panel opens (so a
-  change made in Settings meanwhile shows), with the handlers of the two
-  pickers and a setter for a key status read elsewhere."
+  per provider, read from the main process whenever the panel opens and
+  whenever the window regains focus (Settings is another window, so a change
+  made there shows once it closes), with the handlers of the two pickers, a
+  setter for a key status read elsewhere and refresh! to read it all again."
   [open?]
   (let [provider*    (mf/use-state nil)
         model*       (mf/use-state nil)
@@ -249,6 +252,15 @@
         set-key-status!
         (mf/use-fn
          (fn [status] (reset! key-status* status)))
+        refresh!
+        (mf/use-fn
+         (fn []
+           (when-let [api (ai-api)]
+             (p/let [provider-id (.getActiveProvider ^js api)]
+               (reset! provider* provider-id)
+               (fetch-model! api provider-id model* model-tiers*))
+             (p/let [status (.getKeyStatus ^js api)]
+               (reset! key-status* (js->clj status :keywordize-keys true))))))
         on-select-provider
         (mf/use-fn
          (fn [event]
@@ -274,13 +286,12 @@
                  (-> (.setModel ^js api provider-id model-id)
                      (.then (fn [_] (reset! model* model-id)))))))))]
     (mf/with-effect [open?]
-      (when-let [api (and open? (ai-api))]
-        (p/let [provider-id (.getActiveProvider ^js api)]
-          (reset! provider* provider-id)
-          (fetch-model! api provider-id model* model-tiers*))
-        (p/let [status (.getKeyStatus ^js api)]
-          (reset! key-status* (js->clj status :keywordize-keys true)))))
+      (when open?
+        (refresh!)
+        (.addEventListener js/window "focus" refresh!)
+        (fn [] (.removeEventListener js/window "focus" refresh!))))
     {:provider @provider*
+     :refresh! refresh!
      :model @model*
      :model-tiers @model-tiers*
      :key-status @key-status*
@@ -306,33 +317,67 @@
                  display-log      (->> (js->clj (unchecked-get raw "displayLog") :keywordize-keys true)
                                        (mapv #(update % :role keyword)))
                  provider-history (js->clj (unchecked-get raw "providerHistory") :keywordize-keys true)]
-             (st/emit! (ai-chat/set-history {:display-log display-log
-                                             :provider-history provider-history})))))
+             (st/emit! (ai-chat/set-history
+                        {:display-log display-log
+                         :provider-history provider-history
+                         ;; absent in a conversation saved before it was recorded
+                         :provider-history-provider (unchecked-get raw "providerHistoryProvider")})))))
         (.catch (fn [err] (js/console.error "Failed to load AI chat history" err))))))
+
+(defn- save-history!
+  "Write one file's conversation to disk. A provider is stored with its
+  history, so a turn on another provider can tell it is not its own."
+  [backend file-id display-log provider-history provider]
+  (.command ^js backend "save-ai-chat-history"
+            #js {:fileId file-id
+                 :displayLog (clj->js display-log)
+                 :providerHistory (clj->js provider-history)
+                 :providerHistoryProvider provider}))
 
 (defn- persist-history!
   "Save the conversation under its file: the display log as it is in state
   right now (ai-tools.cljs appends tool-call entries mid-turn, after the
   sender's closure captured its view of it) and the given provider
-  history. Nothing is saved once the file has left the screen: the state
-  then holds another file's conversation."
-  [file-id provider-history]
+  history. Nothing is saved from here once the file has left the screen:
+  the state then holds another file's conversation (see
+  persist-offscreen!)."
+  [file-id provider-history provider]
   (when-let [backend (and file-id (mock-backend))]
-    (if (file-still-open? file-id)
-      (.command ^js backend "save-ai-chat-history"
-                #js {:fileId file-id
-                     :displayLog (clj->js (get-in @st/state [:ai-chat :display-log]))
-                     :providerHistory (clj->js provider-history)})
-      (js/console.warn "AI chat: the file this turn was sent from is no longer open;"
-                       "nothing saved for" file-id))))
+    (when (file-still-open? file-id)
+      (save-history! backend file-id
+                     (get-in @st/state [:ai-chat :display-log])
+                     provider-history provider))))
+
+(defn- persist-offscreen!
+  "Record a turn's outcome in the saved conversation of a file that has left
+  the screen: the state holds another file's conversation, so the saved one
+  is read, given the reply bubble and written back. entry is the bubble
+  ({:role :text}, nil for none), provider-history and provider the history to
+  keep (nil keeps the saved one)."
+  [file-id entry provider-history provider]
+  (when-let [backend (and file-id (mock-backend))]
+    (-> (.command ^js backend "get-ai-chat-history" #js {:fileId file-id})
+        (.then
+         (fn [res]
+           (let [raw   (unchecked-get res "raw")
+                 log   (js->clj (or (unchecked-get raw "displayLog") #js []))
+                 keep? (nil? provider-history)]
+             (save-history! backend file-id
+                            (cond-> log entry (conj entry))
+                            (if keep?
+                              (js->clj (unchecked-get raw "providerHistory"))
+                              provider-history)
+                            (if keep?
+                              (unchecked-get raw "providerHistoryProvider")
+                              provider)))))
+        (.catch (fn [err] (js/console.error "Failed to save AI chat history" err))))))
 
 (defn- clear-history!
   "Empty the conversation on screen and on disk."
   [file-id]
   (st/emit! (ai-chat/reset-history))
   (when-let [backend (and file-id (mock-backend))]
-    (.command ^js backend "save-ai-chat-history"
-              #js {:fileId file-id :displayLog #js [] :providerHistory #js []})))
+    (save-history! backend file-id [] [] nil)))
 
 ;; --- Sending a prompt -------------------------------------------------------
 
@@ -346,6 +391,44 @@
   (when-not (ai-tools/turn-commit-pending?)
     (st/emit! (ai-chat/set-status (if (file-still-open? file-id) status {:phase "done"})))))
 
+(defn- on-turn-success!
+  "A finished turn: the reply's history replaces the stored one (the main
+  process trims it, so it is never a delta) and is saved with the provider
+  that wrote it."
+  [file-id res]
+  (let [new-history (js->clj (unchecked-get res "history") :keywordize-keys true)
+        provider    (unchecked-get res "provider")
+        text        (unchecked-get res "finalText")]
+    (settle! file-id {:phase "done"})
+    (if (file-still-open? file-id)
+      (do (st/emit! (ai-chat/set-provider-history new-history provider))
+          (persist-history! file-id new-history provider))
+      ;; After a tab switch the state holds the other file's conversation:
+      ;; leave it alone and write into the saved one.
+      (persist-offscreen! file-id
+                          (when (and (string? text) (seq text)) {:role :assistant :text text})
+                          new-history provider))))
+
+(defn- on-turn-error!
+  "A failed turn. When the reply carries the history built before the
+  failure it replaces the stored one, so a retry resumes from there instead
+  of starting without the work done so far."
+  [file-id provider-history provider res]
+  (let [message     (or (not-empty (unchecked-get res "error"))
+                        (tr "kizuku.ai.error.generic"))
+        raw-history (unchecked-get res "history")
+        new-history (if raw-history
+                      (js->clj raw-history :keywordize-keys true)
+                      provider-history)
+        new-provider (if raw-history (unchecked-get res "provider") provider)]
+    (settle! file-id {:phase "error" :message message})
+    (if (file-still-open? file-id)
+      (do (when raw-history
+            (st/emit! (ai-chat/set-provider-history new-history new-provider)))
+          (persist-history! file-id new-history new-provider))
+      (persist-offscreen! file-id {:role :error :text message}
+                          (when raw-history new-history) new-provider))))
+
 (defn- on-turn-reply!
   "The IPC reply to a prompt. It is the one signal that always arrives, so
   it always settles the panel: the real-time ai:turn-status pushes normally
@@ -354,47 +437,46 @@
   error bubble (ai_chat.cljs). What only this reply can report: a failure
   before the turn's first push (no key, unknown provider, a renderer the
   main process could no longer reach) and a push that never arrived — both
-  used to leave \"Sending…\" on screen for good."
-  [file-id provider-history res]
+  used to leave \"Sending…\" on screen for good.
+  provider-history and provider are what was sent with the prompt."
+  [file-id provider-history provider res]
   (if (unchecked-get res "success")
-    (let [new-history (js->clj (unchecked-get res "history") :keywordize-keys true)]
-      (settle! file-id {:phase "done"})
-      ;; After a tab switch the state holds the other file's conversation:
-      ;; leave it alone.
-      (when (file-still-open? file-id)
-        (st/emit! (ai-chat/set-provider-history new-history)))
-      (persist-history! file-id new-history))
-    (do
-      (settle! file-id {:phase "error"
-                        :message (or (not-empty (unchecked-get res "error"))
-                                     (tr "kizuku.ai.error.generic"))})
-      ;; provider-history is unchanged: the turn produced nothing to resume from.
-      (persist-history! file-id provider-history))))
+    (on-turn-success! file-id res)
+    (on-turn-error! file-id provider-history provider res)))
 
 (defn- on-turn-failure!
   "The IPC call itself failed (no handler registered, a payload that could
   not be cloned): nothing else will ever unlock the panel."
-  [file-id provider-history err]
-  (st/emit! (ai-chat/set-status
-             (if (file-still-open? file-id)
-               {:phase "error"
-                :message (or (some-> err .-message not-empty)
-                             (tr "kizuku.ai.error.generic"))}
-               {:phase "done"})))
-  (persist-history! file-id provider-history))
+  [file-id provider-history provider err]
+  (let [message (or (some-> err .-message not-empty)
+                    (tr "kizuku.ai.error.generic"))]
+    (st/emit! (ai-chat/set-status
+               (if (file-still-open? file-id)
+                 {:phase "error" :message message}
+                 {:phase "done"})))
+    (if (file-still-open? file-id)
+      (persist-history! file-id provider-history provider)
+      (persist-offscreen! file-id {:role :error :text message} nil nil))))
 
 (defn- send-prompt!
-  "Show the prompt, lock the panel and hand the turn to the main process."
-  [api file-id provider-id text provider-history]
-  (st/emit! (ai-chat/append-display-entry {:role :user :text text}))
-  (st/emit! (ai-chat/set-status {:phase "sending"}))
+  "Show the prompt, save it, lock the panel and hand the turn to the main
+  process. The prompt is saved now: until the reply arrives it would exist
+  only in memory, and a tab switch mid-turn replaces the memory."
+  [api file-id provider-id text {:keys [history provider]}]
+  (let [log-before (get-in @st/state [:ai-chat :display-log])]
+    (st/emit! (ai-chat/append-display-entry {:role :user :text text}))
+    (st/emit! (ai-chat/set-status {:phase "sending"}))
+    (when-let [backend (and file-id (mock-backend))]
+      (save-history! backend file-id (conj (vec log-before) {:role :user :text text})
+                     history provider)))
   (-> (.sendPrompt ^js api
                    #js {:provider provider-id
                         :prompt text
                         :systemPrompt (ai-tools/build-system-prompt)
-                        :history (clj->js provider-history)})
-      (.then (fn [res] (on-turn-reply! file-id provider-history res)))
-      (.catch (fn [err] (on-turn-failure! file-id provider-history err)))))
+                        :history (clj->js history)
+                        :historyProvider provider})
+      (.then (fn [res] (on-turn-reply! file-id history provider res)))
+      (.catch (fn [err] (on-turn-failure! file-id history provider err)))))
 
 ;; --- Sub-components ---------------------------------------------------------
 
@@ -506,7 +588,7 @@
 (mf/defc panel-header*
   {::mf/private true}
   [{:keys [settings open-menu on-toggle-provider-menu on-toggle-model-menu
-           on-select-provider on-select-model on-clear on-close]}]
+           on-select-provider on-select-model on-clear on-close busy?]}]
   (let [{:keys [provider model model-tiers key-status]} settings
         model-name (model-label model-tiers model)]
     [:div {:class (stl/css :panel-header)}
@@ -525,8 +607,11 @@
                        :open? (= open-menu :model)
                        :on-toggle on-toggle-model-menu
                        :on-select on-select-model}]
+     ;; Clear waits for a running turn: its reply would otherwise land in the
+     ;; emptied conversation and bring the old history back.
      [:button {:class (stl/css :header-button)
                :on-click on-clear
+               :disabled busy?
                :aria-label (tr "kizuku.ai.clear-aria")
                :title (tr "kizuku.ai.clear-title")}
       (tr "kizuku.ai.clear")]
@@ -538,14 +623,14 @@
 
 (mf/defc composer*
   {::mf/private true}
-  [{:keys [prompt sending? composer-ref on-change on-key-down on-send]}]
+  [{:keys [prompt busy? sending? composer-ref on-change on-key-down on-send]}]
   [:div {:class (stl/css :composer)}
    [:textarea
     {:ref composer-ref
      :class (stl/css :composer-input)
      :placeholder (tr "kizuku.ai.placeholder")
      :value prompt
-     :disabled sending?
+     :disabled busy?
      :on-change on-change
      :on-key-down on-key-down
      :aria-label (tr "kizuku.ai.prompt-aria")
@@ -553,7 +638,7 @@
    [:button
     {:class (stl/css :send-button)
      :on-click on-send
-     :disabled (or sending? (str/blank? prompt))
+     :disabled (or busy? (str/blank? prompt))
      :aria-label (if sending? (tr "kizuku.ai.sending-aria") (tr "kizuku.ai.send-aria"))}
     (if sending? (tr "kizuku.ai.sending") (tr "kizuku.ai.send"))]])
 
@@ -586,7 +671,7 @@
 (mf/defc ai-chat-bar*
   {::mf/private true}
   []
-  (let [{:keys [open? display-log provider-history status]}
+  (let [{:keys [open? display-log provider-history provider-history-provider status]}
         (mf/deref ai-chat/chat-lens)
 
         ;; :current-file-id is a real uuid record (app.common.uuid), not a
@@ -597,6 +682,9 @@
         ;; level key. (str uuid) here, once, makes every downstream :fileId
         ;; already a plain string.
         file-id      (some-> (mf/deref file-id-ref) str)
+        ;; True for the whole turn, not only until the first status push:
+        ;; a second prompt would start a second turn on the same canvas.
+        busy?        (ai-chat/busy? status)
         sending?     (= status "sending")
 
         prompt*      (mf/use-state "")
@@ -608,7 +696,7 @@
 
         settings     (use-provider-settings open?)
         resize       (use-panel-resize panel-ref)
-        {:keys [provider key-status set-key-status!]} settings
+        {:keys [provider key-status set-key-status! refresh!]} settings
         has-key?     (when (and provider key-status)
                        (boolean (get key-status (keyword provider))))
 
@@ -637,7 +725,9 @@
         on-clear
         (mf/use-fn
          (mf/deps file-id)
-         (fn [_] (clear-history! file-id)))
+         (fn [_]
+           (when-not (ai-chat/busy-now?)
+             (clear-history! file-id))))
 
         on-toggle-provider-menu
         (mf/use-fn
@@ -665,21 +755,36 @@
         ;; so the user can add one and send again.
         on-send
         (mf/use-fn
-         (mf/deps @prompt* sending? provider-history file-id set-key-status!)
+         (mf/deps @prompt* provider provider-history provider-history-provider file-id
+                  set-key-status! refresh!)
          (fn [_]
            (let [text (str/trim (or @prompt* ""))]
-             (when-let [api (and (seq text) (not sending?) (ai-api))]
-               (p/let [provider-id (.getActiveProvider ^js api)
-                       raw-status  (.getKeyStatus ^js api)]
-                 (let [key-status (js->clj raw-status :keywordize-keys true)]
-                   (set-key-status! key-status)
-                   (if (get key-status (keyword provider-id))
-                     (do (reset! prompt* "")
-                         (send-prompt! api file-id provider-id text provider-history))
-                     (st/emit! (ai-chat/set-status
-                                {:phase "error"
-                                 :message (tr "kizuku.ai.error.no-key"
-                                              (provider-label provider-id))})))))))))
+             (when-let [api (and (seq text) (not (ai-chat/busy-now?)) (ai-api))]
+               ;; Locked before the two reads below: a second Send during
+               ;; them would otherwise start a second turn.
+               (st/emit! (ai-chat/set-status {:phase "sending"}))
+               (-> (p/let [provider-id (.getActiveProvider ^js api)
+                           raw-status  (.getKeyStatus ^js api)]
+                     (let [key-status (js->clj raw-status :keywordize-keys true)]
+                       (set-key-status! key-status)
+                       ;; Settings may have switched the provider meanwhile:
+                       ;; the badge and model list follow the one in use.
+                       (when (not= provider-id provider)
+                         (refresh!))
+                       (if (get key-status (keyword provider-id))
+                         (do (reset! prompt* "")
+                             (send-prompt! api file-id provider-id text
+                                           {:history provider-history
+                                            :provider provider-history-provider}))
+                         (st/emit! (ai-chat/set-status
+                                    {:phase "error"
+                                     :message (tr "kizuku.ai.error.no-key"
+                                                  (provider-label provider-id))})))))
+                   (p/catch (fn [err]
+                              (st/emit! (ai-chat/set-status
+                                         {:phase "error"
+                                          :message (or (some-> err .-message not-empty)
+                                                       (tr "kizuku.ai.error.generic"))})))))))))
 
         on-composer-keydown
         (mf/use-fn
@@ -750,7 +855,8 @@
                            :on-select-provider on-select-provider
                            :on-select-model on-select-model
                            :on-clear on-clear
-                           :on-close on-close}]
+                           :on-close on-close
+                           :busy? busy?}]
 
         [:> message-log* {:display-log (or display-log [])
                           :status status
@@ -759,6 +865,7 @@
                           :on-open-settings on-open-settings}]
 
         [:> composer* {:prompt @prompt*
+                       :busy? busy?
                        :sending? sending?
                        :composer-ref composer-ref
                        :on-change on-change

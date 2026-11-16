@@ -3,6 +3,10 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-11-15): new text takes a colour that reads on
+;; the board it is placed in (default-text-fills-in); text of older files
+;; that carries no colour stays black.
 
 (ns app.main.data.workspace.texts
   (:require
@@ -192,13 +196,28 @@
               (rx/of (dws/deselect-shape id)
                      (dwsh/delete-shapes #{id})))))))))
 
+(defn default-text-fills-in
+  "KIZUKU: the fills new text starts with inside the board `frame-id` of
+  the current page: light on a dark background, black on a light one (new
+  text in a white board used to be near-white, so it looked as if nothing
+  had been typed)."
+  [state frame-id]
+  (txt/get-default-text-fills-on
+   (txt/background-color-at (dsh/lookup-page-objects state)
+                            frame-id
+                            (:background (dsh/lookup-page state)))))
+
 (defn initialize-editor-state
   [{:keys [id name content] :as shape} decorator]
   (ptk/reify ::initialize-editor-state
     ptk/UpdateEvent
     (update [_ state]
       (let [text-state   (some->> content ted/import-content)
+            ;; KIZUKU: the colour follows the background (see above); a
+            ;; style the user picked earlier in the session still wins.
             attrs        (merge (txt/get-default-text-attrs)
+                                (when (nil? content)
+                                  {:fills (default-text-fills-in state (:frame-id shape))})
                                 (get-in state [:workspace-global :default-font]))
             editor       (cond-> (ted/create-editor-state text-state decorator)
                            (and (nil? content) (some? attrs))
@@ -487,9 +506,11 @@
           (update :fills types.fills/update conj color-attrs))
 
       ;; We don't have the fills attribute. It's an old text without color
-      ;; so need to be black
+      ;; so need to be black.
+      ;; KIZUKU: black as PenPot always drew it, not the default for new
+      ;; text (which is light here): an older file must look as it did.
       (and (nil? (:fills node)) (empty? color-attrs))
-      (assoc :fills (txt/get-default-text-fills))
+      (assoc :fills (types.fills/create {:fill-color "#000000" :fill-opacity 1}))
 
       ;; Remove duplicates from the fills
       :always

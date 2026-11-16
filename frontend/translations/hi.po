@@ -205,7 +205,7 @@ msgstr "प्रकाशित"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "सभी पेनपॉट उपयोगकर्ता"
+msgstr "सभी Kizuku उपयोगकर्ता"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -417,7 +417,7 @@ msgstr "इस संस्करण को पिन करें"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "आपका पेनपॉट"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -425,7 +425,7 @@ msgstr "टीम हटाएं"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "पेनपोट फ़ाइल (.kizuku) डाउनलोड करें"
+msgstr "Kizuku फ़ाइल (.kizuku) डाउनलोड करें"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -458,16 +458,12 @@ msgstr "अभी तक कोई फ़ाइल नहीं।"
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"परियोजना में जोड़ी गई लाइब्रेरी यहाँ दिखाई देंगी। अपने फ़ाइलों को साझा करने की कोशिश करें "
-"या हमारी [लाइब्रेरी और टेम्पलेट्स](https://getkizuku.app) से जोड़ें।"
+msgstr "परियोजना में जोड़ी गई लाइब्रेरी यहाँ दिखाई देंगी।"
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
-msgstr ""
-"परियोजना में जोड़ी गई लाइब्रेरी यहाँ दिखाई देंगी। अपनी फ़ाइलें साझा करने का प्रयास करें या "
-"हमारी [लाइब्रेरी और टेम्पलेट्स](https://getkizuku.app) से जोड़ें।"
+msgstr "परियोजना में जोड़ी गई लाइब्रेरी यहाँ दिखाई देंगी।"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -499,7 +495,7 @@ msgstr "एक फ़ाइल आयात करें"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "एक .kizuku फ़ाइल आयात करें"
+msgstr ""
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"
@@ -519,7 +515,7 @@ msgstr "PDF के रूप में निर्यात करें"
 
 #, unused
 msgid "dashboard.export-multi"
-msgstr "पेनपोट %s फ़ाइलें निर्यात करें"
+msgstr "Kizuku %s फ़ाइलें निर्यात करें"
 
 #: src/app/main/ui/exports/assets.cljs:106
 msgid "dashboard.export-multiple.selected"
@@ -536,7 +532,7 @@ msgstr ""
 
 #: src/app/main/ui/exports/assets.cljs:181
 msgid "dashboard.export-shapes.how-to-link"
-msgstr "पेनपोट पर निर्यात सेट करने की जानकारी।"
+msgstr "Kizuku पर निर्यात सेट करने की जानकारी।"
 
 #: src/app/main/ui/exports/assets.cljs:176
 msgid "dashboard.export-shapes.no-elements"
@@ -656,7 +652,7 @@ msgstr ""
 
 #: src/app/main/ui/dashboard/import.cljs:461, src/app/main/ui/dashboard/project_menu.cljs:109
 msgid "dashboard.import"
-msgstr "पेनपॉट फ़ाइलें आयात करें"
+msgstr "Kizuku फ़ाइलें आयात करें"
 
 #: src/app/main/ui/dashboard/import.cljs:290, src/app/worker/import.cljs:121, src/app/worker/import.cljs:124
 msgid "dashboard.import.analyze-error"
@@ -923,11 +919,11 @@ msgstr "थीम चुनें"
 
 #: src/app/main/ui/settings/options.cljs:68
 msgid "dashboard.select-ui-theme.dark"
-msgstr "पेनपॉट डार्क (डिफ़ॉल्ट)"
+msgstr "Kizuku डार्क (डिफ़ॉल्ट)"
 
 #: src/app/main/ui/settings/options.cljs:69
 msgid "dashboard.select-ui-theme.light"
-msgstr "पेनपॉट लाइट"
+msgstr "Kizuku लाइट"
 
 #: src/app/main/ui/settings/options.cljs:70
 msgid "dashboard.select-ui-theme.system"
@@ -1075,7 +1071,7 @@ msgstr "रचनात्मकता पर कोई सीमा नही�
 
 #: src/app/main/ui/dashboard/sidebar.cljs:997
 msgid "dashboard.upgrade-plan.kizuku-free"
-msgstr "पेनपॉट मुफ़्त"
+msgstr "Kizuku मुफ़्त"
 
 #: src/app/main/ui/dashboard/team.cljs:950
 msgid "dashboard.webhooks.active"
@@ -1133,7 +1129,7 @@ msgstr "आपका नाम"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
 msgid "dashboard.your-penpot"
-msgstr "आपका पेनपॉट"
+msgstr "आपका Kizuku"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"
@@ -1202,7 +1198,7 @@ msgstr "टिप्पणी में एक त्रुटि हुई ह�
 #: src/app/main/errors.cljs:264
 msgid "errors.deprecated"
 msgstr ""
-"माफ़ कीजिए! यह एक पुरानी फ़ाइल है जो पेनपॉट की अप्रचलित संपत्ति प्रकार का उपयोग करती है"
+"माफ़ कीजिए! यह एक पुरानी फ़ाइल है जो Kizuku की अप्रचलित संपत्ति प्रकार का उपयोग करती है"
 " और आप इसे खोल नहीं सकते।"
 
 #: src/app/main/errors.cljs:267
@@ -1212,7 +1208,7 @@ msgstr "ताकि हम आपकी सहायता कर सकें�
 #: src/app/main/errors.cljs:265
 msgid "errors.deprecated.contact.before"
 msgstr ""
-"हालाँकि पेनपॉट अब इस प्रकार की संपत्तियों का समर्थन नहीं करता, आप फिर भी"
+"हालाँकि Kizuku अब इस प्रकार की संपत्तियों का समर्थन नहीं करता, आप फिर भी"
 
 #: src/app/main/errors.cljs:266
 msgid "errors.deprecated.contact.text"
@@ -1716,7 +1712,7 @@ msgstr "वेरिएंट्स गुणधर्म"
 #: src/app/main/ui/inspect/right_sidebar.cljs:163
 msgid "inspect.empty.help"
 msgstr ""
-"यदि आप डिजाइन निरीक्षण के बारे में अधिक जानना चाहते हैं, तो कृपया पेनपॉट के हेल्प सेंटर पर "
+"यदि आप डिजाइन निरीक्षण के बारे में अधिक जानना चाहते हैं, तो कृपया Kizuku के हेल्प सेंटर पर "
 "जाएं"
 
 #: src/app/main/ui/inspect/right_sidebar.cljs:166
@@ -1905,7 +1901,7 @@ msgstr "के साथ जारी रखें"
 
 #: src/app/main/ui/viewer/login.cljs:69
 msgid "labels.continue-with-penpot"
-msgstr "आप पेनपॉट खाते के साथ जारी रख सकते हैं"
+msgstr "आप Kizuku खाते के साथ जारी रख सकते हैं"
 
 #: src/app/main/ui/components/copy_button.cljs:41
 msgid "labels.copy"
@@ -2550,7 +2546,7 @@ msgstr "इंटरएक्टिव प्रोटोटाइप"
 
 #: src/app/main/ui/ds/product/loader.cljs:33
 msgid "loader.tips.07.message"
-msgstr "पेनपॉट सहज विकास के लिए SVG और CSS का उपयोग करता है।"
+msgstr "Kizuku सहज विकास के लिए SVG और CSS का उपयोग करता है।"
 
 #: src/app/main/ui/ds/product/loader.cljs:32
 msgid "loader.tips.07.title"
@@ -2576,7 +2572,7 @@ msgstr "डार्क और लाइट मोड"
 #: src/app/main/ui/ds/product/loader.cljs:39
 msgid "loader.tips.10.message"
 msgstr ""
-"अतिरिक्त कार्यक्षमता के लिए समुदाय द्वारा निर्मित प्लगइन्स के साथ पेनपॉट का विस्तार करें।"
+"अतिरिक्त कार्यक्षमता के लिए समुदाय द्वारा निर्मित प्लगइन्स के साथ Kizuku का विस्तार करें।"
 
 #: src/app/main/ui/ds/product/loader.cljs:38
 msgid "loader.tips.10.title"
@@ -3119,7 +3115,7 @@ msgstr "मुफ्त में साइन अप"
 
 #: src/app/main/ui/static.cljs:150
 msgid "not-found.login.start-using"
-msgstr "और सेकंडों में पेनपॉट का उपयोग शुरू करें!"
+msgstr "और सेकंडों में Kizuku का उपयोग शुरू करें!"
 
 #: src/app/main/ui/static.cljs:64
 msgid "not-found.made-with-love"
@@ -3164,7 +3160,7 @@ msgstr "आपके पास इस फ़ाइल तक पहुँच न
 
 #: src/app/main/ui/static.cljs:51, src/app/main/ui/static.cljs:286, src/app/main/ui/static.cljs:292, src/app/main/ui/static.cljs:298, src/app/main/ui/static.cljs:304, src/app/main/ui/static.cljs:313, src/app/main/ui/static.cljs:322
 msgid "not-found.no-permission.go-dashboard"
-msgstr "अपने पेनपॉट पर जाएं"
+msgstr "अपने Kizuku पर जाएं"
 
 #: src/app/main/ui/static.cljs:310, src/app/main/ui/static.cljs:319
 msgid "not-found.no-permission.if-approves"
@@ -3172,7 +3168,7 @@ msgstr "यदि स्वामी अनुमति देता है, त
 
 #: src/app/main/ui/static.cljs:248, src/app/main/ui/static.cljs:260
 msgid "not-found.no-permission.kizuku-file"
-msgstr "पेनपॉट फ़ाइल"
+msgstr "Kizuku फ़ाइल"
 
 #: src/app/main/ui/static.cljs:285, src/app/main/ui/static.cljs:317
 msgid "not-found.no-permission.project"
@@ -3226,7 +3222,7 @@ msgstr ""
 #, unused
 msgid "onboarding-v2.before-start.desc2"
 msgstr ""
-"पेनपॉट का उपयोग कैसे करें, इसके बारे में विस्तृत जानकारी। प्रोटोटाइपिंग से लेकर डिज़ाइनों के "
+"Kizuku का उपयोग कैसे करें, इसके बारे में विस्तृत जानकारी। प्रोटोटाइपिंग से लेकर डिज़ाइनों के "
 "आयोजन या साझा करने तक।"
 
 #, unused
@@ -3248,7 +3244,7 @@ msgstr "शुरू करने से पहले"
 #: src/app/main/ui/onboarding/newsletter.cljs:68
 msgid "onboarding-v2.newsletter.desc"
 msgstr ""
-"उत्पाद विकास की प्रगति और समाचारों से अपडेट रहने के लिए पेनपॉट न्यूज़लेटर की सदस्यता लें।"
+"उत्पाद विकास की प्रगति और समाचारों से अपडेट रहने के लिए Kizuku न्यूज़लेटर की सदस्यता लें।"
 
 #: src/app/main/ui/onboarding/newsletter.cljs:88
 msgid "onboarding-v2.newsletter.news"
@@ -3291,7 +3287,7 @@ msgstr ""
 
 #: src/app/main/ui/onboarding/team_choice.cljs:241
 msgid "onboarding-v2.welcome.title"
-msgstr "पेनपोट में आपका स्वागत है!"
+msgstr "Kizuku में आपका स्वागत है!"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:254
 #, unused
@@ -3368,7 +3364,7 @@ msgstr "गोपनीयता नीति।"
 
 #: src/app/main/ui/onboarding/newsletter.cljs:65
 msgid "onboarding.newsletter.title"
-msgstr "क्या आप पेनपोट समाचार प्राप्त करना चाहते हैं?"
+msgstr "क्या आप Kizuku समाचार प्राप्त करना चाहते हैं?"
 
 #: src/app/main/ui/onboarding/questions.cljs:108
 msgid "onboarding.questions.lets-get-started"
@@ -3384,7 +3380,7 @@ msgstr "सिर्फ तलाश रहे हैं"
 
 #: src/app/main/ui/onboarding/questions.cljs:246
 msgid "onboarding.questions.reasons.fit"
-msgstr "जाँच रहे हैं कि क्या पेनपॉट मेरी टीम के लिए उपयुक्त है"
+msgstr "जाँच रहे हैं कि क्या Kizuku मेरी टीम के लिए उपयुक्त है"
 
 #: src/app/main/ui/onboarding/questions.cljs:252
 msgid "onboarding.questions.reasons.testing"
@@ -3770,16 +3766,16 @@ msgstr "वायरफ़्रेमिंग"
 
 #: src/app/main/ui/onboarding/questions.cljs:116
 msgid "onboarding.questions.step1.question1"
-msgstr "आप पेनपोट का उपयोग किस लिए करेंगे?"
+msgstr "आप Kizuku का उपयोग किस लिए करेंगे?"
 
 #: src/app/main/ui/onboarding/questions.cljs:273
 msgid "onboarding.questions.step1.question2"
-msgstr "आज आप पेनपोट पर क्यों आये हैं?"
+msgstr "आज आप Kizuku पर क्यों आये हैं?"
 
 #: src/app/main/ui/onboarding/questions.cljs:112
 msgid "onboarding.questions.step1.subtitle"
 msgstr ""
-"कृपया हमें अपने बारे में थोड़ा बताएं ताकि हम पेनपोट को आपके लिए बेहतर बना सकें। आपके जवाब हमें"
+"कृपया हमें अपने बारे में थोड़ा बताएं ताकि हम Kizuku को आपके लिए बेहतर बना सकें। आपके जवाब हमें"
 " नए फीचर्स की प्राथमिकता तय करने और आपको सही दिशा में मार्गदर्शन करने में मदद करेंगे।"
 
 #: src/app/main/ui/onboarding/questions.cljs:110
@@ -3814,7 +3810,7 @@ msgstr "आप कहां से शुरुआत करना चाहे�
 #: src/app/main/ui/onboarding/questions.cljs:428
 #, unused
 msgid "onboarding.questions.step5.title"
-msgstr "आपने पेनपोट के बारे में कैसे सुना?"
+msgstr "आपने Kizuku के बारे में कैसे सुना?"
 
 #: src/app/main/ui/onboarding/questions.cljs:233
 msgid "onboarding.questions.team-size.11-30"
@@ -3859,7 +3855,7 @@ msgstr "एक टीम बनाएं"
 #: src/app/main/ui/onboarding/team_choice.cljs:31
 msgid "onboarding.team-modal.create-team-desc"
 msgstr ""
-"एक टीम आपको अन्य पेनपोट उपयोगकर्ताओं के साथ मिलकर एक ही फाइलों और प्रोजेक्ट्स पर काम "
+"एक टीम आपको अन्य Kizuku उपयोगकर्ताओं के साथ मिलकर एक ही फाइलों और प्रोजेक्ट्स पर काम "
 "करने की सुविधा देती है।"
 
 #: src/app/main/ui/onboarding/team_choice.cljs:36
@@ -3896,7 +3892,7 @@ msgstr "डिजाइनिंग शुरू करें"
 
 #, unused
 msgid "onboarding.welcome.alt"
-msgstr "पेनपॉट"
+msgstr "Kizuku"
 
 #: src/app/main/ui/workspace/sidebar/shortcuts.cljs:104
 msgid "shortcuts.draw-frame"
@@ -4180,15 +4176,15 @@ msgstr "लेयर्स टॉगल करें"
 
 #: src/app/main/ui/dashboard/team.cljs:1084
 msgid "title.team-webhooks"
-msgstr "वेबहुक - %s - पेनपोट"
+msgstr "वेबहुक - %s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:423
 msgid "title.viewer"
-msgstr "%s - दृश्य मोड - पेनपोट"
+msgstr "%s - दृश्य मोड - Kizuku"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"
-msgstr "%s - पेनपोट"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui.cljs:138
 #, unused
@@ -4975,7 +4971,7 @@ msgstr "अधिक जानकारी"
 
 #: src/app/main/ui/settings/subscription.cljs:285
 msgid "subscription.settings.other-plans"
-msgstr "अन्य पेनपॉट योजनाएँ"
+msgstr "अन्य Kizuku योजनाएँ"
 
 #: src/app/main/ui/settings/subscription.cljs:289, src/app/main/ui/settings/subscription.cljs:302
 msgid "subscription.settings.price-editor-month"
@@ -5053,31 +5049,31 @@ msgstr "अपनी योजना को सशक्त बनाएं"
 
 #: src/app/main/ui/dashboard/files.cljs:179
 msgid "title.dashboard.files"
-msgstr "%s - पेनपॉट"
+msgstr "%s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:46
 msgid "title.dashboard.font-providers"
-msgstr "फ़ॉन्ट प्रदाता - %s - पेनपॉट"
+msgstr "फ़ॉन्ट प्रदाता - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/fonts.cljs:45
 msgid "title.dashboard.fonts"
-msgstr "फ़ॉन्ट्स - %s - पेनपॉट"
+msgstr "फ़ॉन्ट्स - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/projects.cljs:350
 msgid "title.dashboard.projects"
-msgstr "परियोजनाएँ - %s - पेनपॉट"
+msgstr "परियोजनाएँ - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/search.cljs:50
 msgid "title.dashboard.search"
-msgstr "खोज - %s - पेनपॉट"
+msgstr "खोज - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/libraries.cljs:57
 msgid "title.dashboard.shared-libraries"
-msgstr "साझा लाइब्रेरी - %s - पेनपॉट"
+msgstr "साझा लाइब्रेरी - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
-msgstr "पेनपॉट - टीमों के लिए डिज़ाइन की स्वतंत्रता"
+msgstr "Kizuku - टीमों के लिए डिज़ाइन की स्वतंत्रता"
 
 #: src/app/main/ui/settings/access_tokens.cljs:280
 msgid "title.settings.access-tokens"
@@ -5085,35 +5081,35 @@ msgstr "प्रोफ़ाइल - एक्सेस टोकन"
 
 #: src/app/main/ui/settings/feedback.cljs:107
 msgid "title.settings.feedback"
-msgstr "प्रतिक्रिया दें - पेनपॉट"
+msgstr "प्रतिक्रिया दें - Kizuku"
 
 #: src/app/main/ui/settings/notifications.cljs:45
 msgid "title.settings.notifications"
-msgstr "सूचनाएं - पेनपॉट"
+msgstr "सूचनाएं - Kizuku"
 
 #: src/app/main/ui/settings/options.cljs:83
 msgid "title.settings.options"
-msgstr "सेटिंग्स - पेनपॉट"
+msgstr "सेटिंग्स - Kizuku"
 
 #: src/app/main/ui/settings/password.cljs:103
 msgid "title.settings.password"
-msgstr "पासवर्ड - पेनपॉट"
+msgstr "पासवर्ड - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
-msgstr "प्रोफ़ाइल - पेनपॉट"
+msgstr "प्रोफ़ाइल - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
-msgstr "निमंत्रण - %s - पेनपॉट"
+msgstr "निमंत्रण - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
-msgstr "सदस्य - %s - पेनपॉट"
+msgstr "सदस्य - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1131
 msgid "title.team-settings"
-msgstr "सेटिंग्स - %s - पेनपॉट"
+msgstr "सेटिंग्स - %s - Kizuku"
 
 #: src/app/main/ui/workspace/sidebar/options/menus/grid_cell.cljs:273, src/app/main/ui/workspace/sidebar/options/menus/grid_cell.cljs:275, src/app/main/ui/workspace/sidebar/options/menus/layout_container.cljs:620
 msgid "workspace.layout_grid.editor.options.edit-grid"

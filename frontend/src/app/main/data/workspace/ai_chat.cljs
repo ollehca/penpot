@@ -37,7 +37,10 @@
   {:open? false
    :display-log []
    :provider-history []
-   :status nil   ; nil | "sending" | "error" | "done"
+   ;; which provider wrote provider-history (nil for a conversation saved
+   ;; before this was recorded)
+   :provider-history-provider nil
+   :status nil   ; nil | "sending" | "started" | "tool-executing" | "error" | "done"
    :error nil
    :loaded? false})
 
@@ -46,6 +49,21 @@
   component instead of local-only mf/use-state, so the same state is
   shared with ai_tools.cljs's turn-status/tool-call handlers."
   (l/derived #(get % :ai-chat default-state) st/state))
+
+(def ^:private busy-phases
+  "The statuses of a turn that is still running."
+  #{"sending" "started" "tool-executing" "text"})
+
+(defn busy?
+  "True while a turn is running for the given status."
+  [status]
+  (contains? busy-phases status))
+
+(defn busy-now?
+  "True while a turn is running, read from the live state (a closure
+  captured at render time can be one keystroke behind)."
+  []
+  (busy? (get-in @st/state [:ai-chat :status])))
 
 (defn open-panel
   []
@@ -71,13 +89,14 @@
 (defn set-history
   "Replace both logs wholesale — used only when loading persisted history
   on mount (a real snapshot of both, read back from disk together)."
-  [{:keys [display-log provider-history]}]
+  [{:keys [display-log provider-history provider-history-provider]}]
   (ptk/reify ::set-history
     ptk/UpdateEvent
     (update [_ state]
       (-> state
           (assoc-in [:ai-chat :display-log] (or display-log []))
           (assoc-in [:ai-chat :provider-history] (or provider-history []))
+          (assoc-in [:ai-chat :provider-history-provider] provider-history-provider)
           (assoc-in [:ai-chat :loaded?] true)))))
 
 (defn set-provider-history
@@ -86,23 +105,32 @@
   from both this component and ai-tools.cljs's handlers as the turn
   progresses. provider-history is always a full replacement, per
   ai-provider-client.js's contract: result.history is the complete
-  accumulated conversation, not a delta."
-  [provider-history]
-  (ptk/reify ::set-provider-history
-    ptk/UpdateEvent
-    (update [_ state]
-      (assoc-in state [:ai-chat :provider-history] (or provider-history [])))))
+  accumulated conversation, not a delta. provider names the provider that
+  wrote it, so a later turn on another provider does not replay it."
+  ([provider-history]
+   (set-provider-history provider-history nil))
+  ([provider-history provider]
+   (ptk/reify ::set-provider-history
+     ptk/UpdateEvent
+     (update [_ state]
+       (-> state
+           (assoc-in [:ai-chat :provider-history] (or provider-history []))
+           (assoc-in [:ai-chat :provider-history-provider] provider))))))
 
 (defn reset-history
+  "Empty the conversation. The status is left alone while a turn is still
+  running: it is what keeps the composer locked until the turn ends."
   []
   (ptk/reify ::reset-history
     ptk/UpdateEvent
     (update [_ state]
-      (-> state
-          (assoc-in [:ai-chat :display-log] [])
-          (assoc-in [:ai-chat :provider-history] [])
-          (assoc-in [:ai-chat :status] nil)
-          (assoc-in [:ai-chat :error] nil)))))
+      (cond-> (-> state
+                  (assoc-in [:ai-chat :display-log] [])
+                  (assoc-in [:ai-chat :provider-history] [])
+                  (assoc-in [:ai-chat :provider-history-provider] nil)
+                  (assoc-in [:ai-chat :error] nil))
+        (not (busy? (get-in state [:ai-chat :status])))
+        (assoc-in [:ai-chat :status] nil)))))
 
 (defn append-display-entry
   "Append one entry to the display log. entry is a plain map, e.g.

@@ -262,7 +262,7 @@ msgstr "チームを新規作成"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "あなたのKizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -988,6 +988,18 @@ msgstr "招待を再送"
 msgid "labels.retry"
 msgstr "リトライ"
 
+#: src/app/main/ui/dashboard/projects.cljs, src/app/main/ui/dashboard/files.cljs
+msgid "labels.num-of-files"
+msgid_plural "labels.num-of-files"
+msgstr[0] "1 件のファイル"
+msgstr[1] "%s 件のファイル"
+
+#: src/app/main/ui/dashboard/projects.cljs
+msgid "labels.num-of-projects"
+msgid_plural "labels.num-of-projects"
+msgstr[0] "1 件のプロジェクト"
+msgstr[1] "%s 件のプロジェクト"
+
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.title"
 msgstr "AI アシスタント"
@@ -1039,6 +1051,26 @@ msgstr "このページの図形の作成・色変更・削除を AI に頼め�
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.error.no-key"
 msgstr "%s の API キーが保存されていません。設定で追加してください。"
+
+#: src/app/main/ui/workspace/sidebar/ai_chat_bar.cljs
+msgid "kizuku.ai.error.generic"
+msgstr "AI へのリクエストは、返信が届く前に失敗しました。"
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.empty-reply"
+msgstr "モデルが空の返信を送り、変更は行われませんでした。言い方を変えるか、より小さなステップを依頼してください。"
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.truncated"
+msgstr "返信が出力上限に達し、途中で切れました。続きを依頼してください。"
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.truncated-nothing-done"
+msgstr "より小さなステップを依頼しても、変更が行われる前に返信が出力上限に達しました。1 セクションずつ依頼してください。"
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.round-limit"
+msgstr "アシスタントは多数の編集ラウンドの後に一時停止しました。作成済みの内容はすべて保持されています。続きを依頼してください。"
 
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.provider-aria"
@@ -1179,3 +1211,151 @@ msgstr "Figma から貼り付けできませんでした。レイヤーをもう
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.figma.paste-unavailable"
 msgstr "Figma からの貼り付けには Kizuku デスクトップアプリが必要です"
+
+#: src/app/main/ui/workspace/libraries.cljs
+msgid "kizuku.libraries.empty"
+msgstr "共有ライブラリはまだありません。ファイルをここで使うには、共有ライブラリとして追加してください。"
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-too-many"
+msgstr "1 つの PDF に入れられるボードは最大 %s 個です。選択を減らしてください。"
+
+#: src/app/main/data/workspace/svg_upload.cljs
+msgid "kizuku.svg.linked-images-skipped"
+msgstr "リンクされた画像はインポートされませんでした。SVG に埋め込んでください。"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.title"
+msgstr "フォルダ"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.new"
+msgstr "新しいフォルダ"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.subfolder"
+msgstr "サブフォルダ"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.new-subfolder"
+msgstr "新しいサブフォルダ"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.rename"
+msgstr "名前を変更"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.delete"
+msgstr "削除"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.options"
+msgstr "オプション"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.confirm-delete"
+msgstr "「%s」を削除しますか？"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.confirm-delete-with-files"
+msgstr "「%s」を削除しますか？中のファイルはプロジェクトに残ります。"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.drop-out-hint"
+msgstr "ここにファイルをドロップすると、フォルダから取り出せます"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.drop-out"
+msgstr "ドロップしてフォルダから取り出す"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.title"
+msgstr "プラン"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-founder"
+msgstr "Founder"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-professional"
+msgstr "プロフェッショナル"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-private"
+msgstr "個人"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.upgrade-text"
+msgstr "クラウド同期や共有などの機能を利用できます。"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.upgrade"
+msgstr "アップグレード"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.change-license"
+msgstr "ライセンスを変更"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.license-placeholder"
+msgstr "ライセンスを貼り付け"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.validate"
+msgstr "検証"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.validating"
+msgstr "検証中"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.updated"
+msgstr "ライセンスを更新しました"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.invalid"
+msgstr "このライセンスを検証できませんでした。"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.app-only"
+msgstr "ライセンスの変更はアプリ内でのみ可能です。"
+
+#: src/app/main/ui/settings/password.cljs
+msgid "kizuku.settings.password-hint"
+msgstr "12文字以上。"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.language-auto"
+msgstr "自動（ブラウザ）"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.busy.figma-paste"
+msgstr "Figma から貼り付け中…"
+
+#: src/app/main/data/workspace/table_import.cljs
+msgid "kizuku.busy.table"
+msgstr "表を作成中…"
+
+#: src/app/main/data/fonts.cljs
+msgid "kizuku.busy.fonts-read"
+msgstr "フォントを読み込み中…"
+
+#: src/app/main/ui/dashboard/fonts.cljs
+msgid "kizuku.busy.fonts-upload"
+msgstr "フォントをアップロード中…"
+
+#: src/app/main/ui/dashboard/fonts.cljs
+msgid "kizuku.busy.fonts-count"
+msgstr "フォント: %s"
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-board-too-large"
+msgstr "ボードが大きすぎて PDF にできません。各辺は %s px 以下にしてください。"
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-total-too-large"
+msgstr "これらのボードは 1 つの PDF には大きすぎます。選択を減らしてください。"
+
+#: src/app/main/ui/dashboard/grid.cljs
+msgid "kizuku.import.unsupported-drop"
+msgstr ".kiz または .fig ファイルをドロップすると開けます。"

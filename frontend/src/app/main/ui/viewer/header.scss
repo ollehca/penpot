@@ -42,6 +42,9 @@
   width: $s-28;
   height: $s-28;
   fill: var(--icon-foreground-hover);
+  // MODIFIED BY KIZUKU (2026-11-15): the Kizuku mark is drawn with strokes
+  // in the current colour, so it takes the tint through `color`.
+  color: var(--icon-foreground-hover);
 }
 
 .sitemap-zone {

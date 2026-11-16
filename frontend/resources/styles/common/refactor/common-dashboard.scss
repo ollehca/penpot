@@ -212,6 +212,24 @@
       stroke: #fff;
     }
   }
+
+  // Disabled comes last so it wins over hover and press: without it the
+  // hover rule above turned a disabled button violet and the glow stayed
+  // on (same branch as the kataPrimaryButton mixin).
+  &:global(.disabled),
+  &[disabled],
+  &:disabled {
+    background-color: var(--button-background-color-disabled);
+    border: $s-1 solid var(--button-border-color-disabled);
+    color: var(--button-foreground-color-disabled);
+    box-shadow: none;
+    transform: none;
+
+    svg,
+    span svg {
+      stroke: var(--button-foreground-color-disabled);
+    }
+  }
 }
 
 .btn-secondary {

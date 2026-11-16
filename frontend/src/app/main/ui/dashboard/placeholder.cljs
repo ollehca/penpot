@@ -3,39 +3,30 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-11-15): the empty-project cards: Import opens
+;; the desktop app's Open dialog; the libraries-and-templates card is gone.
 
 (ns app.main.ui.dashboard.placeholder
   (:require-macros [app.main.style :as stl])
   (:require
-   [app.main.data.event :as ev]
    [app.main.store :as st]
    [app.main.ui.dashboard.import :as udi]
    [app.main.ui.ds.product.empty-placeholder :refer [empty-placeholder*]]
    [app.main.ui.ds.product.loader :refer [loader*]]
    [app.main.ui.icons :as i]
-   [app.util.dom :as dom]
    [app.util.i18n :as i18n :refer [tr]]
    [okulary.core :as l]
-   [potok.v2.core :as ptk]
    [rumext.v2 :as mf]))
 
+;; KIZUKU: two cards, not three. "Import a file" opens the desktop app's
+;; File > Open… (PenPot's importer behind it could not read a .kiz or a
+;; .fig), and the "Add a Library or a Template" card is gone: it led to a
+;; web page that offers neither.
 (mf/defc empty-project-placeholder*
   {::mf/private true}
-  [{:keys [on-create on-finish-import project-id]}]
-  (let [file-input       (mf/use-ref nil)
-
-        on-add-library
-        (mf/use-fn
-         (fn [_]
-           (st/emit! (ptk/event ::ev/event {::ev/name "explore-libraries-click"
-                                            ::ev/origin "dashboard"
-                                            :section "empty-placeholder-projects"}))
-           ;; MODIFIED BY KIZUKU: was penpot.app/penpothub URL (wrong brand +
-           ;; broken offline). Point at the bare Kizuku domain.
-           (dom/open-new-window "https://getkizuku.app")))
-
-        on-import
-        (mf/use-fn #(dom/click (mf/ref-val file-input)))]
+  [{:keys [on-create]}]
+  (let [on-import (mf/use-fn #(udi/open-project-dialog!))]
 
     [:div {:class (stl/css :empty-project-container)}
      [:div {:class (stl/css :empty-project-card)
@@ -52,19 +43,7 @@
       [:div {:class (stl/css :empty-project-card-title)}
        (tr "dashboard.empty-project.import")]
       [:div {:class (stl/css :empty-project-card-subtitle)}
-       (tr "dashboard.empty-project.import-penpot")]]
-
-     [:div {:class (stl/css :empty-project-card)
-            :on-click on-add-library
-            :title (tr "dashboard.empty-project.go-to-libraries")}
-      [:div {:class (stl/css :empty-project-card-title)}
-       (tr "dashboard.empty-project.add-library")]
-      [:div {:class (stl/css :empty-project-card-subtitle)}
-       (tr "dashboard.empty-project.explore")]]
-
-     [:& udi/import-form {:ref file-input
-                          :project-id project-id
-                          :on-finish-import on-finish-import}]]))
+       (tr "dashboard.empty-project.import-penpot")]]]))
 
 (defn- make-has-other-files-or-projects-ref
   "Return a ref that resolves to true or false if there are at least some

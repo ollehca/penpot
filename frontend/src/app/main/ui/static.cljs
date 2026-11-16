@@ -12,6 +12,8 @@
 ;;   (rt/nav-root, same target as the go-dashboard affordance) instead of
 ;;   re-rendering the crashed route, which crashed again immediately
 ;; Date: 2026-07-08
+;; Update (2026-11-16): exception-page* never offers "request access"; a
+;;   file or team that is not found gets the plain not-found page.
 ;; ============================================================================
 
 (ns app.main.ui.static
@@ -523,12 +525,11 @@
         authenticated?
         (is-authenticated? profile)
 
-        request-access?
-        (and
-         (or (= type :not-found) auth-error?)
-         (or workspace? dashboard? view?)
-         (or (:file-id info)
-             (:team-id info)))]
+        ;; Kizuku: an installation has one user and no team owner to ask, so
+        ;; a file that cannot be found is said to be not found. Upstream
+        ;; offers "request access" here: it told the user to ask the team
+        ;; owner, and its button sent a request to a server that is not there.
+        request-access? false]
 
     (mf/with-effect [params info]
       (when-not (:loaded info)

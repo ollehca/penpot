@@ -15,6 +15,10 @@
 ;;   image cannot fetch external resources, frame thumbnails were always
 ;;   rasterized with fallback fonts.
 ;; Date: 2026-07-17
+;; Modifications: svg-get-adjusted-size draws the SVG at the width of the
+;;   result; wide images were drawn far larger first, and wide exports
+;;   failed.
+;; Date: 2026-11-15
 ;; ============================================================================
 
 (ns app.rasterizer
@@ -68,12 +72,17 @@
          (obj/set! image "onabort" nil))))))
 
 (defn- svg-get-adjusted-size
-  "Returns the adjusted size of an SVG."
+  "Returns the adjusted size of an SVG.
+
+  KIZUKU: `max` is the width of the result (the bitmap is made with
+  resizeWidth = max), so the SVG is drawn `max` wide whatever its shape. A
+  landscape SVG used to be drawn `max` HIGH instead and scaled down
+  afterwards: a 1440x100 bar exported at 2x was first drawn 41472 px wide,
+  past what a canvas can hold, and the export failed."
   [width height max]
-  (let [ratio (/ width height)]
-    (if (< width height)
-      [max (* max (/ 1 ratio))]
-      [(* max ratio) max])))
+  (if (and (pos? width) (pos? height))
+    [max (* max (/ height width))]
+    [max max]))
 
 (defn- svg-get-size-from-viewbox
   "Returns the size of an SVG from its viewbox."

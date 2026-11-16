@@ -3,12 +3,16 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-11-15): tests for the colour new text takes
+;; from the background it is placed on.
 
 (ns common-tests.types.text-test
   (:require
 
    [app.common.types.shape :as cts]
    [app.common.types.text :as cttx]
+   [app.common.uuid :as uuid]
    [clojure.test :as t :include-macros true]))
 
 (def content-base
@@ -111,3 +115,50 @@
 
     (t/is (every? #(= % "14") original-font-sizes))
     (t/is (every? #(= % "32") updated-font-sizes))))
+
+;; KIZUKU: the default colour of new text follows its background.
+
+(t/deftest test-text-color-on-background
+  (t/testing "black where black reads better, the light default elsewhere"
+    (t/is (= "#000000" (cttx/text-color-on "#FFFFFF")))
+    (t/is (= "#000000" (cttx/text-color-on "#e8e9ea")))
+    (t/is (= "#000000" (cttx/text-color-on "#808080")))
+    (t/is (= "#f0f2f5" (cttx/text-color-on "#0a0a14")))
+    (t/is (= "#f0f2f5" (cttx/text-color-on "#606060")))
+    (t/is (= "#f0f2f5" (cttx/text-color-on "#0000ff"))))
+
+  (t/testing "what is not a 6-digit hex colour counts as the dark canvas"
+    (t/is (= "#f0f2f5" (cttx/text-color-on nil)))
+    (t/is (= "#f0f2f5" (cttx/text-color-on "#fff")))
+    (t/is (= "#f0f2f5" (cttx/text-color-on "rgb(255,255,255)"))))
+
+  (t/testing "the fills carry that colour"
+    (t/is (= [{:fill-color "#000000" :fill-opacity 1}]
+             (vec (cttx/get-default-text-fills-on "#ffffff"))))))
+
+(t/deftest test-background-color-at
+  (let [board    (uuid/next)
+        dark     (uuid/next)
+        clear    (uuid/next)
+        gradient (uuid/next)
+        objects  {uuid/zero {:id uuid/zero :type :frame :frame-id uuid/zero}
+                  board     {:id board :type :frame :frame-id uuid/zero
+                             :fills [{:fill-color "#FFFFFF" :fill-opacity 1}]}
+                  dark      {:id dark :type :frame :frame-id board
+                             :fills [{:fill-color "#1a1a2e" :fill-opacity 1}]}
+                  clear     {:id clear :type :frame :frame-id board :fills []}
+                  gradient  {:id gradient :type :frame :frame-id uuid/zero
+                             :fills [{:fill-color-gradient {:type :linear} :fill-opacity 1}]}}]
+
+    (t/testing "a board's own colour"
+      (t/is (= "#FFFFFF" (cttx/background-color-at objects board nil)))
+      (t/is (= "#1a1a2e" (cttx/background-color-at objects dark nil))))
+
+    (t/testing "a board without a colour shows the one around it"
+      (t/is (= "#FFFFFF" (cttx/background-color-at objects clear nil))))
+
+    (t/testing "outside every board: the page colour, else the default canvas"
+      (t/is (= "#0a0a14" (cttx/background-color-at objects uuid/zero nil)))
+      (t/is (= "#E8E9EA" (cttx/background-color-at objects uuid/zero "#E8E9EA")))
+      (t/is (= "#0a0a14" (cttx/background-color-at objects gradient nil)))
+      (t/is (= "#0a0a14" (cttx/background-color-at objects (uuid/next) nil))))))

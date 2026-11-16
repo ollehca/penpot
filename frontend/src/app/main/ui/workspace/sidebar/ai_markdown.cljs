@@ -23,8 +23,14 @@
 
 ;; --- Inline -------------------------------------------------------------
 
+;; Single * and _ emphasis only counts at a word edge: inside a word or
+;; between spaced operands (hero_bg_dark, 2*4*8, 5 * 3 * 2) they stay literal.
 (def ^:private inline-re
-  #"(\*\*[^*\n]+\*\*|`[^`\n]+`|\*[^*\n]+\*|_[^_\n]+_)")
+  (js/RegExp.
+   (str "(\\*\\*[^*\\n]+\\*\\*"
+        "|`[^`\\n]+`"
+        "|(?<![A-Za-z0-9])\\*(?!\\s)[^*\\n]+(?<!\\s)\\*(?![A-Za-z0-9])"
+        "|(?<![A-Za-z0-9_])_[^_\\n]+_(?![A-Za-z0-9_]))")))
 
 (defn- inline-token->hiccup
   [token]
@@ -42,9 +48,11 @@
   "Split a line into plain strings and strong/em/code nodes."
   [text]
   (loop [rest text acc []]
-    (if-let [m (re-find inline-re rest)]
-      (let [token (first m)
-            idx   (str/index-of rest token)
+    ;; the match's own index: the token's text can also occur earlier, where
+    ;; the word-edge rule rejected it
+    (if-let [m ^js (.exec inline-re rest)]
+      (let [token (aget m 0)
+            idx   (.-index m)
             before (subs rest 0 idx)
             after  (subs rest (+ idx (count token)))]
         (recur after (cond-> acc
@@ -55,7 +63,7 @@
 ;; --- Blocks -------------------------------------------------------------
 
 (def ^:private bullet-re #"^(\s*)[-*•]\s+(.*)$")
-(def ^:private number-re #"^(\s*)\d+[.)]\s+(.*)$")
+(def ^:private number-re #"^(\s*)(\d+)[.)]\s+(.*)$")
 (def ^:private heading-re #"^#{1,3}\s+(.*)$")
 
 (defn- depth [indent] (quot (count indent) 2))
@@ -68,8 +76,8 @@
     :else
     (if-let [[_ indent text] (re-matches bullet-re line)]
       {:type :ul :depth (depth indent) :text text}
-      (if-let [[_ indent text] (re-matches number-re line)]
-        {:type :ol :depth (depth indent) :text text}
+      (if-let [[_ indent number text] (re-matches number-re line)]
+        {:type :ol :depth (depth indent) :text text :number (js/parseInt number 10)}
         (if-let [[_ text] (re-matches heading-re line)]
           {:type :h :text text}
           {:type :text :text line})))))
@@ -81,16 +89,23 @@
     blocks))
 
 (defn- push-item
+  "Add a list item to the list block before it, or start a new block. A new
+  numbered block keeps the number its first item was written with (:start,
+  left out for 1), so a list interrupted by nested bullets goes on counting."
   [blocks item]
-  (let [prev (peek blocks)]
+  (let [prev (peek blocks)
+        item' (dissoc item :type :number)]
     (if (and prev (= (:type prev) (:type item)))
-      (conj (pop blocks) (update prev :items conj (dissoc item :type)))
-      (conj blocks {:type (:type item) :items [(dissoc item :type)]}))))
+      (conj (pop blocks) (update prev :items conj item'))
+      (conj blocks (cond-> {:type (:type item) :items [item']}
+                     (and (= :ol (:type item)) (not= 1 (:number item)))
+                     (assoc :start (:number item)))))))
 
 (defn blocks
   "Parse text into a vector of blocks:
    {:type :p :text} {:type :h :text} {:type :code :text}
-   {:type :ul/:ol :items [{:depth :text} …]}"
+   {:type :ul/:ol :items [{:depth :text} …]} (:ol may have :start, the
+   number it begins at when that is not 1)"
   [text]
   (loop [lines (str/split-lines (or text ""))
          blocks []
@@ -157,12 +172,12 @@
     items)))
 
 (defn- render-block
-  [idx {:keys [type text items]}]
+  [idx {:keys [type text items start]}]
   (case type
     :h    (mf/html [:h4 {:key idx} (render-inline (parse-inline text))])
     :code (mf/html [:pre {:key idx} [:code text]])
     :ul   (mf/html [:ul {:key idx} (render-items items)])
-    :ol   (mf/html [:ol {:key idx} (render-items items)])
+    :ol   (mf/html [:ol {:key idx :start start} (render-items items)])
     (mf/html [:p {:key idx} (render-inline (parse-inline text))])))
 
 (mf/defc markdown*

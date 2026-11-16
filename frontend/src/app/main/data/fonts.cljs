@@ -4,6 +4,15 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: process-upload shows the app's busy pill ("fonts") while
+;;   the chosen font files are read and parsed.
+;; Date: 2026-11-16
+;; ============================================================================
+
 (ns app.main.data.fonts
   (:require
    ["opentype.js" :as ot]
@@ -18,6 +27,7 @@
    [app.main.repo :as rp]
    [app.main.store :as st]
    [app.util.i18n :refer [tr]]
+   [app.util.kizuku-busy :as busy]
    [app.util.storage :as storage]
    [app.util.webapi :as wa]
    [beicon.v2.core :as rx]
@@ -185,7 +195,11 @@
                                 (rx/of font)
                                 (rx/empty))))))]
 
-    (let [fonts (->> (rx/from blobs)
+    ;; KIZUKU: the chosen files come as a live list that the file input
+    ;; empties as soon as the selection handler returns, and the reading
+    ;; starts after the pill has been drawn: take the files now.
+    (let [blobs (vec blobs)
+          fonts (->> (rx/from blobs)
                      (rx/mapcat read-blob))
           errors (->> fonts
                       (rx/filter #(some? (:error %)))
@@ -206,7 +220,9 @@
            (rx/map parse-font)
            (rx/filter some?)
            (rx/map prepare)
-           (rx/reduce join {})))))
+           (rx/reduce join {})
+           ;; KIZUKU: reading and parsing big font files blocks the page.
+           (busy/with-busy "fonts" {:title (tr "kizuku.busy.fonts-read")})))))
 
 (defn- calculate-family-to-id-mapping
   [existing]

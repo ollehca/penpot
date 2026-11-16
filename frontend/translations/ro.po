@@ -425,7 +425,7 @@ msgstr "Fixați această versiune"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Contul Kizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -466,18 +466,12 @@ msgstr "Nu aveți încă fișiere."
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"Bibliotecile adăugate la proiect vor apărea aici. Încercați să vă partajați "
-"fișierele sau adăugați din [Biblioteci și "
-"șabloane](https://getkizuku.app)."
+msgstr "Bibliotecile adăugate la proiect vor apărea aici."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
-msgstr ""
-"Bibliotecile adăugate la proiect vor apărea aici. Încercați să vă partajați "
-"fișierele sau adăugați din [Biblioteci și "
-"șabloane](https://getkizuku.app)."
+msgstr "Bibliotecile adăugate la proiect vor apărea aici."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -497,7 +491,7 @@ msgstr "Mergi la Librării și Șabloane"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Importă un fișier .kizuku"
+msgstr ""
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"

@@ -156,7 +156,7 @@ msgstr "ایجاد حساب‌کاربری"
 #, unused
 msgid "auth.register-tagline"
 msgstr ""
-"با اکانت رایگان پنپات، شما توانایی ایجاد تیم های نامحدود را برای همکاری با "
+"با اکانت رایگان Kizuku، شما توانایی ایجاد تیم های نامحدود را برای همکاری با "
 "طراحان و برنامه نویسان روی پروژه های نامحدود دارید. "
 
 #: src/app/main/ui/auth/register.cljs:199
@@ -302,7 +302,7 @@ msgstr "یادگیری با انجام کار"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "در پنپات قدم بزنید و با ویژگی‌های اصلی آن آشنا شوید."
+msgstr "در Kizuku قدم بزنید و با ویژگی‌های اصلی آن آشنا شوید."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -374,7 +374,7 @@ msgstr "توکنِ دسترسیِ شخصی"
 msgid "dashboard.access-tokens.personal.description"
 msgstr ""
 "توکن های دسترسی شخصی میتوانند به عنوان جایگزینی به جای رمز عبور و نام "
-"کاربری باشند برای برنامه ها برای دسترسی به API درونی پنپات"
+"کاربری باشند برای برنامه ها برای دسترسی به API درونی Kizuku"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
 msgid "dashboard.access-tokens.token-will-expire"
@@ -402,7 +402,7 @@ msgstr "ایجاد تیم جدید"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Kizuku شما"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -410,7 +410,7 @@ msgstr "حذف تیم"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "دانلود فایل پنپات (.kizuku)"
+msgstr "دانلود فایل Kizuku (.kizuku)"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -426,7 +426,7 @@ msgstr "فایل‌های %s را کپی کنید"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "دانلود %s عدد فایل های پنپات (.kizuku)"
+msgstr "دانلود %s عدد فایل های Kizuku (.kizuku)"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"
@@ -438,7 +438,7 @@ msgstr "اکسپورت به پی‌دی‌اف"
 
 #, unused
 msgid "dashboard.export-multi"
-msgstr "خروجی فایل‌های %s پن‌پات"
+msgstr "خروجی فایل‌های %s Kizuku"
 
 #: src/app/main/ui/exports/assets.cljs:106
 msgid "dashboard.export-multiple.selected"
@@ -456,7 +456,7 @@ msgstr ""
 
 #: src/app/main/ui/exports/assets.cljs:181
 msgid "dashboard.export-shapes.how-to-link"
-msgstr "اطلاعات نحوه تنظیم اکسپورت در پنپات."
+msgstr "اطلاعات نحوه تنظیم اکسپورت در Kizuku."
 
 #: src/app/main/ui/exports/assets.cljs:176
 msgid "dashboard.export-shapes.no-elements"
@@ -557,7 +557,7 @@ msgstr "آپلود همه"
 
 #: src/app/main/ui/dashboard/import.cljs:461, src/app/main/ui/dashboard/project_menu.cljs:109
 msgid "dashboard.import"
-msgstr "ایمپورت کردن فایل‌های پن‌پات"
+msgstr "ایمپورت کردن فایل‌های Kizuku"
 
 #: src/app/main/ui/dashboard/import.cljs:290, src/app/worker/import.cljs:121, src/app/worker/import.cljs:124
 msgid "dashboard.import.analyze-error"
@@ -815,7 +815,7 @@ msgstr "نام شما"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:39, src/app/main/ui/dashboard/fonts.cljs:42, src/app/main/ui/dashboard/libraries.cljs:55, src/app/main/ui/dashboard/projects.cljs:348, src/app/main/ui/dashboard/search.cljs:48, src/app/main/ui/dashboard/sidebar.cljs:320, src/app/main/ui/dashboard/team.cljs:536, src/app/main/ui/dashboard/team.cljs:813, src/app/main/ui/dashboard/team.cljs:1086, src/app/main/ui/dashboard/team.cljs:1133
 msgid "dashboard.your-penpot"
-msgstr "پن‌پات شما"
+msgstr "Kizuku شما"
 
 #: src/app/main/ui/alert.cljs:35
 msgid "ds.alert-ok"
@@ -2084,7 +2084,7 @@ msgstr "جستجو - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/libraries.cljs:57
 msgid "title.dashboard.shared-libraries"
-msgstr "کتابخانه‌های مشترک - %s - پن‌پات"
+msgstr "کتابخانه‌های مشترک - %s - Kizuku"
 
 #: src/app/main/ui/auth/verify_token.cljs:70, src/app/main/ui/auth.cljs:35
 msgid "title.default"
@@ -2104,7 +2104,7 @@ msgstr "رمزعبور - Kizuku"
 
 #: src/app/main/ui/settings/profile.cljs:124
 msgid "title.settings.profile"
-msgstr "پروفایل - پن‌پات"
+msgstr "پروفایل - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:811
 msgid "title.team-invitations"
@@ -2112,15 +2112,15 @@ msgstr "دعوت‌نامه‌ها - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:534
 msgid "title.team-members"
-msgstr "اعضا - %s - پن‌پات"
+msgstr "اعضا - %s - Kizuku"
 
 #: src/app/main/ui/dashboard/team.cljs:1131
 msgid "title.team-settings"
-msgstr "تنظیمات - %s - پن‌پات"
+msgstr "تنظیمات - %s - Kizuku"
 
 #: src/app/main/ui/viewer.cljs:423
 msgid "title.viewer"
-msgstr "%s - حالت مشاهده - پن‌پات"
+msgstr "%s - حالت مشاهده - Kizuku"
 
 #: src/app/main/ui/workspace.cljs:226
 msgid "title.workspace"

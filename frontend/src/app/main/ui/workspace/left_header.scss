@@ -34,6 +34,9 @@
     min-height: $s-32;
     width: $s-32;
     fill: var(--icon-foreground-hover);
+    // MODIFIED BY KIZUKU (2026-11-15): the Kizuku mark is drawn with
+    // strokes in the current colour, so it takes the tint through `color`.
+    color: var(--icon-foreground-hover);
   }
 }
 

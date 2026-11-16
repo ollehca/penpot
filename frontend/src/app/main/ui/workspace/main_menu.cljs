@@ -17,9 +17,10 @@
 ;; - Removed the Plugins menu (top-level entry, submenu component and the
 ;;   plugins-manager handler) — plugin runtime is not supported.
 ;; - File submenu: removed version history ("Pin current version",
-;;   "Show version history") and penpot-native export/download entries
-;;   (Export shapes, Download .penpot/.svg, Export boards) — every backing
-;;   RPC is unmocked offline; the Electron File menu is the supported path.
+;;   "Show version history") and the download entries (Download
+;;   .penpot/.svg) — every backing RPC is unmocked offline. "Export shapes"
+;;   and "Export boards" were restored on 2026-10-24: they run in the app
+;;   itself now (app.main.data.exports.local).
 ;; - Preferences: theme toggle gated behind the :ui-theme-selection flag,
 ;;   matching the settings page.
 ;; ============================================================================

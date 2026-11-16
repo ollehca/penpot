@@ -428,7 +428,7 @@ msgstr "Diese Version anheften"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Ihr Kizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -469,18 +469,12 @@ msgstr "Noch keine Dateien vorhanden."
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"Die zum Projekt hinzugefügten Bibliotheken werden hier angezeigt. Versuchen "
-"Sie, Ihre Dateien freizugeben oder aus unseren [Bibliotheken & "
-"Vorlagen](https://getkizuku.app) hinzuzufügen."
+msgstr "Bibliotheken, die dem Projekt hinzugefügt wurden, werden hier erscheinen."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
-msgstr ""
-"Die zum Projekt hinzugefügten Bibliotheken werden hier angezeigt. Versuchen "
-"Sie, Ihre Dateien freizugeben oder aus unseren [Bibliotheken & "
-"Vorlagen](https://getkizuku.app) hinzuzufügen."
+msgstr "Bibliotheken, die dem Projekt hinzugefügt wurden, werden hier erscheinen."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -500,7 +494,7 @@ msgstr "Eine Datei importieren"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Eine .kizuku-Datei importieren"
+msgstr "Eine .kiz- oder Figma-Datei (.fig) öffnen"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
@@ -7344,6 +7338,26 @@ msgstr "Bitte die KI, Formen auf dieser Seite zu erstellen, umzufärben oder zu 
 msgid "kizuku.ai.error.no-key"
 msgstr "Für %s ist kein API-Schlüssel gespeichert. Füge einen in den Einstellungen hinzu."
 
+#: src/app/main/ui/workspace/sidebar/ai_chat_bar.cljs
+msgid "kizuku.ai.error.generic"
+msgstr "Die KI-Anfrage ist fehlgeschlagen, bevor eine Antwort kam."
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.empty-reply"
+msgstr "Das Modell hat eine leere Antwort gesendet und nichts geändert. Formuliere es anders oder bitte um einen kleineren Schritt."
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.truncated"
+msgstr "Die Antwort hat das Ausgabelimit erreicht und wurde gekürzt. Bitte die KI, mit dem Rest fortzufahren."
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.truncated-nothing-done"
+msgstr "Die Antwort hat das Ausgabelimit erreicht, bevor eine Änderung gemacht wurde, auch nach der Bitte um kleinere Schritte. Bitte um einen Abschnitt nach dem anderen."
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.round-limit"
+msgstr "Der Assistent hat nach vielen Bearbeitungsrunden pausiert. Alles, was er erstellt hat, bleibt erhalten. Bitte ihn, mit dem Rest fortzufahren."
+
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.provider-aria"
 msgstr "Aktiver KI-Anbieter: %s. Zum Ändern klicken."
@@ -7483,3 +7497,151 @@ msgstr "Einfügen aus Figma fehlgeschlagen. Kopiere die Ebenen erneut oder impor
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.figma.paste-unavailable"
 msgstr "Einfügen aus Figma erfordert die Kizuku-Desktop-App"
+
+#: src/app/main/ui/workspace/libraries.cljs
+msgid "kizuku.libraries.empty"
+msgstr "Noch keine gemeinsam genutzten Bibliotheken. Um eine Datei hier zu verwenden, füge sie als gemeinsam genutzte Bibliothek hinzu."
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-too-many"
+msgstr "Ein PDF fasst höchstens %s Zeichenflächen. Wähle weniger aus."
+
+#: src/app/main/data/workspace/svg_upload.cljs
+msgid "kizuku.svg.linked-images-skipped"
+msgstr "Verknüpfte Bilder wurden nicht importiert. Bette sie in die SVG-Datei ein."
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.title"
+msgstr "Ordner"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.new"
+msgstr "Neuer Ordner"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.subfolder"
+msgstr "Unterordner"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.new-subfolder"
+msgstr "Neuer Unterordner"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.rename"
+msgstr "Umbenennen"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.delete"
+msgstr "Löschen"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.options"
+msgstr "Optionen"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.confirm-delete"
+msgstr "„%s“ löschen?"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.confirm-delete-with-files"
+msgstr "„%s“ löschen? Die Dateien bleiben im Projekt."
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.drop-out-hint"
+msgstr "Dateien hier ablegen, um sie aus ihrem Ordner zu entfernen"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.drop-out"
+msgstr "Ablegen, um aus dem Ordner zu entfernen"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.title"
+msgstr "Tarif"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-founder"
+msgstr "Founder"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-professional"
+msgstr "Professional"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-private"
+msgstr "Privat"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.upgrade-text"
+msgstr "Schalte Cloud-Sync, Teilen und mehr frei."
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.upgrade"
+msgstr "Upgrade"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.change-license"
+msgstr "Lizenz ändern"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.license-placeholder"
+msgstr "Lizenz einfügen"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.validate"
+msgstr "Prüfen"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.validating"
+msgstr "Wird geprüft"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.updated"
+msgstr "Lizenz aktualisiert"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.invalid"
+msgstr "Diese Lizenz konnte nicht geprüft werden."
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.app-only"
+msgstr "Lizenzen lassen sich nur in der App ändern."
+
+#: src/app/main/ui/settings/password.cljs
+msgid "kizuku.settings.password-hint"
+msgstr "Mindestens 12 Zeichen."
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.language-auto"
+msgstr "Automatisch (Browser)"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.busy.figma-paste"
+msgstr "Aus Figma einfügen…"
+
+#: src/app/main/data/workspace/table_import.cljs
+msgid "kizuku.busy.table"
+msgstr "Tabelle erstellen…"
+
+#: src/app/main/data/fonts.cljs
+msgid "kizuku.busy.fonts-read"
+msgstr "Schriften lesen…"
+
+#: src/app/main/ui/dashboard/fonts.cljs
+msgid "kizuku.busy.fonts-upload"
+msgstr "Schriften hochladen…"
+
+#: src/app/main/ui/dashboard/fonts.cljs
+msgid "kizuku.busy.fonts-count"
+msgstr "Schriften: %s"
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-board-too-large"
+msgstr "Eine Zeichenfläche ist zu groß für ein PDF. Keine Seite darf länger als %s px sein."
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-total-too-large"
+msgstr "Diese Zeichenflächen sind zu groß für ein PDF. Wähle weniger aus."
+
+#: src/app/main/ui/dashboard/grid.cljs
+msgid "kizuku.import.unsupported-drop"
+msgstr "Lege eine .kiz- oder .fig-Datei ab, um sie zu öffnen."

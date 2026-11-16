@@ -30,6 +30,13 @@
 ;;   input + "Validate" button. Success reuses ntf/success; errors render
 ;;   inline. Degrades to nothing tier-specific when the Electron bridge is
 ;;   absent (plain browser / dev). Copy: sentence case, no hype, bare URL.
+;; Plan section (2026-11-15): Upgrade is offered only while cloud features
+;;   are available; a changed license says "License updated"; one spelling
+;;   ("license", as in the rest of the app).
+;; Plan section texts (2026-11-15): every text of the Plan block comes from
+;;   the catalogues (kizuku.plan.*) instead of English literals.
+;; License errors (2026-11-16): a refused license always shows the
+;;   translated text, not the English reason the Electron shell returns.
 ;; ============================================================================
 
 (ns app.main.ui.settings.profile
@@ -144,15 +151,16 @@
     {:tier       (unchecked-get snapshot "tier")
      :founder    (true? (unchecked-get snapshot "founder"))
      :can-upgrade (true? (unchecked-get snapshot "canUpgrade"))
+     :cloud-available (true? (unchecked-get snapshot "cloudAvailable"))
      :is-paid    (true? (unchecked-get snapshot "isPaid"))}))
 
 (defn- tier-label
   "Sentence-case badge label from the entitlements snapshot."
   [{:keys [founder is-paid]}]
   (cond
-    founder "Founder"
-    is-paid "Professional"
-    :else   "Private"))
+    founder (tr "kizuku.plan.tier-founder")
+    is-paid (tr "kizuku.plan.tier-professional")
+    :else   (tr "kizuku.plan.tier-private")))
 
 (mf/defc plan-section
   {::mf/private true}
@@ -201,17 +209,20 @@
                               (reset! token "")
                               (when-let [snap (unchecked-get res "entitlements")]
                                 (reset! ents (entitlements->clj snap)))
-                              (st/emit! (ntf/success (tr "notifications.profile-saved"))))
-                            (reset! error (or (unchecked-get res "error")
-                                              "That licence could not be validated.")))))
+                              ;; (the profile form's "Profile saved" was
+                              ;; shown here; nothing of the profile changed)
+                              (st/emit! (ntf/success (tr "kizuku.plan.updated"))))
+                            ;; The shell's reason is English only: show the
+                            ;; translated text for every failure.
+                            (reset! error (tr "kizuku.plan.invalid")))))
                        (.catch
                         (fn [_]
                           (reset! pending false)
-                          (reset! error "That licence could not be validated."))))
+                          (reset! error (tr "kizuku.plan.invalid")))))
                    (do (reset! pending false)
-                       (reset! error "Licence changes are only available in the app.")))
+                       (reset! error (tr "kizuku.plan.app-only"))))
                  (do (reset! pending false)
-                     (reset! error "Licence changes are only available in the app.")))))))]
+                     (reset! error (tr "kizuku.plan.app-only"))))))))]
 
     ;; Load on mount and subscribe to live changes (broadcast on activation).
     (mf/with-effect []
@@ -227,7 +238,7 @@
     ;; Nothing tier-specific outside the desktop bridge.
     (when (some? @ents)
       [:div {:class (stl/css :plan-section)}
-       [:h2 "Plan"]
+       [:h2 (tr "kizuku.plan.title")]
 
        [:div {:class (stl/css :plan-row)}
         [:span {:class (stl/css-case :plan-badge true
@@ -235,29 +246,34 @@
                                      :is-founder (:founder @ents))}
          (tier-label @ents)]]
 
-       (when (:can-upgrade @ents)
+       ;; The upgrade is to the plans with cloud features, so it is offered
+       ;; only where those exist: while they are switched off for every tier
+       ;; the button led to a page with nothing to upgrade to.
+       (when (and (:can-upgrade @ents) (:cloud-available @ents))
          [:div {:class (stl/css :plan-upgrade)}
           [:p {:class (stl/css :plan-upgrade-text)}
-           "Unlock cloud sync, sharing and more."]
+           (tr "kizuku.plan.upgrade-text")]
           [:button {:class (stl/css :plan-upgrade-btn)
                     :type "button"
                     :on-click on-upgrade}
-           "Upgrade"]])
+           (tr "kizuku.plan.upgrade")]])
 
        [:div {:class (stl/css :plan-change)}
         [:label {:class (stl/css :plan-change-label)}
-         "Change licence"]
+         (tr "kizuku.plan.change-license")]
         [:div {:class (stl/css :plan-change-controls)}
          [:input {:class (stl/css :plan-change-input)
                   :type "text"
-                  :placeholder "Paste licence"
+                  :placeholder (tr "kizuku.plan.license-placeholder")
                   :value @token
                   :on-change on-token-change}]
          [:button {:class (stl/css :plan-validate-btn)
                    :type "button"
                    :disabled (or @pending (empty? (str/trim (or @token ""))))
                    :on-click on-validate}
-          (if @pending "Validating" "Validate")]]
+          (if @pending
+            (tr "kizuku.plan.validating")
+            (tr "kizuku.plan.validate"))]]
         (when @error
           [:p {:class (stl/css :plan-change-error)} @error])]])))
 

@@ -416,7 +416,7 @@ msgstr "Закрепить эту версию"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Ваш Kizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -457,18 +457,12 @@ msgstr "Файлов пока нет."
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"Библиотеки, добавленные в проект, будут отображаться здесь. Попробуйте "
-"поделиться своими файлами или добавьте из наших [Библиотек и "
-"шаблонов](https://getkizuku.app)."
+msgstr "Библиотеки, добавленные в проект, будут отображаться здесь."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
-msgstr ""
-"Библиотеки, добавленные в проект, будут отображаться здесь. Попробуйте "
-"поделиться своими файлами или добавьте из наших [Библиотек и "
-"шаблонов](https://getkizuku.app)."
+msgstr "Библиотеки, добавленные в проект, будут отображаться здесь."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -1893,8 +1887,8 @@ msgstr "Уведомления"
 #: src/app/main/ui/dashboard/projects.cljs:239, src/app/main/ui/dashboard/team.cljs:1188
 msgid "labels.num-of-files"
 msgid_plural "labels.num-of-files"
-msgstr[0] "Файл"
-msgstr[1] "Файлы (%s)"
+msgstr[0] "Файлов: 1"
+msgstr[1] "Файлов: %s"
 
 #: src/app/main/ui/viewer/thumbnails.cljs:82
 msgid "labels.num-of-frames"
@@ -1905,8 +1899,8 @@ msgstr[1] "Кадры (%s)"
 #: src/app/main/ui/dashboard/team.cljs:1183
 msgid "labels.num-of-projects"
 msgid_plural "labels.num-of-projects"
-msgstr[0] "Проект"
-msgstr[1] "Проекты (%s)"
+msgstr[0] "Проектов: 1"
+msgstr[1] "Проектов: %s"
 
 #: src/app/main/ui/settings/password.cljs:77
 msgid "labels.old-password"
@@ -6132,6 +6126,26 @@ msgstr "Попросите ИИ создать, перекрасить или у
 msgid "kizuku.ai.error.no-key"
 msgstr "Для %s не сохранён API-ключ. Добавьте его в настройках, чтобы использовать этого провайдера."
 
+#: src/app/main/ui/workspace/sidebar/ai_chat_bar.cljs
+msgid "kizuku.ai.error.generic"
+msgstr "Запрос к ИИ завершился ошибкой до получения ответа."
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.empty-reply"
+msgstr "Модель прислала пустой ответ и ничего не изменила. Переформулируйте запрос или попросите сделать шаг поменьше."
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.truncated"
+msgstr "Ответ достиг лимита вывода и был оборван. Попросите продолжить с остальным."
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.truncated-nothing-done"
+msgstr "Ответ достиг лимита вывода до каких-либо изменений, даже после просьбы о более мелких шагах. Просите по одному разделу."
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.round-limit"
+msgstr "Ассистент остановился после многих раундов правок; всё созданное сохранено. Попросите продолжить с остальным."
+
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.provider-aria"
 msgstr "Текущий провайдер ИИ: %s. Нажмите, чтобы изменить."
@@ -6271,3 +6285,151 @@ msgstr "Не удалось вставить из Figma. Скопируйте с
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.figma.paste-unavailable"
 msgstr "Для вставки из Figma нужно настольное приложение Kizuku"
+
+#: src/app/main/ui/workspace/libraries.cljs
+msgid "kizuku.libraries.empty"
+msgstr "Общих библиотек пока нет. Чтобы использовать файл здесь, добавьте его как общую библиотеку."
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-too-many"
+msgstr "В один PDF помещается не более %s кадров. Выберите меньше."
+
+#: src/app/main/data/workspace/svg_upload.cljs
+msgid "kizuku.svg.linked-images-skipped"
+msgstr "Связанные изображения не импортированы. Встройте их в SVG."
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.title"
+msgstr "Папки"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.new"
+msgstr "Новая папка"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.subfolder"
+msgstr "Подпапка"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.new-subfolder"
+msgstr "Новая подпапка"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.rename"
+msgstr "Переименовать"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.delete"
+msgstr "Удалить"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.options"
+msgstr "Опции"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.confirm-delete"
+msgstr "Удалить «%s»?"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.confirm-delete-with-files"
+msgstr "Удалить «%s»? Файлы останутся в проекте."
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.drop-out-hint"
+msgstr "Перетащите файлы сюда, чтобы убрать их из папки"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.drop-out"
+msgstr "Отпустите, чтобы убрать из папки"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.title"
+msgstr "Тариф"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-founder"
+msgstr "Founder"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-professional"
+msgstr "Профессиональный"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-private"
+msgstr "Личный"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.upgrade-text"
+msgstr "Откройте облачную синхронизацию, совместный доступ и другие возможности."
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.upgrade"
+msgstr "Улучшить тариф"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.change-license"
+msgstr "Сменить лицензию"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.license-placeholder"
+msgstr "Вставьте лицензию"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.validate"
+msgstr "Проверить"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.validating"
+msgstr "Проверка"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.updated"
+msgstr "Лицензия обновлена"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.invalid"
+msgstr "Не удалось проверить эту лицензию."
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.app-only"
+msgstr "Лицензию можно сменить только в приложении."
+
+#: src/app/main/ui/settings/password.cljs
+msgid "kizuku.settings.password-hint"
+msgstr "Не менее 12 символов."
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.language-auto"
+msgstr "Автоматически (браузер)"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.busy.figma-paste"
+msgstr "Вставка из Figma…"
+
+#: src/app/main/data/workspace/table_import.cljs
+msgid "kizuku.busy.table"
+msgstr "Создание таблицы…"
+
+#: src/app/main/data/fonts.cljs
+msgid "kizuku.busy.fonts-read"
+msgstr "Чтение шрифтов…"
+
+#: src/app/main/ui/dashboard/fonts.cljs
+msgid "kizuku.busy.fonts-upload"
+msgstr "Загрузка шрифтов…"
+
+#: src/app/main/ui/dashboard/fonts.cljs
+msgid "kizuku.busy.fonts-count"
+msgstr "Шрифтов: %s"
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-board-too-large"
+msgstr "Один из кадров слишком велик для PDF. Ни одна сторона не должна превышать %s px."
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-total-too-large"
+msgstr "Эти кадры слишком велики для одного PDF. Выберите меньше."
+
+#: src/app/main/ui/dashboard/grid.cljs
+msgid "kizuku.import.unsupported-drop"
+msgstr "Перетащите сюда файл .kiz или .fig, чтобы открыть его."

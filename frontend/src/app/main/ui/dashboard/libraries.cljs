@@ -12,6 +12,7 @@
 ;;   subtitle under the title, using the shared-files list already computed
 ;;   in this component (no new subscriptions).
 ;; Date: 2026-07-07
+;; Subtitle (2026-11-15): the file count comes from the catalogues.
 ;; Copy review (2026-07-09): subtitle is now the file count only; the
 ;;   "stored on this device" tail was repetitive. No subtitle when the count
 ;;   is zero.
@@ -77,11 +78,11 @@
      [:header {:class (stl/css :dashboard-header) :data-testid "dashboard-header"}
       [:div#dashboard-libraries-title {:class (stl/css :dashboard-title)}
        [:h1 (tr "dashboard.libraries-title")]
-       ;; Kizuku: static subtitle (hardcoded English per fork precedent)
+       ;; Kizuku: subtitle with the number of libraries
        (let [n (count files)]
          (when (pos? n)
            [:span {:class (stl/css :dashboard-subtitle)}
-            (str n (if (= 1 n) " file" " files"))]))]]
+            (tr "labels.num-of-files" (i18n/c n))]))]]
 
      [:section {:class (stl/css :dashboard-container :no-bg :dashboard-shared)
                 :ref rowref}

@@ -255,7 +255,10 @@
           (dissoc state :export))))))
 
 (defn- initialize-export-status
-  [id exports]
+  "`cmd` is the kind of export this is (:export-shapes or :export-frames):
+  the widget's Retry runs it again, and with :export-shapes stored for
+  every export, retrying a failed PDF ran the image export and failed."
+  [id exports cmd]
   (ptk/reify ::initialize-export-status
     ptk/UpdateEvent
     (update [_ state]
@@ -269,7 +272,7 @@
                             :detail-visible true
                             :exports exports
                             :last-update (ct/now)
-                            :cmd :export-shapes}))))
+                            :cmd cmd}))))
 
 (defn- update-export-progress
   [done]
@@ -295,10 +298,39 @@
               :error (or (ex-message cause) (str cause))
               :last-update (ct/now)))))
 
+(def ^:private max-pdf-boards
+  "The desktop app's PDF printer takes at most this many pages
+  (src/services/export/svg-pdf-printer.js, MAX_PAGES)."
+  100)
+
+(def ^:private max-pdf-side
+  "The longest side, in px, of a board the desktop app's PDF printer takes
+  (src/services/export/svg-pdf-printer.js, MAX_DIMENSION_PX)."
+  19200)
+
+(defn- failure-reason
+  "What to tell the user when the desktop app refused a PDF (\"svg-to-pdf:
+  …\") for a reason they can act on: a board that is too large, or boards
+  that are too large together. In the user's language: the app's own text
+  is English, and was shown as it came. nil for every other failure (a
+  print that timed out, a board without a drawing), for which the general
+  text serves better than a fragment such as \"print timed out\"."
+  [cause]
+  (let [message (or (ex-message cause) (str cause))]
+    (cond
+      (re-find #"svg-to-pdf: board \d+ is too large" message)
+      (tr "kizuku.export.pdf-board-too-large" max-pdf-side)
+
+      (re-find #"svg-to-pdf: the boards are too large" message)
+      (tr "kizuku.export.pdf-total-too-large"))))
+
 (defn- notify-failure
   [cause]
   (js/console.error "Kizuku export failed" cause)
-  (ntf/error (tr "workspace.options.exporting-object-error")))
+  ;; A refusal the user can act on says what to change; the general text
+  ;; said nothing about it.
+  (ntf/error (or (failure-reason cause)
+                 (tr "workspace.options.exporting-object-error"))))
 
 ;; --- Entry points ---------------------------------------------------------
 
@@ -357,6 +389,32 @@
              (rx/take 1)
              (rx/map (fn [svg] #js {:svg svg :width width :height height})))))))
 
+(defn- frames-pdf-stream
+  "Render the boards one by one, then hand the pages to the PDF printer and
+  download the result."
+  [state id exports pdf-name]
+  (let [total (count exports)]
+    (rx/concat
+     (rx/of (initialize-export-status id exports :export-frames))
+     (->> (apply rx/concat (map #(frame-page state %) exports))
+          (rx/scan conj [])
+          (rx/mapcat
+           (fn [pages]
+             (if (< (count pages) total)
+               (rx/of (update-export-progress (count pages)))
+               (rx/concat
+                (rx/of (update-export-progress total))
+                (->> (pages->pdf pages)
+                     (rx/map (fn [blob]
+                               (dom/trigger-download pdf-name blob)
+                               (finish-export-status))))
+                (->> (rx/of (clear-export-state id))
+                     (rx/delay default-timeout))))))
+          (rx/catch (fn [cause]
+                      (rx/of (fail-export-status cause)
+                             (notify-failure cause))))
+          (rx/finalize #(swap! st/ongoing-tasks disj :export))))))
+
 (defn request-frames-pdf
   "\"Export boards as PDF\": every chosen board becomes one page of a single
   PDF named after the file. Drives the same :export widget state as the
@@ -365,31 +423,17 @@
   (ptk/reify ::request-frames-pdf
     ptk/WatchEvent
     (watch [_ state _]
-      (let [id       (uuid/next)
-            total    (count exports)
+      (let [id        (uuid/next)
             file-name (or (some-> (dsh/lookup-file state) :name) (:name (first exports)))
-            pdf-name (str (sanitize-name file-name) ".pdf")]
-        (swap! st/ongoing-tasks conj :export)
-        (rx/concat
-         (rx/of (initialize-export-status id exports))
-         (->> (apply rx/concat (map #(frame-page state %) exports))
-              (rx/scan conj [])
-              (rx/mapcat
-               (fn [pages]
-                 (if (< (count pages) total)
-                   (rx/of (update-export-progress (count pages)))
-                   (rx/concat
-                    (rx/of (update-export-progress total))
-                    (->> (pages->pdf pages)
-                         (rx/map (fn [blob]
-                                   (dom/trigger-download pdf-name blob)
-                                   (finish-export-status))))
-                    (->> (rx/of (clear-export-state id))
-                         (rx/delay default-timeout))))))
-              (rx/catch (fn [cause]
-                          (rx/of (fail-export-status cause)
-                                 (notify-failure cause))))
-              (rx/finalize #(swap! st/ongoing-tasks disj :export))))))))
+            pdf-name  (str (sanitize-name file-name) ".pdf")]
+        ;; More boards than one PDF can hold: say so before any board is
+        ;; rendered. (All of them used to be rendered first, and only then
+        ;; did the export fail, with no reason given.)
+        (if (> (count exports) max-pdf-boards)
+          (rx/of (ntf/error (tr "kizuku.export.pdf-too-many" max-pdf-boards)))
+          (do
+            (swap! st/ongoing-tasks conj :export)
+            (frames-pdf-stream state id exports pdf-name)))))))
 
 (defn request-multiple-export
   "Several exports → one zip, with live progress in the export widget."
@@ -403,7 +447,7 @@
             zip-name (str (sanitize-name (:name (first exports))) ".zip")]
         (swap! st/ongoing-tasks conj :export)
         (rx/concat
-         (rx/of (initialize-export-status id exports))
+         (rx/of (initialize-export-status id exports :export-shapes))
          (->> (export-entries state exports)
               (rx/mapcat
                (fn [entries]

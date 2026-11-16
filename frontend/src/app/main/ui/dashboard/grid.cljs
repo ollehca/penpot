@@ -3,6 +3,11 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-11-15): files dropped on the dashboard go to the
+;; desktop app's own open handler when it can open them (.fig, .kiz,
+;; .kizuku); PenPot's importer is no longer used. (2026-11-16) A drop with
+;; no such file says what can be dropped instead of doing nothing.
 
 (ns app.main.ui.dashboard.grid
   (:require-macros [app.main.style :as stl])
@@ -27,7 +32,6 @@
    [app.main.ui.components.color-bullet :as bc]
    [app.main.ui.components.portal :refer [portal-on-document*]]
    [app.main.ui.dashboard.file-menu :refer [file-menu*]]
-   [app.main.ui.dashboard.import :refer [use-import-file]]
    [app.main.ui.dashboard.inline-edition :refer [inline-edition]]
    [app.main.ui.dashboard.placeholder :refer [empty-grid-placeholder* loading-placeholder*]]
    [app.main.ui.ds.product.loader :refer [loader*]]
@@ -46,21 +50,27 @@
 
 (log/set-level! :debug)
 
-;; --- Kizuku: Route .fig files to Electron handler instead of PenPot import
+;; --- Kizuku: Route the files the desktop app opens (.fig, .kiz, .kizuku)
+;; to its own handler instead of PenPot's importer, which cannot read them.
+
+(defn- project-file?
+  "Is this dropped file one the desktop app opens itself?"
+  [file]
+  (let [name (str/lower (.-name file))]
+    (some #(str/ends-with? name %) [".fig" ".kiz" ".kizuku"])))
 
 (defn- has-fig-files?
-  "Check if dropped files include .fig files"
+  "Check if dropped files include files the desktop app opens itself"
   [files]
-  (some #(str/ends-with? (str/lower (.-name %)) ".fig")
-        (array-seq files)))
+  (some project-file? (array-seq files)))
 
 (defn- handle-kizuku-file-drop
-  "Route .fig files to Electron's handleFileOpen via electronAPI"
+  "Route project files to Electron's handleFileOpen via electronAPI"
   [files]
   (let [api (unchecked-get js/window "electronAPI")]
     (when api
       (doseq [file (array-seq files)]
-        (when (str/ends-with? (str/lower (.-name file)) ".fig")
+        (when (project-file? file)
           (let [path (.getFilePathForDrop ^js api file)]
             (when path
               (log/info :hint "kizuku-fig-drop" :path path)
@@ -69,6 +79,15 @@
                            (log/info :hint "kizuku-fig-import-done" :result (clj->js res))))
                   (.catch (fn [err]
                             (log/error :hint "kizuku-fig-drop-error" :error err)))))))))))
+
+(defn- open-dropped-files
+  "Open the dropped files the desktop app opens. A drop with none of them
+  (an image, a .zip, a .penpot file) says what can be dropped here: the
+  drop was accepted, and then nothing at all happened."
+  [files]
+  (if (has-fig-files? files)
+    (handle-kizuku-file-drop files)
+    (st/emit! (ntf/warn (tr "kizuku.import.unsupported-drop")))))
 
 ;; --- Grid Item Thumbnail
 
@@ -489,9 +508,6 @@
                      (dtm/fetch-shared-files team-id)
                      (dd/clear-selected-files))))
 
-        import-files
-        (use-import-file project-id on-finish-import)
-
         on-scroll
         (mf/use-fn #(st/emit! (dd/hide-file-menu)))
 
@@ -527,10 +543,11 @@
                             (dnd/has-type? e "application/x-moz-file")))
                (dom/prevent-default e)
                (reset! dragging? false)
-               (let [files (.-files (.-dataTransfer e))]
-                 (if (has-fig-files? files)
-                   (handle-kizuku-file-drop files)
-                   (import-files files))))
+               ;; KIZUKU: only files the desktop app opens are taken. The
+               ;; rest went to PenPot's importer, whose backend half does
+               ;; not exist here: its dialog ended in an error or never
+               ;; finished.
+               (open-dropped-files (.-files (.-dataTransfer e))))
              (dom/prevent-default e))))]
 
     [:div {:class (stl/css :dashboard-grid)
@@ -603,8 +620,6 @@
            (st/emit! (dd/fetch-recent-files team-id)
                      (dd/clear-selected-files))))
 
-        import-files (use-import-file project-id on-finish-import)
-
         on-drag-enter
         (mf/use-fn
          (mf/deps selected-project can-edit)
@@ -667,9 +682,8 @@
                (let [files (.-files (.-dataTransfer e))]
                  (dom/prevent-default e)
                  (reset! dragging? false)
-                 (if (has-fig-files? files)
-                   (handle-kizuku-file-drop files)
-                   (import-files files))))
+                 ;; KIZUKU: see the note in the grid above.
+                 (open-dropped-files files)))
              (dom/prevent-default e))))]
 
     [:div {:class (stl/css :dashboard-grid)

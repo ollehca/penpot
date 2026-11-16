@@ -21,7 +21,7 @@ msgstr "이메일을 확인하세요"
 #: src/app/main/ui/auth/register.cljs:277
 #, unused
 msgid "auth.check-your-email"
-msgstr "이메일에 포함된 링크를 클릭하여 계정을 인증하고 펜팟의 사용을 시작하십시오."
+msgstr "이메일에 포함된 링크를 클릭하여 계정을 인증하고 Kizuku의 사용을 시작하십시오."
 
 #: src/app/main/ui/auth/recovery.cljs:67
 msgid "auth.confirm-password"
@@ -147,7 +147,7 @@ msgstr "계정을 생성하세요"
 #: src/app/main/ui/auth/register.cljs:124
 #, unused
 msgid "auth.register-tagline"
-msgstr "펜팟 무료 계정과 함께라면, 무제한으로 팀을 만들고 다른 디자이너 및 개발자와 원하는 만큼 프로젝트에서 협업할 수 있습니다. "
+msgstr "Kizuku 무료 계정과 함께라면, 무제한으로 팀을 만들고 다른 디자이너 및 개발자와 원하는 만큼 프로젝트에서 협업할 수 있습니다. "
 
 #: src/app/main/ui/auth/register.cljs:199
 msgid "auth.register-title"
@@ -164,7 +164,7 @@ msgstr "서비스 정책"
 
 #, unused
 msgid "auth.terms-privacy-agreement"
-msgstr "새로운 계정을 생성하시면, 사용자는 펜팟의 서비스 정책과 개인 정보 정책에 동의하는 것으로 간주됩니다."
+msgstr "새로운 계정을 생성하시면, 사용자는 Kizuku의 서비스 정책과 개인 정보 정책에 동의하는 것으로 간주됩니다."
 
 #: src/app/main/ui/auth/register.cljs:232
 msgid "auth.verification-email-sent"
@@ -185,7 +185,7 @@ msgstr "발행하기"
 
 #: src/app/main/ui/viewer/share_link.cljs:306, src/app/main/ui/viewer/share_link.cljs:316
 msgid "common.share-link.all-users"
-msgstr "모든 펜팟 유저들"
+msgstr "모든 Kizuku 유저들"
 
 #: src/app/main/ui/viewer/share_link.cljs:200
 msgid "common.share-link.confirm-deletion-link-description"
@@ -258,7 +258,7 @@ msgstr "팀 관리"
 
 #: src/app/main/ui/dashboard/projects.cljs:90
 msgid "dasboard.team-hero.text"
-msgstr "펜팟은 팀을 위한 도구입니다. 팀원들을 초대하여 프로젝트 및 파일 단위로 협업하십시오"
+msgstr "Kizuku은 팀을 위한 도구입니다. 팀원들을 초대하여 프로젝트 및 파일 단위로 협업하십시오"
 
 #: src/app/main/ui/dashboard/projects.cljs:88
 msgid "dasboard.team-hero.title"
@@ -267,7 +267,7 @@ msgstr "팀을 이뤄요!"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.tutorial-hero.info"
-msgstr "본 실습용 튜토리얼을 통해 펜팟의 기본 기능에 대하여 재미있게 학습하십시오."
+msgstr "본 실습용 튜토리얼을 통해 Kizuku의 기본 기능에 대하여 재미있게 학습하십시오."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -282,7 +282,7 @@ msgstr "실습용 튜토리얼"
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
 msgid "dasboard.walkthrough-hero.info"
-msgstr "펜팟을 둘러보고 주요 기능에 대한 정보를 습득하십시오."
+msgstr "Kizuku을 둘러보고 주요 기능에 대한 정보를 습득하십시오."
 
 #: src/app/main/ui/dashboard/projects.cljs
 #, unused
@@ -353,7 +353,7 @@ msgstr "개인용 엑세스 토큰"
 #: src/app/main/ui/settings/access_tokens.cljs:186
 msgid "dashboard.access-tokens.personal.description"
 msgstr ""
-"개인용 엑세스 토큰은 펜팟의 로그인/암호 인증 시스템의 대안으로 사용되며, 어플리케이션의 펜팟 내부 API 엑세스를 위해 사용될 수 "
+"개인용 엑세스 토큰은 Kizuku의 로그인/암호 인증 시스템의 대안으로 사용되며, 어플리케이션의 Kizuku 내부 API 엑세스를 위해 사용될 수 "
 "있습니다"
 
 #: src/app/main/ui/settings/access_tokens.cljs:143
@@ -382,7 +382,7 @@ msgstr "새 팀을 생성해요"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "당신의 펜팟"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -390,7 +390,7 @@ msgstr "팀을 해체해요"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:308, src/app/main/ui/dashboard/file_menu.cljs:313, src/app/main/ui/workspace/main_menu.cljs:656, src/app/main/ui/workspace/main_menu.cljs:665
 msgid "dashboard.download-binary-file"
-msgstr "펜팟 파일(.kizuku)을 다운로드해요"
+msgstr "Kizuku 파일(.kizuku)을 다운로드해요"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:318, src/app/main/ui/workspace/main_menu.cljs:674
 msgid "dashboard.download-standard-file"
@@ -406,7 +406,7 @@ msgstr "%파일을 복제해요"
 
 #: src/app/main/ui/dashboard/file_menu.cljs:249, src/app/main/ui/dashboard/file_menu.cljs:254
 msgid "dashboard.export-binary-multi"
-msgstr "%s 펜팟 파일 (.kizuku) 다운로드 하기"
+msgstr "%s Kizuku 파일 (.kizuku) 다운로드 하기"
 
 #: src/app/main/ui/workspace/main_menu.cljs:682
 msgid "dashboard.export-frames"

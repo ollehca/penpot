@@ -7,13 +7,13 @@
 (ns app.db-embedded-test
   "Tests for embedded PostgreSQL functionality"
   (:require
-   [clojure.test :refer :all]
-   [app.db.embedded :as embedded])
+   [app.db.embedded :as embedded]
+   [clojure.test :refer [deftest is run-tests testing use-fixtures]])
   (:import
-   [java.sql Connection Statement ResultSet]))
+   [java.sql Connection]))
 
 (def test-config
-  {:data-dir "/tmp/kizu-embedded-pg-test"
+  {:data-dir "/tmp/kizuku-embedded-pg-test"
    :port 54399})
 
 (defn cleanup-test-db
@@ -240,5 +240,4 @@
   (test-start-stop-embedded-postgres)
   (test-database-connection)
   (test-create-table-and-insert)
-  (test-postgresql-features)
-  )
+  (test-postgresql-features))

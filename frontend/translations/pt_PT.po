@@ -414,7 +414,7 @@ msgstr "Afixar esta versão"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "O teu Kizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -455,10 +455,7 @@ msgstr "Ainda não existem ficheiros."
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"As bibliotecas adicionadas ao projeto irão aparecer aqui. Tenta partilhar "
-"os teus ficheiros ou adiciona algumas das nossas [Bibliotecas e "
-"templates](https://getkizuku.app)."
+msgstr "As bibliotecas que forem adicionadas ao projeto aparecerão aqui."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -486,7 +483,7 @@ msgstr "Importar um ficheiro"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Importar um ficheiro .kizuku"
+msgstr ""
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"

@@ -12,6 +12,10 @@
 ;;   shortcuts — the comments tool was removed from the workspace UI because
 ;;   every comment RPC is unmocked in the offline packaged app.
 ;; Date: 2026-07-11
+;; Modifications: Removed the :plugins shortcut (Cmd/Ctrl+Alt+P). The plugin
+;;   runtime is not supported and the Plugins button and menu entry were
+;;   removed earlier; the shortcut still opened the plugin manager.
+;; Date: 2026-11-15
 ;; ============================================================================
 
 (ns app.main.data.workspace.shortcuts
@@ -20,7 +24,6 @@
    [app.main.data.common :as dcm]
    [app.main.data.event :as ev]
    [app.main.data.exports.assets :as de]
-   [app.main.data.modal :as modal]
    [app.main.data.plugins :as dpl]
    [app.main.data.preview :as dp]
    [app.main.data.profile :as du]
@@ -37,7 +40,6 @@
    [app.main.data.workspace.transforms :as dwt]
    [app.main.data.workspace.undo :as dwu]
    [app.main.data.workspace.variants :as dwv]
-   [app.main.features :as features]
    [app.main.refs :as refs]
    [app.main.store :as st]
    [app.main.ui.hooks.resize :as r]
@@ -593,17 +595,7 @@
                           :command (ds/a-mod "m")
                           :subsections [:basics]
                           :fn #(st/emit! (with-meta (du/toggle-theme)
-                                           {::ev/origin "workspace:shortcut"}))}
-
-
-   ;; PLUGINS
-   :plugins               {:tooltip (ds/meta (ds/alt "P"))
-                           :command (ds/c-mod "alt+p")
-                           :subsections [:basics]
-                           :fn #(when (features/active-feature? @st/state "plugins/runtime")
-                                  (st/emit!
-                                   (ptk/event ::ev/event {::ev/name "open-plugins-manager" ::ev/origin "workspace:shortcuts"})
-                                   (modal/show :plugin-management {})))}})
+                                           {::ev/origin "workspace:shortcut"}))}})
 
 (def debug-shortcuts
   ;; PREVIEW

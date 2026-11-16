@@ -16,6 +16,7 @@
    [app.main.ui.dashboard.grid :refer [grid*]]
    [app.util.dom :as dom]
    [app.util.dom.dnd :as dnd]
+   [app.util.i18n :refer [tr]]
    [app.util.keyboard :as kbd]
    [beicon.v2.core :as rx]
    [rumext.v2 :as mf]))
@@ -77,19 +78,19 @@
                          (dom/stop-propagation e)
                          (on-close)
                          (on-rename))}
-       "Rename"]
+       (tr "kizuku.folders.rename")]
       [:div {:class (stl/css :folder-menu-item)
              :on-click (fn [e]
                          (dom/stop-propagation e)
                          (on-close)
                          (on-subfolder))}
-       "New Subfolder"]
+       (tr "kizuku.folders.new-subfolder")]
       [:div {:class (stl/css :folder-menu-item :folder-menu-danger)
              :on-click (fn [e]
                          (dom/stop-propagation e)
                          (on-close)
                          (on-delete))}
-       "Delete"]]]))
+       (tr "kizuku.folders.delete")]]]))
 
 ;; ---------------------------------------------------------------
 ;; Single folder node (no hooks that depend on dynamic state)
@@ -111,13 +112,22 @@
         menu*      (mf/use-state {:show false :pos nil})
         indent     (* depth 16)
 
+        ;; Only files that still exist in this project count as the
+        ;; folder's files. The stored ids can be behind: a file deleted or
+        ;; moved to another project stays listed until the tree is fetched
+        ;; again, and it used to keep the badge, block Delete and (after a
+        ;; move) show up here although it belongs to another project.
         folder-files
-        (mf/with-memo [file-ids all-files]
-          (let [id-set (set (map str file-ids))]
+        (mf/with-memo [file-ids all-files project-id]
+          (let [id-set (set (map str file-ids))
+                pid    (str project-id)]
             (->> (vals all-files)
-                 (filter #(id-set (str (:id %))))
+                 (filter #(and (id-set (str (:id %)))
+                               (= pid (str (:project-id %)))))
                  (sort-by :modified-at)
                  (reverse))))
+
+        file-count (count folder-files)
 
         on-drop
         (mf/use-fn
@@ -157,14 +167,17 @@
            (when (and nm (pos? (count nm)))
              (on-rename folder-id nm))))
 
+        ;; Deleting a folder only removes the folder: its files go back to
+        ;; the project's own list. (It used to be refused while the folder
+        ;; held files, and nothing could take a file out again.)
         on-delete-click
         (mf/use-fn
-         (mf/deps folder-id file-ids on-delete name)
+         (mf/deps folder-id file-count on-delete name)
          (fn []
-           (if (pos? (count file-ids))
-             (js/alert "Move or remove files before deleting.")
-             (when (js/confirm (str "Delete \"" name "\"?"))
-               (on-delete folder-id)))))
+           (when (js/confirm (if (pos? file-count)
+                               (tr "kizuku.folders.confirm-delete-with-files" name)
+                               (tr "kizuku.folders.confirm-delete" name)))
+             (on-delete folder-id))))
 
         on-subfolder-click
         (mf/use-fn
@@ -198,10 +211,10 @@
       (if (deref editing*)
         [:> folder-rename* {:name name :on-end on-rename-end}]
         [:span {:class (stl/css :folder-name)} name])
-      (when (pos? (count file-ids))
-        [:span {:class (stl/css :folder-badge)} (count file-ids)])
+      (when (pos? file-count)
+        [:span {:class (stl/css :folder-badge)} file-count])
       [:button {:class (stl/css :folder-dots-btn)
-                :on-click on-ctx :title "Options"} "\u22EE"]]
+                :on-click on-ctx :title (tr "kizuku.folders.options")} "\u22EE"]]
 
      [:> folder-menu*
       {:show (:show (deref menu*))
@@ -211,17 +224,14 @@
        :on-subfolder on-subfolder-click
        :on-close #(reset! menu* {:show false :pos nil})}]
 
-     (when (and expanded (pos? (count file-ids)))
+     (when (and expanded (pos? file-count))
        [:div {:class (stl/css :folder-files)}
-        (if (seq folder-files)
-          [:> grid* {:project project
-                     :files folder-files
-                     :selected-files selected-files
-                     :can-edit true
-                     :origin :files
-                     :limit 4}]
-          [:div {:class (stl/css :folder-empty-msg)}
-           (str (count file-ids) " file(s) — open project to view")])])
+        [:> grid* {:project project
+                   :files folder-files
+                   :selected-files selected-files
+                   :can-edit true
+                   :origin :files
+                   :limit 4}]])
 
      (when (and has-kids expanded)
        (for [cid children]
@@ -283,7 +293,7 @@
          (mf/deps project-id folders)
          (fn [e]
            (dom/stop-propagation e)
-           (let [nm (next-name "New Folder" folders)]
+           (let [nm (next-name (tr "kizuku.folders.new") folders)]
              (->> (rp/cmd! :create-folder
                            {:project-id project-id :name nm})
                   (rx/subs! (fn [_] (refresh)))))))
@@ -317,7 +327,7 @@
         (mf/use-fn
          (mf/deps project-id folders)
          (fn [parent-id]
-           (let [nm (next-name "Subfolder" folders)]
+           (let [nm (next-name (tr "kizuku.folders.subfolder") folders)]
              (->> (rp/cmd! :create-folder
                            {:project-id project-id
                             :name nm
@@ -325,7 +335,27 @@
                   (rx/subs! (fn [_]
                               (refresh)
                               (swap! expanded*
-                                     conj parent-id)))))))]
+                                     conj parent-id)))))))
+
+        ;; Files dropped on the panel's header leave their folder and go
+        ;; back to the project's own list.
+        drop-out*  (mf/use-state false)
+
+        on-drop-out
+        (mf/use-fn
+         (mf/deps project-id refresh)
+         (fn [e]
+           (reset! drop-out* false)
+           (when (dnd/has-type? e "penpot/files")
+             (dom/prevent-default e)
+             (dom/stop-propagation e)
+             (let [sel      (deref refs/selected-files)
+                   file-ids (if (set? sel) sel (set (keys sel)))]
+               (doseq [fid file-ids]
+                 (->> (rp/cmd! :remove-file-from-folder
+                               {:project-id (dm/str project-id)
+                                :file-id (dm/str fid)})
+                      (rx/subs! (fn [_] (refresh)))))))))]
 
     (mf/with-effect [project-id]
       (fetch-tree! project-id tree*))
@@ -348,10 +378,21 @@
                        (map first)))]
 
       [:div {:class (stl/css :folder-panel)}
-       [:div {:class (stl/css :folder-header)}
-        [:span {:class (stl/css :folder-header-title)} "Folders"]
+       [:div {:class (stl/css-case :folder-header true
+                                   :folder-drag-over (deref drop-out*))
+              :title (tr "kizuku.folders.drop-out-hint")
+              :on-drag-over (fn [e]
+                              (when (dnd/has-type? e "penpot/files")
+                                (dom/prevent-default e)
+                                (reset! drop-out* true)))
+              :on-drag-leave #(reset! drop-out* false)
+              :on-drop on-drop-out}
+        [:span {:class (stl/css :folder-header-title)}
+         (if (deref drop-out*)
+           (tr "kizuku.folders.drop-out")
+           (tr "kizuku.folders.title"))]
         [:button {:class (stl/css :folder-add-btn)
-                  :on-click on-create :title "New Folder"}
+                  :on-click on-create :title (tr "kizuku.folders.new")}
          "+"]]
        (when (seq roots)
          [:div {:class (stl/css :folder-tree)}

@@ -4,6 +4,18 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: while images and SVGs are uploaded and turned into shapes
+;;   the desktop shell's busy pill ("media", app.util.kizuku-busy) shows
+;;   instead of the static "Loading image..." toast, and stays until the
+;;   images inside an SVG are uploaded and its shapes are created. Without
+;;   the pill (a browser) the toast is shown as before.
+;; Date: 2026-11-16
+;; ============================================================================
+
 (ns app.main.data.workspace.media
   (:require
    ["@penpot/svgo$default" :as svgo]
@@ -30,6 +42,7 @@
    [app.main.store :as st]
    [app.util.http :as http]
    [app.util.i18n :refer [tr]]
+   [app.util.kizuku-busy :as busy]
    [beicon.v2.core :as rx]
    [cuerdas.core :as str]
    [potok.v2.core :as ptk]
@@ -82,6 +95,11 @@
 
         (rx/of (dwsh/create-and-add-shape :rect x y shape))))))
 
+(defn- media-busy
+  "KIZUKU: `stream` with the busy pill \"media\" showing while it runs."
+  [stream]
+  (busy/with-busy "media" {:title (tr "media.loading")} stream))
+
 (defn svg-uploaded
   [svg-data file-id position]
   (ptk/reify ::svg-uploaded
@@ -91,7 +109,8 @@
       ;; images and upload them separately, then proceed to create
       ;; all shapes.
       (->> (svg/upload-images svg-data file-id)
-           (rx/map #(svg/add-svg-shapes (assoc svg-data :image-data %) position))))))
+           (rx/map #(svg/add-svg-shapes (assoc svg-data :image-data %) position))
+           (media-busy)))))
 
 
 (defn upload-media-url
@@ -221,25 +240,34 @@
         (or (contains? params :blobs)
             (contains? params :uris))))
 
-  (ptk/reify ::process-media-objects
-    ptk/WatchEvent
-    (watch [_ _ _]
-      (rx/concat
-       (rx/of (ntf/show {:content (tr "media.loading")
-                         :type :toast
-                         :level :info
-                         :timeout nil
-                         :tag :media-loading}))
-       (->> (if (seq uris)
-                ;; Media objects is a list of URL's pointing to the path
-              (process-uris params)
-                ;; Media objects are blob of data to be upload
-              (process-blobs params))
+  ;; KIZUKU: the files of a file input or a drop are a live list that the
+  ;; browser empties as soon as the handler returns, and the work starts
+  ;; after the pill has been drawn: take the files now.
+  (let [params (cond-> params
+                 (contains? params :blobs) (update :blobs vec))]
+    (ptk/reify ::process-media-objects
+      ptk/WatchEvent
+      (watch [_ _ _]
+        (let [work (->> (if (seq uris)
+                          ;; Media objects is a list of URL's pointing to the path
+                          (process-uris params)
+                          ;; Media objects are blob of data to be upload
+                          (process-blobs params))
 
-              ;; Every stream has its own sideeffect. We need to ignore the result
-            (rx/ignore)
-            (rx/catch #(handle-media-error % on-error))
-            (rx/finalize #(st/emit! (ntf/hide :tag :media-loading))))))))
+                        ;; Every stream has its own sideeffect. We need to ignore the result
+                        (rx/ignore)
+                        (rx/catch #(handle-media-error % on-error))
+                        (rx/finalize #(st/emit! (ntf/hide :tag :media-loading))))]
+          ;; KIZUKU: the pill replaces the toast when the shell has one.
+          (if (busy/available?)
+            (media-busy work)
+            (rx/concat
+             (rx/of (ntf/show {:content (tr "media.loading")
+                               :type :toast
+                               :level :info
+                               :timeout nil
+                               :tag :media-loading}))
+             work)))))))
 
 (defn upload-media-workspace
   [{:keys [position file-id] :as params}]
@@ -408,7 +436,8 @@
             pos     (dsh/get-viewport-center state)]
 
         (->> (create-shapes-svg file-id (:objects page) pos svg-data)
-             (rx/map (partial add-shapes-and-component it fdata page (:name svg-data))))))))
+             (rx/map (partial add-shapes-and-component it fdata page (:name svg-data)))
+             (media-busy))))))
 
 (defn upload-media-components
   [params]

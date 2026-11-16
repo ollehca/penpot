@@ -3,6 +3,9 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-11-15): the history panel shows only the Actions
+;; tab; saved versions need backend file snapshots the desktop app lacks.
 
 (ns app.main.ui.workspace.sidebar
   (:require-macros [app.main.style :as stl])
@@ -32,7 +35,6 @@
    [app.main.ui.workspace.sidebar.options :refer [options-toolbox*]]
    [app.main.ui.workspace.sidebar.shortcuts :refer [shortcuts-container*]]
    [app.main.ui.workspace.sidebar.sitemap :refer [sitemap*]]
-   [app.main.ui.workspace.sidebar.versions :refer [versions-toolbox*]]
    [app.main.ui.workspace.tokens.sidebar :refer [tokens-sidebar-tab*]]
    [app.util.debug :as dbg]
    [app.util.i18n :refer [tr]]
@@ -214,20 +216,16 @@
   {::mf/private true
    ::mf/memo true}
   []
-  (let [selected*
-        (hooks/use-persisted-state ::history-sidebar "history")
-
-        selected
-        (deref selected*)
-
-        on-change-tab
-        (mf/use-fn #(reset! selected* %))
+  ;; KIZUKU: only the Actions tab (the undo history). The History tab lists
+  ;; saved versions of the file, which the backend keeps as file snapshots;
+  ;; the desktop app's local backend has none, and opening the panel on
+  ;; that tab ended in a "not supported" error.
+  (let [on-change-tab
+        (mf/use-fn (fn [_] nil))
 
         tabs
         (mf/with-memo []
-          [{:label (tr "workspace.versions.tab.history")
-            :id "history"}
-           {:label (tr "workspace.versions.tab.actions")
+          [{:label (tr "workspace.versions.tab.actions")
             :id "actions"}])
 
         button
@@ -239,20 +237,14 @@
                              :icon "close"}]))]
 
     [:> tab-switcher* {:tabs tabs
-                       :selected selected
+                       :selected "actions"
                        :on-change on-change-tab
                        :class (stl/css :left-sidebar-tabs)
                        :action-button-position "end"
                        :action-button button}
 
-     (case selected
-       "history"
-       [:article {:class (stl/css :history-tab)}
-        [:> versions-toolbox* {}]]
-
-       "actions"
-       [:article {:class (stl/css :versions-tab)}
-        [:> history-toolbox*]])]))
+     [:article {:class (stl/css :versions-tab)}
+      [:> history-toolbox*]]]))
 
 (mf/defc right-sidebar*
   {::mf/memo true}

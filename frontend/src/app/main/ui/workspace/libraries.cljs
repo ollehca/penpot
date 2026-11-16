@@ -12,6 +12,9 @@
 ;;   sample-library install rows (template cloning needs the cloud backend)
 ;;   and repointed the templates link from penpot.app to getkizuku.app.
 ;; Date: 2026-07-11
+;; Modifications: the empty state is one line of guidance; the templates
+;;   link is gone (the page it led to offers no templates).
+;; Date: 2026-11-15
 ;; ============================================================================
 
 (ns app.main.ui.workspace.libraries
@@ -320,13 +323,12 @@
              (nil? shared-libraries)
              (tr "workspace.libraries.loading")
 
+             ;; KIZUKU: one line saying how a library gets here. PenPot's
+             ;; text ended in a link to "some templates", and the page it
+             ;; led to offers none.
              (str/empty? search-term)
              [:div {:class (stl/css :sample-libraries-info)}
-              (tr "workspace.libraries.empty.no-libraries")
-              [:a {:target "_blank"
-                   :class (stl/css :sample-libraries-link)
-                   :href "https://getkizuku.app"}
-               (tr "workspace.libraries.empty.some-templates")]]
+              (tr "kizuku.libraries.empty")]
 
              :else
              (tr "workspace.libraries.no-matches-for" search-term))]))]]))

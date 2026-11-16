@@ -13,6 +13,10 @@
 ;; Date: 2026-07-07
 ;; Copy review (2026-07-09): removed that subtitle again — repetitive
 ;;   messaging and no count to show; the header is the plain title.
+;; Date: 2026-11-16 — uploading fonts shows the app's busy pill ("fonts")
+;;   until the last one has finished or failed (one pill for the whole
+;;   batch); "Upload all" stays disabled while an upload is in flight, and
+;;   a failed upload no longer stays in the set of uploads in flight.
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.fonts
@@ -35,6 +39,7 @@
    [app.util.dom :as dom]
    [app.util.i18n :as i18n :refer [tr]]
    [app.util.keyboard :as kbd]
+   [app.util.kizuku-busy :as busy]
    [beicon.v2.core :as rx]
    [cuerdas.core :as str]
    [okulary.core :as l]
@@ -98,8 +103,11 @@
         uploading* (mf/use-state #{})
         uploading  (deref uploading*)
 
+        ;; KIZUKU: also while an upload is in flight, so "Upload all"
+        ;; cannot start the same fonts twice.
         disable-upload-all?
-        (some bad-font-family-tmp? fonts)
+        (boolean (or (some bad-font-family-tmp? fonts)
+                     (seq uploading)))
 
         problematic-fonts?
         (some :height-warning? (vals fonts))
@@ -119,10 +127,14 @@
 
         on-upload*
         (mf/use-fn
-         (fn [{:keys [id] :as item}]
+         (fn [{:keys [id] :as item} detail]
            (swap! uploading* conj id)
+           ;; KIZUKU: one pill for all the uploads in flight; it goes
+           ;; when the last one has finished or failed.
            (->> (rp/cmd! :create-font-variant item)
                 (rx/delay-at-least 2000)
+                (busy/with-busy "fonts" {:title (tr "kizuku.busy.fonts-upload")
+                                         :detail detail})
                 (rx/subs! (fn [font]
                             (swap! fonts* dissoc id)
                             (swap! uploading* disj id)
@@ -130,6 +142,7 @@
                           (fn [error]
                             (st/emit! (ntf/error (tr "errors.bad-font" (first (:names item)))))
                             (swap! fonts* dissoc id)
+                            (swap! uploading* disj id)
                             (js/console.log "error" error))))))
 
         on-upload
@@ -140,7 +153,7 @@
                           (dom/get-data "id")
                           (uuid/parse))
                  item (get fonts id)]
-             (on-upload* item))))
+             (on-upload* item nil))))
 
         on-blur-name
         (mf/use-fn
@@ -177,7 +190,9 @@
         (mf/use-fn
          (mf/deps font-vals)
          (fn [_]
-           (run! on-upload* font-vals)))
+           (let [detail (when (< 1 (count font-vals))
+                          (tr "kizuku.busy.fonts-count" (count font-vals)))]
+             (run! #(on-upload* % detail) font-vals))))
 
         on-dismis-all
         (mf/use-fn

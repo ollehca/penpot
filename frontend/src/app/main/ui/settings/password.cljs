@@ -15,6 +15,7 @@
 ;; Date: 2026-07-07
 ;; Copy review (2026-07-09): hint trimmed to "At least 12 characters." —
 ;;   dropped the repetitive "stored only on this device" tail.
+;; Password hint (2026-11-15): the hint text comes from the catalogues.
 ;; ============================================================================
 
 (ns app.main.ui.settings.password
@@ -95,7 +96,7 @@
         :name :password-1
         :show-success? true
         :label (tr "labels.new-password")
-        :hint "At least 12 characters."}]]
+        :hint (tr "kizuku.settings.password-hint")}]]
 
      [:div {:class (stl/css :fields-row)}
       [:& fm/input

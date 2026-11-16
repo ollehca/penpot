@@ -9,8 +9,10 @@
 ;; Original file from PenPot (https://github.com/penpot/penpot)
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Replaced the PenPot Twitter link with the Kizuku site link
-;;   (bare https://getkizuku.app, hardcoded English label per fork precedent).
+;;   (bare https://getkizuku.app); the link labels are the catalogue's texts.
 ;; Date: 2026-07-07
+;; Header (2026-11-16): the link labels come from the catalogues, as the
+;;   code already did.
 ;; ============================================================================
 
 (ns app.main.ui.settings.feedback

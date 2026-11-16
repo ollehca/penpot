@@ -28,12 +28,12 @@
    [beicon.v2.core :as rx]
    [rumext.v2 :as mf]))
 
+;; Kizuku: tips 02 (real-time collaboration) and 10 (plugins) are left out;
+;; the desktop app has neither.
 (defn- get-tips
   []
   [{:title (tr "loader.tips.01.title")
     :message (tr "loader.tips.01.message")}
-   {:title (tr "loader.tips.02.title")
-    :message (tr "loader.tips.02.message")}
    {:title (tr "loader.tips.03.title")
     :message (tr "loader.tips.03.message")}
    {:title (tr "loader.tips.04.title")
@@ -47,9 +47,7 @@
    {:title (tr "loader.tips.08.title")
     :message (tr "loader.tips.08.message")}
    {:title (tr "loader.tips.09.title")
-    :message (tr "loader.tips.09.message")}
-   {:title (tr "loader.tips.10.title")
-    :message (tr "loader.tips.10.message")}])
+    :message (tr "loader.tips.09.message")}])
 
 ;; Kizuku triangle mark: outer ring + three inner facet strokes meeting
 ;; at the centre vertex. All four draw in sequence; the combined-facets

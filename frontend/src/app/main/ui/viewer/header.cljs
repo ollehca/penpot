@@ -8,6 +8,8 @@
 ;; tab are gated behind flags (:viewer-edit-link, :viewer-share,
 ;; :viewer-comments) — all need the cloud backend; the preview opens in its
 ;; own desktop window instead.
+;; MODIFIED BY KIZUKU (2026-11-15): the logo link is gated the same way as
+;; the edit link; it turned the preview window into a second dashboard.
 
 (ns app.main.ui.viewer.header
   (:require-macros [app.main.style :as stl])
@@ -318,13 +320,19 @@
                                    :fullscreen (mf/deref fullscreen-ref))
               :on-click close-thumbnails}
      [:div {:class (stl/css :nav-zone)}
-      ;; If the user doesn't have permission we disable the link
-      [:a {:class (stl/css :home-link)
-           :on-click go-to-dashboard
-           :data-testid "penpot-logo-link"
-           :style {:cursor (when-not (:in-team permissions) "auto")
-                   :pointer-events (when-not (:in-team permissions) "none")}}
-       kizuku-logo-icon]
+      ;; If the user doesn't have permission we disable the link.
+      ;; KIZUKU: the preview is a window of its own, with no tab bar and
+      ;; no place in the shell's tab list. Leaving it for the dashboard
+      ;; from here gave a second, unmanaged app window, so the logo only
+      ;; links where the edit link does.
+      (let [home? (and (:in-team permissions)
+                       (contains? cf/flags :viewer-edit-link))]
+        [:a {:class (stl/css :home-link)
+             :on-click (when home? go-to-dashboard)
+             :data-testid "penpot-logo-link"
+             :style {:cursor (when-not home? "auto")
+                     :pointer-events (when-not home? "none")}}
+         kizuku-logo-icon])
 
       [:& header-sitemap {:project project
                           :file file

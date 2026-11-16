@@ -422,7 +422,7 @@ msgstr "Piespraust šo versiju"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Mans Kizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -463,18 +463,12 @@ msgstr "Vēl nav nevienas datnes."
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"Šeit parādīsies projektam pievienotās bibliotēkas. Mēģini kopīgot savas "
-"datnes vai pievienot no mūsu [bibliotēkām un "
-"sagatavēm](https://getkizuku.app)!"
+msgstr "Šeit parādīsies projektam pievienotās bibliotēkas."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
-msgstr ""
-"Šeit parādīsies projektam pievienotās bibliotēkas. Mēģini kopīgot savas "
-"datnes vai pievienot no mūsu [bibliotēkām un "
-"sagatavēm](https://getkizuku.app)!"
+msgstr "Šeit parādīsies projektam pievienotās bibliotēkas."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -506,7 +500,7 @@ msgstr "Ievietot datni"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Ievietot .kizuku datni"
+msgstr ""
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"

@@ -401,7 +401,7 @@ msgstr "固定此版本"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "你的 Kizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -442,16 +442,12 @@ msgstr "尚無文件。"
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"新增到專案的圖庫將顯示在這裡。請分享您的檔案或從我們的[圖庫和範本](https://getkizuku.app)"
-"中新增。"
+msgstr "新增至專案中的圖庫將顯示在此處。"
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
-msgstr ""
-"新增到專案的圖庫將顯示在這裡。請分享您的檔案或從我們的[圖庫和範本](https://getkizuku.app)"
-"中新增。"
+msgstr "新增至專案中的圖庫將顯示在此處。"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -580,7 +576,7 @@ msgid "dashboard.fonts.hero-text2"
 msgstr ""
 "你只能上傳你擁有的或獲許可在Kizuku "
 "中使用的字型。如需瞭解更多，請參閱[Kizuku的服務條款]（https://getkizuku.app"
-"html）的內容權利部分。您可能還想閱讀有關 [字體許可]（https://www.typography.com/faq） 的資訊。"
+"）的內容權利部分。您可能還想閱讀有關 [字體許可]（https://www.typography.com/faq） 的資訊。"
 
 #: src/app/main/ui/dashboard/fonts.cljs:214
 msgid "dashboard.fonts.upload-all"
@@ -1937,7 +1933,8 @@ msgstr "通知"
 #: src/app/main/ui/dashboard/projects.cljs:239, src/app/main/ui/dashboard/team.cljs:1188
 msgid "labels.num-of-files"
 msgid_plural "labels.num-of-files"
-msgstr[0] "%s 個檔案"
+msgstr[0] "1 個檔案"
+msgstr[1] "%s 個檔案"
 
 #: src/app/main/ui/viewer/thumbnails.cljs:82
 msgid "labels.num-of-frames"
@@ -1947,7 +1944,8 @@ msgstr[0] "1 版面"
 #: src/app/main/ui/dashboard/team.cljs:1183
 msgid "labels.num-of-projects"
 msgid_plural "labels.num-of-projects"
-msgstr[0] "%s 個專案"
+msgstr[0] "1 個專案"
+msgstr[1] "%s 個專案"
 
 #, unused
 msgid "labels.ok"
@@ -6741,6 +6739,26 @@ msgstr "讓 AI 在此頁面上建立、重新上色或刪除圖形。"
 msgid "kizuku.ai.error.no-key"
 msgstr "尚未儲存 %s 的 API 金鑰。請在設定中新增後再使用該服務商。"
 
+#: src/app/main/ui/workspace/sidebar/ai_chat_bar.cljs
+msgid "kizuku.ai.error.generic"
+msgstr "AI 請求在收到回覆之前就失敗了。"
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.empty-reply"
+msgstr "模型傳回了空回覆，且沒有做任何變更。請換個說法，或要求更小的步驟。"
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.truncated"
+msgstr "回覆達到輸出上限，已被截斷。請讓它繼續完成其餘部分。"
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.truncated-nothing-done"
+msgstr "即使要求更小的步驟，回覆仍在做出任何編輯之前就達到了輸出上限。請一次只要求一個部分。"
+
+#: src/app/main/data/workspace/ai_tools.cljs
+msgid "kizuku.ai.round-limit"
+msgstr "助理在多輪編輯後暫停，已建立的內容全部保留。請讓它繼續完成其餘部分。"
+
 #: src/app/main/ui/workspace (Kizuku)
 msgid "kizuku.ai.provider-aria"
 msgstr "目前 AI 服務商：%s。點擊更改。"
@@ -6880,3 +6898,151 @@ msgstr "無法從 Figma 貼上。請重新複製圖層，或改為匯入 .fig �
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.figma.paste-unavailable"
 msgstr "從 Figma 貼上需要 Kizuku 桌面應用程式"
+
+#: src/app/main/ui/workspace/libraries.cljs
+msgid "kizuku.libraries.empty"
+msgstr "尚無共享圖庫。若要在此使用某個檔案，請將其加入為共享檔案庫。"
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-too-many"
+msgstr "一個 PDF 最多容納 %s 個 boards。請減少選取。"
+
+#: src/app/main/data/workspace/svg_upload.cljs
+msgid "kizuku.svg.linked-images-skipped"
+msgstr "未匯入連結的圖片。請將圖片嵌入 SVG。"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.title"
+msgstr "資料夾"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.new"
+msgstr "新增資料夾"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.subfolder"
+msgstr "子資料夾"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.new-subfolder"
+msgstr "新增子資料夾"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.rename"
+msgstr "重新命名"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.delete"
+msgstr "刪除"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.options"
+msgstr "選項"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.confirm-delete"
+msgstr "刪除「%s」？"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.confirm-delete-with-files"
+msgstr "刪除「%s」？其中的檔案會保留在專案中。"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.drop-out-hint"
+msgstr "將檔案拖放到此處，即可移出所在資料夾"
+
+#: src/app/main/ui/dashboard/folder_tree.cljs
+msgid "kizuku.folders.drop-out"
+msgstr "放開即可移出資料夾"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.title"
+msgstr "方案"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-founder"
+msgstr "Founder"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-professional"
+msgstr "專業版"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.tier-private"
+msgstr "個人版"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.upgrade-text"
+msgstr "解鎖雲端同步、共享等更多功能。"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.upgrade"
+msgstr "升級"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.change-license"
+msgstr "更換授權"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.license-placeholder"
+msgstr "貼上授權"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.validate"
+msgstr "驗證"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.validating"
+msgstr "驗證中"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.updated"
+msgstr "授權已更新"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.invalid"
+msgstr "無法驗證該授權。"
+
+#: src/app/main/ui/settings/profile.cljs
+msgid "kizuku.plan.app-only"
+msgstr "只能在應用程式中更換授權。"
+
+#: src/app/main/ui/settings/password.cljs
+msgid "kizuku.settings.password-hint"
+msgstr "至少 12 個字元。"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.language-auto"
+msgstr "自動（瀏覽器）"
+
+#: src/app/main/data/workspace/figma_paste.cljs
+msgid "kizuku.busy.figma-paste"
+msgstr "正在從 Figma 貼上…"
+
+#: src/app/main/data/workspace/table_import.cljs
+msgid "kizuku.busy.table"
+msgstr "正在建立表格…"
+
+#: src/app/main/data/fonts.cljs
+msgid "kizuku.busy.fonts-read"
+msgstr "正在讀取字型…"
+
+#: src/app/main/ui/dashboard/fonts.cljs
+msgid "kizuku.busy.fonts-upload"
+msgstr "正在上傳字型…"
+
+#: src/app/main/ui/dashboard/fonts.cljs
+msgid "kizuku.busy.fonts-count"
+msgstr "字型：%s"
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-board-too-large"
+msgstr "有 board 過大，無法匯出為 PDF。每邊不能超過 %s px。"
+
+#: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-total-too-large"
+msgstr "這些 boards 過大，無法放入一個 PDF。請減少選取。"
+
+#: src/app/main/ui/dashboard/grid.cljs
+msgid "kizuku.import.unsupported-drop"
+msgstr "拖入 .kiz 或 .fig 檔案即可開啟。"

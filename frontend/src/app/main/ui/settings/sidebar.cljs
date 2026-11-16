@@ -22,6 +22,10 @@
 ;;   string in the served frontend index (cf. app.config/parse-flags +
 ;;   app.common.flags/parse).
 ;; Date: 2026-07-08, updated 2026-07-09
+;; Update (2026-11-15): the desktop app now switches both flags on for
+;;   every build (ALWAYS_ON_FLAGS in the host's src/utils/penpot-flags.js),
+;;   so the "Settings" entry is shown; it hides again only if both flags
+;;   are taken out.
 ;; ============================================================================
 
 (ns app.main.ui.settings.sidebar

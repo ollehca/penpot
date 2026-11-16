@@ -21,6 +21,7 @@
 ;; Removed "Release notes" profile-menu entry and its handler (incl. the
 ;;   alt+mod onboarding easter egg) — the modal only renders PenPot 2.9
 ;;   content. Date: 2026-07-11
+;; New-project button (2026-11-15): its tooltip comes from the catalogues.
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.sidebar
@@ -756,7 +757,7 @@
           [:span {:class (stl/css :element-title)} (tr "labels.projects")]]
          [:button {:class (stl/css :add-project-btn)
                    :on-click on-create-project
-                   :title "New Project"}
+                   :title (tr "dashboard.new-project-prefix")}
           "+"]]]
        (when (some? sorted-projects)
          [:ul {:class (stl/css :sidebar-nav :sidebar-project-list)}

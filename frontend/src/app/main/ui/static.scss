@@ -90,6 +90,8 @@
 // error-page logo rendered unstyled (no fill, default sizing).
 .kizuku-logo {
   fill: var(--color-foreground-primary);
+  // The mark is drawn with strokes in the current colour.
+  color: var(--color-foreground-primary);
   width: $s-48;
   height: $s-48;
 }
@@ -293,6 +295,7 @@
 
       svg {
         fill: var(--color-foreground-primary);
+        color: var(--color-foreground-primary);
         width: $s-120;
         height: $s-40;
       }

@@ -3,15 +3,38 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-11-15): G C (comments) and G W (open in the
+;; workspace) exist only with the flags that show those features in the
+;; viewer header (:viewer-comments, :viewer-edit-link).
 
 (ns app.main.data.viewer.shortcuts
   (:require
+   [app.config :as cf]
    [app.main.data.common :as dcm]
    [app.main.data.shortcuts :as ds]
    [app.main.data.viewer :as dv]
    [app.main.store :as st]))
 
-(def shortcuts
+;; KIZUKU: the two shortcuts below are added only with their flag. Comments
+;; need the cloud backend (posting one failed and lost the text), and the
+;; workspace opened from the preview is a second editor on the same file in
+;; a window the shell does not manage. Without the entries the shortcuts
+;; panel does not list them either.
+(def ^:private flagged-shortcuts
+  {:viewer-comments
+   [:open-comments     {:tooltip "G C"
+                        :command "g c"
+                        :subsections [:navigation-viewer]
+                        :fn #(st/emit! (dv/go-to-section :comments))}]
+
+   :viewer-edit-link
+   [:open-workspace    {:tooltip "G W"
+                        :command "g w"
+                        :subsections [:navigation-viewer]
+                        :fn #(st/emit! (dcm/go-to-workspace))}]})
+
+(def ^:private base-shortcuts
   {:increase-zoom      {:tooltip "+"
                         :command "+"
                         :subsections [:zoom-viewer]
@@ -57,20 +80,17 @@
                         :subsections [:navigation-viewer]
                         :fn #(st/emit! (dv/go-to-section :inspect))}
 
-   :open-comments      {:tooltip "G C"
-                        :command "g c"
-                        :subsections [:navigation-viewer]
-                        :fn #(st/emit! (dv/go-to-section :comments))}
-
    :open-interactions  {:tooltip "G V"
                         :command "g v"
                         :subsections [:navigation-viewer]
-                        :fn #(st/emit! (dv/go-to-section :interactions))}
+                        :fn #(st/emit! (dv/go-to-section :interactions))}})
 
-   :open-workspace     {:tooltip "G W"
-                        :command "g w"
-                        :subsections [:navigation-viewer]
-                        :fn #(st/emit! (dcm/go-to-workspace))}})
+(def shortcuts
+  (reduce-kv (fn [result flag [id shortcut]]
+               (cond-> result
+                 (contains? cf/flags flag) (assoc id shortcut)))
+             base-shortcuts
+             flagged-shortcuts))
 
 (defn get-tooltip [shortcut]
   (assert (contains? shortcuts shortcut) (str shortcut))

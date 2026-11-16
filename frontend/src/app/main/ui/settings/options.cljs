@@ -26,6 +26,11 @@
 ;;   string in the served frontend index (cf. app.config/parse-flags +
 ;;   app.common.flags/parse).
 ;; Date: 2026-07-09
+;; Update (2026-11-15): the desktop app now switches both flags on for
+;;   every build (ALWAYS_ON_FLAGS in the host's src/utils/penpot-flags.js),
+;;   so the pickers are shown and the pinning below only matters if a flag
+;;   is taken out again.
+;; Language list (2026-11-15): the "Auto" entry comes from the catalogues.
 ;; ============================================================================
 
 (ns app.main.ui.settings.options
@@ -88,7 +93,7 @@
         [:h3 (tr "labels.language")]
 
         [:div {:class (stl/css :fields-row)}
-         [:& fm/select {:options (into [{:label "Auto (browser)" :value ""}]
+         [:& fm/select {:options (into [{:label (tr "kizuku.settings.language-auto") :value ""}]
                                        i18n/supported-locales)
                         :label (tr "dashboard.select-ui-language")
                         :default ""

@@ -420,7 +420,7 @@ msgstr "Připnout tuto verzi"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Váš Kizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -461,16 +461,12 @@ msgstr "Zatím žádné soubory."
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"Zde se zobrazí knihovny přidané do projektu. Zkuste své soubory sdílet nebo "
-"je přidat z [Knihovny a šablony](https://getkizuku.app)."
+msgstr "Zde se zobrazí knihovny přidané do projektu."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
-msgstr ""
-"Zde se zobrazí knihovny přidané do projektu. Zkuste své soubory sdílet nebo "
-"je přidat z [Knihovny a šablony](https://getkizuku.app)."
+msgstr "Zde se zobrazí knihovny přidané do projektu."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"

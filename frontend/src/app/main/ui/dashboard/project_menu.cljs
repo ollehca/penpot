@@ -3,6 +3,9 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-11-15): the "Import" entry is removed (PenPot's
+;; importer cannot read Kizuku or Figma files).
 
 (ns app.main.ui.dashboard.project-menu
   (:require
@@ -14,15 +17,13 @@
    [app.main.store :as st]
    [app.main.ui.components.context-menu-a11y :refer [context-menu*]]
    [app.main.ui.context :as ctx]
-   [app.main.ui.dashboard.import :as udi]
-   [app.util.dom :as dom]
    [app.util.i18n :as i18n :refer [tr]]
    [beicon.v2.core :as rx]
    [potok.v2.core :as ptk]
    [rumext.v2 :as mf]))
 
 (mf/defc project-menu*
-  [{:keys [project show on-edit on-close top left on-import]}]
+  [{:keys [project show on-edit on-close top left]}]
   (let [top  (or top 0)
         left (or left 0)
 
@@ -73,16 +74,6 @@
                         :accept-label (tr "modals.delete-project-confirm.accept")
                         :on-accept delete-fn})))
 
-        file-input
-        (mf/use-ref nil)
-
-        on-import-files
-        (fn [] (dom/click! (mf/ref-val file-input)))
-
-        on-finish-import
-        (mf/use-fn
-         (fn [] (when (fn? on-import) (on-import))))
-
         options
         [(when-not (:is-default project)
            {:name   (tr "labels.rename")
@@ -105,10 +96,9 @@
                         :id      (str "move-to-" (:id team))
                         :handler (on-move (:id team))})})
 
-         (when (some? on-import)
-           {:name    (tr "dashboard.import")
-            :id      "file-import"
-            :handler on-import-files})
+         ;; KIZUKU: no "Import" entry. It opened PenPot's importer, which
+         ;; cannot read a .kiz or a .fig; files are opened with File > Open…
+         ;; or by dropping them on the window.
          (when-not (:is-default project)
            {:name :separator})
          (when-not (:is-default project)
@@ -136,9 +126,6 @@
        :min-width true
        :top top
        :left left
-       :options options}]
-     [:& udi/import-form {:ref file-input
-                          :project-id (:id project)
-                          :on-finish-import on-finish-import}]]))
+       :options options}]]))
 
 

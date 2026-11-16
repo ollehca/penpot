@@ -72,10 +72,12 @@
   min-width: 300px;
   min-height: 280px;
   max-width: 640px;
-  // 90% of the app window's height, not a fixed px cap — so the panel can
-  // grow with a longer conversation on any window size, not just up to an
-  // arbitrary number that's wrong on both a laptop and an ultrawide.
-  max-height: 90vh;
+  // The window height less the 84px bottom offset, the 40px tab bar at the
+  // top and a margin, so the header never reaches under the tab bar or out
+  // of the window. Keep in step with max-panel-height in ai_chat_bar.cljs.
+  max-height: calc(100vh - 132px);
+  // The tab bar's drag regions must not swallow clicks on the panel.
+  -webkit-app-region: no-drag;
   display: grid;
   grid-template-rows: auto 1fr auto;
   background-color: var(--panel-background-color);

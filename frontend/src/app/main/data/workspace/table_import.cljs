@@ -10,6 +10,8 @@
 ;; editable table of boards and text on the current page. Licensed under
 ;; MPL-2.0 like the rest of the frontend.
 ;; Date: 2026-10-25
+;; Updated 2026-11-16: the busy pill ("table") shows while a table is parsed
+;; and built.
 ;; ============================================================================
 
 (ns app.main.data.workspace.table-import
@@ -47,6 +49,7 @@
    [app.main.data.workspace.zoom :as dwz]
    [app.main.store :as st]
    [app.util.i18n :refer [tr]]
+   [app.util.kizuku-busy :as busy]
    [beicon.v2.core :as rx]
    [clojure.string :as str]
    [potok.v2.core :as ptk]))
@@ -144,9 +147,35 @@
 
 ;; --- Geometry -------------------------------------------------------------
 
+(defn- wide-char?
+  "Is this code point drawn about 1 em wide (East Asian wide and full-width
+  characters, emoji)? Latin letters take about 0.6 em."
+  [cp]
+  (or (<= 0x1100 cp 0x115F)     ; Hangul Jamo
+      (<= 0x2E80 cp 0xA4CF)     ; CJK radicals, kana, CJK ideographs, Yi
+      (<= 0xAC00 cp 0xD7A3)     ; Hangul syllables
+      (<= 0xF900 cp 0xFAFF)     ; CJK compatibility ideographs
+      (<= 0xFE30 cp 0xFE4F)     ; CJK compatibility forms
+      (<= 0xFF00 cp 0xFF60)     ; full-width forms
+      (<= 0xFFE0 cp 0xFFE6)
+      (>= cp 0x10000)))         ; emoji and other supplementary characters
+
+(defn- text-ems
+  "The width of a text in em: wide characters count 1, the rest
+  `char-width`. Counted per code point, so an emoji is one character. With
+  one width for every character, a column of Japanese or Chinese text came
+  out too narrow and its cells ran over the rows below."
+  [text]
+  (loop [i 0 ems 0]
+    (if (>= i (count text))
+      ems
+      (let [cp (.codePointAt text i)]
+        (recur (+ i (if (>= cp 0x10000) 2 1))
+               (+ ems (if (wide-char? cp) 1 char-width)))))))
+
 (defn- text-width
   [text bold?]
-  (* (count text) font-size char-width (if bold? 1.08 1)))
+  (* (text-ems text) font-size (if bold? 1.08 1)))
 
 (defn column-widths
   "One width per column: the widest cell (header counts bold), padded and
@@ -346,10 +375,18 @@
       (create-table (assoc data :name name)))))
 
 (defn paste-table
-  "Paste handler for spreadsheet cells / HTML tables (see clipboard.cljs)."
+  "Paste handler for spreadsheet cells / HTML tables (see clipboard.cljs).
+  Reading the cells and building the table take a while for a big table, so
+  both run with the busy pill showing, after it has been drawn."
   [html text]
-  (let [rows (or (tsv->rows text) (html-table->rows html))]
-    (create-table-from-rows (tr "kizuku.table.pasted") rows)))
+  (ptk/reify ::paste-table
+    ptk/WatchEvent
+    (watch [_ _ _]
+      (->> (rx/of nil)
+           (rx/map (fn [_]
+                     (let [rows (or (tsv->rows text) (html-table->rows html))]
+                       (create-table-from-rows (tr "kizuku.table.pasted") rows))))
+           (busy/with-busy "table" {:title (tr "kizuku.busy.table")})))))
 
 (defn- electron-table-api
   []
@@ -357,16 +394,31 @@
     (some-> (unchecked-get js/window "electronAPI")
             (unchecked-get "table"))))
 
+(defn- shell-table
+  "Rows the shell sends. It has shown the pill \"table\" before sending them;
+  this event lets the page draw it, builds the table and removes the pill
+  however that ends."
+  [payload]
+  (ptk/reify ::shell-table
+    ptk/WatchEvent
+    (watch [_ _ _]
+      (->> (busy/next-paint)
+           (rx/map (fn [_]
+                     (let [{:keys [name columns rows truncated]}
+                           (js->clj payload :keywordize-keys true)]
+                       (create-table {:name (or name (tr "kizuku.table.name"))
+                                      :columns (vec columns)
+                                      :rows (mapv vec rows)
+                                      :truncated (or truncated {:rows 0 :cols 0})}))))
+           (rx/finalize #(busy/hide! "table"))))))
+
 (defn handle-shell-table
   "A table pushed by the Electron shell (File menu, dropped .csv/.tsv)."
   [payload]
-  (let [{:keys [name columns rows truncated]} (js->clj payload :keywordize-keys true)]
-    (if (nil? (:current-page-id @st/state))
-      (st/emit! (ntf/warn (tr "kizuku.table.no-file")))
-      (st/emit! (create-table {:name (or name (tr "kizuku.table.name"))
-                               :columns (vec columns)
-                               :rows (mapv vec rows)
-                               :truncated (or truncated {:rows 0 :cols 0})})))))
+  (if (nil? (:current-page-id @st/state))
+    (do (busy/hide! "table")
+        (st/emit! (ntf/warn (tr "kizuku.table.no-file"))))
+    (st/emit! (shell-table payload))))
 
 (defn init!
   "Listen for tables pushed by the shell. No-op in the browser."

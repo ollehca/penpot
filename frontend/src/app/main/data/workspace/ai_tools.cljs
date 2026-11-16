@@ -21,6 +21,7 @@
 (ns app.main.data.workspace.ai-tools
   (:require
    [app.common.data :as d]
+   [app.common.geom.rect :as grc]
    [app.common.math :as mth]
    [app.common.types.color :as ctc]
    [app.common.types.fills :as types.fills]
@@ -90,10 +91,12 @@
 (defn- text-of
   "Plain text of a text shape, paragraphs joined by newlines."
   [content]
-  (->> (txt/node-seq content)
-       (filter txt/is-text-node?)
-       (map :text)
-       (str/join "")))
+  (->> (txt/node-seq txt/is-paragraph-node? content)
+       (map (fn [paragraph]
+              (->> (txt/node-seq txt/is-text-node? paragraph)
+                   (map :text)
+                   (str/join ""))))
+       (str/join "\n")))
 
 (defn describe-shape
   "One shape as the model sees it: id, type, name, box, parent, fill, and
@@ -132,6 +135,32 @@
       (and (number? (:rotation shape)) (not (zero? (:rotation shape))))
       (assoc :rotation (:rotation shape)))))
 
+(def ^:private max-snapshot-shapes
+  "How many shapes the canvas snapshot lists. Every turn sends it with each
+  provider round, so a page of thousands of layers must not go in whole."
+  300)
+
+(defn- priority-ids
+  "Ids of a page too large to list whole, most useful first: the root-level
+  shapes in layer order, then what sits directly inside them."
+  [objects]
+  (let [roots (filter #(contains? objects %) (:shapes (get objects uuid/zero)))]
+    (concat roots
+            (mapcat #(filter (fn [id] (contains? objects id))
+                             (:shapes (get objects %)))
+                    roots))))
+
+(defn- snapshot-ids
+  "The ids the snapshot lists: every shape while the page is small. Above
+  max-snapshot-shapes, the selection first, then the root-level shapes and
+  the shapes directly inside them, cut at the cap."
+  [objects selected]
+  (let [all (remove #(= % uuid/zero) (keys objects))
+        sel (filter #(contains? objects %) selected)]
+    (if (<= (count all) max-snapshot-shapes)
+      (distinct (concat sel all))
+      (take max-snapshot-shapes (distinct (concat sel (priority-ids objects)))))))
+
 (defn describe-canvas-state
   "A snapshot of current selection + page objects, serializable to plain
   JS data — the main process includes this in the prompt context before
@@ -143,16 +172,20 @@
   each shape's parentId so it can see existing group/frame structure
   before deciding what (if anything) still needs grouping. uuid/zero
   (the page's own implicit root) is excluded — it isn't a real shape
-  the model should ever reference."
+  the model should ever reference. A large page is cut to the selection
+  and the shapes near the root (see snapshot-ids): totalShapes says how many
+  there are and truncated that some are left out."
   []
   (let [state    @st/state
         objects  (dsh/lookup-page-objects state)
-        selected (dsh/lookup-selected state)]
+        selected (dsh/lookup-selected state)
+        ids      (snapshot-ids objects selected)
+        total    (count (remove #(= % uuid/zero) (keys objects)))]
     (clj->js
-     {:selectedIds (mapv str selected)
-      :shapes (->> objects
-                   (remove (fn [[id _]] (= id uuid/zero)))
-                   (mapv describe-shape))})))
+     (cond-> {:selectedIds (mapv str selected)
+              :totalShapes total
+              :shapes (mapv #(describe-shape [% (get objects %)]) ids)}
+       (> total (count ids)) (assoc :truncated true)))))
 
 (defn build-system-prompt
   "The full system message sent with every turn — each provider adapter
@@ -203,8 +236,10 @@
        "two shapes per reply. Plan the page as sections (navigation, hero, gallery, about, "
        "contact, footer); a page should take well under 30 replies. Build a decorative pattern "
        "from a modest number of shapes (a dozen or two, grouped), not hundreds.\n\n"
-       "Canvas state (selectedIds and every shape on the current page; parentId is the "
-       "board or group a shape sits in, null at the page root):\n"
+       "Canvas state (selectedIds and the shapes on the current page; parentId is the "
+       "board or group a shape sits in, null at the page root). On a large page only the "
+       "selection and the shapes near the root are listed: when truncated is true, call "
+       "list_shapes with parent_id to see what is inside a board:\n"
        (.stringify js/JSON (describe-canvas-state))))
 
 ;; --- Tool implementations ---------------------------------------------
@@ -217,6 +252,14 @@
   "0–100 percent (the tool API) to PenPot's 0–1, defaulting to opaque."
   [v]
   (if (number? v) (-> v (/ 100) (max 0) (min 1)) 1))
+
+(defn- check-hex!
+  "Throw (the model gets the message back) for a colour the shape schema
+  would reject: it takes #RGB or #RRGGBB only, and a bad one fails later,
+  inside the editor, where no tool result can report it."
+  [what color]
+  (when (and (some? color) (not (ctc/hex-color-string? color)))
+    (throw (js/Error. (str what " must be a hex colour like #1A1A1A.")))))
 
 (defn- fill-attrs
   [color opacity]
@@ -275,6 +318,10 @@
     ;; A text arrives with its content, so it never opens the editor: the
     ;; editor would commit that content again as its own undo entry when
     ;; it closes at the end of the turn, and one ⌘Z would only pop that.
+    ;; With a shape selected, create-and-add-shape parents the new one to the
+    ;; selection's parent instead of the board at (x, y), nesting sections
+    ;; inside each other. An empty selection makes the position decide.
+    (st/emit! (dws/select-shapes (d/ordered-set)))
     (st/emit! (dwsh/create-and-add-shape type frame-x frame-y attrs {:no-edition? true}))
     #js {:created true
          :id (str id)
@@ -287,6 +334,8 @@
 
 (defn- tool-create-rectangle
   [{:keys [fill_color fill_opacity corner_radius stroke_color stroke_width opacity] :as args}]
+  (check-hex! "fill_color" fill_color)
+  (check-hex! "stroke_color" stroke_color)
   (create-shape! :rect args
                  (merge (fill-attrs fill_color fill_opacity)
                         (radius-attrs corner_radius)
@@ -295,6 +344,8 @@
 
 (defn- tool-create-ellipse
   [{:keys [fill_color fill_opacity stroke_color stroke_width opacity] :as args}]
+  (check-hex! "fill_color" fill_color)
+  (check-hex! "stroke_color" stroke_color)
   (create-shape! :circle args
                  (merge (fill-attrs fill_color fill_opacity)
                         (stroke-attrs stroke_color stroke_width 100 "inner" "solid")
@@ -302,10 +353,12 @@
 
 (defn- tool-create-frame
   [{:keys [fill_color corner_radius clip_content] :as args}]
+  (check-hex! "fill_color" fill_color)
   (create-shape! :frame (merge {:width 400 :height 300} args)
                  (merge (fill-attrs fill_color 100)
                         (radius-attrs corner_radius)
-                        {:show-content (not (false? clip_content))})))
+                        ;; show-content true means the board does NOT clip
+                        {:show-content (false? clip_content)})))
 
 ;; --- text ---------------------------------------------------------------
 
@@ -372,6 +425,7 @@
   [{:keys [text width font_size line_height] :as args}]
   (when (empty? text)
     (throw (js/Error. "No text content given.")))
+  (check-hex! "fill_color" (:fill_color args))
   (let [style     (text-style-attrs args nil)
         run-attrs (merge (txt/get-default-text-attrs) style)
         size      (if (number? font_size) font_size 14)
@@ -393,6 +447,7 @@
 
 (defn- tool-update-text
   [{:keys [text] :as args}]
+  (check-hex! "fill_color" (:fill_color args))
   (let [ids      (require-ids args)
         objects  (dsh/lookup-page-objects @st/state)
         text-ids (filterv #(= :text (:type (get objects %))) ids)]
@@ -417,6 +472,8 @@
 
 ;; --- reading --------------------------------------------------------------
 
+(def ^:private max-list-rows 400)
+
 (defn- tool-list-shapes
   [{:keys [parent_id]}]
   (let [objects (dsh/lookup-page-objects @st/state)
@@ -428,12 +485,13 @@
                           (or (nil? p) (= p uuid/zero)) false
                           (= p root) true
                           :else (recur (:parent-id (get objects p)))))))
-        rows    (->> objects
+        found   (->> objects
                      (remove #(= (key %) uuid/zero))
-                     (filter #(inside? (val %)))
-                     (take 400)
-                     (mapv describe-shape))]
-    (clj->js {:count (count rows) :shapes rows})))
+                     (filter #(inside? (val %))))
+        rows    (->> found (take max-list-rows) (mapv describe-shape))
+        total   (count found)]
+    (clj->js (cond-> {:count (count rows) :shapes rows}
+               (> total max-list-rows) (assoc :total total :truncated true)))))
 
 ;; --- editing --------------------------------------------------------------
 
@@ -447,6 +505,7 @@
   (let [ids (require-ids args)]
     (when-not (string? fill_color)
       (throw (js/Error. "fill_color is required.")))
+    (check-hex! "fill_color" fill_color)
     (st/emit! (dwc/change-fill ids {:color fill_color :opacity (pct->opacity fill_opacity)} 0))
     #js {:updated (count ids) :ids (ids->js ids)}))
 
@@ -457,6 +516,7 @@
       (do
         (when-not (string? stroke_color)
           (throw (js/Error. "stroke_color is required for a stroke width above 0.")))
+        (check-hex! "stroke_color" stroke_color)
         (update-shapes! ids #(merge % (stroke-attrs stroke_color stroke_width stroke_opacity
                                                     stroke_alignment stroke_style))))
       (update-shapes! ids #(assoc % :strokes [])))))
@@ -492,6 +552,7 @@
 (defn- tool-set-shadow
   [{:keys [remove offset_x offset_y blur spread color opacity inner] :as args}]
   (let [ids (require-ids args)]
+    (check-hex! "color" color)
     (if remove
       (update-shapes! ids #(assoc % :shadow []))
       (let [shadow {:id (uuid/next)
@@ -506,9 +567,10 @@
         (update-shapes! ids #(assoc % :shadow [shadow]))))))
 
 (defn- tool-move-shape
-  "Absolute x/y when given, otherwise a relative dx/dy from each shape's
-  own position (update-position itself is absolute, so the offset is
-  added to the current x/y first)."
+  "Absolute x/y when given (canvas coordinates), otherwise a relative dx/dy
+  from each shape's current box. update-position reads a position as
+  relative to the parent board unless it is told :absolute?, and an axis
+  that is not asked for is left out so it stays where it is."
   [{:keys [x y dx dy] :as args}]
   (when-not (or (number? x) (number? y) (number? dx) (number? dy))
     (throw (js/Error. "Give x/y for an absolute position or dx/dy for a relative move.")))
@@ -516,10 +578,15 @@
         objects (dsh/lookup-page-objects @st/state)]
     (doseq [id ids]
       (when-let [shape (get objects id)]
-        (st/emit! (dwt/update-position
-                   id
-                   {:x (cond (number? x) x (number? dx) (+ (:x shape) dx) :else (:x shape))
-                    :y (cond (number? y) y (number? dy) (+ (:y shape) dy) :else (:y shape))}))))
+        (let [bbox (grc/points->rect (:points shape))]
+          (st/emit! (dwt/update-position
+                     id
+                     (cond-> {}
+                       (number? x) (assoc :x x)
+                       (and (not (number? x)) (number? dx)) (assoc :x (+ (:x bbox) dx))
+                       (number? y) (assoc :y y)
+                       (and (not (number? y)) (number? dy)) (assoc :y (+ (:y bbox) dy)))
+                     {:absolute? true})))))
     #js {:moved (count ids) :ids (ids->js ids)}))
 
 (defn- tool-resize-shape
@@ -572,7 +639,9 @@
     (when-not (or (= parent-id uuid/zero)
                   (contains? #{:frame :group} (:type parent)))
       (throw (js/Error. "parent_id must be a board or group id, or \"root\".")))
-    (st/emit! (dwsh/relocate-shapes (set ids) parent-id 0))
+    ;; index 0 is the bottom of the stack: append, so the moved shapes sit on
+    ;; top of what the board already holds
+    (st/emit! (dwsh/relocate-shapes (set ids) parent-id (count (:shapes parent))))
     #js {:moved (count ids) :ids (ids->js ids) :parentId (str parent-id)}))
 
 (defn- tool-group-shapes
@@ -655,9 +724,18 @@
       (/ c 12.92)
       (mth/pow (/ (+ c 0.055) 1.055) 2.4))))
 
+(defn- expand-hex
+  "#RGB to #RRGGBB: hex->rgb reads everything after the # as one number, so
+  the short form comes out as the wrong colour."
+  [hex]
+  (if (= (count hex) 4)
+    (let [[_ r g b] hex]
+      (str "#" r r g g b b))
+    hex))
+
 (defn relative-luminance
   [hex]
-  (let [[r g b] (ctc/hex->rgb hex)]
+  (let [[r g b] (ctc/hex->rgb (expand-hex hex))]
     (+ (* 0.2126 (srgb-channel->linear r))
        (* 0.7152 (srgb-channel->linear g))
        (* 0.0722 (srgb-channel->linear b)))))
@@ -677,6 +755,8 @@
   [{:keys [foreground background]}]
   (when (or (empty? foreground) (empty? background))
     (throw (js/Error. "Both foreground and background colors are required.")))
+  (when-not (and (ctc/hex-color-string? foreground) (ctc/hex-color-string? background))
+    (throw (js/Error. "Colors must be hex like #1A1A1A or #FFF.")))
   (let [ratio (contrast-ratio foreground background)]
     #js {:ratio (mth/round ratio 0.01)
          :passesAANormalText (>= ratio 4.5)
@@ -917,6 +997,10 @@
 
       "error"
       (let [message (unchecked-get status "message")]
+        ;; The bubble goes in now, not when the undo entry is committed: the
+        ;; IPC reply that saves the conversation can arrive before that.
+        (when (turn-file-open?)
+          (st/emit! (ai-chat/append-display-entry {:role :error :text message})))
         (finish-turn! #(st/emit! (ai-chat/set-status
                                   (if (turn-file-open?)
                                     {:phase phase :message message}

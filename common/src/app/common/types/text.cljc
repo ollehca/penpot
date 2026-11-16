@@ -12,6 +12,10 @@
 ;;   text-primary token #f0f2f5 — black text is invisible on the #0a0a14
 ;;   canvas that Kizuku ships as the default theme.
 ;; Date: 2026-07-11
+;; Modifications: New text takes the colour that reads on what it is placed
+;;   on (background-color-at, get-default-text-fills-on): the light default
+;;   was all but invisible on a white board.
+;; Date: 2026-11-15
 ;; ============================================================================
 
  (ns app.common.types.text
@@ -19,7 +23,10 @@
     [app.common.data :as d]
     [app.common.data.macros :as dm]
     [app.common.flags :as flags]
+    [app.common.math :as mth]
+    [app.common.types.color :as types.color]
     [app.common.types.fills :as types.fills]
+    [app.common.uuid :as uuid]
     [clojure.set :as set]
     [clojure.walk :as walk]
     [cuerdas.core :as str]))
@@ -121,6 +128,86 @@
   (if (contains? flags/*current* :frontend-binary-fills)
     (types.fills/from-plain default-text-fills)
     default-text-fills))
+
+;; KIZUKU: the colour new text starts with.
+;;
+;; `default-text-fills` is light: right on the dark canvas, wrong on a
+;; board, which is white until the user changes it. Text typed into a board
+;; had a contrast of 1.12:1 and looked as if nothing had been typed. So new
+;; text takes whichever of the two colours below reads better on what it
+;; is placed on.
+
+(def ^:private text-color-on-light "#000000")
+
+(defn- relative-luminance
+  "WCAG relative luminance of a 6-digit hex colour: 0 (black) to 1 (white)."
+  [hex]
+  (let [linear (fn [channel]
+                 (let [c (/ channel 255)]
+                   (if (<= c 0.03928)
+                     (/ c 12.92)
+                     (mth/pow (/ (+ c 0.055) 1.055) 2.4))))
+        [r g b] (types.color/hex->rgb hex)]
+    (+ (* 0.2126 (linear r))
+       (* 0.7152 (linear g))
+       (* 0.0722 (linear b)))))
+
+(defn- contrast-ratio
+  [lum-a lum-b]
+  (/ (+ (max lum-a lum-b) 0.05)
+     (+ (min lum-a lum-b) 0.05)))
+
+(defn text-color-on
+  "The colour new text gets on `background`, a hex colour: the default
+  (light) one, or black where black has the higher contrast. Anything that
+  is not a 6-digit hex colour counts as the dark canvas."
+  [background]
+  (let [on-dark (:fill-color (first default-text-fills))]
+    (if (and (string? background) (re-matches #"#[0-9a-fA-F]{6}" background))
+      (let [lum (relative-luminance background)]
+        (if (> (contrast-ratio lum (relative-luminance text-color-on-light))
+               (contrast-ratio lum (relative-luminance on-dark)))
+          text-color-on-light
+          on-dark))
+      on-dark)))
+
+(defn- solid-fill-color
+  "The colour of a shape's top fill when that fill is a plain colour."
+  [shape]
+  (let [fills (:fills shape)
+        fill  (when (vector? fills) (first fills))]
+    (when (and (string? (:fill-color fill))
+               (pos? (or (:fill-opacity fill) 1)))
+      (:fill-color fill))))
+
+(defn background-color-at
+  "The colour behind a shape placed in the board `frame-id`: that board's
+  own colour, or that of the nearest board around it which has one, or
+  `page-background` (nil: the default canvas) outside every board."
+  [objects frame-id page-background]
+  (loop [id frame-id
+         steps 0]
+    (let [frame (get objects id)
+          color (when (and (some? frame) (not= id uuid/zero))
+                  (solid-fill-color frame))]
+      (cond
+        (some? color)
+        color
+
+        (or (nil? frame) (= id uuid/zero) (> steps 64))
+        (or page-background types.color/canvas)
+
+        :else
+        (recur (:frame-id frame) (inc steps))))))
+
+(defn get-default-text-fills-on
+  "The default fills of new text placed on `background` (see text-color-on)."
+  [background]
+  (let [fills [{:fill-color (text-color-on background)
+                :fill-opacity 1}]]
+    (if (contains? flags/*current* :frontend-binary-fills)
+      (types.fills/from-plain fills)
+      fills)))
 
 (defn get-default-text-attrs
   "Return calculated default text attrs.

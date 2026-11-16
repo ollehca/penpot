@@ -3,6 +3,9 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-11-15): open-project-dialog! leads the dashboard's
+;; Import entries to the desktop app's File > Open….
 
 (ns app.main.ui.dashboard.import
   (:require-macros [app.main.style :as stl])
@@ -33,6 +36,17 @@
 (log/set-level! :debug)
 
 (def ^:const emit-delay 200)
+
+;; KIZUKU: the dashboard's Import entries lead to the desktop app's own
+;; File > Open…. The importer in this file reads PenPot's export archives;
+;; it cannot read the .kiz and .fig files a Kizuku user has, and the
+;; backend half of it does not exist in the desktop app.
+(defn open-project-dialog!
+  []
+  (let [api  (unchecked-get js/globalThis "electronAPI")
+        open (some-> api (unchecked-get "openProjectDialog"))]
+    (when (fn? open)
+      (.call open api))))
 
 (defn use-import-file
   [project-id on-finish-import]

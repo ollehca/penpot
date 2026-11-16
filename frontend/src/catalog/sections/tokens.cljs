@@ -16,7 +16,7 @@
 
 (def ^:private color-groups
   [{:label "Status"
-    :colors [{:name "--status-color-success-200" :hex "#a7e8d9"}
+    :colors [{:name "--status-color-success-200" :hex "#a9dfd7"}
              {:name "--status-color-success-500" :hex "#2d9f8f"}
              {:name "--status-color-warning-500" :hex "#f5a91b"}
              {:name "--status-color-error-500"   :hex "#ff3277"}

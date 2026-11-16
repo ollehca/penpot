@@ -12,6 +12,7 @@
 ;;   subtitle under the title, with the project count already available in
 ;;   the section component (no new subscriptions).
 ;; Date: 2026-07-07
+;; Subtitle (2026-11-15): the project count comes from the catalogues.
 ;; Copy review (2026-07-09): subtitle is now the project count only; the
 ;;   "stored on this device" tail was repetitive. No subtitle when the count
 ;;   is zero.
@@ -66,11 +67,10 @@
     [:header {:class (stl/css :dashboard-header) :data-testid "dashboard-header"}
      [:div#dashboard-projects-title {:class (stl/css :dashboard-title)}
       [:h1 (tr "dashboard.projects-title")]
-      ;; Kizuku: static subtitle (hardcoded English per fork precedent)
+      ;; Kizuku: subtitle with the number of projects
       (when (pos? project-count)
         [:span {:class (stl/css :dashboard-subtitle)}
-         (str project-count
-              (if (= 1 project-count) " project" " projects"))])]
+         (tr "labels.num-of-projects" (i18n/c project-count))])]
      (when can-edit
        [:button {:class (stl/css :btn-secondary :btn-small)
                  :on-click on-click

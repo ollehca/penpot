@@ -95,6 +95,12 @@
   background: #7c3aed;
   color: #fff;
   opacity: 0.9;
+
+  // The header's title has a colour of its own (grey), which on the violet
+  // left "Drop to take out of the folder" unreadable (1.2:1).
+  .folder-header-title {
+    color: #fff;
+  }
 }
 
 .folder-rename-input {

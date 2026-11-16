@@ -7,7 +7,7 @@
 (ns app.db.embedded
   "Embedded PostgreSQL for local-first desktop mode.
 
-   This namespace provides embedded PostgreSQL functionality for Kizu desktop app.
+   This namespace provides embedded PostgreSQL functionality for Kizuku desktop app.
    Uses io.zonky.test:embedded-postgres to run PostgreSQL in-process.
 
    Usage:
@@ -16,16 +16,14 @@
      (get-connection-url)              ; Get JDBC URL
      (get-datasource)                  ; Get DataSource for connections"
   (:require
-   [app.common.logging :as l]
-   [clojure.java.io :as io])
+   [app.common.logging :as l])
   (:import
-   [io.zonky.test.db.postgres.embedded EmbeddedPostgres
-                                        EmbeddedPostgres$Builder]
+   [io.zonky.test.db.postgres.embedded EmbeddedPostgres]
    [java.nio.file Paths Files]
    [java.nio.file.attribute FileAttribute]))
 
+;; Atom holding the current embedded PostgreSQL instance
 (defonce ^:private embedded-instance
-  "Atom holding the current embedded PostgreSQL instance"
   (atom nil))
 
 (defn- ensure-data-directory
@@ -37,6 +35,8 @@
     (when-not (Files/exists path (into-array java.nio.file.LinkOption []))
       (Files/createDirectories path (into-array FileAttribute [])))
     path))
+
+(declare stop-embedded-postgres)
 
 (defn start-embedded-postgres
   "Start embedded PostgreSQL instance for local mode.
@@ -67,6 +67,9 @@
 
       ;; Configure builder
       (.setDataDirectory builder data-path)
+      ;; Keep the data: by default the library wipes the directory when the
+      ;; server starts and deletes it when the server stops.
+      (.setCleanDataDirectory builder false)
       (.setPort builder port)
 
       ;; Start PostgreSQL
@@ -161,7 +164,7 @@
 
   ;; Start embedded PostgreSQL
   (start-embedded-postgres
-   {:data-dir "/tmp/kizu-test-db"
+   {:data-dir "/tmp/kizuku-test-db"
     :port 54321})
 
   ;; Check status
@@ -177,5 +180,4 @@
 
   ;; Cleanup
   (.close conn)
-  (stop-embedded-postgres)
-  )
+  (stop-embedded-postgres))

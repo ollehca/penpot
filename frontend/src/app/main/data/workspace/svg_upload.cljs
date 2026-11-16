@@ -4,6 +4,19 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: an image the SVG links to by address (anything that is
+;;   not embedded as a data: URI) is no longer sent to
+;;   :create-file-media-object-from-url. Kizuku has no server to download
+;;   it and the app does not fetch from the network. The image is left out,
+;;   as upstream does for a failed upload, and the user is told once per
+;;   SVG (kizuku.svg.linked-images-skipped).
+;; Date: 2026-11-15
+;; ============================================================================
+
 (ns app.main.data.workspace.svg-upload
   (:require
    [app.common.data :as d]
@@ -17,9 +30,12 @@
    [app.common.uuid :as uuid]
    [app.main.data.changes :as dch]
    [app.main.data.helpers :as dsh]
+   [app.main.data.notifications :as ntf]
    [app.main.data.workspace.selection :as dws]
    [app.main.data.workspace.undo :as dwu]
    [app.main.repo :as rp]
+   [app.main.store :as st]
+   [app.util.i18n :refer [tr]]
    [app.util.webapi :as wapi]
    [beicon.v2.core :as rx]
    [cuerdas.core :as str]
@@ -31,6 +47,15 @@
         filename (->> (str/split href "/") (last))
         ext-idx (str/last-index-of filename ".")]
     (if (> ext-idx 0) (subs filename 0 ext-idx) filename)))
+
+(defn- warn-linked-images-skipped
+  "Kizuku: tell the user when images were left out because the SVG links
+  to them instead of containing them."
+  [images]
+  (when (some (fn [[href image]]
+                (and (nil? image) (not (str/starts-with? href "data:"))))
+              images)
+    (st/emit! (ntf/warn (tr "kizuku.svg.linked-images-skipped")))))
 
 (defn upload-images
   "Extract all bitmap images inside the svg data, and upload them, associated to the file.
@@ -48,18 +73,17 @@
                          (assoc :name (extract-name href))
                          (assoc :url href))))))
        (rx/mapcat (fn [item]
-                    ;; TODO: :create-file-media-object-from-url is
-                    ;; deprecated and this should be resolved in
-                    ;; frontend
-                    (->> (rp/cmd! (if (contains? item :content)
-                                    :upload-file-media-object
-                                    :create-file-media-object-from-url)
-                                  (dissoc item :href))
+                    ;; Kizuku: a linked image is left out, not sent to
+                    ;; :create-file-media-object-from-url (see the header).
+                    (->> (if (contains? item :content)
+                           (rp/cmd! :upload-file-media-object (dissoc item :href))
+                           (rx/of nil))
                          ;; When the image uploaded fail we skip the shape
                          ;; returning `nil` will afterward not create the shape.
                          (rx/catch #(rx/of nil))
                          (rx/map #(vector (:href item) %)))))
-       (rx/reduce conj {})))
+       (rx/reduce conj {})
+       (rx/tap warn-linked-images-skipped)))
 
 (defn add-svg-shapes
   ([svg-data position]

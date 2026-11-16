@@ -17,6 +17,7 @@
 ;; Copy review (2026-07-09): subtitle is now the file count only; the
 ;;   "stored on this device" tail was repetitive. No subtitle when the count
 ;;   is zero.
+;; Subtitle (2026-11-15): the file count comes from the catalogues.
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.files
@@ -51,12 +52,11 @@
   [{:keys [project create-fn can-edit file-count]}]
   (let [project-id (:id project)
 
-        ;; Kizuku: static subtitle (hardcoded English per fork precedent);
+        ;; Kizuku: subtitle with the number of files;
         ;; nil when there are no files, which renders no subtitle element
         subtitle
         (when (pos? file-count)
-          (str file-count
-               (if (= 1 file-count) " file" " files")))
+          (tr "labels.num-of-files" (i18n/c file-count)))
 
         local
         (mf/use-state

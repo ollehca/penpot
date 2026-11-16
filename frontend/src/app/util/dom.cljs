@@ -3,6 +3,9 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-11-15): open-new-window copes with a window the
+;; host opens itself (window.open then returns nil).
 
 (ns app.util.dom
   (:require
@@ -798,8 +801,12 @@
   ([uri name]
    (open-new-window uri name "noopener,noreferrer"))
   ([uri name features]
+   ;; KIZUKU: the desktop shell opens the prototype viewer in a window of
+   ;; its own and declines the request, so window.open returns nil here.
+   ;; Reloading that nil threw, and the workspace was replaced by the
+   ;; internal-error page every time Preview or Inspect was opened.
    (let [new-window (.open js/window (str uri) name features)]
-     (when (not= name "_blank")
+     (when (and (some? new-window) (not= name "_blank"))
        (.reload (.-location new-window))))))
 
 (defn browser-back

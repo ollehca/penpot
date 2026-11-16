@@ -420,7 +420,7 @@ msgstr "Deze versie vastmaken"
 
 #: src/app/main/ui/components/context_menu_a11y.cljs:282, src/app/main/ui/dashboard/sidebar.cljs:668
 msgid "dashboard.default-team-name"
-msgstr "Jouw Kizuku"
+msgstr "Kizuku"
 
 #: src/app/main/ui/dashboard/sidebar.cljs:587
 msgid "dashboard.delete-team"
@@ -461,18 +461,12 @@ msgstr "Nog geen bestanden."
 #: src/app/main/ui/dashboard/placeholder.cljs:118
 #, markdown
 msgid "dashboard.empty-placeholder-libraries"
-msgstr ""
-"Hier verschijnen bibliotheken die aan het project zijn toegevoegd. Probeer "
-"je bestanden te delen of voeg ze toe vanuit onze [Bibliotheken en "
-"sjablonen] (https://getkizuku.app)."
+msgstr "Hier verschijnen bibliotheken die aan het project zijn toegevoegd."
 
 #: src/app/main/ui/dashboard/placeholder.cljs
 #, markdown, unused
 msgid "dashboard.empty-placeholder-libraries-subtitle"
-msgstr ""
-"Hier verschijnen bibliotheken die aan het project zijn toegevoegd. Probeer "
-"je bestanden te delen of voeg ze toe vanuit onze [Bibliotheken en "
-"sjablonen] (https://getkizuku.app)."
+msgstr "Hier verschijnen bibliotheken die aan het project zijn toegevoegd."
 
 #: src/app/main/ui/dashboard/placeholder.cljs:114
 msgid "dashboard.empty-placeholder-libraries-subtitle-viewer-role"
@@ -504,7 +498,7 @@ msgstr "Importeer een bestand"
 
 #: src/app/main/ui/dashboard/placeholder.cljs:53
 msgid "dashboard.empty-project.import-penpot"
-msgstr "Importeer een .kizuku-bestand"
+msgstr ""
 
 #: src/app/main/ui/dashboard/placeholder.cljs:45
 msgid "dashboard.empty-project.start"

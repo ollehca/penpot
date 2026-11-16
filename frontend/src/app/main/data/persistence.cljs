@@ -3,6 +3,12 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ;;
 ;; Copyright (c) KALEIDOS INC
+;;
+;; MODIFIED BY KIZUKU (2026-11-15): a commit that changes the design-token
+;; library also carries the library itself (with-tokens-lib-snapshot); the
+;; desktop app's local backend stores that instead of replaying the token
+;; operations. (2026-11-16) The library is taken when the commit is queued
+;; (take-tokens-lib-snapshot), not when it is sent.
 
 (ns app.main.data.persistence
   (:require
@@ -69,6 +75,57 @@
                                                           (throw (ex-info "invalid state" {})))))
                                        (update :index dissoc commit-id)))))))
 
+;; KIZUKU: the desktop app's local backend does not replay design-token
+;; operations: their rules live in PenPot's own TokensLib type. So with
+;; every commit that changes the token library, the library as it now
+;; stands goes along as a closing :set-tokens-lib change, and the backend
+;; keeps that snapshot. Without it nothing of the tokens was stored, and
+;; they were gone when the file was opened again.
+
+(def ^:private token-change-types
+  #{:set-tokens-lib
+    :set-token
+    :set-token-set
+    :set-token-theme
+    :update-active-token-themes
+    :rename-token-set-group
+    :move-token-set
+    :move-token-set-group})
+
+(defn- token-changes?
+  [changes]
+  (some #(contains? token-change-types (:type %)) changes))
+
+(defn- take-tokens-lib-snapshot
+  "The commit, with the file's token library as it stands now put on it,
+  when the commit changes tokens.
+
+  It is taken when the commit is queued, not when it is sent. A commit
+  that waits behind another request is sent later, and by then the
+  workspace can have been left (back to the dashboard, another file) and
+  the file's data removed from the state: the library read at that point
+  was nil, which told the backend that the file has no library any more,
+  and it deleted every token of the file.
+
+  With no data of the file in the state nothing is taken, and the backend
+  keeps the library it has: a missing library never stands for \"no
+  library\"."
+  [commit state]
+  (let [fdata (when (token-changes? (:changes commit))
+                (dsh/lookup-file-data state (:file-id commit)))]
+    (cond-> commit
+      (some? fdata)
+      (assoc ::tokens-lib-snapshot {:tokens-lib (:tokens-lib fdata)}))))
+
+(defn- with-tokens-lib-snapshot
+  "The changes of a commit, closed by the token library that was taken for
+  it, when one was taken."
+  [changes snapshot]
+  (cond-> (vec changes)
+    (some? snapshot)
+    (conj {:type :set-tokens-lib
+           :tokens-lib (:tokens-lib snapshot)})))
+
 (defn- append-commit
   "Event used internally to append the current change to the
   persistence queue."
@@ -78,12 +135,15 @@
       ptk/UpdateEvent
       (update [_ state]
         (log/trc :hint "append-commit" :method "update" :commit-id (dm/str id))
-        (update state :persistence
-                (fn [pstate]
-                  (-> pstate
-                      (update :run-id d/nilv run-id)
-                      (update :queue queue-conj id)
-                      (update :index assoc id commit)))))
+        ;; KIZUKU: the token library goes onto the commit here, when it is
+        ;; queued (see take-tokens-lib-snapshot).
+        (let [commit (take-tokens-lib-snapshot commit state)]
+          (update state :persistence
+                  (fn [pstate]
+                    (-> pstate
+                        (update :run-id d/nilv run-id)
+                        (update :queue queue-conj id)
+                        (update :index assoc id commit))))))
 
       ptk/WatchEvent
       (watch [_ state _]
@@ -115,7 +175,7 @@
                         :origin (:origin commit)
                         :created-at (:created-at commit)
                         :commit-id commit-id
-                        :changes (vec changes)
+                        :changes (with-tokens-lib-snapshot changes (::tokens-lib-snapshot commit))
                         :features features}
               permissions (:permissions state)]
 
