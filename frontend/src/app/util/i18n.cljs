@@ -4,6 +4,15 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: The names in the language list (supported-locales) no
+;;   longer end in "(community)"; 29 of the 32 entries did.
+;; Date: 2026-11-20
+;; ============================================================================
+
 (ns app.util.i18n
   "A i18n foundation."
   (:require
@@ -24,35 +33,35 @@
   [{:label "English" :value "en"}
    {:label "Español" :value "es"}
    {:label "Català" :value "ca"}
-   {:label "Deutsch (community)" :value "de"}
-   {:label "Dutch (community)" :value "nl"}
-   {:label "Euskera (community)" :value "eu"}
-   {:label "Français (community)" :value "fr"}
-   {:label "Gallego (Community)" :value "gl"}
-   {:label "Hausa (Community)" :value "ha"}
-   {:label "Hrvatski (Community)" :value "hr"}
-   {:label "Italiano (community)" :value "it"}
-   {:label "Norsk - Bokmål (community)" :value "nb_no"}
-   {:label "Polski (community)" :value "pl"}
-   {:label "Portuguese - Brazil (community)" :value "pt_br"}
-   {:label "Portuguese - Portugal (community)" :value "pt_pt"}
-   {:label "Bahasa Indonesia (community)" :value "id"}
-   {:label "Rumanian (community)" :value "ro"}
-   {:label "Türkçe (community)" :value "tr"}
-   {:label "Ελληνική γλώσσα (community)" :value "el"}
-   {:label "Русский (community)" :value "ru"}
-   {:label "Украї́нська мо́ва (community)" :value "uk"}
-   {:label "Český jazyk (community)" :value "cs"}
-   {:label "Latviešu valoda (community)" :value "lv"}
-   {:label "Српски (community)" :value "sr"}
-   {:label "Føroyskt mál (community)" :value "fo"}
-   {:label "Korean (community)" :value "ko"}
-   {:label "עִבְרִית (community)" :value "he"}
-   {:label "عربي/عربى (community)" :value "ar"}
-   {:label "فارسی (community)" :value "fa"}
-   {:label "日本語 (Community)" :value "ja_jp"}
-   {:label "简体中文 (community)" :value "zh_cn"}
-   {:label "繁體中文 (community)" :value "zh_hant"}])
+   {:label "Deutsch" :value "de"}
+   {:label "Dutch" :value "nl"}
+   {:label "Euskera" :value "eu"}
+   {:label "Français" :value "fr"}
+   {:label "Gallego" :value "gl"}
+   {:label "Hausa" :value "ha"}
+   {:label "Hrvatski" :value "hr"}
+   {:label "Italiano" :value "it"}
+   {:label "Norsk - Bokmål" :value "nb_no"}
+   {:label "Polski" :value "pl"}
+   {:label "Portuguese - Brazil" :value "pt_br"}
+   {:label "Portuguese - Portugal" :value "pt_pt"}
+   {:label "Bahasa Indonesia" :value "id"}
+   {:label "Rumanian" :value "ro"}
+   {:label "Türkçe" :value "tr"}
+   {:label "Ελληνική γλώσσα" :value "el"}
+   {:label "Русский" :value "ru"}
+   {:label "Украї́нська мо́ва" :value "uk"}
+   {:label "Český jazyk" :value "cs"}
+   {:label "Latviešu valoda" :value "lv"}
+   {:label "Српски" :value "sr"}
+   {:label "Føroyskt mál" :value "fo"}
+   {:label "Korean" :value "ko"}
+   {:label "עִבְרִית" :value "he"}
+   {:label "عربي/عربى" :value "ar"}
+   {:label "فارسی" :value "fa"}
+   {:label "日本語" :value "ja_jp"}
+   {:label "简体中文" :value "zh_cn"}
+   {:label "繁體中文" :value "zh_hant"}])
 
 (defn- parse-locale
   [locale]
