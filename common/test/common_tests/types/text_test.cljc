@@ -5,7 +5,8 @@
 ;; Copyright (c) KALEIDOS INC
 ;;
 ;; MODIFIED BY KIZUKU (2026-11-15): tests for the colour new text takes
-;; from the background it is placed on.
+;; from the background it is placed on; (2026-11-18) and for the style used
+;; last not overriding that colour.
 
 (ns common-tests.types.text-test
   (:require
@@ -162,3 +163,28 @@
       (t/is (= "#E8E9EA" (cttx/background-color-at objects uuid/zero "#E8E9EA")))
       (t/is (= "#0a0a14" (cttx/background-color-at objects gradient nil)))
       (t/is (= "#0a0a14" (cttx/background-color-at objects (uuid/next) nil))))))
+
+
+(t/deftest test-new-text-attrs
+  (let [on-canvas [{:fill-color "#f0f2f5" :fill-opacity 1}]
+        on-white  [{:fill-color "#000000" :fill-opacity 1}]]
+
+    (t/testing "with no style used yet: the defaults, in the colour for the background"
+      (let [attrs (cttx/new-text-attrs nil on-white)]
+        (t/is (= on-white (:fills attrs)))
+        (t/is (= (:font-size (cttx/get-default-text-attrs)) (:font-size attrs)))))
+
+    (t/testing "the style used last applies, its colour does not"
+      ;; A text on the dark canvas had its size changed: its light colour is
+      ;; stored with the style. The next text goes into a white board.
+      (let [used  {:font-size "32" :font-weight "700" :fills on-canvas}
+            attrs (cttx/new-text-attrs used on-white)]
+        (t/is (= "32" (:font-size attrs)))
+        (t/is (= "700" (:font-weight attrs)))
+        (t/is (= on-white (:fills attrs)))))
+
+    (t/testing "and the other way round"
+      (let [used  {:font-size "20" :fills on-white}
+            attrs (cttx/new-text-attrs used on-canvas)]
+        (t/is (= "20" (:font-size attrs)))
+        (t/is (= on-canvas (:fills attrs)))))))

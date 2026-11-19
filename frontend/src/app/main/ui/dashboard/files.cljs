@@ -18,6 +18,7 @@
 ;;   "stored on this device" tail was repetitive. No subtitle when the count
 ;;   is zero.
 ;; Subtitle (2026-11-15): the file count comes from the catalogues.
+;; Options button (2026-11-18): not shown for Drafts, whose menu is empty.
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.files
@@ -143,7 +144,10 @@
           :on-click toggle-pin
           :on-key-down (fn [event] (when (kbd/enter? event) (toggle-pin event)))}])
 
-      (when ^boolean can-edit
+      ;; KIZUKU: no options button for Drafts. Every entry of the project
+      ;; menu is for a project the user made; Drafts had only "Import", which
+      ;; is gone, so the button opened an empty menu.
+      (when (and can-edit (not (:is-default project)))
         [:div {:class (stl/css :icon)
                :tab-index "0"
                :on-click on-menu-click

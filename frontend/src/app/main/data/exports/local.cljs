@@ -339,23 +339,47 @@
   that are too large together. In the user's language: the app's own text
   is English, and was shown as it came. nil for every other failure (a
   print that timed out, a board without a drawing), for which the general
-  text serves better than a fragment such as \"print timed out\"."
-  [cause]
+  text serves better than a fragment such as \"print timed out\".
+  `boards?` says whether this is \"Export boards as PDF\". Only then do
+  the texts speak of boards: in any other export a page that is too large
+  is a layer, and the limit on a whole PDF is reached by one layer alone,
+  with nothing to select fewer of, so that case gets the general text."
+  [cause boards?]
   (let [message (or (ex-message cause) (str cause))]
     (cond
       (re-find #"svg-to-pdf: board \d+ is too large" message)
-      (tr "kizuku.export.pdf-board-too-large" max-pdf-side)
+      (tr (if boards?
+            "kizuku.export.pdf-board-too-large"
+            "kizuku.export.pdf-shape-too-large")
+          max-pdf-side)
 
-      (re-find #"svg-to-pdf: the boards are too large" message)
+      (and boards? (re-find #"svg-to-pdf: the boards are too large" message))
       (tr "kizuku.export.pdf-total-too-large"))))
 
 (defn- notify-failure
-  [cause]
-  (js/console.error "Kizuku export failed" cause)
-  ;; A refusal the user can act on says what to change; the general text
-  ;; said nothing about it.
-  (ntf/error (or (failure-reason cause)
-                 (tr "workspace.options.exporting-object-error"))))
+  ([cause]
+   (notify-failure cause false))
+  ([cause boards?]
+   (js/console.error "Kizuku export failed" cause)
+   ;; A refusal the user can act on says what to change; the general text
+   ;; said nothing about it.
+   (ntf/error (or (failure-reason cause boards?)
+                  (tr "workspace.options.exporting-object-error")))))
+
+(defn- board-too-large
+  "The first of `exports` whose board (or other layer) has a side longer
+  than the PDF printer takes (max-pdf-side), as {:name ...}, or nil.
+  Measured the way a page is (frame-page, export-blob)."
+  [state exports]
+  (some (fn [{:keys [page-id object-id]}]
+          (let [objects (dsh/lookup-page-objects state page-id)
+                object  (get objects object-id)]
+            (when (some? object)
+              (let [{:keys [width height]}
+                    (gsb/get-object-bounds objects object {:ignore-margin? false})]
+                (when (or (> width max-pdf-side) (> height max-pdf-side))
+                  {:name (:name object)})))))
+        exports))
 
 ;; --- Entry points ---------------------------------------------------------
 
@@ -371,13 +395,21 @@
     ptk/WatchEvent
     (watch [_ state _]
       (let [filename (single-filename export)]
-        (->> (export-blob state export)
-             (rx/map (fn [blob]
-                       (dom/trigger-download filename blob)
-                       (clear-export-state uuid/zero)))
-             (rx/catch (fn [cause]
-                         (rx/of (clear-export-state uuid/zero)
-                                (notify-failure cause)))))))))
+        ;; A layer too large for a PDF: say so, and which one, before it is
+        ;; rendered (as the exports of several layers and of boards do).
+        ;; The export of one layer is the Export button's usual case.
+        (if-let [layer (when (= :pdf (:type export))
+                         (board-too-large state [export]))]
+          (rx/of (clear-export-state uuid/zero)
+                 (ntf/error (str (tr "kizuku.export.pdf-shape-too-large" max-pdf-side)
+                                 " (" (:name layer) ")")))
+          (->> (export-blob state export)
+               (rx/map (fn [blob]
+                         (dom/trigger-download filename blob)
+                         (clear-export-state uuid/zero)))
+               (rx/catch (fn [cause]
+                           (rx/of (clear-export-state uuid/zero)
+                                  (notify-failure cause))))))))))
 
 (defn- build-zip
   "Promise of a zip Blob holding every [filename blob] entry, in order."
@@ -437,7 +469,7 @@
                      (rx/delay default-timeout))))))
           (rx/catch (fn [cause]
                       (rx/of (fail-export-status cause)
-                             (notify-failure cause))))
+                             (notify-failure cause true))))
           (rx/finalize #(swap! st/ongoing-tasks disj :export))))))
 
 (defn request-frames-pdf
@@ -456,9 +488,15 @@
         ;; did the export fail, with no reason given.)
         (if (> (count exports) max-pdf-boards)
           (rx/of (ntf/error (tr "kizuku.export.pdf-too-many" max-pdf-boards)))
-          (do
-            (swap! st/ongoing-tasks conj :export)
-            (frames-pdf-stream state id exports pdf-name)))))))
+          ;; A board the printer will refuse: say so, and which one, before
+          ;; any board is rendered. (Every board was rendered first, and the
+          ;; refusal that followed did not name the board.)
+          (if-let [board (board-too-large state exports)]
+            (rx/of (ntf/error (str (tr "kizuku.export.pdf-board-too-large" max-pdf-side)
+                                   " (" (:name board) ")")))
+            (do
+              (swap! st/ongoing-tasks conj :export)
+              (frames-pdf-stream state id exports pdf-name))))))))
 
 (defn request-multiple-export
   "Several exports → one zip, with live progress in the export widget."
@@ -470,23 +508,30 @@
             exports  (assoc-filenames exports)
             total    (count exports)
             zip-name (str (sanitize-name (:name (first exports))) ".zip")]
-        (swap! st/ongoing-tasks conj :export)
-        (rx/concat
-         (rx/of (initialize-export-status id exports :export-shapes))
-         (->> (export-entries state exports)
-              (rx/mapcat
-               (fn [entries]
-                 (if (< (count entries) total)
-                   (rx/of (update-export-progress (count entries)))
-                   (rx/concat
-                    (rx/of (update-export-progress total))
-                    (->> (rx/from (build-zip entries))
-                         (rx/map (fn [blob]
-                                   (dom/trigger-download zip-name blob)
-                                   (finish-export-status))))
-                    (->> (rx/of (clear-export-state id))
-                         (rx/delay default-timeout))))))
-              (rx/catch (fn [cause]
-                          (rx/of (fail-export-status cause)
-                                 (notify-failure cause))))
-              (rx/finalize #(swap! st/ongoing-tasks disj :export))))))))
+        ;; A layer too large for a PDF among them: say so, and which one,
+        ;; before anything is rendered (as request-frames-pdf does). Any
+        ;; layer can have a PDF export, so the text does not say "board".
+        (if-let [layer (board-too-large state (filter #(= :pdf (:type %)) exports))]
+          (rx/of (ntf/error (str (tr "kizuku.export.pdf-shape-too-large" max-pdf-side)
+                                 " (" (:name layer) ")")))
+          (do
+            (swap! st/ongoing-tasks conj :export)
+            (rx/concat
+             (rx/of (initialize-export-status id exports :export-shapes))
+             (->> (export-entries state exports)
+                  (rx/mapcat
+                   (fn [entries]
+                     (if (< (count entries) total)
+                       (rx/of (update-export-progress (count entries)))
+                       (rx/concat
+                        (rx/of (update-export-progress total))
+                        (->> (rx/from (build-zip entries))
+                             (rx/map (fn [blob]
+                                       (dom/trigger-download zip-name blob)
+                                       (finish-export-status))))
+                        (->> (rx/of (clear-export-state id))
+                             (rx/delay default-timeout))))))
+                  (rx/catch (fn [cause]
+                              (rx/of (fail-export-status cause)
+                                     (notify-failure cause))))
+                  (rx/finalize #(swap! st/ongoing-tasks disj :export))))))))))

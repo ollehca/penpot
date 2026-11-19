@@ -6427,6 +6427,10 @@ msgid "kizuku.export.pdf-board-too-large"
 msgstr "Один из кадров слишком велик для PDF. Ни одна сторона не должна превышать %s px."
 
 #: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-shape-too-large"
+msgstr "Один из слоёв слишком велик для PDF. Ни одна сторона не должна превышать %s px."
+
+#: src/app/main/data/exports/local.cljs
 msgid "kizuku.export.pdf-total-too-large"
 msgstr "Эти кадры слишком велики для одного PDF. Выберите меньше."
 

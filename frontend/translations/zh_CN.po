@@ -6016,6 +6016,10 @@ msgid "kizuku.export.pdf-board-too-large"
 msgstr "有画板过大，无法导出为 PDF。每边不能超过 %s px。"
 
 #: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-shape-too-large"
+msgstr "有图层过大，无法导出为 PDF。每边不能超过 %s px。"
+
+#: src/app/main/data/exports/local.cljs
 msgid "kizuku.export.pdf-total-too-large"
 msgstr "这些画板过大，无法放入一个 PDF。请减少选择。"
 

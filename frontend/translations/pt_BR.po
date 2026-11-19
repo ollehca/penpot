@@ -5735,6 +5735,10 @@ msgid "kizuku.export.pdf-board-too-large"
 msgstr "Um board é grande demais para um PDF. Nenhum lado pode passar de %s px."
 
 #: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-shape-too-large"
+msgstr "Uma camada é grande demais para um PDF. Nenhum lado pode passar de %s px."
+
+#: src/app/main/data/exports/local.cljs
 msgid "kizuku.export.pdf-total-too-large"
 msgstr "Estes boards são grandes demais para um único PDF. Selecione menos."
 

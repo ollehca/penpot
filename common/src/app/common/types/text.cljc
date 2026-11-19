@@ -16,6 +16,9 @@
 ;;   on (background-color-at, get-default-text-fills-on): the light default
 ;;   was all but invisible on a white board.
 ;; Date: 2026-11-15
+;; Modifications: new-text-attrs: a new text takes the style used last
+;;   without its colour, so the colour for its background is not overridden.
+;; Date: 2026-11-18
 ;; ============================================================================
 
  (ns app.common.types.text
@@ -216,6 +219,18 @@
   the activated flag for properly encode the fills"
   []
   (assoc default-text-attrs :fills (get-default-text-fills)))
+
+(defn new-text-attrs
+  "KIZUKU: the attributes a new text starts with: the defaults, then the
+  style last set in the Text section (`default-font`, may be nil) without
+  its colour, then `fills`, the colour for the background the text is
+  placed on. The colour of the last style is that of whichever text was
+  selected when it was set (light from the canvas, black from a white
+  board); carried over, it made the next text unreadable on the other."
+  [default-font fills]
+  (merge (get-default-text-attrs)
+         (dissoc default-font :fills)
+         {:fills fills}))
 
 (def typography-fields
   [:font-id

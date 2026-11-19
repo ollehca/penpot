@@ -14,7 +14,11 @@
   // without it). With 100vh the panel ended 40px below the window.
   height: calc(var(--kizuku-app-height, 100vh) - #{$s-160}); // TODO: Fix this hardcoded value
   overflow: hidden;
-  padding-bottom: $s-16;
+  // MODIFIED BY KIZUKU (2026-11-18): in the workspace the code ends with
+  // room for the AI assistant's round button, which floats over this
+  // corner (see workspace/sidebar/options.scss). The viewer has no such
+  // button and keeps the 16px (.viewer-code-block).
+  padding-block-end: 80px;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-gutter: stable;
@@ -22,6 +26,7 @@
 
 .viewer-code-block {
   height: calc(var(--kizuku-app-height, 100vh) - #{$s-108}); // TODO: Fix this hardcoded value
+  padding-block-end: $s-16;
 }
 
 .download-button {

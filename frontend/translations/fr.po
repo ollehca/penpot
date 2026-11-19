@@ -8174,6 +8174,10 @@ msgid "kizuku.export.pdf-board-too-large"
 msgstr "Un plan de travail est trop grand pour un PDF. Aucun côté ne peut dépasser %s px."
 
 #: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-shape-too-large"
+msgstr "Un calque est trop grand pour un PDF. Aucun côté ne peut dépasser %s px."
+
+#: src/app/main/data/exports/local.cljs
 msgid "kizuku.export.pdf-total-too-large"
 msgstr "Ces plans de travail sont trop volumineux pour un seul PDF. Sélectionnez-en moins."
 

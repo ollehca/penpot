@@ -13,6 +13,9 @@
 //   moved to bg-base with strong hairline borders and mono values; hairline
 //   dividers between option groups.
 // Date: 2026-07-06
+// Modifications: the Design and Prototype tabs end with room for the AI
+//   assistant's round button, which floats over their bottom right corner.
+// Date: 2026-11-18
 // ============================================================================
 
 @import "../../ds/_sizes.scss";
@@ -76,6 +79,11 @@
 .interaction-options {
   overflow: auto;
   scrollbar-gutter: stable;
+  // ADDED BY KIZUKU (2026-11-18): room below the last section for the AI
+  // assistant's round button, which floats over this corner (24px from the
+  // window's edge and 48px across: .fab in ai_chat_bar.scss). Without it
+  // the button lay over the end of the last section and the Export button.
+  padding-block-end: 80px;
 }
 
 .design-options {

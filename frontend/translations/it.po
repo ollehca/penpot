@@ -8168,6 +8168,10 @@ msgid "kizuku.export.pdf-board-too-large"
 msgstr "Una tavola da disegno è troppo grande per un PDF. Nessun lato può superare %s px."
 
 #: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-shape-too-large"
+msgstr "Un livello è troppo grande per un PDF. Nessun lato può superare %s px."
+
+#: src/app/main/data/exports/local.cljs
 msgid "kizuku.export.pdf-total-too-large"
 msgstr "Queste tavole da disegno sono troppo grandi per un solo PDF. Selezionane meno."
 

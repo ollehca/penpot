@@ -55,6 +55,10 @@
   // without it). With 100vh the panel ended 40px below the window.
   height: calc(var(--kizuku-app-height, 100vh) - $s-100);
   padding: $s-12;
+  // ADDED BY KIZUKU (2026-11-18): room below the last entry for the AI
+  // assistant's round button, which floats over this corner of the
+  // workspace (see options.scss).
+  padding-block-end: 80px;
   overflow-x: hidden;
   overflow-y: auto;
   font-size: $fs-12;

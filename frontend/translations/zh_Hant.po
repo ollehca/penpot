@@ -7040,6 +7040,10 @@ msgid "kizuku.export.pdf-board-too-large"
 msgstr "有 board 過大，無法匯出為 PDF。每邊不能超過 %s px。"
 
 #: src/app/main/data/exports/local.cljs
+msgid "kizuku.export.pdf-shape-too-large"
+msgstr "有圖層過大，無法匯出為 PDF。每邊不能超過 %s px。"
+
+#: src/app/main/data/exports/local.cljs
 msgid "kizuku.export.pdf-total-too-large"
 msgstr "這些 boards 過大，無法放入一個 PDF。請減少選取。"
 

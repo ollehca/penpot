@@ -16,6 +16,7 @@
 ;; Copy review (2026-07-09): subtitle is now the project count only; the
 ;;   "stored on this device" tail was repetitive. No subtitle when the count
 ;;   is zero.
+;; Options button (2026-11-18): not shown for Drafts, whose menu is empty.
 ;; ============================================================================
 
 (ns app.main.ui.dashboard.projects
@@ -246,7 +247,9 @@
                :title (if (:is-default project)
                         (tr "labels.drafts")
                         (:name project))
-               :on-context-menu (when can-edit on-menu-click)}
+               ;; KIZUKU: Drafts has no project menu (see options-btn below).
+               :on-context-menu (when (and can-edit (not (:is-default project)))
+                                  on-menu-click)}
           (if (:is-default project)
             (tr "labels.drafts")
             (:name project))])
@@ -275,7 +278,10 @@
                      :on-key-down handle-create-click}
             add-icon])
 
-         (when ^boolean can-edit
+         ;; KIZUKU: no options button for Drafts. Every entry of the project
+         ;; menu is for a project the user made; Drafts had only "Import",
+         ;; which is gone, so the button opened an empty menu.
+         (when (and can-edit (not (:is-default project)))
            [:button {:class (stl/css :options-btn)
                      :on-click on-menu-click
                      :title (tr "dashboard.options")

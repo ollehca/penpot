@@ -7,6 +7,8 @@
 ;; MODIFIED BY KIZUKU (2026-11-15): new text takes a colour that reads on
 ;; the board it is placed in (default-text-fills-in); text of older files
 ;; that carries no colour stays black.
+;; 2026-11-18: the colour of the text style used last no longer overrides
+;; that colour (see initialize-editor-state).
 
 (ns app.main.data.workspace.texts
   (:require
@@ -213,12 +215,13 @@
     ptk/UpdateEvent
     (update [_ state]
       (let [text-state   (some->> content ted/import-content)
-            ;; KIZUKU: the colour follows the background (see above); a
-            ;; style the user picked earlier in the session still wins.
-            attrs        (merge (txt/get-default-text-attrs)
-                                (when (nil? content)
-                                  {:fills (default-text-fills-in state (:frame-id shape))})
-                                (get-in state [:workspace-global :default-font]))
+            ;; KIZUKU: the colour follows the background (see above); the
+            ;; style last set in the Text section applies, its colour does
+            ;; not (txt/new-text-attrs).
+            attrs        (when (nil? content)
+                           (txt/new-text-attrs
+                            (get-in state [:workspace-global :default-font])
+                            (default-text-fills-in state (:frame-id shape))))
             editor       (cond-> (ted/create-editor-state text-state decorator)
                            (and (nil? content) (some? attrs))
                            (ted/update-editor-current-block-data attrs))]

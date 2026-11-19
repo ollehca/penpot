@@ -24,4 +24,8 @@
 
 .workspace-element-options {
   height: calc(var(--kizuku-app-height, 100vh) - #{$sz-200}); // TODO: Fix this hardcoded value
+  // ADDED BY KIZUKU (2026-11-18): room below the last block for the AI
+  // assistant's round button, which floats over this corner of the
+  // workspace (see workspace/sidebar/options.scss).
+  padding-block-end: 80px;
 }

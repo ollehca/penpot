@@ -4,6 +4,15 @@
 //
 // Copyright (c) KALEIDOS INC
 
+// ============================================================================
+// MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// Original file from PenPot (https://github.com/penpot/penpot)
+// Licensed under Mozilla Public License Version 2.0
+// Modifications: the list of comments ends with room for the AI assistant's
+//   round button, which floats over the bottom right corner of the workspace.
+// Date: 2026-11-18
+// ============================================================================
+
 @import "refactor/common-refactor.scss";
 
 .comments-section {
@@ -120,6 +129,9 @@
 .comments-section-content {
   height: 100%;
   overflow-y: auto;
+  // ADDED BY KIZUKU (2026-11-18): see the note at the top of the file and
+  // sidebar/options.scss.
+  padding-block-end: 80px;
 }
 
 .thread-groups {
