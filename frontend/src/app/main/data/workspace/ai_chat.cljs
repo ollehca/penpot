@@ -33,6 +33,18 @@
    [okulary.core :as l]
    [potok.v2.core :as ptk]))
 
+(def providers
+  "The providers the assistant can use, in the order they are offered: by
+  the panel's picker and by the AI provider page of the settings."
+  [{:id "anthropic" :label "Anthropic"}
+   {:id "openai" :label "OpenAI"}
+   {:id "google" :label "Google"}])
+
+(defn provider-label
+  "The name a provider is shown under; its id when it is not a known one."
+  [provider-id]
+  (:label (first (filter #(= (:id %) provider-id) providers)) provider-id))
+
 (def ^:private default-state
   {:open? false
    :display-log []

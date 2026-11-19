@@ -4,6 +4,15 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: the /settings/ai route, for the AI provider page of the
+;;   desktop app (app.main.ui.settings.ai-provider).
+;; Date: 2026-11-19
+;; ============================================================================
+
 (ns app.main.ui.routes
   (:require
    [app.common.data.macros :as dm]
@@ -35,6 +44,7 @@
     ["/password"      :settings-password]
     ["/feedback"      :settings-feedback]
     ["/options"       :settings-options]
+    ["/ai"            :settings-ai]
     ["/subscriptions" :settings-subscription]
     ["/access-tokens" :settings-access-tokens]
     ["/notifications" :settings-notifications]]

@@ -10,6 +10,7 @@
 ;; Licensed under Mozilla Public License Version 2.0
 ;; Modifications: Removed onboarding modal imports (newsletter, questions, team-choice)
 ;; Date: 2025-09-30
+;; Settings (2026-11-19): the :settings-ai route shows the settings page too.
 ;; ============================================================================
 (ns app.main.ui
   (:require
@@ -188,6 +189,7 @@
        (:settings-profile
         :settings-password
         :settings-options
+        :settings-ai
         :settings-feedback
         :settings-subscription
         :settings-access-tokens

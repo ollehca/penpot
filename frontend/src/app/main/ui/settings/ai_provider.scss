@@ -1,0 +1,201 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// Copyright (c) KALEIDOS INC
+
+// ============================================================================
+// ADDED BY KIZUKU (https://github.com/ollehca/Kizuku)
+// New file: the AI provider page of the settings (ai_provider.cljs). The
+// panel, its titles and its focus ring are the ones every settings page
+// takes from `./profile`; what is here are the provider picker, the key
+// rows and the model rows. Licensed under MPL-2.0 like the rest of the
+// frontend.
+// Date: 2026-11-19
+// ============================================================================
+
+@use "common/refactor/common-refactor" as *;
+@use "./profile" as *;
+
+// Inside the panel, so that the panel's own rule for a paragraph (muted
+// text) does not win over the error colour below.
+.form-container {
+  .hint {
+    font-size: $fs-12;
+    line-height: 1.5;
+    margin: 0 0 $s-8;
+  }
+
+  .key-error {
+    color: var(--status-color-error-500);
+    font-size: $fs-12;
+    line-height: 1.5;
+    margin: $s-8 0 0;
+  }
+}
+
+.provider-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $s-8;
+}
+
+.provider-option {
+  height: $s-32;
+  padding: 0 $s-16;
+  border: $s-1 solid var(--color-background-quaternary);
+  border-radius: $br-5; // Kata controls: 5px
+  background-color: var(--color-background-primary);
+  color: var(--color-foreground-primary);
+  font-size: 0.813rem; // 13px, as the Kata buttons
+  font-weight: $fw500;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    background-color: var(--color-background-quaternary);
+  }
+
+  &.selected,
+  &.selected:hover {
+    border-color: #7c3aed; // Kata violet-500, as the sidebar's active row
+    background-color: var(--color-background-quaternary);
+  }
+
+  &:focus-visible {
+    @include kataControlFocus;
+  }
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: $s-8;
+}
+
+// One provider: its name, whether it has a key, the field and the two
+// actions. The row wraps where the panel is narrow.
+.key-row,
+.model-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $s-8;
+}
+
+.key-row,
+.model-row {
+  padding: $s-12;
+  border: $s-1 solid var(--panel-border-color);
+  border-radius: $br-8;
+}
+
+.model-row {
+  display: flex;
+  flex-direction: column;
+  gap: $s-8;
+}
+
+.provider-name {
+  flex: 0 0 $s-80;
+  color: var(--color-foreground-primary);
+  font-size: 0.813rem; // 13px
+  font-weight: 600;
+
+  // "Anthropic model": longer than a provider's name alone
+  &.model-name {
+    flex-basis: $s-140;
+  }
+}
+
+.key-status {
+  flex-shrink: 0;
+  padding: $s-2 $s-8;
+  border-radius: $br-12;
+  background-color: rgb(136 146 176 / 15%);
+  color: var(--color-foreground-secondary);
+  font-size: $fs-11;
+
+  &.has-key {
+    background-color: rgb(45 159 143 / 20%); // Kata teal (success ramp)
+    color: var(--status-color-success-500);
+  }
+}
+
+.text-input {
+  flex: 1 1 $s-140;
+  min-width: 0;
+  height: $s-32;
+  // (the base styles give every input a margin below it, which would lift
+  // the field above the buttons it shares a row with)
+  margin: 0;
+  padding: 0 $s-12;
+  border: $s-1 solid var(--color-background-quaternary);
+  border-radius: $br-5; // Kata controls: 5px
+  background-color: var(--color-background-primary);
+  color: var(--color-foreground-primary);
+  font-size: $fs-12;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &::placeholder {
+    color: var(--color-foreground-secondary);
+  }
+
+  &:focus {
+    @include kataControlFocus;
+    border-radius: $br-5;
+  }
+}
+
+.action-btn {
+  flex-shrink: 0;
+  height: $s-32;
+  padding: 0 $s-16;
+  cursor: pointer;
+  @include kataSecondaryButton;
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  // Clear: the one action here that takes something away
+  &.danger:not(:disabled) {
+    color: var(--status-color-error-500);
+  }
+}
+
+.model-tiers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $s-6;
+}
+
+.tier-chip {
+  padding: $s-4 $s-12;
+  border: $s-1 solid var(--color-background-quaternary);
+  border-radius: $br-12;
+  background-color: var(--color-background-primary);
+  color: var(--color-foreground-secondary);
+  font-size: $fs-11;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+
+  &:hover,
+  &.selected {
+    border-color: #7c3aed; // Kata violet-500
+    color: var(--color-foreground-primary);
+  }
+
+  &:focus-visible {
+    @include kataControlFocus;
+    border-radius: $br-12;
+  }
+}

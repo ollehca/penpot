@@ -8288,7 +8288,71 @@ msgstr "At least 12 characters."
 
 #: src/app/main/ui/settings/options.cljs
 msgid "kizuku.settings.language-auto"
-msgstr "Auto (browser)"
+msgstr "Auto (system language)"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.title"
+msgstr "Brand colors"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.hint"
+msgstr "Customize Kizuku's accent palette in the Theme Editor."
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.open"
+msgstr "Open Theme Editor…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.title"
+msgstr "AI provider"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.desc"
+msgstr "Bring your own API key. Kizuku talks directly to your chosen provider; your key is stored only on this device and sent only to that provider."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.active"
+msgstr "Active provider"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.keys"
+msgstr "API keys"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.paste-key"
+msgstr "Paste API key…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save"
+msgstr "Save"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.clear"
+msgstr "Clear"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed"
+msgstr "Couldn't save the key. Kizuku encrypts keys with your system keyring and none is available. On Linux, install and unlock GNOME Keyring or KWallet, then try again."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed-desktop"
+msgstr "Couldn't save the key. Kizuku doesn't recognize this desktop, so it can't reach your keyring. Start Kizuku with --password-store=gnome-libsecret (GNOME Keyring) or --password-store=kwallet6 (KWallet), then try again."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model"
+msgstr "Model"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-hint"
+msgstr "Pick a curated tier, or type any exact model id for finer control."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.provider-model"
+msgstr "%s model"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-id"
+msgstr "Exact model id"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.busy.figma-paste"

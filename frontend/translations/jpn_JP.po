@@ -446,6 +446,42 @@ msgstr "表示言語を選択"
 msgid "dashboard.select-ui-theme"
 msgstr "テーマを選択"
 
+#: src/app/main/ui/settings/options.cljs:68
+msgid "dashboard.select-ui-theme.dark"
+msgstr "Kizuku ダーク（デフォルト）"
+
+#: src/app/main/ui/settings/options.cljs:69
+msgid "dashboard.select-ui-theme.light"
+msgstr "Kizuku ライト"
+
+#: src/app/main/ui/settings/options.cljs:70
+msgid "dashboard.select-ui-theme.system"
+msgstr "システムに合わせる"
+
+#: src/app/main/ui/dashboard/sidebar.cljs:546, src/app/main/ui/dashboard/team.cljs:100, src/app/main/ui/dashboard/team.cljs:114, src/app/main/ui/settings/options.cljs:87, src/app/main/ui/settings/sidebar.cljs:109
+msgid "labels.settings"
+msgstr "設定"
+
+#: src/app/main/ui/settings/options.cljs:27, src/app/main/ui/settings/profile.cljs:30
+msgid "notifications.profile-saved"
+msgstr "プロフィールを保存しました"
+
+#: src/app/main/ui/settings/options.cljs:83
+msgid "title.settings.options"
+msgstr "設定 - Kizuku"
+
+#: src/app/main/ui/settings/profile.cljs:124
+msgid "title.settings.profile"
+msgstr "プロフィール - Kizuku"
+
+#: src/app/main/ui/settings/profile.cljs:111
+msgid "labels.update"
+msgstr "更新"
+
+#: src/app/main/ui/dashboard/sidebar.cljs:1029
+msgid "labels.your-account"
+msgstr "アカウント"
+
 #: src/app/main/ui/dashboard/projects.cljs:305
 msgid "dashboard.show-all-files"
 msgstr "すべてのファイルを表示"
@@ -1326,7 +1362,71 @@ msgstr "12文字以上。"
 
 #: src/app/main/ui/settings/options.cljs
 msgid "kizuku.settings.language-auto"
-msgstr "自動（ブラウザ）"
+msgstr "自動（システム言語）"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.title"
+msgstr "ブランドカラー"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.hint"
+msgstr "テーマエディタで Kizuku のアクセントカラーをカスタマイズできます。"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.open"
+msgstr "テーマエディタを開く…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.title"
+msgstr "AI プロバイダー"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.desc"
+msgstr "ご自身の API キーを使用します。Kizuku は選択したプロバイダーと直接通信します。キーはこのデバイスにのみ保存され、そのプロバイダーにのみ送信されます。"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.active"
+msgstr "使用中のプロバイダー"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.keys"
+msgstr "API キー"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.paste-key"
+msgstr "API キーを貼り付け…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save"
+msgstr "保存"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.clear"
+msgstr "消去"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed"
+msgstr "キーを保存できませんでした。Kizuku はシステムのキーリングでキーを暗号化しますが、利用できるキーリングがありません。Linux では GNOME Keyring または KWallet をインストールしてロックを解除し、もう一度お試しください。"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed-desktop"
+msgstr "キーを保存できませんでした。Kizuku はこのデスクトップ環境を認識できないため、キーリングを利用できません。--password-store=gnome-libsecret (GNOME Keyring) または --password-store=kwallet6 (KWallet) を指定して Kizuku を起動し、もう一度お試しください。"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model"
+msgstr "モデル"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-hint"
+msgstr "おすすめのランクを選ぶか、モデル ID を直接入力してください。"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.provider-model"
+msgstr "%s のモデル"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-id"
+msgstr "正確なモデル ID"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.busy.figma-paste"

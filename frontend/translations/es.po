@@ -8166,7 +8166,71 @@ msgstr "Al menos 12 caracteres."
 
 #: src/app/main/ui/settings/options.cljs
 msgid "kizuku.settings.language-auto"
-msgstr "Automático (navegador)"
+msgstr "Automático (idioma del sistema)"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.title"
+msgstr "Colores de marca"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.hint"
+msgstr "Personaliza la paleta de acentos de Kizuku en el editor de temas."
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.open"
+msgstr "Abrir el editor de temas…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.title"
+msgstr "Proveedor de IA"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.desc"
+msgstr "Usa tu propia clave de API. Kizuku habla directamente con el proveedor que elijas; tu clave se guarda solo en este dispositivo y solo se envía a ese proveedor."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.active"
+msgstr "Proveedor activo"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.keys"
+msgstr "Claves de API"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.paste-key"
+msgstr "Pega la clave de API…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save"
+msgstr "Guardar"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.clear"
+msgstr "Borrar"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed"
+msgstr "No se pudo guardar la clave. Kizuku cifra las claves con el llavero del sistema y no hay ninguno disponible. En Linux, instala y desbloquea GNOME Keyring o KWallet y vuelve a intentarlo."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed-desktop"
+msgstr "No se pudo guardar la clave. Kizuku no reconoce este escritorio y no puede acceder a tu llavero. Inicia Kizuku con --password-store=gnome-libsecret (GNOME Keyring) o --password-store=kwallet6 (KWallet) y vuelve a intentarlo."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model"
+msgstr "Modelo"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-hint"
+msgstr "Elige un nivel recomendado o escribe el identificador exacto de cualquier modelo."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.provider-model"
+msgstr "Modelo de %s"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-id"
+msgstr "Identificador exacto del modelo"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.busy.figma-paste"

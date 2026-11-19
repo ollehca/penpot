@@ -31,6 +31,10 @@
 ;;   so the pickers are shown and the pinning below only matters if a flag
 ;;   is taken out again.
 ;; Language list (2026-11-15): the "Auto" entry comes from the catalogues.
+;; Brand colors (2026-11-19): a block below the form leads to the Theme
+;;   Editor of the desktop app (window.electronAPI.theme.openEditor), as the
+;;   shell's own Settings window did before its content moved to these
+;;   pages. Nothing is shown outside the desktop app.
 ;; ============================================================================
 
 (ns app.main.ui.settings.options
@@ -118,6 +122,36 @@
        :data-testid "submit-lang-change"
        :class (stl/css :btn-primary)}]]))
 
+;; --- Brand colors
+;;
+;; The accent palette is edited in the Theme Editor, a window of the
+;; desktop app; the settings only lead to it.
+
+(defn- theme-api
+  "The theme side of the desktop bridge (window.electronAPI.theme), nil
+  outside the desktop app."
+  []
+  (some-> (unchecked-get js/window "electronAPI")
+          (unchecked-get "theme")))
+
+(mf/defc brand-section*
+  {::mf/private true}
+  []
+  (let [open-editor
+        (mf/use-fn
+         (fn [_]
+           (when-let [api (theme-api)]
+             (.openEditor ^js api))))]
+    (when (theme-api)
+      [:div {:class (stl/css :brand-section)}
+       [:h3 (tr "kizuku.settings.brand.title")]
+       [:p {:class (stl/css :brand-hint)} (tr "kizuku.settings.brand.hint")]
+       [:button {:class (stl/css :brand-btn)
+                 :type "button"
+                 :data-testid "open-theme-editor"
+                 :on-click open-editor}
+        (tr "kizuku.settings.brand.open")]])))
+
 ;; --- Password Page
 
 (mf/defc options-page
@@ -128,4 +162,5 @@
   [:div {:class (stl/css :dashboard-settings)}
    [:div {:class (stl/css :form-container) :data-testid "settings-form"}
     [:h2 (tr "labels.settings")]
-    [:& options-form {}]]])
+    [:& options-form {}]
+    [:> brand-section*]]])

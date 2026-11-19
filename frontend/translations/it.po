@@ -8141,7 +8141,71 @@ msgstr "Almeno 12 caratteri."
 
 #: src/app/main/ui/settings/options.cljs
 msgid "kizuku.settings.language-auto"
-msgstr "Automatica (browser)"
+msgstr "Automatica (lingua di sistema)"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.title"
+msgstr "Colori del brand"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.hint"
+msgstr "Personalizza la palette di accenti di Kizuku nell’editor dei temi."
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.open"
+msgstr "Apri l’editor dei temi…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.title"
+msgstr "Provider IA"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.desc"
+msgstr "Usa la tua chiave API. Kizuku parla direttamente con il provider scelto; la chiave è salvata solo su questo dispositivo e inviata solo a quel provider."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.active"
+msgstr "Provider attivo"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.keys"
+msgstr "Chiavi API"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.paste-key"
+msgstr "Incolla la chiave API…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save"
+msgstr "Salva"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.clear"
+msgstr "Cancella"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed"
+msgstr "Impossibile salvare la chiave. Kizuku cifra le chiavi con il portachiavi di sistema e non ce n'è uno disponibile. Su Linux, installa e sblocca GNOME Keyring o KWallet, poi riprova."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed-desktop"
+msgstr "Impossibile salvare la chiave. Kizuku non riconosce questo ambiente desktop e non può raggiungere il tuo portachiavi. Avvia Kizuku con --password-store=gnome-libsecret (GNOME Keyring) oppure --password-store=kwallet6 (KWallet), poi riprova."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model"
+msgstr "Modello"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-hint"
+msgstr "Scegli un livello consigliato oppure digita l’identificativo esatto di un modello."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.provider-model"
+msgstr "Modello %s"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-id"
+msgstr "Identificativo esatto del modello"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.busy.figma-paste"

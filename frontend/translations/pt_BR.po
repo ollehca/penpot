@@ -825,6 +825,18 @@ msgstr "Selecionar idioma da Interface"
 msgid "dashboard.select-ui-theme"
 msgstr "Selecionar tema"
 
+#: src/app/main/ui/settings/options.cljs:68
+msgid "dashboard.select-ui-theme.dark"
+msgstr "Kizuku Escuro (padrão)"
+
+#: src/app/main/ui/settings/options.cljs:69
+msgid "dashboard.select-ui-theme.light"
+msgstr "Kizuku Claro"
+
+#: src/app/main/ui/settings/options.cljs:70
+msgid "dashboard.select-ui-theme.system"
+msgstr "Tema do sistema"
+
 #: src/app/main/ui/settings/notifications.cljs:57
 msgid "dashboard.settings.notifications.dashboard-comments.all"
 msgstr "Todos os comentários, menções e respostas"
@@ -5708,7 +5720,71 @@ msgstr "Pelo menos 12 caracteres."
 
 #: src/app/main/ui/settings/options.cljs
 msgid "kizuku.settings.language-auto"
-msgstr "Automático (navegador)"
+msgstr "Automático (idioma do sistema)"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.title"
+msgstr "Cores da marca"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.hint"
+msgstr "Personalize a paleta de destaque do Kizuku no editor de temas."
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.open"
+msgstr "Abrir o editor de temas…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.title"
+msgstr "Provedor de IA"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.desc"
+msgstr "Use sua própria chave de API. O Kizuku fala diretamente com o provedor escolhido; sua chave fica guardada só neste dispositivo e é enviada só a esse provedor."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.active"
+msgstr "Provedor ativo"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.keys"
+msgstr "Chaves de API"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.paste-key"
+msgstr "Cole a chave de API…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save"
+msgstr "Salvar"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.clear"
+msgstr "Limpar"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed"
+msgstr "Não foi possível salvar a chave. O Kizuku criptografa as chaves com o chaveiro do sistema e nenhum está disponível. No Linux, instale e desbloqueie o GNOME Keyring ou o KWallet e tente de novo."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed-desktop"
+msgstr "Não foi possível salvar a chave. O Kizuku não reconhece este ambiente de desktop e não consegue acessar seu chaveiro. Inicie o Kizuku com --password-store=gnome-libsecret (GNOME Keyring) ou --password-store=kwallet6 (KWallet) e tente de novo."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model"
+msgstr "Modelo"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-hint"
+msgstr "Escolha um nível recomendado ou digite o identificador exato de qualquer modelo."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.provider-model"
+msgstr "Modelo %s"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-id"
+msgstr "Identificador exato do modelo"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.busy.figma-paste"

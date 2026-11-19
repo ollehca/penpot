@@ -7612,7 +7612,71 @@ msgstr "Mindestens 12 Zeichen."
 
 #: src/app/main/ui/settings/options.cljs
 msgid "kizuku.settings.language-auto"
-msgstr "Automatisch (Browser)"
+msgstr "Automatisch (Systemsprache)"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.title"
+msgstr "Markenfarben"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.hint"
+msgstr "Passe die Akzentpalette von Kizuku im Theme-Editor an."
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.open"
+msgstr "Theme-Editor öffnen…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.title"
+msgstr "KI-Anbieter"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.desc"
+msgstr "Bring deinen eigenen API-Schlüssel mit. Kizuku spricht direkt mit dem gewählten Anbieter; dein Schlüssel wird nur auf diesem Gerät gespeichert und nur an diesen Anbieter gesendet."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.active"
+msgstr "Aktiver Anbieter"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.keys"
+msgstr "API-Schlüssel"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.paste-key"
+msgstr "API-Schlüssel einfügen…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save"
+msgstr "Sichern"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.clear"
+msgstr "Löschen"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed"
+msgstr "Der Schlüssel konnte nicht gespeichert werden. Kizuku verschlüsselt Schlüssel mit dem Schlüsselbund des Systems, und es ist keiner verfügbar. Installiere und entsperre unter Linux GNOME Keyring oder KWallet und versuche es erneut."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed-desktop"
+msgstr "Der Schlüssel konnte nicht gespeichert werden. Kizuku erkennt diese Desktop-Umgebung nicht und erreicht deshalb deinen Schlüsselbund nicht. Starte Kizuku mit --password-store=gnome-libsecret (GNOME Keyring) oder --password-store=kwallet6 (KWallet) und versuche es erneut."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model"
+msgstr "Modell"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-hint"
+msgstr "Wähle eine kuratierte Stufe oder gib eine exakte Modell-ID ein."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.provider-model"
+msgstr "Modell für %s"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-id"
+msgstr "Exakte Modell-ID"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.busy.figma-paste"

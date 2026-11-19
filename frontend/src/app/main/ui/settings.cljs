@@ -4,6 +4,16 @@
 ;;
 ;; Copyright (c) KALEIDOS INC
 
+;; ============================================================================
+;; MODIFIED BY KIZUKU (https://github.com/ollehca/Kizuku)
+;; Original file from PenPot (https://github.com/penpot/penpot)
+;; Licensed under Mozilla Public License Version 2.0
+;; Modifications: the :settings-ai section shows the AI provider page
+;;   (app.main.ui.settings.ai-provider), so that every setting of the
+;;   desktop app is in these pages.
+;; Date: 2026-11-19
+;; ============================================================================
+
 (ns app.main.ui.settings
   (:require-macros [app.main.style :as stl])
   (:require
@@ -14,6 +24,7 @@
    [app.main.ui.hooks :as hooks]
    [app.main.ui.modal :refer [modal-container*]]
    [app.main.ui.settings.access-tokens :refer [access-tokens-page]]
+   [app.main.ui.settings.ai-provider :refer [ai-provider-page*]]
    [app.main.ui.settings.change-email]
    [app.main.ui.settings.delete-account]
    [app.main.ui.settings.feedback :refer [feedback-page]]
@@ -67,6 +78,9 @@
 
           :settings-options
           [:& options-page]
+
+          :settings-ai
+          [:> ai-provider-page*]
 
           :settings-subscription
           [:> subscription-page* {:profile profile}]

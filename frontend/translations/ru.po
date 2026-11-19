@@ -848,6 +848,18 @@ msgstr "Выберите язык интерфейса"
 msgid "dashboard.select-ui-theme"
 msgstr "Выберите тему"
 
+#: src/app/main/ui/settings/options.cljs:68
+msgid "dashboard.select-ui-theme.dark"
+msgstr "Kizuku Тёмная (по умолчанию)"
+
+#: src/app/main/ui/settings/options.cljs:69
+msgid "dashboard.select-ui-theme.light"
+msgstr "Kizuku Светлая"
+
+#: src/app/main/ui/settings/options.cljs:70
+msgid "dashboard.select-ui-theme.system"
+msgstr "Как в системе"
+
 #: src/app/main/ui/settings/notifications.cljs:57
 msgid "dashboard.settings.notifications.dashboard-comments.all"
 msgstr "Все комментарии, упоминания и ответы"
@@ -6400,7 +6412,71 @@ msgstr "Не менее 12 символов."
 
 #: src/app/main/ui/settings/options.cljs
 msgid "kizuku.settings.language-auto"
-msgstr "Автоматически (браузер)"
+msgstr "Автоматически (язык системы)"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.title"
+msgstr "Фирменные цвета"
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.hint"
+msgstr "Настройте акцентную палитру Kizuku в редакторе темы."
+
+#: src/app/main/ui/settings/options.cljs
+msgid "kizuku.settings.brand.open"
+msgstr "Открыть редактор темы…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.title"
+msgstr "Провайдер ИИ"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.desc"
+msgstr "Используйте свой API-ключ. Kizuku обращается напрямую к выбранному провайдеру; ключ хранится только на этом устройстве и отправляется только этому провайдеру."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.active"
+msgstr "Текущий провайдер"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.keys"
+msgstr "API-ключи"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.paste-key"
+msgstr "Вставьте API-ключ…"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save"
+msgstr "Сохранить"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.clear"
+msgstr "Очистить"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed"
+msgstr "Не удалось сохранить ключ. Kizuku шифрует ключи с помощью системного хранилища ключей, а оно недоступно. В Linux установите и разблокируйте GNOME Keyring или KWallet и повторите попытку."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.save-failed-desktop"
+msgstr "Не удалось сохранить ключ. Kizuku не распознаёт это окружение рабочего стола и не может обратиться к хранилищу ключей. Запустите Kizuku с параметром --password-store=gnome-libsecret (GNOME Keyring) или --password-store=kwallet6 (KWallet) и повторите попытку."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model"
+msgstr "Модель"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-hint"
+msgstr "Выберите рекомендуемый уровень или введите точный идентификатор модели."
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.provider-model"
+msgstr "Модель %s"
+
+#: src/app/main/ui/settings/ai_provider.cljs
+msgid "kizuku.settings.ai.model-id"
+msgstr "Точный идентификатор модели"
 
 #: src/app/main/data/workspace/figma_paste.cljs
 msgid "kizuku.busy.figma-paste"

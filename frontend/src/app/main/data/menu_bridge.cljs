@@ -164,8 +164,9 @@
   "Register the command listener and start publishing context. No-op
   outside the Electron shell."
   []
-  ;; The shell changed the UI language (its own Settings window, or the OS
-  ;; default) — re-fetch the profile so set-profile re-applies the locale.
+  ;; The shell changed the UI language (a profile saved with another one,
+  ;; or the OS default) — re-fetch the profile so set-profile re-applies
+  ;; the locale.
   (when-let [api (i18n-api)]
     (.onLocaleChange ^js api (fn [_] (st/emit! (du/refresh-profile)))))
   ;; Tables pushed by the shell (File → Import table from CSV, dropped files).

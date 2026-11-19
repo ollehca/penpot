@@ -12,6 +12,11 @@
 //   radius, 13px/500 type, hover lightens to surface, active row uses
 //   surface-hover with a 2px violet left inset bar; 0.15s ease motion.
 // Date: 2026-07-06
+// 2026-11-19: the list of pages sits under the way back to the dashboard,
+//   at the top. The rows of the sidebar were counted ("auto auto 1fr"), and
+//   the desktop app puts its mark above them: the mark took the first row,
+//   the separator the row that grows, and the list ended up at the bottom
+//   of the window. Every row is now as high as its content.
 // ============================================================================
 
 @use "common/refactor/common-refactor.scss" as *;
@@ -30,7 +35,10 @@
 
 .sidebar-content {
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  // However many rows there are (the desktop app adds its mark on top),
+  // each is as high as its content and they stack from the top.
+  grid-auto-rows: max-content;
+  align-content: start;
   height: 100%;
   padding: 0;
   overflow-y: auto;

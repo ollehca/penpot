@@ -26,6 +26,8 @@
 ;;   every build (ALWAYS_ON_FLAGS in the host's src/utils/penpot-flags.js),
 ;;   so the "Settings" entry is shown; it hides again only if both flags
 ;;   are taken out.
+;; AI provider (2026-11-19): an "AI provider" entry below "Settings" leads
+;;   to the page that holds what the shell's own Settings window held.
 ;; ============================================================================
 
 (ns app.main.ui.settings.sidebar
@@ -57,6 +59,9 @@
 (def ^:private go-settings-options
   #(st/emit! (rt/nav :settings-options)))
 
+(def ^:private go-settings-ai
+  #(st/emit! (rt/nav :settings-ai)))
+
 (def ^:private go-settings-subscription
   #(st/emit! (rt/nav :settings-subscription)))
 
@@ -68,6 +73,7 @@
   [{:keys [profile section]}]
   (let [profile?       (= section :settings-profile)
         options?       (= section :settings-options)
+        ai?            (= section :settings-ai)
         feedback?      (= section :settings-feedback)
         subscription?  (= section :settings-subscription)
         access-tokens? (= section :settings-access-tokens)
@@ -102,6 +108,12 @@
                :on-click go-settings-options
                :data-testid "settings-profile"}
           [:span {:class (stl/css :element-title)} (tr "labels.settings")]])
+
+       [:li {:class (stl/css-case :current ai?
+                                  :settings-item true)
+             :on-click go-settings-ai
+             :data-testid "settings-ai"}
+        [:span {:class (stl/css :element-title)} (tr "kizuku.settings.ai.title")]]
 
        (when (contains? cf/flags :subscriptions)
          [:li {:class (stl/css-case :current subscription?

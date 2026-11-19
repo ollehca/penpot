@@ -83,15 +83,8 @@
   (= file-id (some-> (:current-file-id @st/state) str)))
 
 ;; --- Labels -----------------------------------------------------------------
-
-(def ^:private known-providers
-  [{:id "anthropic" :label "Anthropic"}
-   {:id "openai" :label "OpenAI"}
-   {:id "google" :label "Google"}])
-
-(defn- provider-label
-  [provider-id]
-  (:label (first (filter #(= (:id %) provider-id) known-providers)) provider-id))
+;; (the providers and their names are in ai-chat: the AI provider page of
+;; the settings lists the same ones)
 
 (defn- model-label
   "The tier label for a model id, from the tier list for its provider —
@@ -241,9 +234,10 @@
 (defn- use-provider-settings
   "Hook: the active provider and model, the model tiers and the key status
   per provider, read from the main process whenever the panel opens and
-  whenever the window regains focus (Settings is another window, so a change
-  made there shows once it closes), with the handlers of the two pickers, a
-  setter for a key status read elsewhere and refresh! to read it all again."
+  whenever the window regains focus (the settings are a page of this same
+  window: coming back from it mounts the panel anew, which reads them
+  again), with the handlers of the two pickers, a setter for a key status
+  read elsewhere and refresh! to read it all again."
   [open?]
   (let [provider*    (mf/use-state nil)
         model*       (mf/use-state nil)
@@ -534,7 +528,7 @@
         [:button {:class (stl/css :onboarding-settings-btn)
                   :on-click on-open-settings}
          (tr "kizuku.ai.onboarding.add-key"
-             (or (provider-label provider-id) (tr "kizuku.ai.onboarding.your-provider")))]]
+             (or (ai-chat/provider-label provider-id) (tr "kizuku.ai.onboarding.your-provider")))]]
 
        :else
        [:div {:class (stl/css :message-log-empty)}
@@ -583,7 +577,7 @@
              :label label
              :status {:has-key? has-key?
                       :text (tr (if has-key? "kizuku.ai.key-set" "kizuku.ai.no-key"))}}))
-        known-providers))
+        ai-chat/providers))
 
 (mf/defc panel-header*
   {::mf/private true}
@@ -593,8 +587,8 @@
         model-name (model-label model-tiers model)]
     [:div {:class (stl/css :panel-header)}
      [:span {:class (stl/css :panel-title)} (tr "kizuku.ai.title")]
-     [:> option-menu* {:badge (or (provider-label provider) "…")
-                       :aria-label (tr "kizuku.ai.provider-aria" (provider-label provider))
+     [:> option-menu* {:badge (or (ai-chat/provider-label provider) "…")
+                       :aria-label (tr "kizuku.ai.provider-aria" (ai-chat/provider-label provider))
                        :options (provider-options key-status)
                        :selected-id provider
                        :open? (= open-menu :provider)
@@ -711,11 +705,15 @@
            (when-let [node (mf/ref-val fab-ref)]
              (.focus ^js node))))
 
+        ;; The AI provider page of the settings: the shell takes this window
+        ;; there, and the file stays in its tab. (The bridge's "settings" is
+        ;; read by name, as its other parts are, so that the release compile
+        ;; has no property to rename.)
         on-open-settings
         (mf/use-fn
          (fn [_]
-           (when-let [api (electron-api)]
-             (.open ^js (.-settings api)))))
+           (when-let [settings (some-> (electron-api) (unchecked-get "settings"))]
+             (.open ^js settings "ai"))))
 
         on-change
         (mf/use-fn
@@ -779,7 +777,7 @@
                          (st/emit! (ai-chat/set-status
                                     {:phase "error"
                                      :message (tr "kizuku.ai.error.no-key"
-                                                  (provider-label provider-id))})))))
+                                                  (ai-chat/provider-label provider-id))})))))
                    (p/catch (fn [err]
                               (st/emit! (ai-chat/set-status
                                          {:phase "error"

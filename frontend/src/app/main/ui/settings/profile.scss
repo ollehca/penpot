@@ -24,6 +24,7 @@
 //   (.plan-upgrade-btn: Kata primary violet + glow) with one supporting line,
 //   and an always-visible "Change license" input + "Validate" button
 //   (5px controls, violet focus ring, inline error). Sentence case throughout.
+// 2026-11-19: the "Change license" field is level with its button.
 // ============================================================================
 
 @use "common/refactor/common-refactor" as *;
@@ -515,6 +516,9 @@ form.avatar-form {
 .plan-change-input {
   flex: 1 1 auto;
   height: $s-32;
+  // The base styles give every input a margin below it, which lifted the
+  // field 8px above the button it shares a row with.
+  margin: 0;
   padding: 0 $s-12;
   border-radius: $br-5; // Kata controls: 5px
   border: $s-1 solid var(--color-background-quaternary);
